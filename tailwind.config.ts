@@ -61,7 +61,18 @@ const config: Config = {
       },
     },
 
+    screens: {
+      'ph': '360px',
+      'pad': '834px',
+      'dt': '1920px',
+    },
+    
+    
     extend: {
+      fontFamily: {
+        pretendard: ["pretendard"],
+      },
+
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
