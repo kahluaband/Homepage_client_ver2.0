@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
-  font-family: "pretendard";
-  src: url("/assets/fonts/Pretendard-Regular.woff");
+  font-family: 'pretendard';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
   font-weight: 100;
   font-style: normal;
   line-height: 150%;
-  color: black;
 }
 
 

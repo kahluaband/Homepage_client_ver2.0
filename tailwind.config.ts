@@ -67,10 +67,9 @@ const config: Config = {
       'dt': '1920px',
     },
     
-    
     extend: {
       fontFamily: {
-        pretendard: ["pretendard"],
+        pretendard: ['pretendard'],
       },
 
       backgroundImage: {
