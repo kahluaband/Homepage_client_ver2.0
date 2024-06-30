@@ -27,6 +27,7 @@ const Header = () => {
         <div>
             <Link href="/" key="home">
                 {pathname === "/recruit" ? <Image src={logo_white} alt="logo-white" height={24}/> : <Image src={logo_black} alt="logo-black" height={24}/>}
+                
             </Link>
         </div>
         <div>
