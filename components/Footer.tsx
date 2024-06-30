@@ -36,9 +36,8 @@ const SocialIcon: React.FC<SocialIconProps> = ({
 );
 
 const Footer = () => {
-  
   return (
-    <div className="w-full h-[339px] bg-gray-90 relative bottom-0 font-['pretendard'] min-w-[100%] flex flex-col items-center">
+    <div className="w-full h-[339px] relative translate-y-0 font-pretendard bg-gray-90 flex flex-col items-center">
       <div className="flex flex-row text-center text-[18px] leading-6 mt-[24px] mb-[56px]">
         <Link href="/">
           <span className="text-gray-50 font-normal">CREDIT</span>
