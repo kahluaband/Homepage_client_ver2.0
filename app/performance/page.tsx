@@ -1,3 +1,5 @@
+import YearSelector from '@/components/performance/YearSelector';
+
 const page = () => {
   return (
     <div className=" w-full pt-[64px] flex flex-col items-center mb-[72px]">
@@ -5,6 +7,7 @@ const page = () => {
         <span className="font-pretendard text-[64px] font-semibold leading-[83.2px] text-gray-0 mt-[64px]">
           PERFORMANCE
         </span>
+        <YearSelector />
       </div>
       <div className="w-[1200px] h-full grid grid-cols-4 gap-x-[24px] gap-y-[48px]">
         {/* 유튜브 재생목록 카드 */}

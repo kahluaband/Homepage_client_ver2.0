@@ -1,0 +1,143 @@
+'use client';
+import React, { useState } from 'react';
+
+// const yearData = {
+//   '2024': [
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luut6RrZvInAnzspEsL2JG2S9',
+//       thumbnail: '',
+//       title: '2024.03.04 정기공연',
+//       tags: [
+//         '# 행복했던 날들이었다',
+//         '# 검정치마',
+//         '# 터치드',
+//         '# 알루미늄',
+//         '# Green Day',
+//         '# 데이브레이크',
+//       ],
+//     },
+//   ],
+//   '2023': [
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuvOWc_mlR5d5eC3EnYZPiH',
+//       thumbnail: '',
+//       title: '2023.09.01 정기공연',
+//       tags: [
+//         '# 그대에게',
+//         '# LUCY',
+//         '# 직감',
+//         '# 실리카겔',
+//         '# 멋진헛간 remix',
+//         '# Lacuna',
+//       ],
+//     },
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuvOWc_mlR5d5eC3EnYZPiH',
+//       thumbnail: '',
+//       title: '2023.03.06 정기공연',
+//       tags: [
+//         '# 스물다섯 스물하나',
+//         '# 데이식스',
+//         '# 잔나비',
+//         '# YB 밴드',
+//         '# 백예린',
+//         '# 미도와 파라솔',
+//       ],
+//     },
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luus1TGr0V9kNhXqSRJJbJkTW',
+//       thumbnail: '',
+//       title: '2023.01.28 새해맞이 공연',
+//       tags: [
+//         '# Last Christmas',
+//         '# 너드커넥션',
+//         '# 쏜애플',
+//         "# Can't take my eyes off you",
+//         '# Radiohead',
+//       ],
+//     },
+//   ],
+//   '2022': [
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luusvf1KLF90v1FQBAOejv8_g',
+//       thumbnail: '',
+//       title: '2022.09.01 정기공연',
+//       tags: [
+//         '# The Volunteers',
+//         '# 사건의 지평선',
+//         '# (여자)-아이들',
+//         '# Sk8er Boy',
+//         '# Muse',
+//       ],
+//     },
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuutWQhQJW-c1j1_rkFdwsRYt',
+//       thumbnail: '',
+//       title: '2022.03.07 정기공연',
+//       tags: [
+//         '# 윤하',
+//         '# Reality',
+//         '# 새소년',
+//         '# Champagne Supernova',
+//         '# 비와 당신',
+//       ],
+//     },
+//   ],
+//   '2019': [
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luuuq168b0ZO6X0bE5p5W8LbX',
+//       thumbnail: '',
+//       title: '2019.09 정기공연',
+//       tags: [
+//         '# 박하사탕',
+//         '# Basket Case',
+//         '# 크라잉넛',
+//         '# Wake Up When September Ends',
+//       ],
+//     },
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luusva097pGe_sxwVQ5LwBeLN',
+//       thumbnail: '',
+//       title: '2019.06 깔루아&고스락 연합공연',
+//       tags: [
+//         '# 그의 바다',
+//         '# This Love',
+//         '# 아이유',
+//         '# 로맨틱펀치',
+//         '# Triptych',
+//       ],
+//     },
+//     {
+//       url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuutTG8UD9hNIWbv_F3JotPS-',
+//       thumbnail: '',
+//       title: '2019.03 정기공연',
+//       tags: [
+//         '# 나에게로 떠나는 여행',
+//         '# Hysteria',
+//         '# 브로큰발렌타인',
+//         '# Time Is Running Out',
+//       ],
+//     },
+//   ],
+// };
+
+const YearSelector = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedYear, setSelectedYear] = useState('ALL');
+
+  const years = ['All', '2024', '2023', '2022', '2019', '2018', '2017', '2016'];
+
+  return (
+    <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px] mt-16">
+      {years.map((year) => (
+        <div className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] ">
+          <text className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6">
+            {year}
+          </text>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default YearSelector;
