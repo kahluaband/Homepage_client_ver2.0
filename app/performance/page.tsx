@@ -1,7 +1,11 @@
 const page = () => {
   return (
-    <div className=" w-full pt-[64px] h-screen flex flex-col items-center mb-[72px]">
-      <div className="w-[1200px] h-[320px] rounded-[24px] bg-gray-90 mt-[16px] mb-[32px]"></div>
+    <div className=" w-full pt-[64px] flex flex-col items-center mb-[72px]">
+      <div className="w-[1200px] min-h-[320px] rounded-[24px] bg-gray-90 mt-[16px] mb-[32px] flex flex-col items-center">
+        <span className="font-pretendard text-[64px] font-semibold leading-[83.2px] text-gray-0 mt-[64px]">
+          PERFORMANCE
+        </span>
+      </div>
       <div className="w-[1200px] h-full grid grid-cols-4 gap-x-[24px] gap-y-[48px]">
         {/* 유튜브 재생목록 카드 */}
         <div className="w-[282px] flex flex-col items-start gap-[8px]">
