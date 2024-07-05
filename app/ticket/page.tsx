@@ -8,6 +8,7 @@ const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 const page = () => {
   const [nowUrl, setNowUrl] = useState("");
   const [activeArrow, setActiveArrow] = useState('first');
+  const [isDays, setIsDays] = useState(true);
 
   useEffect(() => {
     setNowUrl(window.location.href);
@@ -79,7 +80,8 @@ const page = () => {
     <div className="flex flex-row mt-8 h-[376px] justify-center"> 
       <Image src="image/Poster.svg" alt="포스터사진" width={282} height={376} className="flex flex-shrink-0 rounded-xl"/>
       <div className="flex flex-col mt-2 ml-8">
-        <div className="inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 bg-primary-50 text-gray-0 w-[84px] h-8">예매 가능</div>
+        <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8
+        ${isDays?"bg-primary-50 text-gray-0":"bg-gray-50 text-gray-10"}`}>{isDays?"예매 가능":"예매 마감"}</div>
         <div className="mt-4 gap-4 flex flex-row">
           <p className="w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[24px]">2024년 3월 정기 공연</p>
           <div onClick={copyUrl} className="flex flex-col justify-center">
