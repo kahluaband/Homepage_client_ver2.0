@@ -20,6 +20,7 @@ const page = () => {
             </p>
           </div>
         </section>
+
         {/* 새내기 첫 합주 */}
         <section className="mt-[72px] h-[470px] flex">
           <div className="w-96 rounded-3xl h-full">
@@ -57,6 +58,7 @@ const page = () => {
               </p>
             </div>
           </div>
+
           <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
             <Image src={aboutband} alt="About Band" />
           </div>
@@ -69,6 +71,7 @@ const page = () => {
             </div>
           </div>
         </section>
+
         {/* 정기 공연 및 각종 행사 */}
         <section className="mt-[200px] h-[470px] flex">
           <div className="w-96 rounded-3xl h-full">
@@ -122,15 +125,63 @@ const page = () => {
             <Image src={aboutband} alt="About Band" />
           </div>
         </section>
+
         {/* 창립제와 연말 송년회 */}
-        <section className="">
-          <div></div>
-          <div></div>
-          <div>
-            <div></div>
-            <div></div>
+        <section className="mt-[200px] h-[470px] flex">
+          <div className="w-96 rounded-3xl h-full">
+            <div className="flex">
+              <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-warning-40 text-gray-0">
+                <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
+                  창립제와
+                  <br />
+                  연말 송년회
+                </p>
+              </h3>
+              <div className="w-[102px] h-[102px] bg-warning-40 relative">
+                <div className="w-[102px] h-[102px] rounded-bl-3xl z-1000 absolute bg-gray-0">
+                  <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
+                    <Image
+                      src={aboutmusic}
+                      className="w-12 h-12"
+                      alt="About Music"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl bg-warning-40 text-gray-0">
+              <div className="flex-grow"></div>
+              <p className="w-80 h-[189px] mb-8 text-lg font-medium leading-[150%]">
+                7월에는 깔루아의 창립일을 기념하는 창립제,
+                <br />
+                12월에는 다함께 연말을 마무리하는 송년회가
+                <br />
+                열립니다.
+                <br />
+                1기부터 활동기수까지 선후배가 함께 모여
+                <br />
+                네트워킹을 할 수 있는 행사입니다.
+                <br />
+                이렇게 많은 선배들, 동기들, 후배들을 사귈 수
+                <br />
+                있는 것이 깔루아의 자랑 중 하나입니다.
+              </p>
+            </div>
+          </div>
+
+          <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
+            <Image src={aboutband} alt="About Band" />
+          </div>
+          <div className="ml-6">
+            <div className="rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
+              <Image src={aboutband} alt="About Band" />
+            </div>
+            <div className="rounded-3xl w-96 h-[223px] overflow-hidden">
+              <Image src={aboutband} alt="About Band" />
+            </div>
           </div>
         </section>
+
         {/* MT, 번개, 여행 */}
         <section className="">
           <div></div>
