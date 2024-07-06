@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import bg from "@/public/image/recruit/bg.svg"
 import logo_white from "@/public/image/KAHLUA.svg"
 import vocal from "@/public/image/recruit/vocal.svg"
 import guitar from "@/public/image/recruit/vocal.svg"
@@ -9,16 +10,19 @@ import syn from "@/public/image/recruit/vocal.svg"
 
 const page = () => {
   return (
-    <div className="flex top-16 flex-col px-[360px] h-full bg-gray-90">
-      <div className="flex flex-col h-screen text-gray-0 items-center justify-center text-center">
+    <div>
+      <div className="flex flex-col top-0 items-center justify-center text-center px-[360px] h-screen bg-performance text-gray-0">
         <Image src={logo_white} width={516} height={88} alt="logo"/>
         <p className="text-[32px] font-semibold mt-8">23rd MEMBER RECRUITMENT</p>
         <p className="text-[24px] mt-1">2023.03.01 FRI ~ 2023.03.07 SAT</p>
         <Link href="/recruit/apply" key="apply" className="flex justify-center items-center text-center w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
       </div>
-      <Requirement/>
-      <RecruitingSession/>
-      <Schedule/>
+      <div className="flex flex-col px-[360px] bg-gray-90 h-full">
+        <Requirement/>
+        <RecruitingSession/>
+        <Schedule/>
+      </div>
+      <FAQ/>
     </div>
   );
 };
@@ -28,7 +32,7 @@ const Requirement = () => {
     <div className="flex flex-col h-full text-gray-0 text-center">
       <div>
         <p className="text-gray-10 text-[32px] font-semibold">지원자격</p>
-        <p className="text-primary-40 text-[18px]">REQUIREMENT</p>
+        <p className="text-primary-40 text-[18px] mt-1">REQUIREMENT</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
         <div className="flex flex-col bg-gray-80/50 w-[384px] h-[170px] px-[40px] py-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
@@ -53,7 +57,7 @@ const RecruitingSession = () => {
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px]">
       <div>
         <p className="text-gray-10 text-[32px] font-semibold">모집 세션</p>
-        <p className="text-primary-40 text-[18px]">RECRUITING SESSION</p>
+        <p className="text-primary-40 text-[18px] mt-1">RECRUITING SESSION</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-[20px]">
         <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
@@ -86,7 +90,7 @@ const Schedule = () => {
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px] mb-[334px]">
       <div>
         <p className="text-gray-10 text-[32px] font-semibold">모집 일정</p>
-        <p className="text-primary-40 text-[18px]">RECRUITMENT SCHEDULE</p>
+        <p className="text-primary-40 text-[18px] mt-1">RECRUITMENT SCHEDULE</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
         <div className="flex flex-col bg-gray-80/50 w-[282px] h-[196px] p-[24px] rounded-[16px] justify-center items-start text-left">
@@ -113,5 +117,16 @@ const Schedule = () => {
     </div>
   );
 };
+
+const FAQ = () => {
+  return (
+    <div className="bg-gradient-to-b from-gray-5 to-primary-0 flex flex-col justify-center items-center text-center h-screen py-40">
+      <div>
+        <p className="text-gray-90 text-[32px] font-semibold">자주 묻는 질문</p>
+        <p className="text-primary-40 text-[18px] mt-1">FAQ</p>
+      </div>
+    </div>
+  )
+}
 
 export default page;

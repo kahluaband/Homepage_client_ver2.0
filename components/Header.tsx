@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     // padding 수정 필요
-    <div className="font-pretendard w-full h-[64px] fixed bg-gray-0 flex flex-row justify-between items-center px-40">
+    <div className="font-pretendard w-full h-[64px] fixed bg-gray-0/0 flex flex-row justify-between items-center px-40">
         <div>
             <Link href="/" key="home">
                 {pathname === "/recruit" ? <Image src={logo_white} alt="logo-white" height={24}/> : <Image src={logo_black} alt="logo-black" height={24}/>}
@@ -35,7 +35,9 @@ const Header = () => {
             {Url.map((url) => (
                  <li 
                     key={url.name}
-                    className="font-medium text-center text-[18px] leading-6"
+                    className={`font-medium text-center text-[18px] leading-6 ${
+                        pathname === "/recruit" ? "text-gray-0" : ""
+                      }`}
                  > 
                     <Link
                         href={url.url}
