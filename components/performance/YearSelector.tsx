@@ -1,5 +1,9 @@
 'use client';
+import Image from 'next/image';
 import React, { useState } from 'react';
+import chevron_down from '@/public/image/performance/chevron-down.svg';
+import chevron_up from '@/public/image/performance/chevron-up.svg';
+import YearCard from './YearCard';
 
 // const yearData = {
 //   '2024': [
@@ -126,16 +130,43 @@ const YearSelector = () => {
   const [selectedYear, setSelectedYear] = useState('ALL');
 
   const years = ['All', '2024', '2023', '2022', '2019', '2018', '2017', '2016'];
+  const yearArr1 = ['All', '2024', '2023', '2022'];
+  const yearArr2 = ['2019', '2018', '2017', '2016'];
+
+  const toggleBtn = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px] mt-16">
-      {years.map((year) => (
-        <div className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] ">
-          <text className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6">
-            {year}
-          </text>
+    <div className="flex gap-2 mt-16 relative">
+      <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px]">
+        {yearArr1.map((year) => (
+          <div className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] ">
+            <text className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6">
+              {year}
+            </text>
+          </div>
+        ))}
+      </div>
+
+      {/* 토글 버튼 */}
+      {isOpen ? (
+        <div
+          className="w-8 h-8 rounded-full bg-primary-50 flex justify-center items-center cursor-pointer"
+          onClick={toggleBtn}
+        >
+          <Image src={chevron_up} alt="up" width={24} height={24} />
         </div>
-      ))}
+      ) : (
+        <div
+          className="w-8 h-8 rounded-full bg-gray-0 flex justify-center items-center cursor-pointer"
+          onClick={toggleBtn}
+        >
+          <Image src={chevron_down} alt="down" width={24} height={24} />
+        </div>
+      )}
+
+      <YearCard />
     </div>
   );
 };

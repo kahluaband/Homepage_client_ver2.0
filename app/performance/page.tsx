@@ -9,6 +9,7 @@ const page = () => {
         </span>
         <YearSelector />
       </div>
+
       <div className="w-[1200px] h-full grid grid-cols-4 gap-x-[24px] gap-y-[48px]">
         {/* 유튜브 재생목록 카드 */}
         <div className="w-[282px] flex flex-col items-start gap-[8px]">
