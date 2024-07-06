@@ -141,10 +141,16 @@ const YearSelector = () => {
     <div className="flex gap-2 mt-16 relative">
       <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px]">
         {yearArr1.map((year) => (
-          <div className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] ">
-            <text className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6">
+          <div
+            key={year}
+            className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] "
+          >
+            <p
+              key={year}
+              className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6"
+            >
               {year}
-            </text>
+            </p>
           </div>
         ))}
       </div>
@@ -166,7 +172,7 @@ const YearSelector = () => {
         </div>
       )}
 
-      <YearCard />
+      {isOpen && <YearCard />}
     </div>
   );
 };
