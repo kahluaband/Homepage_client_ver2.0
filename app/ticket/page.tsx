@@ -18,8 +18,7 @@ const page = () => {
 
     script.onload = () => {
       window.kakao.maps.load(() => {
-        const container1 = document.getElementById("map1");
-        const container2 = document.getElementById("map2");
+        const container = document.getElementById("map");
 
         /*
                 공연 위치 설정
@@ -31,13 +30,9 @@ const page = () => {
           ),
         };
 
-        const map1 = new window.kakao.maps.Map(container1, {
+        const map = new window.kakao.maps.Map(container, {
           ...options,
           level: 3,
-        });
-        const map2 = new window.kakao.maps.Map(container2, {
-          ...options,
-          level: 2,
         });
 
         const markerPosition = new window.kakao.maps.LatLng(
@@ -59,12 +54,9 @@ const page = () => {
           return marker;
         };
 
-        const marker1 = createMarker(map1);
-        const marker2 = createMarker(map2);
-        marker1.setMap(map1);
-        marker2.setMap(map2);
-        marker1.setDraggable(true);
-        marker2.setDraggable(true);
+        const marker = createMarker(map);
+        marker.setMap(map);
+        marker.setDraggable(true);
       });
     };
   }, []);
@@ -76,7 +68,7 @@ const page = () => {
   }
 
   return (
-  <div className="flex relative mx-auto flex-col top-16 h-[1100px] w-[1200px]">
+  <div className="flex relative flex-col top-16 h-[1100px] w-[1200px] mx-auto">
     <div className="flex flex-row mt-8 h-[376px] justify-center"> 
       <Image src="image/Poster.svg" alt="포스터사진" width={282} height={376} className="flex flex-shrink-0 rounded-xl"/>
       <div className="flex flex-col mt-2 ml-8">
@@ -115,10 +107,10 @@ const page = () => {
       </div>
       <div className="ml-[164px] mt-[120px] h-[282px]">
         <p className="text-[18px] font-medium left-9 text-gray-70 h-[27px]">공연장 위치</p>
-        <div id="map1" className="mt-2 w-[384px] h-[225px] rounded-xl flex-shrink-0 z-0 bottom-0"/>
+        <div id="map" className="mt-2 w-[384px] h-[225px] rounded-xl flex-shrink-0 z-0 bottom-0"/>
       </div>
     </div>
-    <div className="w-[1200px] h-[1px] bg-gray-15 flex flex-shrink-0 mt-10 mx-auto"></div>
+    <div className="w-[1200px] h-[1px] bg-gray-15 flex flex-shrink-0 mt-10"/> 
     <div className="w-[1200px] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
       <div className="w-[400px] flex flex-col" onClick={() => setActiveArrow("first")}>
         <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-30 flex flex-row items-center">
@@ -147,7 +139,7 @@ const page = () => {
         <div className="h-[280px] flex flex-shrink-0 bg-gray-05"></div>
       </div>
     </div>
-    <Link href={activeArrow === "complete" ? "ticket/reserve/" : "#"}
+    <Link href={activeArrow === "complete" ? "ticket/freshman_tickets/" : "#"}
     className={`mt-[24px] w-[280px] h-[60px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium 
       ${activeArrow=="complete" ?"text-gray-0 bg-primary-50" : "text-gray-40 bg-gray-10"
     }`}>예매하기</Link>
