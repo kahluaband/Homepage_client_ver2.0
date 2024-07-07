@@ -153,7 +153,7 @@ const YearSelector = () => {
           >
             <p
               key={year}
-              className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6"`}
+              className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
             >
               {year}
             </p>
@@ -188,11 +188,11 @@ const YearSelector = () => {
                 setSYear(year);
                 toggleBtn();
               }}
-              className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer"`}
+              className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " px-[12px] py-[4px] justify-center items-center gap-[10px] cursor-pointer rounded-[32px] "`}
             >
               <p
                 key={year}
-                className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " w-[60px] justify-center items-center text-center font-pretendard text-base font-normal"`}
+                className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " w-[60px] justify-center items-center text-center font-pretendard text-base font-normal "`}
               >
                 {year}
               </p>
