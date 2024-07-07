@@ -3,6 +3,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import chevron_down from '@/public/image/performance/chevron-down.svg';
 import chevron_up from '@/public/image/performance/chevron-up.svg';
+import { useRecoilState } from 'recoil';
+import { selectedYear } from '@/atoms';
 
 // const yearData = {
 //   '2024': [
@@ -126,11 +128,12 @@ import chevron_up from '@/public/image/performance/chevron-up.svg';
 
 const YearSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedYear, setSelectedYear] = useState('ALL');
+  const [sYear, setSYear] = useRecoilState(selectedYear);
 
   const years = ['All', '2024', '2023', '2022', '2019', '2018', '2017', '2016'];
-  const yearArr1 = ['All', '2024', '2023', '2022'];
-  const yearArr2 = ['2019', '2018', '2017', '2016'];
+  const year1 = ['All', '2024', '2023', '2022'];
+  const year2 = ['2019', '2018', '2017', '2016'];
+  const currentYearList = year2.includes(sYear) ? year2 : year1;
 
   const toggleBtn = () => {
     setIsOpen(!isOpen);
@@ -138,15 +141,19 @@ const YearSelector = () => {
 
   return (
     <div className="flex gap-2 mt-16 relative">
+      {/* 연도 4개만 표시 */}
       <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px]">
-        {yearArr1.map((year) => (
+        {currentYearList.map((year) => (
           <div
             key={year}
-            className="w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] "
+            onClick={() => {
+              setSYear(year);
+            }}
+            className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] "`}
           >
             <p
               key={year}
-              className="text-gray-50 text-center font-pretendard text-[16px] font-normal leading-6"
+              className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6"`}
             >
               {year}
             </p>
@@ -171,16 +178,21 @@ const YearSelector = () => {
         </div>
       )}
 
+      {/* 전체 연도 카드 */}
       {isOpen && (
         <div className="absolute top-8 -left-12 grid grid-cols-4 bg-gray-0 p-3 mt-4 gap-3 rounded-2xl shadow-[0_0_24px_0px_rgba(27,28,35,0.25)]">
           {years.map((year) => (
             <div
               key={year}
-              className="px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] "
+              onClick={() => {
+                setSYear(year);
+                toggleBtn();
+              }}
+              className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer"`}
             >
               <p
                 key={year}
-                className="w-[60px] text-gray-50 justify-center items-center text-center font-pretendard text-base font-normal"
+                className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " w-[60px] justify-center items-center text-center font-pretendard text-base font-normal"`}
               >
                 {year}
               </p>
