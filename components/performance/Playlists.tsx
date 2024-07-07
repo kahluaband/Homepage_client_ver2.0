@@ -103,7 +103,7 @@ const detail = [
   },
 ];
 
-const All = () => {
+const Playlists = () => {
   const [showMore, setShowMore] = useState(false);
 
   const handleMore = () => {
@@ -416,4 +416,4 @@ const All = () => {
   );
 };
 
-export default All;
+export default Playlists;
