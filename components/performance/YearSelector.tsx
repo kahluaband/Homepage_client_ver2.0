@@ -149,7 +149,7 @@ const YearSelector = () => {
             onClick={() => {
               setSYear(year);
             }}
-            className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] "`}
+            className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer "`}
           >
             <p
               key={year}

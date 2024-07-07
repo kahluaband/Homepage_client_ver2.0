@@ -1,6 +1,8 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRecoilValue } from 'recoil';
+import { selectedYear } from '@/atoms';
 import thumbnail0 from '@/public/image/performance/thumbnails/1.avif';
 import thumbnail1 from '@/public/image/performance/thumbnails/2.avif';
 import thumbnail2 from '@/public/image/performance/thumbnails/3.avif';
@@ -105,235 +107,23 @@ const detail = [
 
 const Playlists = () => {
   const [showMore, setShowMore] = useState(false);
+  const sYear = useRecoilValue(selectedYear);
 
   const handleMore = () => {
     setShowMore(!showMore);
   };
+  useEffect(() => {
+    setShowMore(false);
+  }, [sYear]);
 
   return (
     <>
       <div className="w-[1200px] h-full grid grid-cols-4 gap-x-6 gap-y-12">
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[0].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[0].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[0].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[1].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[1].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[1].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[2].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[2].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[2].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[3].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[3].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[3].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[4].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[4].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[4].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[5].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[5].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[5].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[6].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[6].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[6].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[7].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[7].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[7].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[8].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[8].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[8].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[9].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[9].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[9].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[10].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[10].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[10].description}
-          </span>
-        </div>
-        <div className="w-[282px] flex flex-col items-start gap-[8px]">
-          <div className="cursor-pointer">
-            <Image
-              src={detail[11].src}
-              alt="thumbnail"
-              width={282}
-              height={159}
-              quality={80}
-              className="rounded-[12px]"
-            />
-          </div>
-          <p className="text-[20px] font-semibold leading-8">
-            {detail[11].name}
-          </p>
-          <span className="text-[16px] text-gray-40 font-medium leading-6">
-            {detail[11].description}
-          </span>
-        </div>
-        {showMore && (
+        {(sYear === 'All' || sYear === '2024') && (
           <div className="w-[282px] flex flex-col items-start gap-[8px]">
             <div className="cursor-pointer">
               <Image
-                src={detail[12].src}
+                src={detail[0].src}
                 alt="thumbnail"
                 width={282}
                 height={159}
@@ -342,14 +132,256 @@ const Playlists = () => {
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
-              {detail[12].name}
+              {detail[0].name}
             </p>
             <span className="text-[16px] text-gray-40 font-medium leading-6">
-              {detail[12].description}
+              {detail[0].description}
             </span>
           </div>
         )}
-        {showMore && (
+        {(sYear === 'All' || sYear === '2023') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[1].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[1].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[1].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2023') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[2].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[2].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[2].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2023') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[3].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[3].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[3].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2022') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[4].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[4].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[4].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2022') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[5].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[5].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[5].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2019') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[6].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[6].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[6].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2019') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[7].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[7].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[7].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2019') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[8].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[8].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[8].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2018') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[9].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[9].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[9].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2017') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[10].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[10].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[10].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' || sYear === '2017') && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[11].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[11].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[11].description}
+            </span>
+          </div>
+        )}
+        {(sYear === 'All' && showMore) ||
+          (sYear === '2017' && (
+            <div className="w-[282px] flex flex-col items-start gap-[8px]">
+              <div className="cursor-pointer">
+                <Image
+                  src={detail[12].src}
+                  alt="thumbnail"
+                  width={282}
+                  height={159}
+                  quality={80}
+                  className="rounded-[12px]"
+                />
+              </div>
+              <p className="text-[20px] font-semibold leading-8">
+                {detail[12].name}
+              </p>
+              <span className="text-[16px] text-gray-40 font-medium leading-6">
+                {detail[12].description}
+              </span>
+            </div>
+          ))}
+        {/* 같이 적으니 렌더링이 이상해져서 2개로 나눠서 작성했습니다 */}
+        {sYear === 'All' && showMore && (
           <div className="w-[282px] flex flex-col items-start gap-[8px]">
             <div className="cursor-pointer">
               <Image
@@ -369,7 +401,47 @@ const Playlists = () => {
             </span>
           </div>
         )}
-        {showMore && (
+        {sYear === '2017' && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[13].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[13].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[13].description}
+            </span>
+          </div>
+        )}
+        {sYear === 'All' && showMore && (
+          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="cursor-pointer">
+              <Image
+                src={detail[14].src}
+                alt="thumbnail"
+                width={282}
+                height={159}
+                quality={80}
+                className="rounded-[12px]"
+              />
+            </div>
+            <p className="text-[20px] font-semibold leading-8">
+              {detail[14].name}
+            </p>
+            <span className="text-[16px] text-gray-40 font-medium leading-6">
+              {detail[14].description}
+            </span>
+          </div>
+        )}
+        {sYear === '2016' && (
           <div className="w-[282px] flex flex-col items-start gap-[8px]">
             <div className="cursor-pointer">
               <Image
