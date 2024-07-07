@@ -1,6 +1,8 @@
 'use client';
 import YearSelector from '@/components/performance/YearSelector';
+import Image from 'next/image';
 import { RecoilRoot } from 'recoil';
+import imgsrc from '@/public/image/performance/thumbnails/1.avif';
 
 const page = () => {
   return (
@@ -17,7 +19,9 @@ const page = () => {
         <div className="w-[1200px] h-full grid grid-cols-4 gap-x-[24px] gap-y-[48px]">
           {/* 유튜브 재생목록 카드 */}
           <div className="w-[282px] flex flex-col items-start gap-[8px]">
-            <div className="w-full h-[159px] bg-[#D9D9D9] rounded-[12px] "></div>
+            <div className="w-full h-[159px] bg-[#D9D9D9] rounded-[12px] ">
+              <Image src={imgsrc} alt="thumbnail" fill />
+            </div>
             <p className="text-[20px] font-semibold leading-8">
               2024년도 3월 정기공연
             </p>
