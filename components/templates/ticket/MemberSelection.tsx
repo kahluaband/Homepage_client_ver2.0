@@ -3,10 +3,12 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 type MemberSelectionProps = {
-description: string;
-min: number;
-max: number;
-ticket: string;
+    description: string;
+    min: number;
+    max: number;
+    ticket: string;
+    member: number; 
+    setMember: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const MemberSelection: React.FC<MemberSelectionProps> = ({
@@ -14,8 +16,9 @@ description,
 min,
 max,
 ticket,
+member,
+setMember,
 }) => {
-const [member, setMember] = useState<number>(1);
 
 const handleIncrement = () => {
     setMember(prevMember => (prevMember < max ? prevMember + 1 : prevMember));
@@ -33,11 +36,11 @@ return (
         </div>
         <div className="mt-7 flex flex-row h-[24px] items-center">
             <div className="cursor-pointer" onClick={handleDecrement}>
-            <Image src="/image/subtract.svg" alt="minus" height={24} width={24} />
+            <Image src="/image/ticket/subtract.svg" alt="minus" height={24} width={24} />
             </div>
             <p className="ml-4">{member}</p>
             <div className="cursor-pointer ml-4" onClick={handleIncrement}>
-            <Image src="/image/addplus.svg" alt="plus" height={24} width={24} />
+            <Image src="/image/ticket/addplus.svg" alt="plus" height={24} width={24} />
             </div>
             <p className="ml-16 text-primary-50 text-lg font-semibold">
             {ticket === 'freshman' ? '무료' : '5,000원'}

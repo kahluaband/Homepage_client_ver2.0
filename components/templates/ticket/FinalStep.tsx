@@ -11,7 +11,7 @@ const FinalStep = ({ price, amount}: Props) => {
     const finalAmount = priceValue * amount;
     return (
         <div className="flex flex-row mt-10 w-full">
-            <div className="flex flex-col">
+            <div className="flex flex-col ml-12">
             <div className="text-gray-50 font-normal text-[18px] leading-[27px]">
                     {priceValue === 0 ? `무료 x ${amount}매` : `${priceValue} x ${amount}매`}
                 </div>
@@ -22,7 +22,7 @@ const FinalStep = ({ price, amount}: Props) => {
                     </div>
                 </div>
             </div>
-            <Link href="complete" className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</Link>
+            <Link href="complete/" className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</Link>
         </div>
     );
 };
