@@ -1,11 +1,25 @@
 import Image from 'next/image';
-import aboutband from '@/public/image/about-band.png';
-import aboutmusic from '@/public/image/about-music.svg';
+import music from '@/public/image/about/music.svg';
+import guitar from '@/public/image/about/guitar.svg';
+import celebrate from '@/public/image/about/celebrate.svg';
+import beer from '@/public/image/about/beer.svg';
+import ensemble1 from '@/public/image/about/ensemble1.avif';
+import ensemble2 from '@/public/image/about/ensemble2.avif';
+import ensemble3 from '@/public/image/about/ensemble3.avif';
+import concert1 from '@/public/image/about/concert1.avif';
+import concert2 from '@/public/image/about/concert2.avif';
+import concert3 from '@/public/image/about/concert3.avif';
+import networking1 from '@/public/image/about/networking1.avif';
+import networking2 from '@/public/image/about/networking2.avif';
+import networking3 from '@/public/image/about/networking3.avif';
+import travel1 from '@/public/image/about/travel1.avif';
+import travel2 from '@/public/image/about/travel2.avif';
+import travel3 from '@/public/image/about/travel3.avif';
 
 const page = () => {
   return (
     <div className="font-pretendard w-full h-[3129px] flex justify-center">
-      <div className="w-[1200px]">
+      <div className="mx-[360px] w-full">
         {/* About KAHLUA */}
         <section className="h-[333px] text-center bg-gray-90 mt-20 rounded-3xl">
           <h1 className="pt-16 font-mustica font-semibold leading-[130%] text-gray-0 text-[64px]">
@@ -23,7 +37,7 @@ const page = () => {
 
         {/* 새내기 첫 합주 */}
         <section className="mt-[72px] h-[470px] flex">
-          <div className="w-96 rounded-3xl h-full">
+          <div className="w-full rounded-3xl h-full">
             <div className="flex">
               <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-gray-90 text-gray-0">
                 <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
@@ -34,7 +48,7 @@ const page = () => {
                 <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
                   <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
                     <Image
-                      src={aboutmusic}
+                      src={music}
                       className="w-12 h-12"
                       alt="About Music"
                     />
@@ -54,20 +68,36 @@ const page = () => {
                 하게되는데요.
                 <br />
                 이 첫 합주를 기점으로 밴드의 매력에
-                <br />푹 빠지게 될거에요!
+                <br />푹 빠지게 될거예요!
               </p>
             </div>
           </div>
-
-          <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
-            <Image src={aboutband} alt="About Band" />
+          <div className="ml-6">
+            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
+              <Image
+                src={ensemble1}
+                alt="ensemble1"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
           <div className="ml-6">
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
+              <Image
+                src={ensemble2}
+                alt="ensemble2"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
+              <Image
+                src={ensemble3}
+                alt="ensemble3"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </div>
         </section>
@@ -86,7 +116,7 @@ const page = () => {
                 <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
                   <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
                     <Image
-                      src={aboutmusic}
+                      src={guitar}
                       className="w-12 h-12"
                       alt="About Music"
                     />
@@ -114,15 +144,32 @@ const page = () => {
           </div>
 
           <div className="ml-6">
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
+              <Image
+                src={concert1}
+                alt="concert1"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
+              <Image
+                src={concert2}
+                alt="concert2"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </div>
-          <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
-            <Image src={aboutband} alt="About Band" />
+          <div className="ml-6">
+            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
+              <Image
+                src={concert3}
+                alt="concert3"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
         </section>
 
@@ -141,7 +188,7 @@ const page = () => {
                 <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
                   <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
                     <Image
-                      src={aboutmusic}
+                      src={celebrate}
                       className="w-12 h-12"
                       alt="About Music"
                     />
@@ -169,15 +216,32 @@ const page = () => {
             </div>
           </div>
 
-          <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
-            <Image src={aboutband} alt="About Band" />
+          <div className="ml-6">
+            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
+              <Image
+                src={networking1}
+                alt="networking1"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
           <div className="ml-6">
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
+              <Image
+                src={networking2}
+                alt="networking2"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
+              <Image
+                src={networking3}
+                alt="networking3"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </div>
         </section>
@@ -194,11 +258,7 @@ const page = () => {
               <div className="w-[102px] h-[102px] bg-primary-50 relative">
                 <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
                   <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-                    <Image
-                      src={aboutmusic}
-                      className="w-12 h-12"
-                      alt="About Music"
-                    />
+                    <Image src={beer} className="w-12 h-12" alt="About Music" />
                   </div>
                 </div>
               </div>
@@ -221,15 +281,32 @@ const page = () => {
           </div>
 
           <div className="ml-6">
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
+              <Image
+                src={travel1}
+                alt="travel1"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
-            <div className="rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image src={aboutband} alt="About Band" />
+            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
+              <Image
+                src={travel2}
+                alt="travel2"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </div>
-          <div className="ml-6 rounded-3xl w-96 h-full bg-gray-90 overflow-hidden">
-            <Image src={aboutband} alt="About Band" />
+          <div className="ml-6">
+            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
+              <Image
+                src={travel3}
+                alt="travel3"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </div>
         </section>
       </div>
