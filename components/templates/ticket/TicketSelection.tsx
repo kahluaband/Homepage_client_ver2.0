@@ -1,4 +1,4 @@
-import {SelectBox} from "@/components/ui/selectBox";
+import {SelectBox} from "@/components/ui/SelectBox";
 
 const TicketSelection = () => {
     return (

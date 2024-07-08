@@ -1,4 +1,5 @@
 "use client"
+import TicketOption from "@/components/templates/ticket/TicketOption";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -7,7 +8,6 @@ const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 const page = () => {
   const [nowUrl, setNowUrl] = useState("");
-  const [activeArrow, setActiveArrow] = useState('first');
   const [isDays, setIsDays] = useState(true);
 
   useEffect(() => {
@@ -111,39 +111,7 @@ const page = () => {
       </div>
     </div>
     <div className="w-[1200px] h-[1px] bg-gray-15 flex flex-shrink-0 mt-10"/> 
-    <div className="w-[1200px] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
-      <div className="w-[400px] flex flex-col" onClick={() => setActiveArrow("first")}>
-        <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-30 flex flex-row items-center">
-          <div className="flex w-[392px] justify-center ">
-            <p className={`h-[27px] w-[67px] text-center flex ${activeArrow=="first"?"text-primary-50":""}`}>날짜 선택</p>
-          </div>
-          <Image src={`${activeArrow=="first"?"image/sel_row.svg":"image/row.svg"}`} alt="row" width={8} height={16}/>
-        </div>
-        <div className="h-[280px] flex flex-shrink-0 rounded-bl-[12px] border-r border-gray-15 bg-gray-05"></div>
-      </div>
-      <div className="w-[400px] flex flex-col" onClick={() => setActiveArrow("second")}>
-        <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-30 flex flex-row items-center">
-          <div className="flex w-[392px] justify-center ">
-            <p className={`h-[27px] w-[67px] text-center flex ${activeArrow=="second"?"text-primary-50":""}`}>시간 선택</p>
-          </div>
-          <Image src={`${activeArrow=="second"?"image/sel_row.svg":"image/row.svg"}`} alt="row" width={8} height={16}/>
-        </div>
-        <div className="h-[280px] flex flex-shrink-0 rounded-bl-[12px] border-r border-gray-15 bg-gray-05"></div>
-      </div>
-      <div className="w-[400px] flex flex-col" onClick={() => setActiveArrow("third")}>
-        <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-30 flex flex-row items-center">
-          <div className="flex w-[392px] justify-center ">
-            <p className={`h-[27px] w-[67px] text-center flex ${activeArrow=="third"?"text-primary-50":""}`}>좌석 선택</p>
-          </div>
-        </div>
-        <div className="h-[280px] flex flex-shrink-0 bg-gray-05"></div>
-      </div>
-    </div>
-    <Link href={activeArrow === "complete" ? "ticket/freshman_tickets/" : "#"}
-    className={`mt-[24px] w-[280px] h-[60px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium 
-      ${activeArrow=="complete" ?"text-gray-0 bg-primary-50" : "text-gray-40 bg-gray-10"
-    }`}>예매하기</Link>
-      
+    <TicketOption/>
   </div>
   );
 };

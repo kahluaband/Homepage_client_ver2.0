@@ -28,6 +28,8 @@ const handleDecrement = () => {
     setMember(prevMember => (prevMember > min ? prevMember - 1 : prevMember));
 };
 
+const finalAmount = 5000 * member;
+
 return (
     <div className="flex flex-col mt-10 mb-10 h-[83px] w-full">
         <div className="flex flex-row h-[30px]">
@@ -43,7 +45,7 @@ return (
             <Image src="/image/ticket/addplus.svg" alt="plus" height={24} width={24} />
             </div>
             <p className="ml-16 text-primary-50 text-lg font-semibold">
-            {ticket === 'freshman' ? '무료' : '5,000원'}
+            {ticket === 'freshman' ? '무료' : `${finalAmount.toLocaleString()}원`}
             </p>
         </div>
     </div>

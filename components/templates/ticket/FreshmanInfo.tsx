@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 
 interface FreshmanInfoProps {
     onInfoChange: (info: { name: string, department: string, student_id: string, phone_num: string }) => void;
