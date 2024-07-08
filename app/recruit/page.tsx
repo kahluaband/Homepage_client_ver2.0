@@ -1,3 +1,4 @@
+import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import bg from "@/public/image/recruit/bg.svg"
@@ -7,6 +8,7 @@ import guitar from "@/public/image/recruit/vocal.svg"
 import drum from "@/public/image/recruit/vocal.svg"
 import bass from "@/public/image/recruit/vocal.svg"
 import syn from "@/public/image/recruit/vocal.svg"
+import {Accordion, AccordionItem} from "@nextui-org/accordion";
 
 const page = () => {
   return (
@@ -125,6 +127,17 @@ const FAQ = () => {
         <p className="text-gray-90 text-[32px] font-semibold">자주 묻는 질문</p>
         <p className="text-primary-40 text-[18px] mt-1">FAQ</p>
       </div>
+      <Accordion variant="splitted">
+        <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+          dsfsd
+        </AccordionItem>
+        <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
+          sdf
+        </AccordionItem>
+        <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+          sfd
+        </AccordionItem>
+      </Accordion>
     </div>
   )
 }
