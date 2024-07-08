@@ -5,6 +5,7 @@ import MemberSelection from "@/components/templates/ticket/MemberSelection";
 import PartySelection, { Action, State, reducer } from "@/components/templates/ticket/PartySelection";
 import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
+import Bar from "@/components/ui/Bar";
 import {useState, useReducer} from "react";
 
 const initialState: State = {
@@ -47,13 +48,13 @@ const Freshman_tickets: React.FC = () => {
         <div className="h-[1395px] w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto">
             <div className="mx-12 flex flex-col">
                 <MemberSelection description="신입생은 최대 1인 1매 구매 가능합니다." min={1} max={1} ticket={"freshman"}  member={member} setMember={setMember}/>
-                <div className="h-[1px] bg-gray-10 flex flex-shrink-0 relative"/>
+                <Bar/>
                 <FreshmanInfo userInfo={userInfo} onInfoChange={handleUserInfoChange}/>
-                <div className="h-[1px] bg-gray-10 flex flex-shrink-0 relative"/>
+                <Bar/>
                 <TicketSelection/>
-                <div className="h-[1px] bg-gray-10 flex flex-shrink-0 relative"/>
+                <Bar/>
                 <PartySelection dispatch={dispatchPartySelection} state={partySelection} />
-                <div className="h-[1px] bg-gray-10 flex flex-shrink-0 relative"/>
+                <Bar/>
                 <Warning/>
             </div>
             <FinalStep price={0} amount={1}/>

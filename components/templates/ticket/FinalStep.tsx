@@ -13,12 +13,12 @@ const FinalStep = ({ price, amount}: Props) => {
         <div className="flex flex-row mt-10 w-full">
             <div className="flex flex-col ml-12">
             <div className="text-gray-50 font-normal text-[18px] leading-[27px]">
-                    {priceValue === 0 ? `무료 x ${amount}매` : `${priceValue} x ${amount}매`}
+                    {priceValue === 0 ? `무료 x ${amount}매` : `5,000원 x ${amount}매`}
                 </div>
-                <div className="flex flex-row w-[209px] h-[48px] gap-4 items-center">
-                    <p className="text-gray-70 font-medium text-[24px] leading-9">최종 결제 금액</p>
-                    <div className="text-primary-50 font-semibold text-[32px] leading-[48px]">
-                        {finalAmount === 0 ? "무료" : finalAmount}
+                <div className="flex flex-row w-[289px] h-[48px] gap-4 items-center">
+                    <p className="w-[137px] text-gray-70 font-medium text-[24px] leading-9">최종 결제 금액</p>
+                    <div className="text-primary-50 font-semibold text-[32px] leading-[48px] whitespace-nowrap">
+                        {finalAmount === 0 ? "무료" :  `${finalAmount.toLocaleString()}원`}
                     </div>
                 </div>
             </div>

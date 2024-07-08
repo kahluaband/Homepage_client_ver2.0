@@ -70,14 +70,14 @@ const page = () => {
   return (
   <div className="flex relative flex-col top-16 h-[1100px] w-[1200px] mx-auto">
     <div className="flex flex-row mt-8 h-[376px] justify-center"> 
-      <Image src="image/Poster.svg" alt="포스터사진" width={282} height={376} className="flex flex-shrink-0 rounded-xl"/>
+      <Image src="image/ticket/Poster.svg" alt="포스터사진" width={282} height={376} className="flex flex-shrink-0 rounded-xl"/>
       <div className="flex flex-col mt-2 ml-8">
         <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8
         ${isDays?"bg-primary-50 text-gray-0":"bg-gray-50 text-gray-10"}`}>{isDays?"예매 가능":"예매 마감"}</div>
         <div className="mt-4 gap-4 flex flex-row">
           <p className="w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[24px]">2024년 3월 정기 공연</p>
           <div onClick={copyUrl} className="flex flex-col justify-center">
-            <Image src="image/share.svg" alt="share" width={24} height={24} className="cursor-pointer"/>
+            <Image src="image/ticket/share.svg" alt="share" width={24} height={24} className="cursor-pointer"/>
           </div>
         </div>
         <div className="flex flex-row mt-6 text-[18px] leading-9 font-normal gap-6 h-7">
