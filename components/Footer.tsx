@@ -1,9 +1,9 @@
-import Link from "next/link"
-import Image from "next/image";
-import logo from "../public/image/KAHLUA.svg"
-import youtube_icon from "../public/image/youtube-icon.svg"
-import instagram_icon from "../public/image/instagram-icon.svg"
-import kakaotalk_icon from "../public/image/kakaotalk-icon.svg"
+import Link from 'next/link';
+import Image from 'next/image';
+import logo from '../public/image/KAHLUA.svg';
+import youtube_icon from '../public/image/youtube-icon.svg';
+import instagram_icon from '../public/image/instagram-icon.svg';
+import kakaotalk_icon from '../public/image/kakaotalk-icon.svg';
 
 export interface SocialIconProps {
   href: string;
@@ -52,7 +52,7 @@ const Footer = () => {
           <span className="text-gray-80 mx-2">|</span>
         </Link>
         <Link href="/ticket">
-        {/* 세부 url 나오면 수정 필요 */}
+          {/* 세부 url 나오면 수정 필요 */}
           <span className="font-medium text-gray-20">예매 내역 조회</span>
         </Link>
       </div>
@@ -60,21 +60,21 @@ const Footer = () => {
       {/* sns 버튼 */}
       <div>
         <ul className="w-full h-fit flex flex-row gap-[16px]">
-          <SocialIcon 
+          <SocialIcon
             href="https://www.youtube.com/@kahluaband8409"
             src={youtube_icon}
             alt="youtube"
             width={24}
             height={24}
           />
-           <SocialIcon 
+          <SocialIcon
             href="https://instagram.com/kahlua_band_?igshid=MzRlODBiNWFlZA=="
             src={instagram_icon}
             alt="instagram"
             width={24}
             height={24}
           />
-           <SocialIcon 
+          <SocialIcon
             href="http://pf.kakao.com/_UaIZG/chat"
             src={kakaotalk_icon}
             alt="kakaotalk"
@@ -84,13 +84,18 @@ const Footer = () => {
         </ul>
       </div>
       {/* 로고 */}
-      <Image src={logo} alt="logo" height={32} className="mt-[32px] mb-[12px]"/>
+      <Image
+        src={logo}
+        alt="logo"
+        height={32}
+        className="mt-[32px] mb-[12px]"
+      />
       {/* 저작권 관련 */}
       <p className="text-gray-50 text-center text-[16px] font-medium leading-6 mb-[84px]">
-      © 2024 KAHLUA. All rights reserved.
+        © 2024 KAHLUA. All rights reserved.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
