@@ -1,14 +1,19 @@
-import Link from "next/link";
+import React from 'react';
 
 interface Props {
     price: number;
     amount: number;
+    onReservationComplete: () => void; // 새로운 prop 추가: 예매 완료 시 실행할 콜백 함수
 }
 
-const FinalStep = ({ price, amount}: Props) => {
+const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete }) => {
     const priceValue = price || 0;
-
     const finalAmount = priceValue * amount;
+
+    const handleClickReservation = () => {
+        onReservationComplete();
+    };
+
     return (
         <div className="flex flex-row mt-10 w-full">
             <div className="flex flex-col ml-12">
@@ -22,7 +27,7 @@ const FinalStep = ({ price, amount}: Props) => {
                     </div>
                 </div>
             </div>
-            <Link href="complete/" className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</Link>
+            <button onClick={handleClickReservation} className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</button>
         </div>
     );
 };

@@ -38,6 +38,11 @@ const Freshman_tickets: React.FC = () => {
         }
     }, initialState);
 
+    const handleReservationComplete = () => {
+        window.location.href = `/ticket/complete`;
+    };
+
+
     return (
     <div className="h-[2000px] w-[996px] flex flex-col relative mx-auto top-20 mt-4 ">
         <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex flex-col mx-auto">
@@ -57,7 +62,7 @@ const Freshman_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1}/>
+            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} />
         </div>
     </div>
     );

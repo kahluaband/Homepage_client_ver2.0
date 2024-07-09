@@ -12,9 +12,8 @@ const ReservationDetails = () => {
 
     return (
         <div className="h-screen w-[996px] flex flex-col relative mx-auto top-20 mt-4 ">
-            <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex flex-col mx-auto items-center justify-center gap-4">
-                <p className="h-12 text-gray-0 text-center text-2xl font-semibold leading-[48px]">예매 내역 조회</p>
-                <p className="text-gray-20 text-center text-lg  font-normal leading-[27px]">티켓 예매 내역을 확인하고 취소할 수 있습니다.</p>
+            <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex mx-auto items-center justify-center ">
+                <p className="h-12 text-gray-0 text-center text-2xl font-semibold leading-[48px]">예매가 취소되었습니다.</p>
             </div>
             <div className="h-[500px] w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto">
                 <TicketStatus reservation_id={reservationId as string} />
