@@ -1,12 +1,20 @@
+'use client'
+
 import Image from "next/image"
 import Link from "next/link"
-import bg from "@/public/image/recruit/bg.svg"
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import logo_white from "@/public/image/KAHLUA.svg"
 import vocal from "@/public/image/recruit/vocal.svg"
 import guitar from "@/public/image/recruit/vocal.svg"
 import drum from "@/public/image/recruit/vocal.svg"
 import bass from "@/public/image/recruit/vocal.svg"
 import syn from "@/public/image/recruit/vocal.svg"
+import { ThemeProvider } from "styled-components";
+import { createTheme } from "@mui/material";
 
 const page = () => {
   return (
@@ -125,8 +133,79 @@ const FAQ = () => {
         <p className="text-gray-90 text-[32px] font-semibold">자주 묻는 질문</p>
         <p className="text-primary-40 text-[18px] mt-1">FAQ</p>
       </div>
+      <div className="pt-16">
+        <ThemeProvider theme={theme}>
+          {/* 
+          expanded된 경우 css 조정 필요(bg color, rounded, 질문 사이 간격 띄우기 )
+          <Accordion className={`w-[792px] bg-gray-0 ${expanded === true ? "bg-gray-0" : "bg-primary-50"}`}> 
+          */}
+          <Accordion className="w-[792px] bg-gray-0">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className="text-gray-80 px-8 pt-8 pb-4"
+            >
+              <p className="text-primary-50 pr-2">Q.</p>
+              <p>다룰 줄 아는 악기가 없지만 깔루아에 들어가고 싶어요. 이런 제가 깔루아에 지원해도 될까요?</p>
+            </AccordionSummary>
+            <AccordionDetails className="text-primary-10 flex flex-row px-8 pb-8">
+              <p className="pr-2">A.</p>
+              <p>저는 드럼이라는 걸 대학 와서 처음 만져봤는데요. 선배들, 동기들이 붙잡고 가르쳐줘서 이제 혼자서도 척척 합주 연습을 할 수 있답니다! 선배들이 처음부터 친절하게 가르쳐주니 전혀 걱정 마세요! 악기를 안 다뤄본 동기들도 많아요!</p>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="w-[792px] bg-gray-0">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className="text-gray-80 px-8 pt-8 pb-4"
+            >
+              <p className="text-primary-50 pr-2">Q.</p>
+              <p>저는 자율전공인데 컴퓨터공학과 소속 동아리인 깔루아에 들어갈 수 있나요?</p>
+            </AccordionSummary>
+            <AccordionDetails className="text-primary-10 flex flex-row px-8 pb-8">
+              <p className="pr-2">A.</p>
+              <p>네! 저도 자율전공이랍니다. “컴퓨터 공학과에 진입할 예정” 이라면 전혀 상관 없어요!</p>
+            </AccordionDetails>
+          </Accordion>
+
+          <Accordion className="w-[792px] bg-gray-0">
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1-content"
+              id="panel1-header"
+              className="text-gray-80 px-8 pt-8 pb-4"
+            >
+              <p className="text-primary-50 pr-2">Q.</p>
+              <p>모집인원은 몇 명인가요?</p>
+            </AccordionSummary>
+            <AccordionDetails className="text-primary-10 flex flex-row px-8 pb-8">
+              <p className="pr-2">A.</p>
+              <p>보컬 2명, 드럼 2명, 기타 4명, 베이스 2명, 신디사이저 2명으로 총 12명을 모집하고 있습니다.</p>
+            </AccordionDetails>
+          </Accordion>
+        </ThemeProvider>
+      </div>
     </div>
   )
 }
+
+const theme = createTheme({
+  components: {
+    // Name of the component
+    MuiAccordion: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          width: "792px",
+          color: "#111111"
+        },
+      },
+    },
+  },
+});
 
 export default page;
