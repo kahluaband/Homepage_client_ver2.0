@@ -1,8 +1,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ModalInput } from '../ui/ModalInput';
-import { CancelButton } from '../ui/CancelButton';
+import { ModalInput } from '@/components/ui/ModalInput';
+import { CancelButton } from '@/components/ui/CancelButton';
 
 interface CancelModalProps {
     isOpen: boolean;

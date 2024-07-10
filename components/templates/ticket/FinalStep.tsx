@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import DetailsErrorModal from '@/components/popups/ErrorModal/DetailsErrorModal';
+import DetailsErrorModal from '@/components/popups/ticket/DetailsErrorModal';
+import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
 
 interface Props {
     price: number;
@@ -10,7 +11,8 @@ interface Props {
 }
 
 const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFormComplete }) => {
-    const [showModal, setShowModal] = useState(false);
+    const [showDetailsErrorModal, setShowDetailsErrorModal] = useState(false);
+    const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const priceValue = price || 0;
     const finalAmount = priceValue * amount;
 
@@ -18,7 +20,7 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
         if (isFormComplete) {
             onReservationComplete();
         } else {
-            setShowModal(true);
+            setShowDetailsErrorModal(true);
         }
     };
 
@@ -36,7 +38,8 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
                 </div>
             </div>
             <button onClick={handleClickReservation} className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</button>
-            <DetailsErrorModal isOpen={showModal} onClose={() => setShowModal(false)} />
+            <DetailsErrorModal isOpen={showDetailsErrorModal} onClose={() => setShowDetailsErrorModal(false)} />
+            <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)}/>
         </div>
     );
 };

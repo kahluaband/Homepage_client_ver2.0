@@ -1,6 +1,6 @@
 "use client"
 
-import CancelModal from "@/components/popups/CancelModal";
+import CancelModal from "@/components/popups/ticket/CancelModal";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";

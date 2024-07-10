@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import InfoTemplate from './InfoTemplate';
-import { HtmlContext } from 'next/dist/server/future/route-modules/app-page/vendored/contexts/entrypoints';
 
 interface GeneralInfoProps {
     member: number; 
@@ -62,13 +61,6 @@ const handlePhonesArrayChange = (index: number, value: string) => {
             phonesArray.slice(0, companions.length).every(phone => phone.trim() !== "");
 
         onInfoComplete(isFormComplete); 
-        console.log("member:", member, 
-            "buyer:", buyer, 
-            "phone:", phone, 
-            "companions:", companions, 
-            "namesArray:", namesArray, 
-            "phonesArray:", phonesArray, 
-            "isFormComplete:", isFormComplete);
         }, [member, buyer, phone, companions, namesArray, phonesArray, onInfoComplete])
 
     return (
