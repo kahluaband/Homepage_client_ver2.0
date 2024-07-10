@@ -1,14 +1,27 @@
 "use client"
 
+import CancelModal from "@/components/popups/CancelModal";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const ReservationDetails = () => {
     const params = useSearchParams();
     const reservationId = params.get("reservation_id");
+    const [isFreshman, setIsFreshman] = useState(true);
+    
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleCancelReservation = () => {
+    const handleOpenModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleConfirmCancel = () => {
         window.location.href = `/ticket/cancel?reservation_id=${reservationId}`;
     };
 
@@ -23,8 +36,14 @@ const ReservationDetails = () => {
             </div>
             <div className="flex flex-row mt-10 gap-6 text-[18px] font-medium mx-auto">
                 <Link href="/ticket/" className="w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center rounded-xl text-gray-60 bg-gray-5">예매 페이지로 돌아가기</Link>
-                <button onClick={handleCancelReservation} className="w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-0 text-danger-40 border border-danger-40">예매 취소하기</button>
+                <button onClick={handleOpenModal} className="w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-0 text-danger-40 border border-danger-40">예매 취소하기</button>
             </div>
+            <CancelModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                onConfirm={handleConfirmCancel}
+                text={isFreshman ? "학번을" : "전화번호를"}
+            />
         </div>
     );
 };
