@@ -6,7 +6,7 @@ import PartySelection, { Action, State, reducer } from "@/components/templates/t
 import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
-import {useState, useReducer} from "react";
+import {useState, useReducer, useEffect} from "react";
 
 const initialState: State = {
     participation1: false,
@@ -16,6 +16,7 @@ const initialState: State = {
 
 const Freshman_tickets: React.FC = () => {
     const [member, setMember] = useState<number>(1);
+    const [isFormComplete, setIsFormComplete] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
@@ -42,6 +43,15 @@ const Freshman_tickets: React.FC = () => {
         window.location.href = `/ticket/complete`;
     };
 
+    useEffect(() => {
+        const { name, phone_num, department, student_id } = userInfo;
+        const isDataComplete =
+            name.trim() !== "" &&
+            phone_num.trim() !== "" &&
+            department.trim() !== "" &&
+            student_id.trim() !== "";
+        setIsFormComplete(isDataComplete);
+    }, [userInfo]);
 
     return (
     <div className="h-[2000px] w-[996px] flex flex-col relative mx-auto top-20 mt-4 ">
@@ -62,7 +72,7 @@ const Freshman_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} />
+            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} />
         </div>
     </div>
     );

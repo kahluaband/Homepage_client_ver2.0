@@ -12,6 +12,7 @@ import {useState, useEffect} from "react";
 
 const General_tickets: React.FC = () => {
     const [member, setMember] = useState<number>(1);
+    const [isFormComplete, setIsFormComplete] = useState(false);
     const [dynamicHeightClass, setDynamicHeightClass] = useState(
         "h-[1046px]"
     );
@@ -50,7 +51,7 @@ const General_tickets: React.FC = () => {
             <div className="mx-12 flex flex-col">
                 <MemberSelection description="일반 예매는 최대 1인 5매 구매 가능합니다." min={1} max={5} ticket={"general"}  member={member} setMember={setMember}/>
                 <Bar/>
-                <GeneralInfo member={member} setMember={setMember}/>
+                <GeneralInfo member={member} setMember={setMember} onInfoComplete={setIsFormComplete}/>
                 <Bar/>
                 <TicketSelection/>
                 <Bar/>
@@ -58,7 +59,7 @@ const General_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} />
+            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} />
         </div>
     </div>
     );
