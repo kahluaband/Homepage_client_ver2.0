@@ -1,11 +1,10 @@
+import {nextui} from '@nextui-org/theme';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx},\r\n    ./components/**/*.{js,ts,jsx,tsx,mdx},\r\n    ./app/**/*.{js,ts,jsx,tsx,mdx},\r\n    ./src/**/*.{js,ts,jsx,tsx,mdx},",
+    "./node_modules/@nextui-org/theme/dist/components/(accordion|divider).js"
   ],
   theme: {
     colors: {
@@ -83,6 +82,6 @@ const config: Config = {
   corePlugins: {
     preflight: true,
   },
-  plugins: [],
+  plugins: [nextui()],
 };
 export default config;
