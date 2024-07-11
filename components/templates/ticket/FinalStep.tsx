@@ -46,7 +46,7 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
             <button onClick={handleClickReservation} className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</button>
             <ReservedErrorModal isOpen={showReservedErrorModal} onClose={() => setShowReservedErrorModal(false)} onAlreadyReserved={onAlreadyReserved} />
             <DetailsErrorModal isOpen={showDetailsErrorModal} onClose={() => setShowDetailsErrorModal(false)} />
-            -<LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={onReservationComplete} />
+            <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={onReservationComplete} />
         </div>
     );
 };
