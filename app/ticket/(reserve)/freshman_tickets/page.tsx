@@ -17,6 +17,7 @@ const initialState: State = {
 const Freshman_tickets: React.FC = () => {
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
+    const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
@@ -41,6 +42,10 @@ const Freshman_tickets: React.FC = () => {
 
     const handleReservationComplete = () => {
         window.location.href = `/ticket/complete`;
+    };
+
+    const handleAlreadyReserved = () => {
+        window.location.href = `/ticket/search`;
     };
 
     useEffect(() => {
@@ -72,7 +77,7 @@ const Freshman_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} />
+            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );

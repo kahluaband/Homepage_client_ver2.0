@@ -13,6 +13,7 @@ import {useState, useEffect} from "react";
 const General_tickets: React.FC = () => {
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
+    const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [dynamicHeightClass, setDynamicHeightClass] = useState(
         "h-[1046px]"
     );
@@ -39,6 +40,10 @@ const General_tickets: React.FC = () => {
     const handleReservationComplete = () => {
         window.location.href = `/ticket/complete`;
     };
+
+    const handleAlreadyReserved = () => {
+        window.location.href = `/ticket/search`;
+    };
     
     return (
     <div className="h-[2000px] w-[996px] flex flex-col relative mx-auto top-20 mt-4">
@@ -59,7 +64,7 @@ const General_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} />
+            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );

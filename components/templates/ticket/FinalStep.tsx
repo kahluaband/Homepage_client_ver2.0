@@ -2,24 +2,30 @@
 import React, { useState } from 'react';
 import DetailsErrorModal from '@/components/popups/ticket/DetailsErrorModal';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
+import ReservedErrorModal from '@/components/popups/ticket/ReservedErrorModal';
 
 interface Props {
     price: number;
     amount: number;
     onReservationComplete: () => void;
     isFormComplete: boolean;
+    onAlreadyReserved: () => void;
+    isAlreadyReserved: boolean;
 }
 
-const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFormComplete }) => {
+const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFormComplete, onAlreadyReserved, isAlreadyReserved }) => {
     const [showDetailsErrorModal, setShowDetailsErrorModal] = useState(false);
     const [showLastCheckModal, setShowLastCheckModal] = useState(false);
+    const [showReservedErrorModal, setShowReservedErrorModal] = useState(false);
     const priceValue = price || 0;
     const finalAmount = priceValue * amount;
 
     const handleClickReservation = () => {
         if (isFormComplete) {
             setShowLastCheckModal(true);
-        } else {
+        } else if(isAlreadyReserved) {
+            setShowReservedErrorModal(true);
+        }else {
             setShowDetailsErrorModal(true);
         }
     };
@@ -28,7 +34,7 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
         <div className="flex flex-row mt-10 w-full">
             <div className="flex flex-col ml-12">
                 <div className="text-gray-50 font-normal text-[18px] leading-[27px]">
-                    {priceValue === 0 ? `무료 x ${amount}매` : `5,000원 x ${amount}매`}
+                    {priceValue === 0 ? `무료 x ${amount}매` : `${priceValue.toLocaleString()}원 x ${amount}매`}
                 </div>
                 <div className="flex flex-row w-[289px] h-[48px] gap-4 items-center">
                     <p className="w-[137px] text-gray-70 font-medium text-[24px] leading-9">최종 결제 금액</p>
@@ -38,8 +44,9 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
                 </div>
             </div>
             <button onClick={handleClickReservation} className="mr-12 mt-[20px] w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</button>
+            <ReservedErrorModal isOpen={showReservedErrorModal} onClose={() => setShowReservedErrorModal(false)} onAlreadyReserved={onAlreadyReserved} />
             <DetailsErrorModal isOpen={showDetailsErrorModal} onClose={() => setShowDetailsErrorModal(false)} />
-            <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={onReservationComplete} />
+            -<LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={onReservationComplete} />
         </div>
     );
 };
