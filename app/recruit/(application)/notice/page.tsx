@@ -37,7 +37,7 @@ const page = () => {
             <li>수집된 모든 개인정보는 모집이 마감된 후 파기됩니다.</li>
           </ul>
         </div>
-        <Link href="/recruit/apply" className={`flex justify-center items-center text-center h-[60px] w-[384px] text-[18px] rounded-[12px] mt-[40px] mb-[288px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40"}`}>다음</Link>
+        <Link href="/recruit/apply" aria-disabled={!isChecked} className={`flex justify-center items-center text-center h-[60px] w-[384px] text-[18px] rounded-[12px] mt-[40px] mb-[288px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</Link>
     </div>
   )
 };
