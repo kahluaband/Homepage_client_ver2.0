@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image'; // Next.js를 사용한다면
+import Image from 'next/image';
 
 interface CardProps {
   bgColor: string;

@@ -168,38 +168,21 @@ const page = () => {
 
         {/* MT, 번개, 여행 */}
         <section className="mt-[200px] h-[470px] flex">
-          <div className="w-96 rounded-3xl h-full">
-            <div className="flex">
-              <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-primary-50 text-gray-0">
-                <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
-                  MT · 번개 · 여행
-                </p>
-              </h3>
-              <div className="w-[102px] h-[102px] bg-primary-50 relative">
-                <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
-                  <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-                    <Image src={beer} className="w-12 h-12" alt="About Music" />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl bg-primary-50 text-gray-0">
-              <div className="flex-grow"></div>
-              <p className="w-80 h-[162px] mb-8 text-lg font-medium leading-[150%]">
-                MT, 바다 여행, 놀이공원 등의
-                <br />
-                친목을 다질 수 있는 활동과
-                <br />
-                산책, 보드게임 카페, 술자리, 맛집 탐방 등
-                <br />
-                일상을 함께하는 다양한 모임들이 있습니다.
-                <br />
-                이렇게 많은 시간을 함께 보내는 만큼 깔루아
-                <br />는 가족보다 더 가족같은 사이랍니다.
-              </p>
-            </div>
-          </div>
-
+          <Card
+            bgColor="bg-primary-50"
+            title1="MT · 번개 · 여행"
+            title2=""
+            width="w-80"
+            description1=""
+            description2="MT, 바다 여행, 놀이공원 등의"
+            description3="친목을 다질 수 있는 활동과"
+            description4="산책, 보드게임 카페, 술자리, 맛집 탐방 등"
+            description5="일상을 함께하는 다양한 모임들이 있습니다."
+            description6="이렇게 많은 시간을 함께 보내는 만큼 깔루아"
+            description7="는 가족보다 더 가족같은 사이랍니다."
+            imageSrc={beer}
+            altText="travel"
+          />
           <div className="ml-6">
             <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
               <Image
