@@ -22,7 +22,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
   height,
   className,
 }) => (
-  <li className="rounded-full bg-gray-80 w-[48px] h-[48px] flex justify-center items-center">
+  <li className="rounded-full bg-gray-80 w-12 h-12 flex justify-center items-center">
     <Link href={href} target="_blank" passHref>
       <Image
         src={src}
@@ -38,7 +38,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
 const Footer = () => {
   return (
     <div className="w-full h-[339px] relative translate-y-0 font-pretendard bg-gray-90 flex flex-col items-center">
-      <div className="flex flex-row text-center text-[18px] leading-6 mt-[24px] mb-[56px]">
+      <div className="flex flex-row text-center text-[18px] leading-6 mt-6 mb-14">
         <Link href="/">
           <span className="text-gray-50 font-normal">CREDIT</span>
           <span className="text-gray-80 mx-2">|</span>
@@ -59,7 +59,7 @@ const Footer = () => {
 
       {/* sns 버튼 */}
       <div>
-        <ul className="w-full h-fit flex flex-row gap-[16px]">
+        <ul className="w-full h-fit flex flex-row gap-4">
           <SocialIcon
             href="https://www.youtube.com/@kahluaband8409"
             src={youtube_icon}
@@ -84,14 +84,9 @@ const Footer = () => {
         </ul>
       </div>
       {/* 로고 */}
-      <Image
-        src={logo}
-        alt="logo"
-        height={32}
-        className="mt-[32px] mb-[12px]"
-      />
+      <Image src={logo} alt="logo" height={32} className="mt-8 mb-3" />
       {/* 저작권 관련 */}
-      <p className="text-gray-50 text-center text-[16px] font-medium leading-6 mb-[84px]">
+      <p className="text-gray-50 text-center text-base font-medium leading-6 mb-20">
         © 2024 KAHLUA. All rights reserved.
       </p>
     </div>
