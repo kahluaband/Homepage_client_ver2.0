@@ -577,27 +577,29 @@ const Playlists = () => {
         )}
       </div>
       {/* 더보기 버튼 */}
-      <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
-        {showMore ? (
-          <span className="text-primary-50 text-center text-lg font-medium">
-            닫기
-          </span>
-        ) : (
-          <span className="text-primary-50 text-center text-lg font-medium">
-            더보기
-          </span>
-        )}
-        {showMore ? (
-          <Image
-            style={{ transform: 'rotate(180deg)' }}
-            src={chevron_down_blue}
-            alt="more"
-            width={16}
-          />
-        ) : (
-          <Image src={chevron_down_blue} alt="more" width={16} />
-        )}
-      </div>
+      {sYear === 'All' && (
+        <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
+          {showMore ? (
+            <span className="text-primary-50 text-center text-lg font-medium">
+              닫기
+            </span>
+          ) : (
+            <span className="text-primary-50 text-center text-lg font-medium">
+              더보기
+            </span>
+          )}
+          {showMore ? (
+            <Image
+              style={{ transform: 'rotate(180deg)' }}
+              src={chevron_down_blue}
+              alt="more"
+              width={16}
+            />
+          ) : (
+            <Image src={chevron_down_blue} alt="more" width={16} />
+          )}
+        </div>
+      )}
     </>
   );
 };
