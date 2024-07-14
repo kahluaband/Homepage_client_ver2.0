@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="font-pretendard w-full h-auto mb-40">
+        <div className="font-pretendard w-full h-auto mb-40 min-[834px]:mx-6">
           <Header />
           {children}
         </div>
