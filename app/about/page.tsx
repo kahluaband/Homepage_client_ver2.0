@@ -121,47 +121,21 @@ const page = () => {
 
         {/* 창립제와 연말 송년회 */}
         <section className="mt-[200px] h-[470px] flex">
-          <div className="w-96 rounded-3xl h-full">
-            <div className="flex">
-              <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-warning-40 text-gray-0">
-                <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
-                  창립제와
-                  <br />
-                  연말 송년회
-                </p>
-              </h3>
-              <div className="w-[102px] h-[102px] bg-warning-40 relative">
-                <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
-                  <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-                    <Image
-                      src={celebrate}
-                      className="w-12 h-12"
-                      alt="About Music"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl bg-warning-40 text-gray-0">
-              <div className="flex-grow"></div>
-              <p className="w-80 h-[189px] mb-8 text-lg font-medium leading-[150%]">
-                7월에는 깔루아의 창립일을 기념하는 창립제,
-                <br />
-                12월에는 다함께 연말을 마무리하는 송년회가
-                <br />
-                열립니다.
-                <br />
-                1기부터 활동기수까지 선후배가 함께 모여
-                <br />
-                네트워킹을 할 수 있는 행사입니다.
-                <br />
-                이렇게 많은 선배들, 동기들, 후배들을 사귈 수
-                <br />
-                있는 것이 깔루아의 자랑 중 하나입니다.
-              </p>
-            </div>
-          </div>
-
+          <Card
+            bgColor="bg-warning-40"
+            title1="창립제와"
+            title2="연말 송년회"
+            width="w-80"
+            description1="7월에는 깔루아의 창립일을 기념하는 창립제,"
+            description2="12월에는 다함께 연말을 마무리하는 송년회가"
+            description3="열립니다."
+            description4="1기부터 활동기수까지 선후배가 함께 모여"
+            description5="네트워킹을 할 수 있는 행사입니다."
+            description6="이렇게 많은 선배들, 동기들, 후배들을 사귈 수"
+            description7="있는 것이 깔루아의 자랑 중 하나입니다."
+            imageSrc={celebrate}
+            altText="networking"
+          />
           <div className="ml-6">
             <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
               <Image
