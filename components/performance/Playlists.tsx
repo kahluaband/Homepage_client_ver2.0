@@ -147,9 +147,9 @@ const Playlists = () => {
 
   return (
     <>
-      <div className="min-[834px]:w-full max-w-[1200px] h-full grid min-[360px]:grid-cols-1 min-[834px]:grid-cols-3 grid-cols-4 gap-x-6 gap-y-12">
+      <div className="min-[834px]:max-w-[786px] min-[1920px]:max-w-[1200px] h-full grid grid-cols-1 min-[834px]:grid-cols-3 min-[1920px]:grid-cols-4 gap-x-6 gap-y-12">
         {(sYear === 'All' || sYear === '2024') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -159,8 +159,6 @@ const Playlists = () => {
               <Image
                 src={detail[0].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -174,7 +172,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -184,8 +182,6 @@ const Playlists = () => {
               <Image
                 src={detail[1].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -199,7 +195,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -209,8 +205,6 @@ const Playlists = () => {
               <Image
                 src={detail[2].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -224,7 +218,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -234,8 +228,6 @@ const Playlists = () => {
               <Image
                 src={detail[3].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -249,7 +241,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -259,8 +251,6 @@ const Playlists = () => {
               <Image
                 src={detail[4].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -274,7 +264,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -284,8 +274,6 @@ const Playlists = () => {
               <Image
                 src={detail[5].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -299,7 +287,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -309,8 +297,6 @@ const Playlists = () => {
               <Image
                 src={detail[6].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -324,7 +310,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -334,8 +320,6 @@ const Playlists = () => {
               <Image
                 src={detail[7].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -349,7 +333,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -359,8 +343,6 @@ const Playlists = () => {
               <Image
                 src={detail[8].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -374,7 +356,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2018') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -384,8 +366,6 @@ const Playlists = () => {
               <Image
                 src={detail[9].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -399,7 +379,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -409,8 +389,6 @@ const Playlists = () => {
               <Image
                 src={detail[10].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -424,7 +402,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -434,8 +412,6 @@ const Playlists = () => {
               <Image
                 src={detail[11].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -450,7 +426,7 @@ const Playlists = () => {
         )}
         {(sYear === 'All' && showMore) ||
           (sYear === '2017' && (
-            <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
               <div
                 className="cursor-pointer"
                 onClick={() => {
@@ -476,7 +452,7 @@ const Playlists = () => {
           ))}
         {/* 같이 적으니 렌더링이 이상해져서 2개로 나눠서 작성했습니다 */}
         {sYear === 'All' && showMore && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -486,8 +462,6 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -501,7 +475,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2017' && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -511,8 +485,6 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -526,7 +498,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === 'All' && showMore && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -536,8 +508,6 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -551,7 +521,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2016' && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -561,8 +531,6 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
