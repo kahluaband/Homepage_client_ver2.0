@@ -5,6 +5,7 @@ import logo_black from '@/public/image/KAHLUA-black.svg';
 import logo_white from '@/public/image/KAHLUA.svg';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import table_menu from '@/public/image/tabler_menu-2.svg';
 
 const Header = () => {
   const pathname = usePathname();
@@ -23,7 +24,10 @@ const Header = () => {
 
   return (
     // padding 수정 필요
-    <div className="font-pretendard w-full h-[64px] fixed bg-gray-0 flex flex-row justify-between items-center px-40">
+    <div className="font-pretendard w-full h-[64px] fixed bg-gray-0 flex flex-row justify-between items-center px-40 min-[360px]:px-0">
+      <div className="min-[1920px]:hidden cursor-pointer px-6">
+        <Image src={table_menu} alt="moblie_menu_button" width={24} />
+      </div>
       <div>
         <Link href="/" key="home">
           {pathname === '/recruit' ? (
@@ -34,7 +38,7 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <ul className="flex flex-row gap-[64px]">
+        <ul className="min-[360px]:hidden flex flex-row gap-[64px]">
           {Url.map((url) => (
             <li
               key={url.name}

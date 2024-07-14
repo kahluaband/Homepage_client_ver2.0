@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 const page = () => {
   return (
     <RecoilRoot>
-      <div className="w-full h-fit pt-[64px] flex flex-col items-center font-pretendard">
+      <div className="font-pretendard w-full pt-[64px] flex flex-col items-center">
         <MainContainer />
       </div>
     </RecoilRoot>

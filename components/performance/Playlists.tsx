@@ -147,7 +147,7 @@ const Playlists = () => {
 
   return (
     <>
-      <div className="w-[1200px] h-full grid grid-cols-4 gap-x-6 gap-y-12">
+      <div className="min-[834px]:w-full max-w-[1200px] h-full grid min-[360px]:grid-cols-1 min-[834px]:grid-cols-3 grid-cols-4 gap-x-6 gap-y-12">
         {(sYear === 'All' || sYear === '2024') && (
           <div className="w-[282px] flex flex-col items-start gap-[8px]">
             <div
