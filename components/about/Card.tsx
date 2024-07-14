@@ -3,7 +3,9 @@ import Image from 'next/image'; // Next.js를 사용한다면
 
 interface CardProps {
   bgColor: string;
-  title: string;
+  title1: string;
+  title2: string;
+  width: string;
   description1: string;
   description2: string;
   description3: string;
@@ -17,7 +19,9 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({
   bgColor,
-  title,
+  title1,
+  title2,
+  width,
   description1,
   description2,
   description3,
@@ -35,7 +39,9 @@ const Card: React.FC<CardProps> = ({
           className={`w-[282px] h-[102px] rounded-t-3xl ${bgColor} text-gray-0`}
         >
           <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
-            {title}
+            <span>{title1}</span>
+            <br />
+            <span>{title2}</span>
           </p>
         </h3>
         <div className={`w-[102px] h-[102px] ${bgColor} relative`}>
@@ -50,7 +56,9 @@ const Card: React.FC<CardProps> = ({
         className={`w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl ${bgColor} text-gray-0`}
       >
         <div className="flex-grow"></div>
-        <p className={`w-80 h-[189px] mb-8 text-lg font-medium leading-[150%]`}>
+        <p
+          className={`${width} h-[189px] mb-8 text-lg font-medium leading-[150%]`}
+        >
           <span>{description1}</span>
           <br />
           <span>{description2}</span>

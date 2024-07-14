@@ -29,7 +29,9 @@ const page = () => {
         <section className="mt-[72px] h-[470px] flex">
           <Card
             bgColor="bg-gray-90"
-            title="새내기 첫 합주"
+            title1="새내기 첫 합주"
+            title2=""
+            width="w-80"
             description1=""
             description2="깔루아 모집 후 직속 선배들의 악기 연주를"
             description3="위한 속성 과외가 준비되어 있습니다."
@@ -38,7 +40,7 @@ const page = () => {
             description6="이 첫 합주를 기점으로 밴드의 매력에"
             description7="푹 빠지게 될거예요!"
             imageSrc={music}
-            altText="About Music"
+            altText="ensemble"
           />
           <div className="ml-6">
             <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
@@ -72,45 +74,21 @@ const page = () => {
 
         {/* 정기 공연 및 각종 행사 */}
         <section className="mt-[200px] h-[470px] flex">
-          <div className="w-96 rounded-3xl h-full">
-            <div className="flex">
-              <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-danger-40 text-gray-0">
-                <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
-                  정기 공연
-                  <br />및 각종 행사
-                </p>
-              </h3>
-              <div className="w-[102px] h-[102px] bg-danger-40 relative">
-                <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
-                  <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-                    <Image
-                      src={guitar}
-                      className="w-12 h-12"
-                      alt="About Music"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl bg-danger-40 text-gray-0">
-              <div className="flex-grow"></div>
-              <p className="w-84 h-[189px] mb-8 text-lg font-medium leading-[150%]">
-                밴드의 꽃은 바로 공연! 깔루아는 매년 3월과
-                <br />
-                9월 정기 공연을 열고 있습니다.
-                <br />
-                이 외에도 학교 축제, 학과 축제 등 무대만 있다
-                <br />
-                면 달려가 다양한 공연을 하고 있습니다.
-                <br />
-                공연 전 한두 달간 수십번의 합주를 하며 팀워
-                <br />
-                크를 다지고, 공연 직전에는 런스루와 리허설
-                <br />도 합니다.
-              </p>
-            </div>
-          </div>
-
+          <Card
+            bgColor="bg-danger-40"
+            title1="정기 공연"
+            title2="및 각종 행사"
+            width="w-84"
+            description1="밴드의 꽃은 바로 공연! 깔루아는 매년 3월과"
+            description2="9월 정기 공연을 열고 있습니다."
+            description3="이 외에도 학교 축제, 학과 축제 등 무대만 있다"
+            description4="면 달려가 다양한 공연을 하고 있습니다."
+            description5="공연 전 한두 달간 수십번의 합주를 하며 팀워"
+            description6="크를 다지고, 공연 직전에는 런스루와 리허설"
+            description7="도 합니다."
+            imageSrc={guitar}
+            altText="concert"
+          />
           <div className="ml-6">
             <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
               <Image
