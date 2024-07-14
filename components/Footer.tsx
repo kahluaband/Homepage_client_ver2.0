@@ -38,23 +38,36 @@ const SocialIcon: React.FC<SocialIconProps> = ({
 const Footer = () => {
   return (
     <div className="w-full h-[339px] relative translate-y-0 font-pretendard bg-gray-90 flex flex-col items-center">
-      <div className="flex flex-row text-center text-[18px] leading-6 mt-6 mb-14">
-        <Link href="/">
-          <span className="text-gray-50 font-normal">CREDIT</span>
-          <span className="text-gray-80 mx-2">|</span>
-        </Link>
-        <Link href="https://kahluaband.notion.site/1554ccf2afa9453f9dbce7550734b33a">
-          <span className="text-gray-50 font-normal">개인정보처리방침</span>
-          <span className="text-gray-80 mx-2">|</span>
-        </Link>
-        <Link href="https://kahluaband.notion.site/f877ed4fe6de4aa4a8c0b201530b69df">
-          <span className="text-gray-50 font-normal">이용약관</span>
-          <span className="text-gray-80 mx-2">|</span>
-        </Link>
+      <div className="flex flex-col min-[834px]:flex-row text-center text-base min-[834px]:text-lg leading-6 mt-6 mb-12 min-[834px]:mb-14">
         <Link href="/ticket">
           {/* 세부 url 나오면 수정 필요 */}
-          <span className="font-medium text-gray-20">예매 내역 조회</span>
+          <div className="font-medium text-gray-20 min-[834px]:hidden">
+            예매 내역 조회
+          </div>
         </Link>
+        <div className="flex flex-row mt-3">
+          {/* credit url 추후 연결 */}
+          <Link href="/">
+            <span className="text-gray-50 font-normal">CREDIT</span>
+            <span className="text-gray-80 mx-2">|</span>
+          </Link>
+          <Link href="https://kahluaband.notion.site/1554ccf2afa9453f9dbce7550734b33a">
+            <span className="text-gray-50 font-normal">개인정보처리방침</span>
+            <span className="text-gray-80 mx-2">|</span>
+          </Link>
+          <Link href="https://kahluaband.notion.site/f877ed4fe6de4aa4a8c0b201530b69df">
+            <span className="text-gray-50 font-normal">이용약관</span>
+            <span className="text-gray-80 mx-2 hidden min-[834px]:inline">
+              |
+            </span>
+          </Link>
+          <Link href="/ticket">
+            {/* 세부 url 나오면 수정 필요 */}
+            <span className="font-medium text-gray-20 hidden min-[834px]:inline">
+              예매 내역 조회
+            </span>
+          </Link>
+        </div>
       </div>
 
       {/* sns 버튼 */}

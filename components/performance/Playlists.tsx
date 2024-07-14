@@ -436,8 +436,6 @@ const Playlists = () => {
                 <Image
                   src={detail[12].src}
                   alt="thumbnail"
-                  width={282}
-                  height={159}
                   quality={80}
                   className="rounded-[12px]"
                 />
