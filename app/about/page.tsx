@@ -16,6 +16,7 @@ import travel1 from '@/public/image/about/travel1.avif';
 import travel2 from '@/public/image/about/travel2.avif';
 import travel3 from '@/public/image/about/travel3.avif';
 import Banner from '@/components/about/Banner';
+import Card from '@/components/about/Card';
 
 const page = () => {
   return (
@@ -26,41 +27,19 @@ const page = () => {
 
         {/* 새내기 첫 합주 */}
         <section className="mt-[72px] h-[470px] flex">
-          <div className="w-full rounded-3xl h-full">
-            <div className="flex">
-              <h3 className="w-[282px] h-[102px] rounded-t-3xl bg-gray-90 text-gray-0">
-                <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
-                  새내기 첫 합주
-                </p>
-              </h3>
-              <div className="w-[102px] h-[102px] bg-gray-90 relative">
-                <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
-                  <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-                    <Image
-                      src={music}
-                      className="w-12 h-12"
-                      alt="About Music"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl bg-gray-90 text-gray-0">
-              <div className="flex-grow"></div>
-              <p className="w-80 h-[162px] mb-8 text-lg font-medium leading-[150%]">
-                깔루아 모집 후 직속 선배들의 악기 연주를
-                <br />
-                위한 속성 과외가 준비되어 있습니다.
-                <br />
-                그리고 새내기들끼리 대망의 첫 합주를
-                <br />
-                하게되는데요.
-                <br />
-                이 첫 합주를 기점으로 밴드의 매력에
-                <br />푹 빠지게 될거예요!
-              </p>
-            </div>
-          </div>
+          <Card
+            bgColor="bg-gray-90"
+            title="새내기 첫 합주"
+            description1=""
+            description2="깔루아 모집 후 직속 선배들의 악기 연주를"
+            description3="위한 속성 과외가 준비되어 있습니다."
+            description4="그리고 새내기들끼리 대망의 첫 합주를"
+            description5="하게되는데요."
+            description6="이 첫 합주를 기점으로 밴드의 매력에"
+            description7="푹 빠지게 될거예요!"
+            imageSrc={music}
+            altText="About Music"
+          />
           <div className="ml-6">
             <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
               <Image
