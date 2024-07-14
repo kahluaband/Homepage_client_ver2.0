@@ -22,7 +22,7 @@ import TwoImages from '@/components/about/TwoImages';
 
 const page = () => {
   return (
-    <div className="font-pretendard w-full h-[3129px] flex justify-center">
+    <div className="font-pretendard w-full h-[3125px] flex justify-center">
       <div className="mx-[360px] w-full">
         {/* About KAHLUA */}
         <Banner />
@@ -106,7 +106,7 @@ const page = () => {
         </section>
 
         {/* MT, 번개, 여행 */}
-        <section className="mt-[200px] h-[470px] flex">
+        <section className="mt-[200px] h-[470px] flex mb-[160px]">
           <Card
             bgColor="bg-primary-50"
             title1="MT · 번개 · 여행"
