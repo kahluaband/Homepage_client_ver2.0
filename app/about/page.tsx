@@ -17,6 +17,8 @@ import travel2 from '@/public/image/about/travel2.avif';
 import travel3 from '@/public/image/about/travel3.avif';
 import Banner from '@/components/about/Banner';
 import Card from '@/components/about/Card';
+import OneImage from '@/components/about/OneImage';
+import TwoImages from '@/components/about/TwoImages';
 
 const page = () => {
   return (
@@ -42,34 +44,13 @@ const page = () => {
             imageSrc={music}
             altText="ensemble"
           />
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
-              <Image
-                src={ensemble1}
-                alt="ensemble1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image
-                src={ensemble2}
-                alt="ensemble2"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image
-                src={ensemble3}
-                alt="ensemble3"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
+          <OneImage imageSrc={ensemble1} altText="ensemble1" />
+          <TwoImages
+            imageSrc1={ensemble2}
+            altText1="ensemble2"
+            imageSrc2={ensemble3}
+            altText2="ensemble3"
+          />
         </section>
 
         {/* 정기 공연 및 각종 행사 */}
@@ -89,34 +70,13 @@ const page = () => {
             imageSrc={guitar}
             altText="concert"
           />
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image
-                src={concert1}
-                alt="concert1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image
-                src={concert2}
-                alt="concert2"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
-              <Image
-                src={concert3}
-                alt="concert3"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
+          <TwoImages
+            imageSrc1={concert1}
+            altText1="concert1"
+            imageSrc2={concert2}
+            altText2="concert2"
+          />
+          <OneImage imageSrc={concert3} altText="concert3" />
         </section>
 
         {/* 창립제와 연말 송년회 */}
@@ -136,34 +96,13 @@ const page = () => {
             imageSrc={celebrate}
             altText="networking"
           />
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
-              <Image
-                src={networking1}
-                alt="networking1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image
-                src={networking2}
-                alt="networking2"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image
-                src={networking3}
-                alt="networking3"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
+          <OneImage imageSrc={networking1} altText="networking1" />
+          <TwoImages
+            imageSrc1={networking2}
+            altText1="networking2"
+            imageSrc2={networking3}
+            altText2="networking3"
+          />
         </section>
 
         {/* MT, 번개, 여행 */}
@@ -183,34 +122,13 @@ const page = () => {
             imageSrc={beer}
             altText="travel"
           />
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden mb-6">
-              <Image
-                src={travel1}
-                alt="travel1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
-              <Image
-                src={travel2}
-                alt="travel2"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-          <div className="ml-6">
-            <div className="relative rounded-3xl w-96 h-[470px] overflow-hidden">
-              <Image
-                src={travel3}
-                alt="travel3"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
+          <TwoImages
+            imageSrc1={travel1}
+            altText1="travel1"
+            imageSrc2={travel2}
+            altText2="travel2"
+          />
+          <OneImage imageSrc={travel3} altText="travel3" />
         </section>
       </div>
     </div>
