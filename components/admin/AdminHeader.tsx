@@ -1,10 +1,10 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo_black from '@/public/image/KAHLUA-black.svg';
 import logo_white from '@/public/image/KAHLUA.svg';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const AdminHeader = () => {
   return (
