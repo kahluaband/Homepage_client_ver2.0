@@ -1,15 +1,15 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     colors: {
-      'primary' : {
+      primary: {
         0: '#DDE2FD',
         10: '#BCC6FB',
         20: '#9AA9F9',
@@ -21,7 +21,7 @@ const config: Config = {
         80: '#1A2F9E',
         90: '#15267F',
       },
-      'gray' : {
+      gray: {
         0: '#FFFFFF',
         5: '#F6F7F8',
         10: '#E8E9ED',
@@ -35,7 +35,7 @@ const config: Config = {
         80: '#31333F',
         90: '#1B1C23',
       },
-      'danger' : {
+      danger: {
         0: '#FCE3E3',
         10: '#F8BEBE',
         20: '#F59999',
@@ -43,7 +43,7 @@ const config: Config = {
         40: '#ED5050',
         50: '#DD3636',
       },
-      'warning' : {
+      warning: {
         0: '#FEF0CD',
         10: '#FDE19B',
         20: '#FBD36A',
@@ -51,7 +51,7 @@ const config: Config = {
         40: '#F9B506',
         50: '#C79105',
       },
-      'success' : {
+      success: {
         0: '#BDF4E4',
         10: '#91EDD2',
         20: '#65E6BF',
@@ -62,21 +62,22 @@ const config: Config = {
     },
 
     screens: {
-      'ph': '360px',
-      'pad': '834px',
-      'dt': '1920px',
+      ph: '360px',
+      pad: '834px',
+      dt: '1920px',
     },
-    
+
     extend: {
       fontFamily: {
         pretendard: ['pretendard'],
+        mustica: ['mustica pro'],
       },
 
       backgroundImage: {
         "performance": "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
