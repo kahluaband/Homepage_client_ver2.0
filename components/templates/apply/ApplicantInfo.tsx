@@ -46,7 +46,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({ onInfoChange, PersonalInf
     }, [gender])
 
     return (
-        <div className="flex flex-col mt-10 mb-10 w-full">
+        <div className="flex flex-col py-10 px-4 pad:px-12">
             <div className='flex flex-row items-end'>
                 <p className='text-gray-90 text-[20px] font-light'>지원자 인적사항</p>
                 <p className='text-gray-40 text-[16px] font-extralight ml-[12px]'>신입생 확인을 위해 정확한 정보를 입력해주세요.</p>
@@ -59,11 +59,11 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({ onInfoChange, PersonalInf
                 <p className="mt-6 text-[16px] font-normal leading-6">전화번호</p>
                 <Input className="mt-2" type="text" value={phone_num} onChange={handlePhoneNumChange} placeholder="전화번호 -없이 입력" />
                 <p className="mt-6 text-[16px] font-normal leading-6">성별</p>
-                <TwoOptionBox option1='남성' option2='여성' seletion={handleGenderChange}/>
+                <TwoOptionBox option1='남성' option2='여성' seletion={handleGenderChange} className='mt-2'/>
                 <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
                 <Input className="mt-2" type="text" value={department} onChange={handleDepartmentChange} placeholder="예) 컴퓨터공학과" />
                 <p className="mt-6 text-[16px] font-normal leading-6">거주지</p>
-                <Input className="mt-2 w-[588px]" type="text" value={residence} onChange={handleResidenceChange} placeholder="기숙사의 경우 '예) 2기숙사/부산'으로 입력해주세요" />
+                <Input className="mt-2 w-full pad:w-[588px]" type="text" value={residence} onChange={handleResidenceChange} placeholder="기숙사의 경우 '예) 2기숙사/부산'으로 입력해주세요" />
             </div>
         </div>
     );
