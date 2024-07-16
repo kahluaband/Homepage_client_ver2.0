@@ -7,6 +7,7 @@ import { Divider } from "@mui/material";
 import { useEffect, useState } from "react";
 import ApplicantInfo from '@/components/templates/apply/ApplicantInfo';
 import CLInfo from '@/components/templates/apply/CLInfo';
+import OtherInfo from '@/components/templates/apply/OtherInfo';
 
 const page = () => {
 
@@ -27,6 +28,11 @@ const page = () => {
     determination: ''
   })
 
+  const [AdditionalInfo, setOtherInfo] = useState({
+    schedule: '',
+    afterparty: true,
+  })
+
   const handlePersonalInfoChange = (Personalinfo: { name: string, birthday: string, phone_num: string, department: string, residence: string, gender: string }) => {
       setPersonalInfo(Personalinfo);
   };
@@ -34,6 +40,10 @@ const page = () => {
   const handleCLInfoChange = (CLinfo: { session: string, motivation: string, career: string, instrument: string, determination: string }) => {
     setCoverLetterInfo(CLinfo);
 };
+
+  const handleOtherInfoChange = (AdditionalInfo: {schedule: string, afterparty: boolean}) => {
+    setOtherInfo(AdditionalInfo);
+  }
 
   const [isComplete, setIsComplete] = React.useState(false);
 
@@ -51,6 +61,7 @@ const page = () => {
         <div className="w-full h-auto pad:rounded-b-xl pad:border border-gray-15 flex flex-col text-left">
           <ApplicantInfo PersonalInfo={PersonalInfo} onInfoChange={handlePersonalInfoChange}/>
           <CLInfo CoverLetterInfo={CoverLetterInfo} onInfoChange={handleCLInfoChange}/>
+          <OtherInfo OtherInfo={AdditionalInfo} onInfoChange={handleOtherInfoChange}/>
         </div>
         <Link href="/recruit/complete" className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] mb-[288px] ${isComplete ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40"}`}>다음</Link>
     </div>

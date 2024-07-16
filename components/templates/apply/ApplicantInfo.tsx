@@ -47,9 +47,9 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({ onInfoChange, PersonalInf
 
     return (
         <div className="flex flex-col py-10 px-4 pad:px-12">
-            <div className='flex flex-row items-end'>
+            <div className='flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end'>
                 <p className='text-gray-90 text-[20px] font-light'>지원자 인적사항</p>
-                <p className='text-gray-40 text-[16px] font-extralight ml-[12px]'>신입생 확인을 위해 정확한 정보를 입력해주세요.</p>
+                <p className='text-gray-40 text-[16px] font-extralight'>신입생 확인을 위해 정확한 정보를 입력해주세요.</p>
             </div>
             <div className="flex flex-col">
                 <p className="mt-6 text-[16px] font-normal leading-6">이름</p>

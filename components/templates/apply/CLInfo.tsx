@@ -39,7 +39,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
 
     return (
         <div className="flex flex-col py-10 px-4 pad:px-12 bg-gray-5">
-            <div className='flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12'>
+            <div className='flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end'>
                 <p className='text-gray-90 text-[20px] font-light'>지원세션</p>
                 <p className='text-gray-40 text-[16px] font-extralight'>지원하고자 하는 세션을 2지망까지 선택해주세요.</p>
             </div>
