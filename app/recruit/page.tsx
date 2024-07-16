@@ -15,7 +15,6 @@ const page = () => {
     <div>
       <div className="flex top-0 items-center justify-center h-screen bg-performance text-gray-0">
         <div className="flex flex-col items-center justify-center text-center max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
-
           <Image src={logo_white} width={516} height={88} alt="logo"/>
           <p className="text-[32px] font-semibold mt-8">23rd MEMBER RECRUITMENT</p>
           <p className="text-[24px] mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
@@ -24,7 +23,6 @@ const page = () => {
       </div>
       <div className="flex flex-col items-center justify-center bg-gray-90 h-full">
         <div className="flex flex-col max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
-
           <Requirement/>
           <RecruitingSession/>
           <Schedule/>
