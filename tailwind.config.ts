@@ -64,7 +64,7 @@ const config: Config = {
     screens: {
       ph: '360px',
       pad: '834px',
-      dt: '1920px',
+      dt: '1500px',
     },
 
     extend: {

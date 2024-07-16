@@ -13,16 +13,22 @@ import FAQ from "./FAQ";
 const page = () => {
   return (
     <div>
-      <div className="flex flex-col top-0 items-center justify-center text-center px-[16px] ph:px-[20px] pad:px-[360px] h-screen bg-performance text-gray-0">
-        <Image src={logo_white} width={516} height={88} alt="logo"/>
-        <p className="text-[32px] font-semibold mt-8">23rd MEMBER RECRUITMENT</p>
-        <p className="text-[24px] mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
-        <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
+      <div className="flex top-0 items-center justify-center h-screen bg-performance text-gray-0">
+        <div className="flex flex-col items-center justify-center text-center max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
+
+          <Image src={logo_white} width={516} height={88} alt="logo"/>
+          <p className="text-[32px] font-semibold mt-8">23rd MEMBER RECRUITMENT</p>
+          <p className="text-[24px] mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
+          <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
+        </div>
       </div>
-      <div className="flex flex-col px-[16px] ph:px-[20px] pad:px-[360px] bg-gray-90 h-full">
-        <Requirement/>
-        <RecruitingSession/>
-        <Schedule/>
+      <div className="flex flex-col items-center justify-center bg-gray-90 h-full">
+        <div className="flex flex-col max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
+
+          <Requirement/>
+          <RecruitingSession/>
+          <Schedule/>
+        </div>
       </div>
       <FAQ/>
     </div>

@@ -35,7 +35,7 @@ const FAQ = () => {
             }}
             expanded={expanded === 'panel1'}
             onChange={(e) => {handleChange("panel1")}}
-            className={`w-[792px]  ${expanded === "panel1" ? "bg-primary-50" : "bg-gray-0"}`}
+            className={`w-[328px] pad:w-[792px]  ${expanded === "panel1" ? "bg-primary-50" : "bg-gray-0"}`}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -67,7 +67,7 @@ const FAQ = () => {
             }}
             expanded={expanded === 'panel2'}
             onChange={(e) => {handleChange("panel2")}}
-            className={`w-[792px]  ${expanded === "panel2" ? "bg-primary-50" : "bg-gray-0"}`}
+            className={`w-[328px] pad:w-[792px]  ${expanded === "panel2" ? "bg-primary-50" : "bg-gray-0"}`}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -99,7 +99,7 @@ const FAQ = () => {
             }}
             expanded={expanded === 'panel3'}
             onChange={(e) => {handleChange("panel3")}}
-            className={`w-[792px]  ${expanded === "panel3" ? "bg-primary-50" : "bg-gray-0"}`}
+            className={`w-[328px] pad:w-[792px] ${expanded === "panel3" ? "bg-primary-50" : "bg-gray-0"}`}
           >
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
