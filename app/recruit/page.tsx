@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import logo_white from "@/public/image/KAHLUA.svg"
@@ -10,9 +12,20 @@ import syn from "@/public/image/recruit/vocal.svg"
 
 import FAQ from "./FAQ";
 
+
 const page = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // redering과정에서 document를 사용할 수 없어서 발생하는 문제 해결
+  useEffect(()=>{
+    document.addEventListener("scroll", () => {
+      setIsScrolled(true);
+    });
+  },[])
+  
   return (
     <div>
+      {isScrolled && <div className="flex w-full h-[64px] fixed z-10 blur-lg backdrop-blur-sm top-0"/>}
       <div className="flex top-0 items-center justify-center h-screen bg-performance text-gray-0">
         <div className="flex flex-col items-center justify-center text-center max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
           <Image src={logo_white} width={516} height={88} alt="logo"/>
@@ -32,6 +45,18 @@ const page = () => {
     </div>
   );
 };
+
+
+
+const BlurBackground = () => {
+  document.addEventListener("scroll", () => {
+
+      <div className="flex w-full h-[64px] absolute z-10 blur-sm top-0"></div>
+  })
+  return(
+    <div></div>
+  )
+}
 
 const Requirement = () => {
   return (
