@@ -11,6 +11,15 @@
   line-height: 150%;
 }
 
+@font-face {
+  font-family: 'mustica pro';
+  src: url('https://db.onlinewebfonts.com/t/8784ec149f84f77ada651e2dd98e0943.woff')
+    format('woff');
+  font-weight: 100;
+  font-style: normal;
+  line-height: 150%;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
