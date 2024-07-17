@@ -81,7 +81,7 @@ const page = () => {
           <CLInfo CoverLetterInfo={CoverLetterInfo} onInfoChange={handleCLInfoChange}/>
           <OtherInfo OtherInfo={AdditionalInfo} onInfoChange={handleOtherInfoChange}/>
         </div>
-        <Link href="/recruit/complete" className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] mb-[288px] ${isComplete ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40"}`}>다음</Link>
+        <Link href="/recruit/complete" className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isComplete ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40"}`}>다음</Link>
     </div>
   );
 };

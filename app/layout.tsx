@@ -22,6 +22,10 @@ export default function RootLayout({
   const isCancelPage = pathname === "/ticket/cancel";
   const isReservationPage = pathname === "/ticket/reservation";
   const isSearchPage = pathname === "/ticket/search";
+  
+  const isNoticePage = pathname === "/recruit/notice";
+  const isApplyCompletePae = pathname === "/recruit/complete";
+  const isApplyPage = pathname === "/recruit/apply"
 
 
   return (
@@ -31,7 +35,8 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
-        {!isMainPage && !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage &&(
+        {!isMainPage && !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
+          && !isNoticePage && !isApplyCompletePae && !isApplyPage &&(
         <Footer />
       )}
       </body>

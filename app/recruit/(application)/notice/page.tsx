@@ -18,7 +18,7 @@ const page = () => {
   }, [isChecked])
 
   return (
-    <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-[4000px] mt-4">
+    <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4">
         <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-aut">
           <p className="mt-10 text-gray-0 text-center text-2xl font-semibold leading-[48px]">지원 전 필독사항</p>
           <p className="mt-4 text-gray-20 text-center text-lg  font-normal leading-[27px] hidden pad:block">안녕하세요! 홍익대학교 컴퓨터공학과 밴드학회 깔루아입니다.</p>
@@ -37,7 +37,7 @@ const page = () => {
             <li>수집된 모든 개인정보는 모집이 마감된 후 파기됩니다.</li>
           </ul>
         </div>
-        <Link href="/recruit/apply" aria-disabled={!isChecked} className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] mb-[288px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</Link>
+        <Link href="/recruit/apply" aria-disabled={!isChecked} className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</Link>
     </div>
   )
 };
