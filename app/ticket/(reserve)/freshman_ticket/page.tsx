@@ -6,7 +6,7 @@ import PartySelection, { Action, State, reducer } from "@/components/templates/t
 import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
-import {useState, useReducer} from "react";
+import {useState, useReducer, useEffect} from "react";
 
 const initialState: State = {
     participation1: false,
@@ -14,8 +14,10 @@ const initialState: State = {
     notParticipation: false,
 };
 
-const Freshman_tickets: React.FC = () => {
+const Freshman_ticket: React.FC = () => {
     const [member, setMember] = useState<number>(1);
+    const [isFormComplete, setIsFormComplete] = useState(false);
+    const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
@@ -38,8 +40,26 @@ const Freshman_tickets: React.FC = () => {
         }
     }, initialState);
 
+    const handleReservationComplete = () => {
+        window.location.href = `/ticket/complete`;
+    };
+
+    const handleAlreadyReserved = () => {
+        window.location.href = `/ticket/search`;
+    };
+
+    useEffect(() => {
+        const { name, phone_num, department, student_id } = userInfo;
+        const isDataComplete =
+            name.trim() !== "" &&
+            phone_num.trim() !== "" &&
+            department.trim() !== "" &&
+            student_id.trim() !== "";
+        setIsFormComplete(isDataComplete);
+    }, [userInfo]);
+
     return (
-    <div className="h-[2000px] w-[996px] flex flex-col relative mx-auto top-20 mt-4 ">
+    <div className="h-[1850px] w-[996px] flex flex-col relative mx-auto top-20 ">
         <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex flex-col mx-auto">
             <p className="mt-10 text-gray-0 text-center text-2xl font-semibold leading-[48px]">신입생 티켓 예매</p>
             <p className="mt-4 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
@@ -57,10 +77,10 @@ const Freshman_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1}/>
+            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );
 };
 
-export default Freshman_tickets;
+export default Freshman_ticket;

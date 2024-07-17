@@ -10,33 +10,54 @@ import Bar from "@/components/ui/Bar";
 import {useState, useEffect} from "react";
 
 
-const General_tickets: React.FC = () => {
+const General_ticket: React.FC = () => {
     const [member, setMember] = useState<number>(1);
+    const [isFormComplete, setIsFormComplete] = useState(false);
+    const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
+    const [dynamicTotalHeightClass, setDynamicTotalHeightClass] = useState(
+        "h-[1446px]"
+    );
     const [dynamicHeightClass, setDynamicHeightClass] = useState(
         "h-[1046px]"
     );
     useEffect(() => {
+        let totalHeightClass = "";
         let newHeightClass = "";
     
         if (member === 1) {
-        newHeightClass = "h-[1046px]";
+            newHeightClass = "h-[1046px]";
+            totalHeightClass = "h-[1476px]";
         } else if (member === 2) {
-        newHeightClass = "h-[1150px]";
+            newHeightClass = "h-[1150px]";
+            totalHeightClass= "h-[1580px]";
         } else if (member === 3) {
-        newHeightClass = "h-[1254px]";
+            newHeightClass = "h-[1254px]";
+            totalHeightClass = "h-[1694px]";
         } else if (member === 4) {
-        newHeightClass = "h-[1358px]";
+            newHeightClass = "h-[1358px]";
+            totalHeightClass = "h-[1808px]";
         } else if (member === 5) {
-        newHeightClass = "h-[1371px]";
+            newHeightClass = "h-[1371px]";
+            totalHeightClass = "h-[1871px]";
         } else {
-        newHeightClass = "h-[1371px]";
+            newHeightClass = "h-[1371px]";
+            totalHeightClass = "h-[1871px]";
         }
         setDynamicHeightClass(newHeightClass);
+        setDynamicTotalHeightClass(totalHeightClass);
     
     }, [member]);
 
+    const handleReservationComplete = () => {
+        window.location.href = `/ticket/complete`;
+    };
+
+    const handleAlreadyReserved = () => {
+        window.location.href = `/ticket/search`;
+    };
+    
     return (
-    <div className="h-[2000px] w-[996px] flex flex-col relative mx-auto top-20 mt-4">
+    <div className={` w-[996px] flex flex-col relative mx-auto top-20 ${dynamicTotalHeightClass}`}>
         <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex flex-col mx-auto">
             <p className="mt-10 text-gray-0 text-center text-2xl font-semibold leading-[48px]">일반 티켓 예매</p>
             <p className="mt-4 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
@@ -46,7 +67,7 @@ const General_tickets: React.FC = () => {
             <div className="mx-12 flex flex-col">
                 <MemberSelection description="일반 예매는 최대 1인 5매 구매 가능합니다." min={1} max={5} ticket={"general"}  member={member} setMember={setMember}/>
                 <Bar/>
-                <GeneralInfo member={member} setMember={setMember}/>
+                <GeneralInfo member={member} setMember={setMember} onInfoComplete={setIsFormComplete}/>
                 <Bar/>
                 <TicketSelection/>
                 <Bar/>
@@ -54,10 +75,10 @@ const General_tickets: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={5000} amount={member}/>
+            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );
 };
 
-export default General_tickets;
+export default General_ticket;
