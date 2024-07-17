@@ -49,8 +49,25 @@ const page = () => {
   const [isComplete, setIsComplete] = React.useState(false);
 
   useEffect(() => {
+    const isDataComplete =
+      PersonalInfo.birthday.trim() != '' &&
+      PersonalInfo.department.trim() != '' &&
+      PersonalInfo.gender.trim() != '' &&
+      PersonalInfo.name.trim() != '' &&
+      PersonalInfo.phone_num.trim() != '' &&
+      PersonalInfo.residence.trim() != '' &&
+      CoverLetterInfo.career.trim() != '' &&
+      CoverLetterInfo.determination.trim() != '' &&
+      CoverLetterInfo.instrument.trim() != '' &&
+      CoverLetterInfo.motivation.trim() != '' &&
+      CoverLetterInfo.session1.trim() != '' &&
+      CoverLetterInfo.session2.trim() != '' &&
+      AdditionalInfo.schedule.trim() != '' &&
+      true
+
+    setIsComplete(isDataComplete)
     console.log("현재 체크여부:" + isComplete);
-  }, [isComplete])
+  }, [PersonalInfo, CoverLetterInfo, AdditionalInfo])
 
   return (
     <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4 ">
