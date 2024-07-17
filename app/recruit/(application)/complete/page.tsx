@@ -5,7 +5,9 @@ import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 const Freshman_tickets: React.FC = () => {
 
-    const isComplete = true;
+    const handleToMain = () => {
+        window.location.href = `/`;
+      };
     
     return (
         <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4 ">
@@ -19,7 +21,7 @@ const Freshman_tickets: React.FC = () => {
                 <p className='text-gray-90 text-[24px] mt-4'>지원서가 정상적으로 제출되었습니다.</p>
                 <p className='text-gray-40 text-[18px] mt-4'>상세 일정은 작성해 주신 연락처로 개별 공지드리겠습니다.<br/>홍익대학교 깔루아 밴드에 지원해주셔서 감사합니다!</p>
             </div>
-            <Link href="/" className="flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] bg-gray-5 text-gray-60">메인으로 돌아가기</Link>
+            <button onClick={(e) => handleToMain()} className="flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] bg-gray-5 text-gray-60">메인으로 돌아가기</button>
         </div>
     );
 };

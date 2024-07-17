@@ -13,9 +13,9 @@ const page = () => {
     setIsChecked(checked);
   };
 
-  useEffect(() => {
-    console.log("현재 체크여부:" + isChecked);
-  }, [isChecked])
+  const handleNextStep = () => {
+    window.location.href = `/recruit/apply`;
+  };
 
   return (
     <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4">
@@ -37,7 +37,7 @@ const page = () => {
             <li>수집된 모든 개인정보는 모집이 마감된 후 파기됩니다.</li>
           </ul>
         </div>
-        <Link href="/recruit/apply" aria-disabled={!isChecked} className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</Link>
+        <button onClick={(e) => handleNextStep()} disabled={!isChecked} className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isChecked ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</button>
     </div>
   )
 };

@@ -5,7 +5,6 @@ import logo_black from '@/public/image/KAHLUA-black.svg';
 import logo_white from '@/public/image/KAHLUA.svg';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import path from 'path';
 
 const Header = () => {
   const pathname = usePathname();
@@ -24,7 +23,7 @@ const Header = () => {
 
   return (
     // padding 수정 필요
-    <div className={`font-pretendard w-full h-[64px] fixed flex flex-row justify-between items-center px-40 z-50
+    <div className={`font-pretendard w-full h-[64px] fixed flex flex-row justify-between top-0 items-center px-40 z-50
                     ${pathname === "/recruit" ? "bg-gray-90/20 " : "bg-gray-0"}`}>
       <div>
         <Link href="/" key="home">

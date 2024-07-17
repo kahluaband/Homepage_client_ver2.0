@@ -25,7 +25,7 @@ export default function RootLayout({
   
   const isNoticePage = pathname === "/recruit/notice";
   const isApplyCompletePae = pathname === "/recruit/complete";
-  const isApplyPage = pathname === "/recruit/apply"
+  const isApplyPage = pathname === "/recruit/apply";
 
 
   return (

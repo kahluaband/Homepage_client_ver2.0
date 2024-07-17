@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import ApplicantInfo from '@/components/templates/apply/ApplicantInfo';
 import CLInfo from '@/components/templates/apply/CLInfo';
 import OtherInfo from '@/components/templates/apply/OtherInfo';
+import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
 
 const page = () => {
 
@@ -47,6 +48,11 @@ const page = () => {
   }
 
   const [isComplete, setIsComplete] = React.useState(false);
+  const [showLastCheckModal, setShowLastCheckModal] = useState(false);
+
+  const handleApplicationComplete = () => {
+    window.location.href = `/recruit/complete`;
+  };
 
   useEffect(() => {
     const isDataComplete =
@@ -66,7 +72,6 @@ const page = () => {
       true
 
     setIsComplete(isDataComplete)
-    console.log("현재 체크여부:" + isComplete);
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo])
 
   return (
@@ -81,7 +86,8 @@ const page = () => {
           <CLInfo CoverLetterInfo={CoverLetterInfo} onInfoChange={handleCLInfoChange}/>
           <OtherInfo OtherInfo={AdditionalInfo} onInfoChange={handleOtherInfoChange}/>
         </div>
-        <Link href="/recruit/complete" className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isComplete ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40"}`}>다음</Link>
+        <button onClick={(e) => setShowLastCheckModal(true)} disabled={!isComplete} className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isComplete ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-40 cursor-not-allowed"}`}>다음</button>
+        <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={handleApplicationComplete} />
     </div>
   );
 };
