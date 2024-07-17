@@ -9,13 +9,38 @@ interface multipleOptionProps {
     option3: string;
     option4: string;
     option5: string;
-    seletion: (selected: string) => void;
+    seletion: (selected: string[]) => void;
     className: string;
 }
 
 const MultipleOptionBox: React.FC<multipleOptionProps> = ({ option1, option2, option3, option4, option5, seletion, className } ) => {
 
-    const [selected, setSelected] = React.useState<string>(option1);
+    const [selected, setSelected] = React.useState<string[]>(['', '']);
+
+    const handleSelection = (option: string) => {
+        const prevList = [...selected];
+        if (selected[0] === '' && selected[1] === '') {
+            prevList[0] = option;
+        } 
+        else if (selected[0] === option && selected[1] === '') {
+            prevList[0] = '';
+        }
+        else if (selected[0] === option && selected[1] != '') {
+            prevList[0] = selected[1];
+            prevList[1] = '';
+        }
+        else if (selected[0] != '' && selected[1] === '') {
+            prevList[1] = option;
+        }
+        else if (selected[1] === option) {
+            prevList[1] = '';
+        }
+        else {
+            prevList[0] = selected[0];
+            prevList[1] = selected[1];
+        }
+        setSelected(prevList);
+    };
 
     React.useEffect(() => {
         seletion(selected);
@@ -25,27 +50,32 @@ const MultipleOptionBox: React.FC<multipleOptionProps> = ({ option1, option2, op
     return (
         <div>
             <div className={`flex flex-col gap-6 pad:flex-row ${className}`}>
-                <div onClick={(e) => setSelected(option1)} className={`flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${selected === option1 ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
+                <div onClick={(e) => handleSelection(option1)} className={`flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${(selected[0] === option1 || selected[1] === option1) ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
                     {option1}
-                    {selected === option1 && <Image src="/image/ticket/check.svg" width={20} height={20} alt={"text"} className=""/>}
+                    {selected[0] === option1 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>1</p>}
+                    {selected[1] === option1 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>2</p>}
                 </div>
-                <div onClick={(e) => setSelected(option2)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${selected === option2 ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
+                <div onClick={(e) => handleSelection(option2)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${(selected[0] === option2 || selected[1] === option2) ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
                     {option2}
-                    {selected === option2 && <Image src="/image/ticket/check.svg" width={20} height={20} alt={"text"} className=""/>}
+                    {selected[0] === option2 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>1</p>}
+                    {selected[1] === option2 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>2</p>}
                 </div>
-                <div onClick={(e) => setSelected(option3)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${selected === option3 ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
+                <div onClick={(e) => handleSelection(option3)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${(selected[0] === option3 || selected[1] === option3) ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
                     {option3}
-                    {selected === option3 && <Image src="/image/ticket/check.svg" width={20} height={20} alt={"text"} className=""/>}
+                    {selected[0] === option3 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>1</p>}
+                    {selected[1] === option3 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>2</p>}
                 </div>
             </div>
             <div className='flex flex-col gap-6 pad:flex-row mt-6'>
-                <div onClick={(e) => setSelected(option4)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${selected === option4 ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
+                <div onClick={(e) => handleSelection(option4)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${(selected[0] === option4 || selected[1] === option4) ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
                     {option4}
-                    {selected === option4 && <Image src="/image/ticket/check.svg" width={20} height={20} alt={"text"} className=""/>}
+                    {selected[0] === option4 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>1</p>}
+                    {selected[1] === option4 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>2</p>}
                 </div>
-                <div onClick={(e) => setSelected(option5)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${selected === option5 ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
+                <div onClick={(e) => handleSelection(option5)} className={`pad:mt-0 flex items-center justify-between px-4 h-12 w-[180px] rounded-xl border ${(selected[0] === option5 || selected[1] === option5) ? "border-primary-50 text-primary-50" : "border-gray-40 text-gray-90"} bg-gray-0 text-[16px] font-normal leading-6 text-center`}>
                     {option5}
-                    {selected === option5 && <Image src="/image/ticket/check.svg" width={20} height={20} alt={"text"} className=""/>}
+                    {selected[0] === option5 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>1</p>}
+                    {selected[1] === option5 && <p className='w-6 h-6 flex justify-center items-center rounded-full bg-primary-50 text-gray-0 text-[14px] font-light'>2</p>}
                 </div>
             </div>
         </div>

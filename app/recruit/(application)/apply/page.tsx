@@ -21,7 +21,8 @@ const page = () => {
   });
 
   const [CoverLetterInfo, setCoverLetterInfo] = useState({
-    session: '',
+    session1: '',
+    session2: '',
     motivation: '',
     career: '',
     instrument: '',
@@ -37,7 +38,7 @@ const page = () => {
       setPersonalInfo(Personalinfo);
   };
 
-  const handleCLInfoChange = (CLinfo: { session: string, motivation: string, career: string, instrument: string, determination: string }) => {
+  const handleCLInfoChange = (CLinfo: { session1: string, session2: string, motivation: string, career: string, instrument: string, determination: string }) => {
     setCoverLetterInfo(CLinfo);
 };
 

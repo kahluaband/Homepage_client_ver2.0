@@ -5,9 +5,10 @@ import TwoOptionBox from '@/components/ui/twoOptionbox';
 import React, { useEffect, useState } from 'react';
 
 interface CLInfoProps {
-    onInfoChange: (info: { session: string, motivation: string, career: string, instrument: string, determination: string}) => void;
+    onInfoChange: (info: { session1: string, session2: string, motivation: string, career: string, instrument: string, determination: string}) => void;
     CoverLetterInfo: {
-        session: string;
+        session1: string;
+        session2: string;
         motivation: string;
         career: string;
         instrument: string;
@@ -16,10 +17,10 @@ interface CLInfoProps {
 }
 
 const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
-    const { session, motivation, career, instrument, determination } = CoverLetterInfo;
+    const { session1, session2, motivation, career, instrument, determination } = CoverLetterInfo;
 
-    const handleSessionChange = (selectedSession: string) => {
-        onInfoChange({ ...CoverLetterInfo, session: selectedSession });
+    const handleSessionChange = (selectedSession: string[]) => {
+        onInfoChange({ ...CoverLetterInfo, session1: selectedSession[0], session2: selectedSession[1] });
     };
 
     const handleMotivationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
