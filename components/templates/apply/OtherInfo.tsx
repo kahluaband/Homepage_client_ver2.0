@@ -37,7 +37,7 @@ const OtherInfo: React.FC<OtherInfoProps> = ({ onInfoChange, OtherInfo }) => {
                 <p className='text-gray-90 text-[20px] font-light'>면접 후 뒷풀이 참석 여부</p>
                 <p className='text-gray-40 text-[16px] font-extralight'>참석하시는 분은 신분증을 꼭 지참해주세요.</p>
             </div>
-            <TwoOptionBox option1='참석' option2='미참석' seletion={handleAfterpartyChange} className='mt-4'/>
+            <TwoOptionBox option1='참석' option2='미참석' seletion={handleAfterpartyChange} className='mt-6'/>
         </div>
     );
 };

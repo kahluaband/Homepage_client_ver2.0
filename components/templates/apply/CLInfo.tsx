@@ -1,4 +1,5 @@
 import { Input } from '@/components/ui/Input';
+import MultipleOptionBox from '@/components/ui/MultipleOptionbox';
 import { Textarea } from '@/components/ui/textarea';
 import TwoOptionBox from '@/components/ui/twoOptionbox';
 import React, { useEffect, useState } from 'react';
@@ -17,8 +18,8 @@ interface CLInfoProps {
 const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
     const { session, motivation, career, instrument, determination } = CoverLetterInfo;
 
-    const handleSessionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onInfoChange({ ...CoverLetterInfo, session: event.target.value });
+    const handleSessionChange = (selectedSession: string) => {
+        onInfoChange({ ...CoverLetterInfo, session: selectedSession });
     };
 
     const handleMotivationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -43,6 +44,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
                 <p className='text-gray-90 text-[20px] font-light'>지원세션</p>
                 <p className='text-gray-40 text-[16px] font-extralight'>지원하고자 하는 세션을 2지망까지 선택해주세요.</p>
             </div>
+            <MultipleOptionBox option1='보컬' option2='기타' option3='드럼' option4='베이스' option5='신디사이저' seletion={handleSessionChange} className='mt-6'/>
 
             <div className='flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12'>
                 <p className='text-gray-90 text-[20px] font-light'>깔루아 지원동기</p>

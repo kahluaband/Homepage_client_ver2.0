@@ -59,7 +59,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({ onInfoChange, PersonalInf
                 <p className="mt-6 text-[16px] font-normal leading-6">전화번호</p>
                 <Input className="mt-2" type="text" value={phone_num} onChange={handlePhoneNumChange} placeholder="전화번호 -없이 입력" />
                 <p className="mt-6 text-[16px] font-normal leading-6">성별</p>
-                <TwoOptionBox option1='남성' option2='여성' seletion={handleGenderChange} className='mt-2'/>
+                <TwoOptionBox option1='남성' option2='여성' seletion={handleGenderChange} className=''/>
                 <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
                 <Input className="mt-2" type="text" value={department} onChange={handleDepartmentChange} placeholder="예) 컴퓨터공학과" />
                 <p className="mt-6 text-[16px] font-normal leading-6">거주지</p>
