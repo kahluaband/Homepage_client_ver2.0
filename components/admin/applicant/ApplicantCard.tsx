@@ -1,10 +1,17 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import phone_icon from '@/public/image/admin/tabler_device-mobile.svg';
 import department_icon from '@/public/image/admin/tabler_book-2.svg';
 import address_icon from '@/public/image/admin/tabler_map-pin.svg';
 import Image from 'next/image';
 import show_more from '@/public/image/admin/tabler_chevron-down.svg';
+import Button from '@mui/material/Button';
+import Dialog, { DialogProps } from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import tabler_x from '@/public/image/admin/tabler_x.svg';
 
 const dummy_applicant = {
   name: '홍길동',
@@ -27,6 +34,18 @@ const dummy_applicant = {
 const ApplicantCard = () => {
   // TODO: 데이터 연동 필요 !!! 일단 더미 데이터로 대체
 
+  const [open, setOpen] = React.useState(false);
+  const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
+
+  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
+    setOpen(true);
+    setScroll(scrollType);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div className="max-w-[384px] h-[242px] rounded-3xl font-pretendard flex flex-col">
       {/* 카드 상단 부분 : 이름 및 기본 개인 정보 */}
@@ -48,6 +67,7 @@ const ApplicantCard = () => {
           width={24}
           height={24}
           className="absolute right-5 cursor-pointer"
+          onClick={handleClickOpen('paper')}
         />
       </div>
       {/* 카드 하단 부분 : 세부 개인 정보 */}
@@ -90,6 +110,97 @@ const ApplicantCard = () => {
           </div>
         </div>
       </div>
+
+      {/* 상세 정보 : dialog */}
+      <Dialog
+        fullWidth={true}
+        maxWidth="md"
+        open={open}
+        onClose={handleClose}
+        scroll={scroll}
+      
+      >
+        <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
+          {' '}
+          <span className="text-2xl font-semibold text-gray-0">
+            {dummy_applicant.name}
+          </span>
+          <span className="text-2xl font-medium text-gray-50">·</span>
+          <span className="text-2xl font-medium text-gray-50">
+            {dummy_applicant.gender}
+          </span>
+          <span className="text-2xl font-medium text-gray-50">·</span>
+          <span className="text-2xl font-medium text-gray-50">
+            {dummy_applicant.birth}
+          </span>
+          <DialogActions>
+            <Button onClick={handleClose} className="absolute right-8">
+              <Image src={tabler_x} alt="close-dialog" width={24} height={24} />
+            </Button>
+          </DialogActions>
+        </DialogTitle>
+
+        <DialogContent className="p-0">
+          <section className="pt-6 pl-12">
+            <div className="flex pb-3 justify-between">
+              <div className="flex gap-2">
+                <Image
+                  src={phone_icon}
+                  alt="phone_icon"
+                  width={20}
+                  height={20}
+                />
+                <span className="text-lg font-medium text-gray-80">
+                  {dummy_applicant.phone}
+                </span>
+              </div>
+              <div className="flex gap-2">
+                <Image
+                  src={address_icon}
+                  alt="address_icon"
+                  width={20}
+                  height={20}
+                />
+                <span className="text-lg font-medium text-gray-80">
+                  {dummy_applicant.address}
+                </span>
+              </div>
+            </div>
+            <div className="flex pb-6 justify-between">
+              <div className="flex gap-2 pb-3">
+                <Image
+                  src={department_icon}
+                  alt="department_icon"
+                  width={20}
+                  height={20}
+                />
+                <span className="text-lg font-medium text-gray-80">
+                  {dummy_applicant.department}
+                </span>
+              </div>
+              <div className="flex gap-5">
+                <div className="flex gap-2">
+                  <span className="text-lg font-medium text-gray-40">
+                    1지망
+                  </span>
+                  <span className="text-lg font-medium text-gray-80">
+                    {dummy_applicant.session1}
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <span className="text-lg font-medium text-gray-40">
+                    2지망
+                  </span>
+                  <span className="text-lg font-medium text-gray-80">
+                    {dummy_applicant.session2}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div className="max-w-[900px] border-solid border-[1px] border-gray-10"></div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

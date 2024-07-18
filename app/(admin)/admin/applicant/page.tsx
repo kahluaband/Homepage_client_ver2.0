@@ -3,7 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import applicant_image from '@/public/image/admin/image.svg';
 import { useState } from 'react';
-import ApplicantCard from '@/components/admin/ApplicantCard';
+import ApplicantCard from '@/components/admin/applicant/ApplicantCard';
 import chevron_down_blue from '@/public/image/performance/chevron-down-blue.svg';
 
 const page = () => {
@@ -54,9 +54,16 @@ const page = () => {
           <Image src={applicant_image} alt="image" width={377} height={244} />
         </div>
         <div className="w-full h-full px-[360px] pt-8 grid grid-cols-3 gap-x-6 gap-y-10">
-          <ApplicantCard /> <ApplicantCard /> <ApplicantCard />{' '}
-          <ApplicantCard /> <ApplicantCard /> <ApplicantCard />{' '}
-          <ApplicantCard /> <ApplicantCard /> <ApplicantCard />
+          {/* 카드 섹션 */}
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
+          <ApplicantCard />
         </div>
 
         <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
