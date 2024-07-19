@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Skeleton from './Skeleton';
 
-interface OneImageProps {
+interface Image1Props {
   imageSrc: StaticImageData;
   altText: string;
 }
 
-const OneImage: React.FC<OneImageProps> = ({ imageSrc, altText }) => {
+const Image1: React.FC<Image1Props> = ({ imageSrc, altText }) => {
   const [loading, setLoading] = useState(true);
 
   return (
@@ -28,4 +28,4 @@ const OneImage: React.FC<OneImageProps> = ({ imageSrc, altText }) => {
     </div>
   );
 };
-export default OneImage;
+export default Image1;

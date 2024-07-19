@@ -17,8 +17,9 @@ import travel2 from '@/public/image/about/travel2.avif';
 import travel3 from '@/public/image/about/travel3.avif';
 import Banner from '@/components/about/Banner';
 import Card from '@/components/about/Card';
-import OneImage from '@/components/about/OneImage';
-import TwoImages from '@/components/about/TwoImages';
+import Image1 from '@/components/about/Image1';
+import Image2 from '@/components/about/Image2';
+import Image3 from '@/components/about/Image3';
 
 const page = () => {
   return (
@@ -55,13 +56,11 @@ const page = () => {
           imageSrc={music}
           altText="ensemble"
         />
-        <OneImage imageSrc={ensemble1} altText="ensemble1" />
-        <TwoImages
-          imageSrc1={ensemble2}
-          altText1="ensemble2"
-          imageSrc2={ensemble3}
-          altText2="ensemble3"
-        />
+        <Image1 imageSrc={ensemble1} altText="ensemble1" />
+        <div className="ml-6">
+          <Image2 imageSrc={ensemble2} altText="ensemble2" />
+          <Image3 imageSrc={ensemble3} altText="ensemble3" />
+        </div>
       </section>
 
       {/* 정기 공연 및 각종 행사 */}
@@ -95,14 +94,11 @@ const page = () => {
           imageSrc={guitar}
           altText="concert"
         />
-
-        <TwoImages
-          imageSrc1={concert1}
-          altText1="concert1"
-          imageSrc2={concert2}
-          altText2="concert2"
-        />
-        <OneImage imageSrc={concert3} altText="concert3" />
+        <div className="ml-6">
+          <Image2 imageSrc={concert1} altText="concert1" />
+          <Image3 imageSrc={concert2} altText="concert2" />
+        </div>
+        <Image1 imageSrc={concert3} altText="concert3" />
       </section>
 
       {/* 창립제와 연말 송년회 */}
@@ -137,13 +133,11 @@ const page = () => {
           imageSrc={celebrate}
           altText="networking"
         />
-        <OneImage imageSrc={networking1} altText="networking1" />
-        <TwoImages
-          imageSrc1={networking2}
-          altText1="networking2"
-          imageSrc2={networking3}
-          altText2="networking3"
-        />
+        <Image1 imageSrc={networking1} altText="networking1" />
+        <div className="ml-6">
+          <Image2 imageSrc={networking2} altText="networking2" />
+          <Image3 imageSrc={networking3} altText="networking3" />
+        </div>
       </section>
 
       {/* MT, 번개, 여행 */}
@@ -175,13 +169,11 @@ const page = () => {
           imageSrc={beer}
           altText="travel"
         />
-        <TwoImages
-          imageSrc1={travel1}
-          altText1="travel1"
-          imageSrc2={travel2}
-          altText2="travel2"
-        />
-        <OneImage imageSrc={travel3} altText="travel3" />
+        <div className="ml-6">
+          <Image2 imageSrc={travel1} altText="travel1" />
+          <Image3 imageSrc={travel1} altText="travel2" />
+        </div>
+        <Image1 imageSrc={travel3} altText="travel3" />
       </section>
     </div>
   );
