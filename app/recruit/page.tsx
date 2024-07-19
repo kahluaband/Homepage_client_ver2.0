@@ -11,6 +11,7 @@ import bass from "@/public/image/recruit/vocal.svg"
 import syn from "@/public/image/recruit/vocal.svg"
 
 import FAQ from "./FAQ";
+import RequirementCard from "@/components/recruit/RequirementCard";
 
 
 const page = () => {
@@ -28,9 +29,11 @@ const page = () => {
       {isScrolled && <div className="flex w-full h-[64px] fixed z-10 blur-lg backdrop-blur-sm top-0"/>}
       <div className="flex top-0 items-center justify-center h-screen bg-performance text-gray-0">
         <div className="flex flex-col items-center justify-center text-center max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
-          <Image src={logo_white} width={516} height={88} alt="logo"/>
-          <p className="text-[32px] font-semibold mt-8">23rd MEMBER RECRUITMENT</p>
-          <p className="text-[24px] mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
+          <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">
+            <Image src={logo_white} layout="fill" alt="logo"/>
+          </div>
+          <p className="text-[20px] pad:text-[24px] font-light dt:text-[32px] mt-8">23rd MEMBER RECRUITMENT</p>
+          <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-thin mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
           <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
         </div>
       </div>
@@ -46,38 +49,26 @@ const page = () => {
   );
 };
 
-
-
-const BlurBackground = () => {
-  document.addEventListener("scroll", () => {
-
-      <div className="flex w-full h-[64px] absolute z-10 blur-sm top-0"></div>
-  })
-  return(
-    <div></div>
-  )
-}
-
 const Requirement = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center">
       <div>
-        <p className="text-gray-10 text-[32px] font-semibold">지원자격</p>
-        <p className="text-primary-40 text-[18px] mt-1">REQUIREMENT</p>
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-light">지원자격</p>
+        <p className="text-primary-40 text-[18px] font-light mt-1">REQUIREMENT</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
-        <div className="flex flex-col bg-gray-80/50 w-[384px] h-[170px] px-[40px] py-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">💻 컴퓨터공학과 신입생</p>
-          <p className="text-gray-40 text-[18px]">홍익대학교 컴퓨터공학과생 및<br/>컴퓨터공학과 진입 예정인 자율전공학부생</p>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[384px] h-[170px] px-[40px] py-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">👊🏻 성실한 멤버</p>
-          <p className="text-gray-40 text-[18px]">월요일 18시 홍익대학교 T동에서 진행되는 오프라인 활동에 매주 참여할 수 있는 멤버</p>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[384px] h-[170px] px-[40px] py-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">🔥 열정적인 밴드맨</p>
-          <p className="text-gray-40 text-[18px]">밴드 음악에 관심이 많고 열정적으로 활동할 수 있는 멤버</p>
-        </div>
+        <RequirementCard 
+          title="💻 컴퓨터공학과 신입생" 
+          description="홍익대학교 컴퓨터공학과생 및<br/>컴퓨터공학과 진입 예정인 자율전공학부생"
+        />
+        <RequirementCard 
+          title="👊🏻 성실한 멤버" 
+          description="월요일 18시 홍익대학교 T동에서 진행되는<br/>오프라인 활동에 매주 참여할 수 있는 멤버"
+        />
+        <RequirementCard 
+          title="🔥 열정적인 밴드맨" 
+          description="밴드 음악에 관심이 많고<br/>열정적으로 활동할 수 있는 멤버"
+        />
       </div>
     </div>
   );
