@@ -63,7 +63,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({ onInfoChange, PersonalInf
                 <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
                 <Input className="mt-2" type="text" value={department} onChange={handleDepartmentChange} placeholder="예) 컴퓨터공학과" />
                 <p className="mt-6 text-[16px] font-normal leading-6">거주지</p>
-                <Input className="mt-2 w-full pad:w-[588px]" type="text" value={residence} onChange={handleResidenceChange} placeholder="기숙사의 경우 '예) 2기숙사/부산'으로 입력해주세요" />
+                <Input className="mt-2 w-full pad:w-[588px]" type="text" value={residence} onChange={handleResidenceChange} placeholder="기숙사의 경우 '예) 2기숙사/부산'" />
             </div>
         </div>
     );
