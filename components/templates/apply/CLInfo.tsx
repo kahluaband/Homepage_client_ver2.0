@@ -1,8 +1,6 @@
-import { Input } from '@/components/ui/Input';
 import MultipleOptionBox from '@/components/ui/MultipleOptionbox';
 import { Textarea } from '@/components/ui/textarea';
-import TwoOptionBox from '@/components/ui/twoOptionbox';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 interface CLInfoProps {
     onInfoChange: (info: { session1: string, session2: string, motivation: string, career: string, instrument: string, determination: string}) => void;

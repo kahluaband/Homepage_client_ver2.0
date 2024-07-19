@@ -1,9 +1,6 @@
 'use client'
 
 import * as React from 'react';
-import Link from "next/link"
-import { Checkbox } from "@/components/ui/checkbox";
-import { Divider } from "@mui/material";
 import { useEffect, useState } from "react";
 import ApplicantInfo from '@/components/templates/apply/ApplicantInfo';
 import CLInfo from '@/components/templates/apply/CLInfo';

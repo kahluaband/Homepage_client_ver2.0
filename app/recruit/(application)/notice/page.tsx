@@ -1,13 +1,12 @@
 'use client'
 
 import * as React from 'react';
-import Link from "next/link"
 import { Checkbox } from "@/components/ui/checkbox";
 import { Divider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const page = () => {
-  const [isChecked, setIsChecked] = React.useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (checked: boolean) => {
     setIsChecked(checked);

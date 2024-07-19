@@ -1,6 +1,5 @@
 "use client"
 import * as React from 'react';
-import Link from "next/link"
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 const Freshman_tickets: React.FC = () => {

@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react';
-import Image from 'next/image';
 
 interface multipleOptionProps {
     option1: string;
