@@ -12,6 +12,7 @@ import syn from "@/public/image/recruit/vocal.svg"
 
 import FAQ from "./FAQ";
 import RequirementCard from "@/components/recruit/RequirementCard";
+import SessionCard from "@/components/recruit/SessionCard";
 
 
 const page = () => {
@@ -78,30 +79,30 @@ const RecruitingSession = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px]">
       <div>
-        <p className="text-gray-10 text-[32px] font-semibold">모집 세션</p>
-        <p className="text-primary-40 text-[18px] mt-1">RECRUITING SESSION</p>
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-light">모집 세션</p>
+        <p className="text-primary-40 text-[18px] font-light mt-1">RECRUITING SESSION</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-[20px]">
-        <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">보컬</p>
-          <Image src={vocal} width={120} height={120} alt="vocal"/>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">기타</p>
-          <Image src={guitar} width={120} height={120} alt="vocal"/>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">드럼</p>
-          <Image src={drum} width={120} height={120} alt="vocal"/>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">베이스</p>
-          <Image src={bass} width={120} height={120} alt="vocal"/>
-        </div>
-        <div className="flex flex-col bg-gray-80/50 w-[224px] h-full p-[32px] gap-[16px] rounded-[16px] justify-center items-center text-center">
-          <p className="text-gray-0 text-[24px]">신디사이저</p>
-          <Image src={syn} width={120} height={120} alt="vocal"/>
-        </div>
+        <SessionCard
+          session="보컬"
+          image={vocal}
+        />
+        <SessionCard
+          session="기타"
+          image={guitar}
+        />
+        <SessionCard
+          session="드럼"
+          image={drum}
+        />
+        <SessionCard
+          session="베이스"
+          image={bass}
+        />
+        <SessionCard
+          session="신디사이저"
+          image={syn}
+        />
       </div>
     </div>
   );
