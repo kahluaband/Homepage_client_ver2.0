@@ -6,13 +6,11 @@ interface CardProps {
   title1: string;
   title2: string;
   width: string;
-  description1: string;
-  description2: string;
-  description3: string;
-  description4: string;
-  description5: string;
-  description6: string;
-  description7: string;
+  height: string;
+  descriptions: {
+    default: string[];
+    phone: string[];
+  };
   imageSrc: string;
   altText: string;
 }
@@ -22,28 +20,23 @@ const Card: React.FC<CardProps> = ({
   title1,
   title2,
   width,
-  description1,
-  description2,
-  description3,
-  description4,
-  description5,
-  description6,
-  description7,
+  height,
+  descriptions,
   imageSrc,
   altText,
 }) => {
   return (
-    <div className="w-96 rounded-3xl h-full">
+    <div className="w-96 pad:h-[470px] ph:h-[364px] pad:mx-0 ph:ml-4 rounded-3xl">
       <div className="flex">
-        <h3
-          className={`w-[282px] h-[102px] rounded-t-3xl ${bgColor} text-gray-0`}
+        <div
+          className={`pad:w-[282px] ph:w-[202px] h-[102px] rounded-t-3xl ${bgColor} text-gray-0`}
         >
-          <p className="mt-8 ml-8 text-[32px] font-semibold leading-[150%]">
+          <p className="pad:mt-8 pad:ml-8 ph:mt-6 ph:ml-6 pad:text-[32px] ph:text-[24px] font-semibold leading-[150%]">
             <span>{title1}</span>
             <br />
             <span>{title2}</span>
           </p>
-        </h3>
+        </div>
         <div className={`w-[102px] h-[102px] ${bgColor} relative`}>
           <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
             <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
@@ -53,25 +46,28 @@ const Card: React.FC<CardProps> = ({
         </div>
       </div>
       <div
-        className={`w-96 h-[368px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl ${bgColor} text-gray-0`}
+        className={`pad:w-96 ph:w-[304px] pad:h-[368px] ph:h-[262px] flex flex-col items-center rounded-r-3xl rounded-bl-3xl ${bgColor} text-gray-0`}
       >
         <div className="flex-grow"></div>
         <p
-          className={`${width} h-[189px] mb-8 text-lg font-medium leading-[150%]`}
+          className={`${width} ${height} ph:h-36 pad:mb-8 ph:mb-6 pad:text-lg ph:text-base font-medium leading-[150%]`}
         >
-          <span>{description1}</span>
-          <br />
-          <span>{description2}</span>
-          <br />
-          <span>{description3}</span>
-          <br />
-          <span>{description4}</span>
-          <br />
-          <span>{description5}</span>
-          <br />
-          <span>{description6}</span>
-          <br />
-          <span>{description7}</span>
+          <span className="pad:block ph:hidden">
+            {descriptions.default.map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </span>
+          <span className="pad:hidden ph:block">
+            {descriptions.phone.map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </span>
         </p>
       </div>
     </div>
