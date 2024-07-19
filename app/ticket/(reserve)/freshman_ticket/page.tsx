@@ -61,9 +61,9 @@ const Freshman_ticket: React.FC = () => {
     return (
     <div className="h-[1850px] ph:w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20">
         <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-auto">
-            <p className="mt-10 text-gray-0 text-center text-2xl font-semibold leading-[48px]">신입생 티켓 예매</p>
-            <p className="mt-4 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
-            <p className="mt-1 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
+            <p className="mt-10 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">신입생 티켓 예매</p>
+            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
+            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
         </div>
         <div className="h-[1395px] w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto">
             <div className="mx-4 pad:mx-12 flex flex-col">
