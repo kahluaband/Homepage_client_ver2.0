@@ -32,11 +32,11 @@ const finalAmount = 5000 * member;
 
 return (
     <div className="flex flex-col mt-10 mb-10 h-[83px] w-full">
-        <div className="flex flex-row h-[30px]">
-            <div className="font-semibold text-xl leading-[30px] text-gray-90">예매 인원 선택</div>
-            <div className="flex ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">{description}</div>
+        <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px] gap-1 pad:gap-0">
+            <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">예매 인원 선택</div>
+            <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">{description}</div>
         </div>
-        <div className="mt-7 flex flex-row h-[24px] items-center">
+        <div className="mt-5 flex flex-row h-[24px] items-center">
             <div className="cursor-pointer" onClick={handleDecrement}>
             <Image src="/image/ticket/subtract.svg" alt="minus" height={24} width={24} />
             </div>
