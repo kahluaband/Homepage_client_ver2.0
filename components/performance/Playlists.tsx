@@ -22,6 +22,7 @@ import chevron_down_blue from '@/public/image/performance/chevron-down-blue.svg'
 
 const detail = [
   {
+    year: '2024',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luut6RrZvInAnzspEsL2JG2S9',
     src: thumbnail0,
     name: '2024.03.04 정기공연',
@@ -29,12 +30,14 @@ const detail = [
       ' #행복했던_날들이었다 #검정치마 #터치드 #알루미늄 #Green_Day #데이브레이크',
   },
   {
+    year: '2023',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuqqH-qjH3ERD37qNJOcbpl',
     src: thumbnail1,
     name: '2023.09.01 정기공연',
     description: ' #그대에게 #LUCY #직감 #실리카겔 #멋진헛간 remix #Lacuna',
   },
   {
+    year: '2023',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuvOWc_mlR5d5eC3EnYZPiH',
     src: thumbnail2,
     name: '2023.03.06 정기공연',
@@ -42,6 +45,7 @@ const detail = [
       ' #스물다섯_스물하나 #데이식스 #잔나비 #YB밴드 #백예린 #미도와_파라솔',
   },
   {
+    year: '2023',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luus1TGr0V9kNhXqSRJJbJkTW',
     src: thumbnail3,
     name: '2023.01.28 새해맞이 공연',
@@ -49,6 +53,7 @@ const detail = [
       " #Last_Christmas #너드커넥션 #쏜애플 #Can't_take_my_eyes_off_you #Radiohead",
   },
   {
+    year: '2022',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luusvf1KLF90v1FQBAOejv8_g',
     src: thumbnail4,
     name: '2022.09.01 정기공연',
@@ -56,12 +61,14 @@ const detail = [
       ' #The_Volunteers #사건의_지평선 #(여자)-아이들 #Sk8er_Boy #Muse',
   },
   {
+    year: '2022',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuutWQhQJW-c1j1_rkFdwsRYt',
     src: thumbnail5,
     name: '2022.03.07 정기공연',
     description: ' #윤하 #Reality #새소년 #Champagne_Supernova #비와_당신',
   },
   {
+    year: '2019',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luuuq168b0ZO6X0bE5p5W8LbX',
     src: thumbnail6,
     name: '2019.09 정기공연',
@@ -69,12 +76,14 @@ const detail = [
       ' #박하사탕 #Basket_Case #크라잉넛 #Wake_Up_When_September_Ends',
   },
   {
+    year: '2019',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luusva097pGe_sxwVQ5LwBeLN',
     src: thumbnail7,
     name: '2019.06 깔루아&고스락 연합공연',
     description: ' #그의_바다 #아이유 #This_Love #로맨틱펀치 #Triptych',
   },
   {
+    year: '2019',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuutTG8UD9hNIWbv_F3JotPS-',
     src: thumbnail8,
     name: '2019.03 정기공연',
@@ -82,12 +91,14 @@ const detail = [
       ' #나에게로_떠나는_여행 #Hysteria #브로큰발렌타인 #Time_Is_Running_Out',
   },
   {
+    year: '2018',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuvV3XHuq5t_xgpziwANqfau',
     src: thumbnail9,
     name: '2018.09 정기공연',
     description: " #델리스파이스 #자우림 #Don't_Look_Back_In_Anger #Radiohead",
   },
   {
+    year: '2017',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuIldOPyDdJ-G84HM2zGYR5',
     src: thumbnail10,
     name: '2017.11 문화제',
@@ -101,18 +112,21 @@ const detail = [
       ' #봄이_오면 #빅뱅 #낙화 #뜨거운_여름은_가고_남은_건_볼품없지만',
   },
   {
+    year: '2017',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9Luuv5NBskT0N_LHOGiPNET16p',
     src: thumbnail12,
     name: '2017.05 공학인의 밤',
     description: ' #장기하와_얼굴들 #암실 #살아있는_너의_밤',
   },
   {
+    year: '2017',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuHdbZ3r2wiFAIXYSHmHNBx',
     src: thumbnail13,
     name: '2017.03 정기공연',
     description: ' #Butterfly #아틀란티스_소녀 #Hooka #Almost_is_never_Enough',
   },
   {
+    year: '2016',
     url: 'https://www.youtube.com/playlist?list=PLLmJk1z9LuuuyEwS6WeHKNWWnsAGjwV3c',
     src: thumbnail14,
     name: '2016.09 정기공연',
@@ -133,9 +147,9 @@ const Playlists = () => {
 
   return (
     <>
-      <div className="w-[1200px] h-full grid grid-cols-4 gap-x-6 gap-y-12">
+      <div className="min-[834px]:max-w-[786px] min-[1920px]:max-w-[1200px] h-full grid grid-cols-1 min-[834px]:grid-cols-3 min-[1920px]:grid-cols-4 gap-x-6 gap-y-12">
         {(sYear === 'All' || sYear === '2024') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -145,8 +159,6 @@ const Playlists = () => {
               <Image
                 src={detail[0].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -160,7 +172,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -170,8 +182,6 @@ const Playlists = () => {
               <Image
                 src={detail[1].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -185,7 +195,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -195,8 +205,6 @@ const Playlists = () => {
               <Image
                 src={detail[2].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -210,7 +218,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -220,8 +228,6 @@ const Playlists = () => {
               <Image
                 src={detail[3].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -235,7 +241,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -245,8 +251,6 @@ const Playlists = () => {
               <Image
                 src={detail[4].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -260,7 +264,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -270,8 +274,6 @@ const Playlists = () => {
               <Image
                 src={detail[5].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -285,7 +287,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -295,8 +297,6 @@ const Playlists = () => {
               <Image
                 src={detail[6].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -310,7 +310,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -320,8 +320,6 @@ const Playlists = () => {
               <Image
                 src={detail[7].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -335,7 +333,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -345,8 +343,6 @@ const Playlists = () => {
               <Image
                 src={detail[8].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -360,7 +356,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2018') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -370,8 +366,6 @@ const Playlists = () => {
               <Image
                 src={detail[9].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -385,7 +379,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -395,8 +389,6 @@ const Playlists = () => {
               <Image
                 src={detail[10].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -410,7 +402,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -420,8 +412,6 @@ const Playlists = () => {
               <Image
                 src={detail[11].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -436,7 +426,7 @@ const Playlists = () => {
         )}
         {(sYear === 'All' && showMore) ||
           (sYear === '2017' && (
-            <div className="w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
               <div
                 className="cursor-pointer"
                 onClick={() => {
@@ -446,8 +436,6 @@ const Playlists = () => {
                 <Image
                   src={detail[12].src}
                   alt="thumbnail"
-                  width={282}
-                  height={159}
                   quality={80}
                   className="rounded-[12px]"
                 />
@@ -462,7 +450,7 @@ const Playlists = () => {
           ))}
         {/* 같이 적으니 렌더링이 이상해져서 2개로 나눠서 작성했습니다 */}
         {sYear === 'All' && showMore && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -472,8 +460,6 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -487,7 +473,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2017' && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -497,8 +483,6 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -512,7 +496,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === 'All' && showMore && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -522,8 +506,6 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -537,7 +519,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2016' && (
-          <div className="w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -547,8 +529,6 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                width={282}
-                height={159}
                 quality={80}
                 className="rounded-[12px]"
               />
@@ -563,27 +543,29 @@ const Playlists = () => {
         )}
       </div>
       {/* 더보기 버튼 */}
-      <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
-        {showMore ? (
-          <span className="text-primary-50 text-center text-lg font-medium">
-            닫기
-          </span>
-        ) : (
-          <span className="text-primary-50 text-center text-lg font-medium">
-            더보기
-          </span>
-        )}
-        {showMore ? (
-          <Image
-            style={{ transform: 'rotate(180deg)' }}
-            src={chevron_down_blue}
-            alt="more"
-            width={16}
-          />
-        ) : (
-          <Image src={chevron_down_blue} alt="more" width={16} />
-        )}
-      </div>
+      {sYear === 'All' && (
+        <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
+          {showMore ? (
+            <span className="text-primary-50 text-center text-lg font-medium">
+              닫기
+            </span>
+          ) : (
+            <span className="text-primary-50 text-center text-lg font-medium">
+              더보기
+            </span>
+          )}
+          {showMore ? (
+            <Image
+              style={{ transform: 'rotate(180deg)' }}
+              src={chevron_down_blue}
+              alt="more"
+              width={16}
+            />
+          ) : (
+            <Image src={chevron_down_blue} alt="more" width={16} />
+          )}
+        </div>
+      )}
     </>
   );
 };
