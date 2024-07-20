@@ -26,7 +26,7 @@ const Card: React.FC<CardProps> = ({
   altText,
 }) => {
   return (
-    <div className="w-96 pad:h-[470px] ph:h-[364px] pad:mx-0 ph:ml-4 rounded-3xl">
+    <div className="pad:w-96 ph:w-[304px] pad:h-[470px] ph:h-[364px] pad:mx-0 ph:ml-4 rounded-3xl">
       <div className="flex">
         <div
           className={`pad:w-[282px] ph:w-[202px] h-[102px] rounded-t-3xl ${bgColor} text-gray-0`}

@@ -19,7 +19,9 @@ const ImageBox: React.FC<ImageProps> = ({
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className={`relative rounded-3xl ${width} ${height} overflow-hidden`}>
+    <div
+      className={`relative rounded-3xl ${width} ${height} overflow-hidden pad:ml-0 ph:ml-4`}
+    >
       {loading && <Skeleton />}
       <Image
         src={imageSrc}
