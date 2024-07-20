@@ -3,16 +3,23 @@ import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Skeleton from './Skeleton';
 
-interface Image3Props {
+interface ImageProps {
   imageSrc: StaticImageData;
   altText: string;
+  width: string;
+  height: string;
 }
 
-const Image3: React.FC<Image3Props> = ({ imageSrc, altText }) => {
+const ImageBox: React.FC<ImageProps> = ({
+  imageSrc,
+  altText,
+  width,
+  height,
+}) => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="relative rounded-3xl w-96 h-[223px] overflow-hidden">
+    <div className={`relative rounded-3xl ${width} ${height} overflow-hidden`}>
       {loading && <Skeleton />}
       <Image
         src={imageSrc}
@@ -26,4 +33,4 @@ const Image3: React.FC<Image3Props> = ({ imageSrc, altText }) => {
     </div>
   );
 };
-export default Image3;
+export default ImageBox;

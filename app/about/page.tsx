@@ -17,9 +17,7 @@ import travel2 from '@/public/image/about/travel2.avif';
 import travel3 from '@/public/image/about/travel3.avif';
 import Banner from '@/components/about/Banner';
 import Card from '@/components/about/Card';
-import Image1 from '@/components/about/Image1';
-import Image2 from '@/components/about/Image2';
-import Image3 from '@/components/about/Image3';
+import ImageBox from '@/components/about/ImageBox';
 
 const page = () => {
   return (
@@ -56,10 +54,27 @@ const page = () => {
           imageSrc={music}
           altText="ensemble"
         />
-        <Image1 imageSrc={ensemble1} altText="ensemble1" />
         <div className="ml-6">
-          <Image2 imageSrc={ensemble2} altText="ensemble2" />
-          <Image3 imageSrc={ensemble3} altText="ensemble3" />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[470px] pad:h-[466px]"
+            imageSrc={ensemble1}
+            altText="ensemble1"
+          />
+        </div>
+        <div className="ml-6 grid gap-y-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={ensemble2}
+            altText="ensemble2"
+          />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={ensemble3}
+            altText="ensemble3"
+          />
         </div>
       </section>
 
@@ -94,11 +109,28 @@ const page = () => {
           imageSrc={guitar}
           altText="concert"
         />
-        <div className="ml-6">
-          <Image2 imageSrc={concert1} altText="concert1" />
-          <Image3 imageSrc={concert2} altText="concert2" />
+        <div className="ml-6 grid gap-y-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={concert1}
+            altText="concert1"
+          />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={concert2}
+            altText="concert2"
+          />
         </div>
-        <Image1 imageSrc={concert3} altText="concert3" />
+        <div className="ml-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[470px] pad:h-[466px]"
+            imageSrc={concert3}
+            altText="concert3"
+          />
+        </div>
       </section>
 
       {/* 창립제와 연말 송년회 */}
@@ -133,10 +165,27 @@ const page = () => {
           imageSrc={celebrate}
           altText="networking"
         />
-        <Image1 imageSrc={networking1} altText="networking1" />
         <div className="ml-6">
-          <Image2 imageSrc={networking2} altText="networking2" />
-          <Image3 imageSrc={networking3} altText="networking3" />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[470px] pad:h-[466px]"
+            imageSrc={networking1}
+            altText="networking1"
+          />
+        </div>
+        <div className="ml-6 grid gap-y-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={networking2}
+            altText="networking2"
+          />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={networking3}
+            altText="networking3"
+          />
         </div>
       </section>
 
@@ -169,11 +218,28 @@ const page = () => {
           imageSrc={beer}
           altText="travel"
         />
-        <div className="ml-6">
-          <Image2 imageSrc={travel1} altText="travel1" />
-          <Image3 imageSrc={travel1} altText="travel2" />
+        <div className="ml-6 grid gap-y-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={travel1}
+            altText="travel1"
+          />
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[223px] pad:h-[223px]"
+            imageSrc={travel2}
+            altText="travel2"
+          />
         </div>
-        <Image1 imageSrc={travel3} altText="travel3" />
+        <div className="ml-6">
+          <ImageBox
+            width="dt:w-[384px] pad:w-[381px]"
+            height="dt:h-[470px] pad:h-[466px]"
+            imageSrc={travel3}
+            altText="travel3"
+          />
+        </div>
       </section>
     </div>
   );
