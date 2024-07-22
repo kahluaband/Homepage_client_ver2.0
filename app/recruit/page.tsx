@@ -36,7 +36,7 @@ const page = () => {
           </div>
           <p className="text-[20px] pad:text-[24px] font-light dt:text-[32px] mt-8">23rd MEMBER RECRUITMENT</p>
           <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-thin mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
-          <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-full pad:w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
+          <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
         </div>
       </div>
       <div className="flex flex-col items-center justify-center bg-gray-90 bg-notice h-auto">
