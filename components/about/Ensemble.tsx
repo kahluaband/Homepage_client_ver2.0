@@ -3,7 +3,8 @@ import ensemble1 from '@/public/image/about/ensemble1.avif';
 import ensemble2 from '@/public/image/about/ensemble2.avif';
 import ensemble3 from '@/public/image/about/ensemble3.avif';
 import Card from './Card';
-import ImageBox from './ImageBox';
+import OneImage from './OneImage';
+import TwoImages from './TwoImages';
 
 const Ensemble = () => {
   return (
@@ -13,8 +14,8 @@ const Ensemble = () => {
           bgColor="bg-gray-90"
           title1="새내기 첫 합주"
           title2=""
-          width="pad:w-80 ph:w-64"
-          height="pad:h-[162px] ph:h-36"
+          width="pad:w-80"
+          height="pad:h-[162px]"
           descriptions={{
             default: [
               '깔루아 모집 후 직속 선배들의 악기 연주를',
@@ -37,9 +38,9 @@ const Ensemble = () => {
           altText="ensemble"
         />
         <div className="dt:hidden pad:block ph:hidden">
-          <ImageBox
-            width="dt:w-[384px] pad:w-[381px]"
-            height="dt:h-[223px] pad:h-[223px]"
+          <OneImage
+            width="pad:w-[381px]"
+            height="pad:h-[223px]"
             imageSrc={ensemble2}
             altText="ensemble2"
           />
@@ -47,42 +48,48 @@ const Ensemble = () => {
       </div>
       {/* dt */}
       <div className="ml-6 dt:block pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
+        <OneImage
+          width="dt:w-[384px]"
+          height="dt:h-[470px]"
           imageSrc={ensemble1}
           altText="ensemble1"
         />
       </div>
-      <div className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={ensemble2}
-          altText="ensemble2"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={ensemble3}
-          altText="ensemble3"
-        />
-      </div>
+      <TwoImages
+        className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden"
+        images={[
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: ensemble2,
+            altText: 'ensemble2',
+          },
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: ensemble3,
+            altText: 'ensemble3',
+          },
+        ]}
+      />
       {/* pad */}
-      <div className="ml-[21px] dt:hidden pad:grid gap-y-[28px] ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={ensemble3}
-          altText="ensemble3"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
-          imageSrc={ensemble1}
-          altText="ensemble1"
-        />
-      </div>
+      <TwoImages
+        className="ml-[21px] dt:hidden pad:grid gap-y-[28px] ph:hidden"
+        images={[
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[223px]',
+            imageSrc: ensemble3,
+            altText: 'ensemble3',
+          },
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[466px]',
+            imageSrc: ensemble1,
+            altText: 'ensemble1',
+          },
+        ]}
+      />
       {/* ph */}
       <div className="dt:hidden pad:hidden ph:flex gap-x-4 overflow-x-scroll scrollbar-hide">
         <div className="flex flex-nowrap mr-4">
@@ -113,19 +120,19 @@ const Ensemble = () => {
             imageSrc={music}
             altText="ensemble"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={ensemble1}
             altText="ensemble1"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={ensemble2}
             altText="ensemble2"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={ensemble3}

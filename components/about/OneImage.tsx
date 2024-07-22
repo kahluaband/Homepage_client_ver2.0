@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Skeleton from './Skeleton';
 
-interface ImageProps {
+interface OneImageProps {
   imageSrc: StaticImageData;
   altText: string;
   width: string;
   height: string;
 }
 
-const ImageBox: React.FC<ImageProps> = ({
+const OneImage: React.FC<OneImageProps> = ({
   imageSrc,
   altText,
   width,
@@ -35,4 +35,4 @@ const ImageBox: React.FC<ImageProps> = ({
     </div>
   );
 };
-export default ImageBox;
+export default OneImage;

@@ -3,33 +3,37 @@ import concert1 from '@/public/image/about/concert1.avif';
 import concert2 from '@/public/image/about/concert2.avif';
 import concert3 from '@/public/image/about/concert3.avif';
 import Card from './Card';
-import ImageBox from './ImageBox';
+import OneImage from './OneImage';
+import TwoImages from './TwoImages';
 
 const Concert = () => {
   return (
     <section className="pad:mt-[200px] ph:mt-[104px] flex">
       {/* pad */}
-      <div className="mr-[21px] dt:hidden pad:grid ph:hidden gap-y-[28px]">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={concert1}
-          altText="concert1"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
-          imageSrc={concert3}
-          altText="concert3"
-        />
-      </div>
+      <TwoImages
+        className="mr-[21px] dt:hidden pad:grid ph:hidden gap-y-[28px]"
+        images={[
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[223px]',
+            imageSrc: concert1,
+            altText: 'concert1',
+          },
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[466px]',
+            imageSrc: concert3,
+            altText: 'concert3',
+          },
+        ]}
+      />
       <div className="pad:flex-col pad:grid gap-y-6 ph:hidden">
         <Card
           bgColor="bg-danger-40"
           title1="정기 공연"
           title2="및 각종 행사"
-          width="pad:w-[321px] ph:w-64"
-          height="pad:h-[189px] ph:h-[168px]"
+          width="pad:w-[321px]"
+          height="pad:h-[189px]"
           descriptions={{
             default: [
               '밴드의 꽃은 바로 공연! 깔루아는 매년 3월과',
@@ -54,33 +58,36 @@ const Concert = () => {
           altText="concert"
         />
         <div className="dt:hidden pad:block ph:hidden">
-          <ImageBox
-            width="dt:w-[384px] pad:w-[381px]"
-            height="dt:h-[223px] pad:h-[223px]"
+          <OneImage
+            width="pad:w-[381px]"
+            height="pad:h-[223px]"
             imageSrc={concert2}
             altText="concert2"
           />
         </div>
       </div>
       {/* dt */}
-      <div className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={concert1}
-          altText="concert1"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={concert2}
-          altText="concert2"
-        />
-      </div>
+      <TwoImages
+        className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden"
+        images={[
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: concert1,
+            altText: 'concert1',
+          },
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: concert2,
+            altText: 'concert2',
+          },
+        ]}
+      />
       <div className="ml-6 dt:block pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
+        <OneImage
+          width="dt:w-[384px]"
+          height="dt:h-[470px]"
           imageSrc={concert3}
           altText="concert3"
         />
@@ -117,19 +124,19 @@ const Concert = () => {
             imageSrc={guitar}
             altText="concert"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={concert1}
             altText="concert1"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={concert2}
             altText="concert2"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={concert3}

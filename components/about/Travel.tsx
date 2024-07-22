@@ -3,33 +3,37 @@ import travel1 from '@/public/image/about/travel1.avif';
 import travel2 from '@/public/image/about/travel2.avif';
 import travel3 from '@/public/image/about/travel3.avif';
 import Card from './Card';
-import ImageBox from './ImageBox';
+import OneImage from './OneImage';
+import TwoImages from './TwoImages';
 
 const Travel = () => {
   return (
     <section className="pad:mt-[200px] ph:mt-[104px] flex pad:mb-0 ph:mb-[-80px]">
       {/* pad */}
-      <div className="mr-[21px] dt:hidden pad:grid ph:hidden gap-y-[28px]">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={travel1}
-          altText="travel1"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
-          imageSrc={travel3}
-          altText="travel3"
-        />
-      </div>
+      <TwoImages
+        className="mr-[21px] dt:hidden pad:grid ph:hidden gap-y-[28px]"
+        images={[
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[223px]',
+            imageSrc: travel1,
+            altText: 'travel1',
+          },
+          {
+            width: 'pad:w-[381px]',
+            height: 'pad:h-[466px]',
+            imageSrc: travel3,
+            altText: 'travel3',
+          },
+        ]}
+      />
       <div className="pad:flex-col pad:grid gap-y-6 ph:hidden">
         <Card
           bgColor="bg-primary-50"
           title1="MT · 번개 · 여행"
           title2=""
-          width="pad:w-80 ph:w-64"
-          height="pad:h-[162px] ph:h-36"
+          width="pad:w-80"
+          height="pad:h-[162px]"
           descriptions={{
             default: [
               'MT, 바다 여행, 놀이공원 등의',
@@ -52,33 +56,36 @@ const Travel = () => {
           altText="travel"
         />
         <div className="dt:hidden pad:block ph:hidden">
-          <ImageBox
-            width="dt:w-[384px] pad:w-[381px]"
-            height="dt:h-[223px] pad:h-[223px]"
+          <OneImage
+            width="pad:w-[381px]"
+            height="pad:h-[223px]"
             imageSrc={travel2}
             altText="travel2"
           />
         </div>
       </div>
       {/* dt */}
-      <div className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={travel1}
-          altText="travel1"
-        />
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[223px] pad:h-[223px]"
-          imageSrc={travel2}
-          altText="travel2"
-        />
-      </div>
+      <TwoImages
+        className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden"
+        images={[
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: travel1,
+            altText: 'travel1',
+          },
+          {
+            width: 'dt:w-[384px]',
+            height: 'dt:h-[223px]',
+            imageSrc: travel2,
+            altText: 'travel2',
+          },
+        ]}
+      />
       <div className="ml-6 dt:block pad:hidden ph:hidden">
-        <ImageBox
-          width="dt:w-[384px] pad:w-[381px]"
-          height="dt:h-[470px] pad:h-[466px]"
+        <OneImage
+          width="dt:w-[384px]"
+          height="dt:h-[470px]"
           imageSrc={travel3}
           altText="travel3"
         />
@@ -90,8 +97,8 @@ const Travel = () => {
             bgColor="bg-primary-50"
             title1="MT · 번개 · 여행"
             title2=""
-            width="pad:w-80 ph:w-64"
-            height="pad:h-[162px] ph:h-36"
+            width="ph:w-64"
+            height="ph:h-36"
             descriptions={{
               default: [
                 'MT, 바다 여행, 놀이공원 등의',
@@ -113,19 +120,19 @@ const Travel = () => {
             imageSrc={beer}
             altText="travel"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={travel1}
             altText="travel1"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={travel2}
             altText="travel2"
           />
-          <ImageBox
+          <OneImage
             width="ph:w-[297px]"
             height="ph:h-[364px]"
             imageSrc={travel3}
