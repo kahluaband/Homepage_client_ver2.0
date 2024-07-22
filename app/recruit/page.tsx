@@ -29,8 +29,8 @@ const page = () => {
   return (
     <div>
       {isScrolled && <div className="flex w-full h-[64px] fixed z-10 blur-lg backdrop-blur-sm top-0"/>}
-      <div className="flex top-0 items-center justify-center h-screen w-full bg-performance bg-center text-gray-0">
-        <div className="flex flex-col items-center justify-center text-center max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px]">
+      <div className="flex top-0 items-center justify-center h-auto pad:h-screen w-full bg-performance bg-center text-gray-0">
+        <div className="flex flex-col items-center justify-center text-center max-pad:py-[120px] max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px]">
           <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">
             <Image src={logo_white} layout="fill" alt="logo"/>
           </div>
