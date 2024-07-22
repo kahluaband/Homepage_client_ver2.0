@@ -7,6 +7,10 @@ import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useReducer, useEffect} from "react";
+import { useRouter } from "next/navigation";
+import axios from 'axios';
+
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const initialState: State = {
     participation1: false,
@@ -14,49 +18,101 @@ const initialState: State = {
     notParticipation: false,
 };
 
+const handleMeeting = (state: State): string => {
+    if (state.notParticipation) return 'NOT_ATTEND';
+    if (state.participation1 && state.participation2) return 'BOTH_ATTEND';
+    if (state.participation1) return 'DAY1_ATTEND';
+    if (state.participation2) return 'DAY2_ATTEND';
+    return 'NOT_ATTEND';
+};
+
 const Freshman_ticket: React.FC = () => {
+    const router = useRouter();
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
-        student_id: '',
-        phone_num: ''
+        studentId: '',
+        phone_num: '',
+        type: 'FRESHMAN',
     });
 
-    const handleUserInfoChange = (info: { name: string, department: string, student_id: string, phone_num: string }) => {
-        setUserInfo(info);
+    const handleUserInfoChange = (info: { name: string, department: string, studentId: string, phone_num: string }) => {
+        setUserInfo(prevState => ({
+            ...prevState,
+            ...info
+        }));
     };
 
-    const [partySelection, dispatchPartySelection] = useReducer((state: State, action: Action) => {
-        switch (action.type) {
-            case 'PARTICIPATION1':
-            case 'PARTICIPATION2':
-            case 'NOT_PARTICIPATION':
-                return reducer(state, action);
-            default:
-                return state;
-        }
-    }, initialState);
+
+    const [partySelection, dispatchPartySelection] = useReducer(reducer, initialState);
 
     const handleReservationComplete = () => {
-        window.location.href = `/ticket/complete`;
+        router.push('/ticket/complete');
     };
 
     const handleAlreadyReserved = () => {
-        window.location.href = `/ticket/search`;
+        router.push('/ticket/search');
     };
 
     useEffect(() => {
-        const { name, phone_num, department, student_id } = userInfo;
-        const isDataComplete =
-            name.trim() !== "" &&
-            phone_num.trim() !== "" &&
-            department.trim() !== "" &&
-            student_id.trim() !== "";
+        const { name, phone_num, department, studentId } = userInfo;
+        const areUserInfoComplete =
+        name.trim() !== "" &&
+        phone_num.trim() !== "" &&
+        department.trim() !== "" &&
+        studentId.trim() !== "";
+
+        const isParticipationValid =
+            partySelection.notParticipation ||
+            partySelection.participation1 ||
+            partySelection.participation2;
+
+        const isDataComplete = areUserInfoComplete && isParticipationValid;
         setIsFormComplete(isDataComplete);
-    }, [userInfo]);
+    }, [userInfo, partySelection]);
+
+    const handleSubmit = async () => {
+        const { name, phone_num, department, studentId, type } = userInfo;
+        const meeting = handleMeeting(partySelection);
+        const isDataComplete = isFormComplete;
+        console.log(name, phone_num, department, studentId, type, meeting);
+        if (isDataComplete) {
+            try {
+                const formData = { 
+                    buyer: name, 
+                    phone_num, 
+                    type, 
+                    major: department, 
+                    studentId, 
+                    meeting,
+                    members: []
+                };
+                const response = await axios.post(
+                    `${baseUrl}/v1/tickets`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+                console.log(formData);
+
+                if (response.status === 200) {
+                    const id = response.data.result.id;
+                    console.log(id);
+                    router.push(`/ticket/complete?id=${id}`);
+                }else {
+                    console.error(`Unexpected response status: ${response.status}`);
+                }
+            } catch (error: any) {
+                console.log(error);
+            }
+        }
+    };
 
     return (
     <div className="h-[1850px] w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20">
@@ -77,7 +133,7 @@ const Freshman_ticket: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );

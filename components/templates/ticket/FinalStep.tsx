@@ -7,13 +7,14 @@ import ReservedErrorModal from '@/components/popups/ticket/ReservedErrorModal';
 interface Props {
     price: number;
     amount: number;
+    handleSubmit: () => void;
     onReservationComplete: () => void;
     isFormComplete: boolean;
     onAlreadyReserved: () => void;
     isAlreadyReserved: boolean;
 }
 
-const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFormComplete, onAlreadyReserved, isAlreadyReserved }) => {
+const FinalStep: React.FC<Props> = ({ price, amount, handleSubmit, onReservationComplete, isFormComplete, onAlreadyReserved, isAlreadyReserved }) => {
     const [showDetailsErrorModal, setShowDetailsErrorModal] = useState(false);
     const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const [showReservedErrorModal, setShowReservedErrorModal] = useState(false);
@@ -46,7 +47,7 @@ const FinalStep: React.FC<Props> = ({ price, amount, onReservationComplete, isFo
             <button onClick={handleClickReservation} className="mr-4 pad:mr-12 mt-[20px] w-[182px] pad:w-[384px] h-[52px] pad:h-[59px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[16px] pad:text-[18px] font-medium text-gray-0 bg-primary-50">예매하기</button>
             <ReservedErrorModal isOpen={showReservedErrorModal} onClose={() => setShowReservedErrorModal(false)} onAlreadyReserved={onAlreadyReserved} />
             <DetailsErrorModal isOpen={showDetailsErrorModal} onClose={() => setShowDetailsErrorModal(false)} />
-            <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={onReservationComplete} />
+            <LastCheckModal isOpen={showLastCheckModal} onClose={()=> setShowLastCheckModal(false)} onReservationComplete={handleSubmit} />
         </div>
     );
 };
