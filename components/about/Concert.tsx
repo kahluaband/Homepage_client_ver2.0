@@ -7,25 +7,63 @@ import OneImage from './OneImage';
 import TwoImages from './TwoImages';
 
 const Concert = () => {
+  const dtImages = [
+    {
+      width: 'dt:w-[384px]',
+      height: 'dt:h-[223px]',
+      imageSrc: concert1,
+      altText: 'concert1',
+    },
+    {
+      width: 'dt:w-[384px]',
+      height: 'dt:h-[223px]',
+      imageSrc: concert2,
+      altText: 'concert2',
+    },
+  ];
+
+  const padImages = [
+    {
+      width: 'pad:w-[381px]',
+      height: 'pad:h-[223px]',
+      imageSrc: concert1,
+      altText: 'concert1',
+    },
+    {
+      width: 'pad:w-[381px]',
+      height: 'pad:h-[466px]',
+      imageSrc: concert3,
+      altText: 'concert3',
+    },
+  ];
+
+  const phImages = [
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: concert1,
+      altText: 'concert1',
+    },
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: concert2,
+      altText: 'concert2',
+    },
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: concert3,
+      altText: 'concert3',
+    },
+  ];
+
   return (
     <section className="pad:mt-[200px] ph:mt-[104px] flex">
       {/* pad */}
       <TwoImages
         className="mr-[21px] dt:hidden pad:grid ph:hidden gap-y-[28px]"
-        images={[
-          {
-            width: 'pad:w-[381px]',
-            height: 'pad:h-[223px]',
-            imageSrc: concert1,
-            altText: 'concert1',
-          },
-          {
-            width: 'pad:w-[381px]',
-            height: 'pad:h-[466px]',
-            imageSrc: concert3,
-            altText: 'concert3',
-          },
-        ]}
+        images={padImages}
       />
       <div className="pad:flex-col pad:grid gap-y-6 ph:hidden">
         <Card
@@ -69,20 +107,7 @@ const Concert = () => {
       {/* dt */}
       <TwoImages
         className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden"
-        images={[
-          {
-            width: 'dt:w-[384px]',
-            height: 'dt:h-[223px]',
-            imageSrc: concert1,
-            altText: 'concert1',
-          },
-          {
-            width: 'dt:w-[384px]',
-            height: 'dt:h-[223px]',
-            imageSrc: concert2,
-            altText: 'concert2',
-          },
-        ]}
+        images={dtImages}
       />
       <div className="ml-6 dt:block pad:hidden ph:hidden">
         <OneImage
@@ -124,24 +149,15 @@ const Concert = () => {
             imageSrc={guitar}
             altText="concert"
           />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={concert1}
-            altText="concert1"
-          />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={concert2}
-            altText="concert2"
-          />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={concert3}
-            altText="concert3"
-          />
+          {phImages.map((image, index) => (
+            <OneImage
+              key={index}
+              width={image.width}
+              height={image.height}
+              imageSrc={image.imageSrc}
+              altText={image.altText}
+            />
+          ))}
         </div>
       </div>
     </section>

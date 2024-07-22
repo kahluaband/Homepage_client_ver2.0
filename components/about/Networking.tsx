@@ -7,6 +7,57 @@ import OneImage from './OneImage';
 import TwoImages from './TwoImages';
 
 const Networking = () => {
+  const dtImages = [
+    {
+      width: 'dt:w-[384px]',
+      height: 'dt:h-[223px]',
+      imageSrc: networking2,
+      altText: 'networking2',
+    },
+    {
+      width: 'dt:w-[384px]',
+      height: 'dt:h-[223px]',
+      imageSrc: networking3,
+      altText: 'networking3',
+    },
+  ];
+
+  const padImages = [
+    {
+      width: 'pad:w-[381px]',
+      height: 'pad:h-[223px]',
+      imageSrc: networking3,
+      altText: 'networking3',
+    },
+    {
+      width: 'pad:w-[381px]',
+      height: 'pad:h-[466px]',
+      imageSrc: networking1,
+      altText: 'networking1',
+    },
+  ];
+
+  const phImages = [
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: networking1,
+      altText: 'networking1',
+    },
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: networking2,
+      altText: 'networking2',
+    },
+    {
+      width: 'ph:w-[297px]',
+      height: 'ph:h-[364px]',
+      imageSrc: networking3,
+      altText: 'networking3',
+    },
+  ];
+
   return (
     <section className="pad:mt-[200px] ph:mt-[104px] flex">
       <div className="pad:flex-col pad:grid gap-y-6 ph:hidden">
@@ -60,38 +111,12 @@ const Networking = () => {
       </div>
       <TwoImages
         className="ml-6 dt:grid gap-y-6 pad:hidden ph:hidden"
-        images={[
-          {
-            width: 'dt:w-[384px]',
-            height: 'dt:h-[223px]',
-            imageSrc: networking2,
-            altText: 'networking2',
-          },
-          {
-            width: 'dt:w-[384px]',
-            height: 'dt:h-[223px]',
-            imageSrc: networking3,
-            altText: 'networking3',
-          },
-        ]}
+        images={dtImages}
       />
       {/* pad */}
       <TwoImages
         className="ml-[21px] dt:hidden pad:grid gap-y-[28px] ph:hidden"
-        images={[
-          {
-            width: 'pad:w-[381px]',
-            height: 'pad:h-[223px]',
-            imageSrc: networking3,
-            altText: 'networking3',
-          },
-          {
-            width: 'pad:w-[381px]',
-            height: 'pad:h-[466px]',
-            imageSrc: networking1,
-            altText: 'networking1',
-          },
-        ]}
+        images={padImages}
       />
       {/* ph */}
       <div className="dt:hidden pad:hidden ph:flex gap-x-4 overflow-x-scroll scrollbar-hide">
@@ -126,24 +151,15 @@ const Networking = () => {
             imageSrc={celebrate}
             altText="networking"
           />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={networking1}
-            altText="networking1"
-          />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={networking2}
-            altText="networking2"
-          />
-          <OneImage
-            width="ph:w-[297px]"
-            height="ph:h-[364px]"
-            imageSrc={networking3}
-            altText="networking3"
-          />
+          {phImages.map((image, index) => (
+            <OneImage
+              key={index}
+              width={image.width}
+              height={image.height}
+              imageSrc={image.imageSrc}
+              altText={image.altText}
+            />
+          ))}
         </div>
       </div>
     </section>
