@@ -83,6 +83,7 @@ const config: Config = {
 
       backgroundImage: {
         "performance": "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
+        "notice": "radial-gradient(45% 40% at 50% 50%, rgba(21, 38, 127, 0.50) 0%, rgba(27, 28, 35, 0.00) 100%)",
         "mainAbout": "linear-gradient(to right bottom, rgba(27, 28, 35, 1), rgba(0, 0, 0, 0)), url('/image/main/mainAbout.svg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
