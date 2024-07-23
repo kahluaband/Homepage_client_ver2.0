@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import InfoTemplate from './InfoTemplate';
+import Image from 'next/image';
 
 interface GeneralInfoProps {
     member: number; 
@@ -65,9 +66,9 @@ const handlePhonesArrayChange = (index: number, value: string) => {
 
     return (
         <div className="flex flex-col mt-10 mb-10 w-full">
-            <div className="flex flex-row h-[30px]">
-                <div className="font-semibold text-xl leading-[30px] text-gray-90">예매자 정보 입력</div>
-                <div className="flex ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">본인확인을 위해 정확한 정보를 입력해주세요.</div>
+            <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px]">
+                <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">예매자 정보 입력</div>
+                <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">본인확인을 위해 정확한 정보를 입력해주세요.</div>
             </div>
             <div className="flex flex-col">
                 <InfoTemplate
@@ -78,16 +79,17 @@ const handlePhonesArrayChange = (index: number, value: string) => {
                 />
             </div>
             {companions.map((companion, index) => (
-                <div key={index + 1} className="flex flex-col">
+                <div key={index + 1} className="flex flex-row mt-2">
                     <InfoTemplate
                         key={index + 1}
                         role={companion}
                         handleNamesArrayChange={(value) => handleNamesArrayChange(index, value)}
                         handlePhonesArrayChange={(value) => handlePhonesArrayChange(index, value)}
+                        setMember={setMember}
                     />
                 </div>
             ))}
-            {member < 5 && <button onClick={() => setMember(prevMember => prevMember + 1)} className='mt-6 flex items-center justify-center w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]'>+ 동반인 추가...</button>}
+            {member < 5 && <button onClick={() => setMember(prevMember => prevMember + 1)} className='mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]'>+ 동반인 추가...</button>}
         </div>
     );
 };

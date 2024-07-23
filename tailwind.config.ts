@@ -1,3 +1,4 @@
+import { blueGrey } from '@mui/material/colors';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -64,7 +65,7 @@ const config: Config = {
     screens: {
       ph: '360px',
       pad: '834px',
-      dt: '1920px',
+      dt: '1500px',
     },
 
     extend: {
@@ -78,6 +79,7 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'ticket-complete': "linear-gradient(rgba(27, 28, 35, 0.60), rgba(27, 28, 35, 0.60)), url('/image/ticket/Poster.svg')"
       },
     },
   },

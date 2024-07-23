@@ -2,7 +2,7 @@ const Warning = () => {
 
     return (
     <div className="flex flex-col mt-10 mb-10 w-full">
-        <div className="font-semibold text-xl leading-[30px] text-gray-90">유의사항 및 취소 규정</div>
+        <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">유의사항 및 취소 규정</div>
         <ol className="list-disc list-inside font-normal leading-6 text-gray-40 text-[16px] mt-2">
               <li>예매취소는 공연 24시간 이전에만 가능하며 그 이후에는 환불이 불가합니다.</li>
               <li>여러 장의 티켓을 구매하셨을 경우 결제와 결제 취소의 경우 모든 티켓이 일괄처리됩니다.</li>
