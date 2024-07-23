@@ -34,8 +34,8 @@ const page = () => {
           <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">
             <Image src={logo_white} layout="fill" alt="logo"/>
           </div>
-          <p className="text-[20px] pad:text-[24px] font-light dt:text-[32px] mt-8">23rd MEMBER RECRUITMENT</p>
-          <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-thin mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
+          <p className="text-[20px] pad:text-[24px] font-semibold dt:text-[32px] mt-8">23rd MEMBER RECRUITMENT</p>
+          <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-normal mt-[4px]">2023.03.01 FRI ~ 2023.03.07 SAT</p>
           <Link href="/recruit/notice" key="apply" className="flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer">KAHLUA 23기 지원하기</Link>
         </div>
       </div>
@@ -55,8 +55,8 @@ const Requirement = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-light">지원자격</p>
-        <p className="text-primary-40 text-[18px] font-light mt-1">REQUIREMENT</p>
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">지원자격</p>
+        <p className="text-primary-40 text-[18px] font-semibold mt-1">REQUIREMENT</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
         <RequirementCard 
@@ -80,8 +80,8 @@ const RecruitingSession = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px]">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-light">모집 세션</p>
-        <p className="text-primary-40 text-[18px] font-light mt-1">RECRUITING SESSION</p>
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">모집 세션</p>
+        <p className="text-primary-40 text-[18px] font-semibold mt-1">RECRUITING SESSION</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-[16px] pad:gap-[20px]">
         <SessionCard
@@ -113,8 +113,8 @@ const Schedule = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px] mb-[334px]">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-light">모집 일정</p>
-        <p className="text-primary-40 text-[18px] font-light mt-1">RECRUITMENT SCHEDULE</p>
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">모집 일정</p>
+        <p className="text-primary-40 text-[18px] font-semibold mt-1">RECRUITMENT SCHEDULE</p>
       </div>
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
         <ScheduleCard 
