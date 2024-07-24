@@ -1,3 +1,4 @@
+import { blueGrey } from '@mui/material/colors';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -67,18 +68,28 @@ const config: Config = {
       dt: '1500px',
     },
 
+    backgroundSize: ({ theme }) => ({
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      ...theme('spacing')
+    }),
+
     extend: {
       fontFamily: {
         pretendard: ['pretendard'],
         mustica: ['mustica pro'],
       },
+      
 
       backgroundImage: {
-        'performance':
-          "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
+        "performance": "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
+        "notice": "radial-gradient(45% 40% at 50% 50%, rgba(21, 38, 127, 0.50) 0%, rgba(27, 28, 35, 0.00) 100%)",
+        "mainAbout": "linear-gradient(to right bottom, rgba(27, 28, 35, 1), rgba(0, 0, 0, 0)), url('/image/main/mainAbout.svg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'ticket-complete': "linear-gradient(rgba(27, 28, 35, 0.60), rgba(27, 28, 35, 0.60)), url('/image/ticket/Poster.svg')"
       },
     },
   },
