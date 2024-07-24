@@ -96,6 +96,6 @@ const config: Config = {
   corePlugins: {
     preflight: true,
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 export default config;
