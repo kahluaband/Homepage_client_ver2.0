@@ -1,8 +1,31 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import bg_logo from '@/public/image/admin/bg_KAHLUA.svg';
+import { api } from '@/api';
 
 const LoginBox = () => {
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name === 'id') {
+      setId(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
+  const handleLogin = async () => {
+    const id = 'id';
+    const password = 'password';
+    try {
+      const response = await api.post('/auth/sign-in', { id, password });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-10 items-center mt-[185px]">
       <div className="w-[792px] h-[484px] rounded-xl">

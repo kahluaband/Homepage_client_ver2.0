@@ -118,7 +118,6 @@ const ApplicantCard = () => {
         open={open}
         onClose={handleClose}
         scroll={scroll}
-      
       >
         <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
           {' '}
