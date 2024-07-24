@@ -1,5 +1,5 @@
 "use client"
-import {SelectBox}  from "@/components/ui/SelectBox"
+import {SelectBox}  from "@/components/ui/selectBox"
 import React from "react";
 
 export interface State {
@@ -36,7 +36,7 @@ const PartySelection: React.FC<PartySelectionProps> = ({ dispatch, state }) => {
     return (
         <div className="flex flex-col mt-10 mb-10 w-full">
             <div className="flex h-[30px]">
-                <div className="font-semibold text-xl leading-[30px] text-gray-900">새내기 소모임 참석 여부</div>
+                <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-900">새내기 소모임 참석 여부</div>
             </div>
             <div className="flex flex-col mt-6">
                 <SelectBox

@@ -34,13 +34,13 @@ const General_ticket: React.FC = () => {
             newHeightClass = "h-[1254px]";
             totalHeightClass = "h-[1694px]";
         } else if (member === 4) {
-            newHeightClass = "h-[1358px]";
+            newHeightClass = "h-[1368px]";
             totalHeightClass = "h-[1808px]";
         } else if (member === 5) {
-            newHeightClass = "h-[1371px]";
+            newHeightClass = "h-[1391px]";
             totalHeightClass = "h-[1871px]";
         } else {
-            newHeightClass = "h-[1371px]";
+            newHeightClass = "h-[1391px]";
             totalHeightClass = "h-[1871px]";
         }
         setDynamicHeightClass(newHeightClass);
@@ -57,14 +57,14 @@ const General_ticket: React.FC = () => {
     };
     
     return (
-    <div className={` w-[996px] flex flex-col relative mx-auto top-20 ${dynamicTotalHeightClass}`}>
-        <div className="h-[200px] w-full rounded-t-xl bg-gray-90 flex flex-col mx-auto">
-            <p className="mt-10 text-gray-0 text-center text-2xl font-semibold leading-[48px]">일반 티켓 예매</p>
-            <p className="mt-4 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
-            <p className="mt-1 text-gray-20 text-center text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
+    <div className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicTotalHeightClass}`}>
+        <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-auto">
+            <p className="mt-10 text-gray-0 text-center text-2xl pad:text-[32px] font-semibold leading-[48px]">일반 티켓 예매</p>
+            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
+            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
         </div>
-        <div className={`w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto ${dynamicHeightClass}`}>
-            <div className="mx-12 flex flex-col">
+        <div className={`w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto ${dynamicHeightClass}`}>
+            <div className="mx-4 pad:mx-12 flex flex-col">
                 <MemberSelection description="일반 예매는 최대 1인 5매 구매 가능합니다." min={1} max={5} ticket={"general"}  member={member} setMember={setMember}/>
                 <Bar/>
                 <GeneralInfo member={member} setMember={setMember} onInfoComplete={setIsFormComplete}/>

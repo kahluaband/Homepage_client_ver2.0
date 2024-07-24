@@ -1,3 +1,4 @@
+import { blueGrey } from '@mui/material/colors';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
@@ -67,6 +68,13 @@ const config: Config = {
       dt: '1500px',
     },
 
+    backgroundSize: ({ theme }) => ({
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+      ...theme('spacing'),
+    }),
+
     extend: {
       fontFamily: {
         pretendard: ['pretendard'],
@@ -79,12 +87,14 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'ticket-complete':
+          "linear-gradient(rgba(27, 28, 35, 0.60), rgba(27, 28, 35, 0.60)), url('/image/ticket/Poster.svg')",
       },
     },
   },
   corePlugins: {
     preflight: true,
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar-hide')],
 };
 export default config;
