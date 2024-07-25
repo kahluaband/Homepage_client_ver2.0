@@ -2,13 +2,13 @@
 import FinalStep from "@/components/templates/ticket/FinalStep";
 import FreshmanInfo from "@/components/templates/ticket/FreshmanInfo";
 import MemberSelection from "@/components/templates/ticket/MemberSelection";
-import PartySelection, { Action, State, reducer } from "@/components/templates/ticket/PartySelection";
+import PartySelection, { State, reducer } from "@/components/templates/ticket/PartySelection";
 import TicketSelection from "@/components/templates/ticket/TicketSelection";
-import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useReducer, useEffect} from "react";
 import { useRouter } from "next/navigation";
 import axios from 'axios';
+import Warning from "@/components/templates/ticket/Warning";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -121,16 +121,16 @@ const Freshman_ticket: React.FC = () => {
             <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
             <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
         </div>
-        <div className="h-[1395px] w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto">
-            <div className="mx-4 pad:mx-12 flex flex-col">
+        <div className="h-[1395px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto gap-0">
+            <div className="flex flex-col">
                 <MemberSelection description="신입생은 최대 1인 1매 구매 가능합니다." min={1} max={1} ticket={"freshman"}  member={member} setMember={setMember}/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <FreshmanInfo userInfo={userInfo} onInfoChange={handleUserInfoChange}/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <TicketSelection/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <PartySelection dispatch={dispatchPartySelection} state={partySelection} />
-                <Bar/>
+                <Bar className="hidden pad:flex px-4 pad:px-12"/>
                 <Warning/>
             </div>
             <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>

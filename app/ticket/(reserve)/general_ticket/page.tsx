@@ -8,44 +8,54 @@ import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useEffect} from "react";
+import axios from 'axios';
+import MustRead from "@/components/templates/ticket/MustRead";
+import {useRouter} from "next/navigation";
 
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const General_ticket: React.FC = () => {
+    const router = useRouter();
+
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [dynamicTotalHeightClass, setDynamicTotalHeightClass] = useState(
         "h-[1446px]"
     );
-    const [dynamicHeightClass, setDynamicHeightClass] = useState(
-        "h-[1046px]"
-    );
+    const [dynamicHeightClass, setDynamicHeightClass] = useState("h-[1046px]");
+
+    const [userInfo, setUserInfo] = useState({
+        buyer: "",
+        phone_num: "",
+        members: [{ name: "", phone_num: "" }],
+    });
+
     useEffect(() => {
         let totalHeightClass = "";
         let newHeightClass = "";
-    
+
         if (member === 1) {
-            newHeightClass = "h-[1046px]";
-            totalHeightClass = "h-[1476px]";
+        newHeightClass = "h-[1046px]";
+        totalHeightClass = "h-[1476px]";
         } else if (member === 2) {
-            newHeightClass = "h-[1150px]";
-            totalHeightClass= "h-[1580px]";
+        newHeightClass = "h-[1150px]";
+        totalHeightClass = "h-[1580px]";
         } else if (member === 3) {
-            newHeightClass = "h-[1254px]";
-            totalHeightClass = "h-[1694px]";
+        newHeightClass = "h-[1260px]";
+        totalHeightClass = "h-[1694px]";
         } else if (member === 4) {
-            newHeightClass = "h-[1368px]";
-            totalHeightClass = "h-[1808px]";
+        newHeightClass = "h-[1370px]";
+        totalHeightClass = "h-[1808px]";
         } else if (member === 5) {
-            newHeightClass = "h-[1391px]";
-            totalHeightClass = "h-[1871px]";
+        newHeightClass = "h-[1400px]";
+        totalHeightClass = "h-[1871px]";
         } else {
-            newHeightClass = "h-[1391px]";
-            totalHeightClass = "h-[1871px]";
+        newHeightClass = "h-[1400px]";
+        totalHeightClass = "h-[1871px]";
         }
         setDynamicHeightClass(newHeightClass);
         setDynamicTotalHeightClass(totalHeightClass);
-    
     }, [member]);
 
     const handleReservationComplete = () => {
@@ -54,6 +64,46 @@ const General_ticket: React.FC = () => {
 
     const handleAlreadyReserved = () => {
         window.location.href = `/ticket/search`;
+    };
+
+    const handleInfoChange = (info: {
+        buyer: string;
+        phone_num: string;
+        members: { name: string; phone_num: string }[];
+    }) => {
+        setUserInfo(info);
+    };
+
+    const handleSubmit = async () => {
+        const { buyer, phone_num, members } = userInfo;
+        const isDataComplete = isFormComplete;
+        console.log(buyer, phone_num, members);
+        if (isDataComplete) {
+        try {
+            const formData = {
+            buyer: buyer,
+            phone_num,
+            type: "GENERAL",
+            members: members,
+            };
+            const response = await axios.post(`${baseUrl}/v1/tickets`, formData, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            });
+            console.log(formData);
+
+            if (response.status === 200) {
+            const id = response.data.result.id;
+            console.log(id);
+            router.push(`/ticket/complete?id=${id}`);
+            } else {
+            console.error(`Unexpected response status: ${response.status}`);
+            }
+        } catch (error: any) {
+            console.log(error);
+        }
+        }
     };
     
     return (
@@ -64,10 +114,10 @@ const General_ticket: React.FC = () => {
             <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
         </div>
         <div className={`w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto ${dynamicHeightClass}`}>
-            <div className="mx-4 pad:mx-12 flex flex-col">
+            <div className="flex flex-col">
                 <MemberSelection description="일반 예매는 최대 1인 5매 구매 가능합니다." min={1} max={5} ticket={"general"}  member={member} setMember={setMember}/>
                 <Bar/>
-                <GeneralInfo member={member} setMember={setMember} onInfoComplete={setIsFormComplete}/>
+                <GeneralInfo userInfo={userInfo} member={member} setMember={setMember} onInfoComplete={setIsFormComplete} onInfoChange={handleInfoChange} />
                 <Bar/>
                 <TicketSelection/>
                 <Bar/>
@@ -75,7 +125,7 @@ const General_ticket: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep handleSubmit={handleSubmit} price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );

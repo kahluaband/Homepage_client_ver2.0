@@ -18,6 +18,7 @@ const Complete: React.FC = () => {
     const [reservation_id, setReservationId] = useState<string>("");
     const [student_id, setStudentId] = useState<string>("");
     const [state, setState] = useState<any>(null);
+    const [type, setType] = useState<string>("GENERAL");
 
     // Adjust the height dynamically based on the screen size
     useEffect(() => {
@@ -34,7 +35,6 @@ const Complete: React.FC = () => {
         };
     }, []);
 
-    // Fetch ticket details when the component mounts
     useEffect(() => {
         const fetchTicketDetails = async () => {
             try {
@@ -43,9 +43,10 @@ const Complete: React.FC = () => {
                     const result = response.data.result;
                     setBuyer(result.buyer);
                     setPhoneNum(result.phone_num);
-                    setReservationId(result.reservationId); // Adjust based on actual response
-                    setStudentId(result.studentId); // Adjust based on actual response
-                    setState(result.state); // Adjust based on actual response
+                    setReservationId(result.reservationId); 
+                    setStudentId(result.studentId); 
+                    setState(result.state); 
+                    setType(result.type);
                 } else {
                     console.error(`Unexpected response status: ${response.status}`);
                 }
@@ -69,8 +70,8 @@ const Complete: React.FC = () => {
                 <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
             </div>
         </div>
-        <div className="h-[691px] pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
-            <TicketStatus reservation_id={reservation_id} buyer={buyer} phone_num={phone_num} student_id={student_id} state={state}/>
+        <div className="h-full pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
+            <TicketStatus reservation_id={reservation_id} buyer={buyer} phone_num={phone_num} student_id={student_id} state={state} type={type}/>
             <MustRead/>
         </div>
         <Link href="/ticket/" className="mt-14 pad:mt-10 w-[328px] pad:w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-medium text-gray-60 bg-gray-5">예매 페이지로 돌아가기</Link>

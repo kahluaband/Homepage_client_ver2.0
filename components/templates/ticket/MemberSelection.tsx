@@ -31,7 +31,7 @@ const handleDecrement = () => {
 const finalAmount = 5000 * member;
 
 return (
-    <div className="flex flex-col mt-10 mb-10 h-[83px] w-full">
+    <div className="flex flex-col mt-10 mb-10 px-4 pad:px-12 h-[83px] w-full">
         <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px] gap-1 pad:gap-0">
             <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">예매 인원 선택</div>
             <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">{description}</div>

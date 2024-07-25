@@ -1,20 +1,24 @@
-'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import InfoTemplate from './InfoTemplate';
-import Image from 'next/image';
 
 interface GeneralInfoProps {
-    member: number; 
+    member: number;
     setMember: React.Dispatch<React.SetStateAction<number>>;
-    onInfoComplete: (isComplete: boolean) => void; 
+    onInfoComplete: (isComplete: boolean) => void;
+    onInfoChange: (info: { buyer: string, phone_num: string, members: { name: string, phone_num: string }[] }) => void;
+    userInfo: {
+        buyer: string;
+        phone_num: string;
+        members: Array<{ name: string, phone_num: string }>;
+    };
 }
 
-const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComplete }) => {
-    const [buyer, setBuyer] = useState("");
-    const [phone, setPhone] = useState("");
-    const [namesArray, setNamesArray] = useState<string[]>([]);
-    const [phonesArray, setPhonesArray] = useState<string[]>([]);
-    const [companions, setCompanions] = useState<string[]>([]);
+const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComplete, onInfoChange, userInfo }) => {
+    const [buyer, setBuyer] = useState(userInfo.buyer || "");
+    const [phone, setPhone] = useState(userInfo.phone_num || "");
+    const [namesArray, setNamesArray] = useState<string[]>(userInfo.members.map(member => member.name));
+    const [phonesArray, setPhonesArray] = useState<string[]>(userInfo.members.map(member => member.phone_num));
+    const [companions, setCompanions] = useState<string[]>(userInfo.members.map((_, index) => `동반인 ${index + 1}`));
 
     const handleBuyerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBuyer(event.target.value);
@@ -24,48 +28,68 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComp
         setPhone(event.target.value);
     };
 
-    
-const handleNamesArrayChange = (index: number, value: string) => {
-    const updatedNames = [...namesArray];
-    updatedNames[index] = value;
-    setNamesArray(updatedNames);
-};
+    const handleNamesArrayChange = (index: number, value: string) => {
+        const updatedNames = [...namesArray];
+        updatedNames[index] = value;
+        setNamesArray(updatedNames);
+    };
 
-const handlePhonesArrayChange = (index: number, value: string) => {
-    const phoneNumber = value.replace(/[^0-9]/g, ""); 
-    const updatedPhones = [...phonesArray];
-    updatedPhones[index] = phoneNumber;
-    setPhonesArray(updatedPhones);
-};
+    const handlePhonesArrayChange = (index: number, value: string) => {
+        const phoneNumber = value.replace(/[^0-9]/g, ""); 
+        const updatedPhones = [...phonesArray];
+        updatedPhones[index] = phoneNumber;
+        setPhonesArray(updatedPhones);
+    };
 
-    const addCompanion = () => {
+    const addCompanion = useCallback(() => {
         setCompanions(prevCompanions => [
             ...prevCompanions,
-            `동반인 ${companions.length + 1}`
+            `동반인 ${prevCompanions.length + 1}`
         ]);
         setNamesArray(prevNamesArray => [...prevNamesArray, ""]);
         setPhonesArray(prevPhonesArray => [...prevPhonesArray, ""]);
-    };
+    }, []);
 
     useEffect(() => {
-        if (member < companions.length + 1) {
-            setCompanions(prevCompanions => prevCompanions.slice(0, member - 1));
-            setNamesArray(prevNamesArray => prevNamesArray.slice(0, member - 1));
-            setPhonesArray(prevPhonesArray => prevPhonesArray.slice(0, member - 1));
-        } else if (member > companions.length + 1) {
-            addCompanion();
+        if (member > namesArray.length) {
+            for (let i = namesArray.length; i < member; i++) {
+                addCompanion();
+            }
+        } else if (member < namesArray.length) {
+            setNamesArray(prevNamesArray => prevNamesArray.slice(0, member));
+            setPhonesArray(prevPhonesArray => prevPhonesArray.slice(0, member));
         }
+    }, [member, namesArray.length, addCompanion]);
 
+    useEffect(() => {
         const isFormComplete = buyer.trim() !== "" && phone.trim() !== "" &&
-            companions.every(comp => comp.trim() !== "") &&
-            namesArray.slice(0, companions.length).every(name => name.trim() !== "") &&
-            phonesArray.slice(0, companions.length).every(phone => phone.trim() !== "");
+            namesArray.slice(0, member - 1).every(name => name.trim() !== "") &&
+            phonesArray.slice(0, member - 1).every(phone => phone.trim() !== "");
 
-        onInfoComplete(isFormComplete); 
-        }, [member, buyer, phone, companions, namesArray, phonesArray, onInfoComplete])
+        onInfoComplete(isFormComplete);
+    }, [buyer, phone, namesArray, phonesArray, member, onInfoComplete]);
+
+    useEffect(() => {
+        const updatedMembers = namesArray.map((name, index) => ({ name, phone_num: phonesArray[index] }));
+        if (
+            buyer !== userInfo.buyer ||
+            phone !== userInfo.phone_num ||
+            !arraysEqual(updatedMembers, userInfo.members)
+        ) {
+            onInfoChange({ buyer, phone_num: phone, members: updatedMembers });
+        }
+    }, [buyer, phone, namesArray, phonesArray, onInfoChange, userInfo]);
+
+    function arraysEqual(arr1: any[], arr2: any[]) {
+        if (arr1.length !== arr2.length) return false;
+        return arr1.every((value, index) => 
+            value.name === arr2[index].name && 
+            value.phone_num === arr2[index].phone_num
+        );
+    }
 
     return (
-        <div className="flex flex-col mt-10 mb-10 w-full">
+        <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
             <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px]">
                 <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">예매자 정보 입력</div>
                 <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">본인확인을 위해 정확한 정보를 입력해주세요.</div>
@@ -78,11 +102,11 @@ const handlePhonesArrayChange = (index: number, value: string) => {
                     handlePhoneChange={handlePhoneChange}
                 />
             </div>
-            {companions.map((companion, index) => (
+            {Array.from({ length: member - 1 }).map((_, index) => (
                 <div key={index + 1} className="flex flex-row mt-2">
                     <InfoTemplate
                         key={index + 1}
-                        role={companion}
+                        role={`동반인 ${index + 1}`}
                         handleNamesArrayChange={(value) => handleNamesArrayChange(index, value)}
                         handlePhonesArrayChange={(value) => handlePhonesArrayChange(index, value)}
                         setMember={setMember}
