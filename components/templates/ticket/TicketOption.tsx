@@ -29,32 +29,32 @@ interface TicketOptionProps {
     };
     
     return (
-        <div>
-            <div className="w-[1200px] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
-            <div className="w-[400px] flex flex-col">
+        <div className="w-[786px] dt:w-[1200px]">
+            <div className="w-[full] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
+            <div className="w-[262px] dt:w-[400px] flex flex-col">
                 <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
                     <div className="flex w-[392px] justify-center">
-                        <p className="h-[27px] w-[67px] text-center flex">날짜 선택</p>
+                        <p className="h-[27px] w-[67px] text-center flex">날짜</p>
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-shrink-0 rounded-bl-xl border-r border-gray-15 bg-gray-5 justify-center">
                     <OptionBox option="2024년 3월 1일" isDays={isDays} />
                 </div>
             </div>
-            <div className="w-[400px] flex flex-col">
+            <div className="w-[262px] dt:w-[400px] flex flex-col">
                 <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
                     <div className="flex w-[392px] justify-center ">
-                        <p className="h-[27px] w-[67px] text-center flex">시간 선택</p>
+                        <p className="h-[27px] w-[67px] text-center flex">시간</p>
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-shrink-0 rounded-bl-[12px] border-r border-gray-15 bg-gray-5 justify-center">
                     <OptionBox option="18시 00분" isDays={isDays}/>
                 </div>
             </div>
-            <div className="w-[400px] flex flex-col">
+            <div className="w-[262px] dt:w-[400px] flex flex-col">
                 <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
                     <div className="flex w-[392px] justify-center ">
-                        <p className="h-[27px] w-[67px] text-center flex">좌석 선택</p>
+                        <p className="h-[27px] w-[67px] text-center flex">좌석</p>
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-col flex-shrink-0 rounded-br-xl border-gray-15 bg-gray-5 items-center">
