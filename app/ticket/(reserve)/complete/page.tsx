@@ -38,7 +38,7 @@ const Complete: React.FC = () => {
     useEffect(() => {
         const fetchTicketDetails = async () => {
             try {
-                const response = await axios.get(`${baseUrl}/v1/tickets/${id}`);
+                const response = await axios.get(`${baseUrl}/tickets/${id}`);
                 if (response.status === 200) {
                     const result = response.data.result;
                     setBuyer(result.buyer);

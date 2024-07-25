@@ -86,7 +86,7 @@ const General_ticket: React.FC = () => {
             type: "GENERAL",
             members: members,
             };
-            const response = await axios.post(`${baseUrl}/v1/tickets`, formData, {
+            const response = await axios.post(`${baseUrl}/tickets`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },

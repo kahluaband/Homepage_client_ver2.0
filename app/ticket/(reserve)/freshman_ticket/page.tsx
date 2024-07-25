@@ -91,7 +91,7 @@ const Freshman_ticket: React.FC = () => {
                     members: []
                 };
                 const response = await axios.post(
-                    `${baseUrl}/v1/tickets`,
+                    `${baseUrl}/tickets`,
                     formData,
                     {
                         headers: {

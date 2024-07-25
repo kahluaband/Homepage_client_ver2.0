@@ -1,6 +1,6 @@
 const MustRead = () => {
     return(
-    <div className="w-full px-4 pad:px-12 h-[100%] bg-gray-5 pad:bg-gray-0 py-6 pad:py-0">
+    <div className="w-full h-[100%] bg-gray-5 pad:bg-gray-0 py-10 pad:pt-0 px-4 pad:px-12">
         <div className="font-semibold text-lg pad:text-xl leading-[30px]  text-gray-90">필독사항</div>
         <ol className="mx-4 list-disc list-inside font-normal leading-6 text-gray-40 text-[16px] mt-2">
             <li>계좌이체 결제를 선택하신 분들은 [예매현황-입금계좌]에 24시간 이내로 입금해주시면 자동으로 결제 완료 처리됩니다.</li>
