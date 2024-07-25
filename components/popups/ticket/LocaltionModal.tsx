@@ -13,8 +13,6 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
     const loc = "서울 마포구 와우산로18길 20 지하 1층";
     const mapContainerRef = useRef<HTMLDivElement>(null);
 
-    if (!isOpen) return null;
-
     const handleOverlayClick = (
         event: React.MouseEvent<HTMLDivElement, MouseEvent>
     ) => {
@@ -23,21 +21,21 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
         }
     };
 
-    function copyLocation() {
+    const copyLocation = () => {
         navigator.clipboard.writeText(loc).then(() => {
-          alert("주소 복사되었습니다!");
+            alert("주소 복사되었습니다!");
         });
-    }
+    };
 
     useEffect(() => {
-        if (!isOpen || !mapContainerRef.current) return;
+        if (!isOpen) return; 
 
         const script = document.createElement("script");
-        script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&autoload=false`;
+        script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&autoload=false`;
         script.async = true;
 
         const handleScriptLoad = () => {
-            window.kakao.maps.load(() => {
+            if (window.kakao && window.kakao.maps) {
                 const container = mapContainerRef.current;
                 if (!container) return;
 
@@ -62,13 +60,10 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
                     draggable: true,
                 });
 
-                window.kakao.maps.event.addListener(marker, "click", function () {
+                window.kakao.maps.event.addListener(marker, "click", () => {
                     window.open("https://place.map.kakao.com/23696074", "_blank");
                 });
-
-                marker.setMap(map);
-                marker.setDraggable(true);
-            });
+            }
         };
 
         script.onload = handleScriptLoad;
@@ -77,9 +72,9 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
         return () => {
             document.head.removeChild(script);
         };
-    }, [isOpen]);
+    }, [isOpen]); 
 
-
+    if (!isOpen) return null; 
     return (
         <div onClick={handleOverlayClick} className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-[#0000008a] flex justify-center items-center">
             <div className="fixed flex flex-col rounded-3xl w-[652px] h-[515px] z-50 bg-gray-0">
@@ -95,7 +90,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
                             <p className='text-gray-40 font-medium text-[16px] leading-6'>복사</p>
                         </div>
                     </div>
-                    <div ref={mapContainerRef} id="map" className="mt-4 w-[588px] h-[345px] rounded-xl flex-shrink-0 z-10 bottom-0"/>
+                    <div ref={mapContainerRef} className="mt-4 w-[588px] h-[345px] rounded-xl flex-shrink-0"/>
                 </div>
             </div>
         </div>

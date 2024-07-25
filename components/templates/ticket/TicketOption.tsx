@@ -29,7 +29,7 @@ interface TicketOptionProps {
     };
     
     return (
-        <div className="w-[786px] dt:w-[1200px]">
+        <div className="hidden pad:block w-[786px] dt:w-[1200px]">
             <div className="w-[full] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
             <div className="w-[262px] dt:w-[400px] flex flex-col">
                 <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
