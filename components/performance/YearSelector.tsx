@@ -60,7 +60,7 @@ const YearSelector = () => {
 
       {/* 전체 연도 카드 */}
       {isOpen && (
-        <div className="absolute top-8 -left-12 grid grid-cols-4 bg-gray-0 p-3 mt-4 gap-3 rounded-2xl shadow-[0_0_24px_0px_rgba(27,28,35,0.25)]">
+        <div className="max-w-[360px] absolute top-8 -left-4 ml-1 grid grid-cols-4 bg-gray-0 p-3 mt-4 gap-3 rounded-2xl shadow-[0_0_24px_0px_rgba(27,28,35,0.25)]">
           {years.map((year) => (
             <div
               key={year}

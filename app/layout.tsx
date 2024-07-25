@@ -22,16 +22,21 @@ export default function RootLayout({
   const isCancelPage = pathname === "/ticket/cancel";
   const isReservationPage = pathname === "/ticket/reservation";
   const isSearchPage = pathname === "/ticket/search";
+  
+  const isNoticePage = pathname === "/recruit/notice";
+  const isApplyCompletePae = pathname === "/recruit/complete";
+  const isApplyPage = pathname === "/recruit/apply";
 
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="font-pretendard w-full h-auto min-h-full">
+        <div className="font-pretendard w-full h-auto mb-40">
           <Header />
           {children}
         </div>
-        {!isMainPage && !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage &&(
+        {!isMainPage && !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
+          && !isNoticePage && !isApplyCompletePae && !isApplyPage &&(
         <Footer />
       )}
       </body>
