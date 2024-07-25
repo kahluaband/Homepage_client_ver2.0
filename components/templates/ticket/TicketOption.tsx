@@ -1,11 +1,19 @@
 "use client"
-import { useState} from "react";
+import { useState, useEffect} from "react";
 import Link from "next/link";
 import OptionBox from "@/components/ui/OptionBox";
 import Ticket from "@/components/ui/Ticket";
-const TicketOption = () => {
-    const [option, setOption] = useState(true);
-    const [active, setActive] = useState(true);
+
+interface TicketOptionProps {
+    isDays: boolean;
+  }
+  
+  const TicketOption: React.FC<TicketOptionProps> = ({ isDays }) => {
+    const [active, setActive] = useState(isDays);
+  
+    useEffect(() => {
+      setActive(isDays);
+    }, [isDays]);
 
     const [freshman, setFreshman] = useState(false);
     const [general, setGeneral] = useState(true);
@@ -30,7 +38,7 @@ const TicketOption = () => {
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-shrink-0 rounded-bl-xl border-r border-gray-15 bg-gray-5 justify-center">
-                    <OptionBox option="2024년 3월 1일" />
+                    <OptionBox option="2024년 3월 1일" isDays={isDays} />
                 </div>
             </div>
             <div className="w-[400px] flex flex-col">
@@ -40,7 +48,7 @@ const TicketOption = () => {
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-shrink-0 rounded-bl-[12px] border-r border-gray-15 bg-gray-5 justify-center">
-                    <OptionBox option="18시 00분"/>
+                    <OptionBox option="18시 00분" isDays={isDays}/>
                 </div>
             </div>
             <div className="w-[400px] flex flex-col">

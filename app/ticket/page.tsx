@@ -61,6 +61,24 @@ const page = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const checkEventStatus = () => {
+      const eventDate = new Date('2024-09-05T00:00:00+09:00');
+      const nowDate = new Date();
+
+      const nowKoreanTime = new Date(
+        nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
+      );
+
+      setIsDays(nowKoreanTime < eventDate);
+    };
+
+    checkEventStatus();
+    const interval = setInterval(checkEventStatus, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   function copyUrl() {
     navigator.clipboard.writeText(nowUrl).then((res) => {
       alert("링크가 복사되었습니다!");
@@ -73,7 +91,7 @@ const page = () => {
       <Image src="image/ticket/Poster.svg" alt="포스터사진" width={282} height={376} className="flex flex-shrink-0 rounded-xl"/>
       <div className="flex flex-col mt-2 ml-8">
         <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8
-        ${isDays?"bg-primary-50 text-gray-0":"bg-gray-50 text-gray-10"}`}>{isDays?"예매 가능":"예매 마감"}</div>
+        ${isDays?"bg-primary-50 text-gray-0":"bg-gray-10 text-gray-50"}`}>{isDays?"예매 가능":"예매 마감"}</div>
         <div className="mt-4 gap-4 flex flex-row">
           <p className="w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[24px]">2024년 3월 정기 공연</p>
           <div onClick={copyUrl} className="flex flex-col justify-center">
@@ -111,7 +129,7 @@ const page = () => {
       </div>
     </div>
     <div className="w-[1200px] h-[1px] bg-gray-15 flex flex-shrink-0 mt-10"/> 
-    <TicketOption/>
+    <TicketOption  isDays={isDays} />
   </div>
   );
 };
