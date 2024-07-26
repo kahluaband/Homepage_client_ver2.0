@@ -7,6 +7,8 @@ import ApplicantCard from '@/components/admin/applicant/ApplicantCard';
 import chevron_down_blue from '@/public/image/performance/chevron-down-blue.svg';
 import { useRouter } from 'next/navigation';
 import { authInstance } from '@/api/auth/axios';
+import { totalApplicant } from '@/atoms';
+import { useRecoilState } from 'recoil';
 
 interface ApplicantProps {
   id: number;
@@ -24,22 +26,34 @@ const page = () => {
   const router = useRouter();
   const sessionArr = ['ALL', '보컬', '기타', '드럼', '베이스', '신디'];
   const [applicantList, setApplicantList] = useState<ApplicantProps[]>([]);
+  const [shownList, setShownList] = useState<ApplicantProps[]>([]);
   const [session, setSession] = useState('ALL');
-
+  const [total, setTotal] = useRecoilState(totalApplicant);
   const [showMore, setShowMore] = useState(false);
+
   const handleMore = () => {
     setShowMore(!showMore);
   };
 
   const fetchApplicantList = async () => {
     try {
-      const response = await authInstance.get('/admin/apply');
+      const response = await authInstance.get('/admin/apply/all');
       console.log(response.data);
       setApplicantList(response.data.result.applies);
+      setShownList(response.data.result.applies.slice(0, 9));
+      setTotal(response.data.result.total);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (showMore) {
+      setShownList(applicantList);
+    } else {
+      setShownList(applicantList.slice(0, 9));
+    }
+  }, [showMore]);
 
   // middleware로 수정 가능성
   useEffect(() => {
@@ -62,9 +76,8 @@ const page = () => {
               <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
                 24기 지원자 정보
               </span>
-              {/* 데이터 연동 필요 */}
               <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
-                00
+                {total}
               </span>
             </section>
             <section className="w-[504px] h-8 rounded-[32px] bg-gray-0">
@@ -90,7 +103,7 @@ const page = () => {
         </div>
         <div className="w-full h-full px-[360px] pt-8 grid grid-cols-3 gap-x-6 gap-y-10">
           {/* 카드 섹션 */}
-          {applicantList.map((applicant) => (
+          {shownList.map((applicant) => (
             <ApplicantCard
               key={applicant.id}
               name={applicant.name}
