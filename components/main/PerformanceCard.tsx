@@ -9,15 +9,15 @@ interface SongProps {
 
 const PerformanceCard: React.FC<SongProps> = ({ songs }) => {
     return (
-      <div className="overflow-hidden flex flex-col">
-        <div className="relative w-screen inline-flex animate-slide-left-ph1 pad:animate-slide-left-dt1 hover:animation-pause mt-[24px] pad:mt-[32px]">
-          <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+      <div className="overflow-hidden w-screen flex flex-col">
+        <div className="animate-slide-left-ph1 pad:animate-slide-left-dt1 hover:animation-pause mt-[24px] pad:mt-[32px]">
+          <div className="flex flex-nowrap gap-[16px] pad:gap-[24px]">
             <Playlist1 songs={songs}/>
             <Playlist1 songs={songs}/>
           </div>
         </div>
-        <div className="relative w-screen inline-flex animate-slide-left-ph2 pad:animate-slide-left-dt2 hover:animation-pause mt-[32px] pad:mt-[72px]">
-          <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+        <div className="animate-slide-left-ph2 pad:animate-slide-left-dt2 hover:animation-pause mt-[32px] pad:mt-[72px]">
+          <div className="flex flex-nowrap gap-[16px] pad:gap-[24px]">
             <Playlist2 songs={songs}/>
             <Playlist2 songs={songs}/>
           </div>
