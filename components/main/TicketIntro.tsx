@@ -34,10 +34,10 @@ const TicketIntroPad: React.FC<props> = ({ className }) => {
 
 const TicketIntroPhone: React.FC<props> = ({ className }) => {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
-      <div
-        className={`flex justify-center relative w-full h-[532px] mt-[24px] ${className}`}
-      >
+    <div
+      className={`flex flex-col justify-center items-center w-full h-full ${className}`}
+    >
+      <div className="flex justify-center relative w-full h-[532px] mt-[24px]">
         <div className="flex flex-col items-end w-full absolute top-[64px]">
           <div className="flex h-[100px] w-full bg-primary-50 rounded-t-[32px] rounded-bl-[32px] z-0" />
           <div className="flex h-[105px] w-[120px] bg-primary-50 z-0" />

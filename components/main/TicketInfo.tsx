@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import arrow from '@/public/image/arrow_right.svg';
+import Link from 'next/link';
 
 interface TicketInfoProps {
   performanceName: string;
@@ -57,14 +58,15 @@ const TicketInfo: React.FC<TicketInfoProps> = ({
 
 const TicketButton: React.FC<buttonProps> = ({ className }) => {
   return (
-    <button
+    <Link
+      href={'/ticket'}
       className={`flex flex-row items-center w-auto h-auto px-6 py-2 gap-[10px] bg-gray-90 text-gray-0 text-[16px] pad:text-[20px] font-medium rounded-[48px] ${className}`}
     >
       공연 예매하기
       <p className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">
         <Image src={arrow} alt=">" layout="fill" />
       </p>
-    </button>
+    </Link>
   );
 };
 
