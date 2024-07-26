@@ -9,27 +9,31 @@ interface SongProps {
 
 const PerformanceCard: React.FC<SongProps> = ({ songs }) => {
     return (
-        <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+      <div className="flex flex-row flex-wrap">
+        {songs.map((song) => (
+          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
-                window.open(songs[0].url);
+                window.open(song.url);
               }}
             >
               <Image
-                src={songs[0].src}
+                src={song.src}
                 alt="thumbnail"
                 quality={80}
                 className="rounded-[12px]"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
-              {songs[0].name}
+              {song.name}
             </p>
             <span className="text-[16px] text-gray-40 font-medium leading-6">
-              {songs[0].description}
+              {song.description}
             </span>
           </div>
+        ))}
+      </div>
     );
 };    
 
