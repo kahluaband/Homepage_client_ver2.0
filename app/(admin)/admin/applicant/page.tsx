@@ -1,12 +1,14 @@
 'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import applicant_image from '@/public/image/admin/image.svg';
 import { useState } from 'react';
 import ApplicantCard from '@/components/admin/applicant/ApplicantCard';
 import chevron_down_blue from '@/public/image/performance/chevron-down-blue.svg';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
+  const router = useRouter();
   const sessionArr = ['ALL', '보컬', '기타', '드럼', '베이스', '신디'];
   const [session, setSession] = useState('ALL');
 
@@ -14,6 +16,8 @@ const page = () => {
   const handleMore = () => {
     setShowMore(!showMore);
   };
+
+
 
   return (
     <div className="w-full h-full">

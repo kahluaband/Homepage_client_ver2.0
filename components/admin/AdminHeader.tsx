@@ -4,9 +4,27 @@ import React, { useEffect, useState } from 'react';
 import logo_black from '@/public/image/KAHLUA-black.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { authInstance } from '@/api/auth/axios';
 
 const AdminHeader = () => {
   const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      const response = await authInstance.post('/auth/sign-out', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+        },
+      });
+      if (response.data.isSuccess === true) {
+        alert(response.data.result);
+      }
+      localStorage.clear();
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     // padding 수정 필요
@@ -37,7 +55,10 @@ const AdminHeader = () => {
           >
             예매 관리
           </li>
-          <li className="text-lg font-medium text-danger-40 cursor-pointer">
+          <li
+            className="text-lg font-medium text-danger-40 cursor-pointer"
+            onClick={handleLogout}
+          >
             로그아웃
           </li>
         </ul>

@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ticketing_image from '@/public/image/admin/ticketing.svg';
-
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { useRouter } from 'next/navigation';
 
 interface TicketingProps {
   status: string;
@@ -51,14 +51,14 @@ const generalTicketingList: TicketingProps[] = [
   },
   {
     status: '미결제',
-    number: 1234567890123,
+    number: 12322890123,
     name: '홍길동',
     phone: '010-1234-5678',
     count: 2,
   },
   {
     status: '결제 완료',
-    number: 1234567890123,
+    number: 1234563390123,
     name: '홍길동',
     phone: '010-1234-5678',
     count: 2,
@@ -66,6 +66,7 @@ const generalTicketingList: TicketingProps[] = [
 ];
 
 const page = () => {
+  const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
 
