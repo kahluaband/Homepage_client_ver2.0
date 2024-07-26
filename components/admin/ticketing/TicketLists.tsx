@@ -20,6 +20,12 @@ interface TicketProps {
   meeting: string | null;
 }
 
+interface TicketMemberProps {
+  id: number;
+  name: string;
+  phone_num: string;
+}
+
 const TicketLists = ({ type }: { type: string }) => {
   const [allTicketList, setAllTicketList] = useState<TicketProps[]>([]);
   const [generallTicketList, setGeneralTicketList] = useState<TicketProps[]>(
@@ -34,14 +40,20 @@ const TicketLists = ({ type }: { type: string }) => {
       : type === '일반'
         ? generallTicketList
         : allTicketList;
+
   const [total, setTotal] = useRecoilState(totalTicket);
+  const [members, setMembers] = useState<TicketMemberProps[]>([]);
 
   const getAllTicketList = async () => {
     try {
       const response = await authInstance.get('/admin/tickets');
       setAllTicketList(response.data.result.tickets);
       setTotal(response.data.result.total);
-    } catch (error: any) {
+
+      for (let i = 0; i < response.data.result.tickets.length; i++) {
+        setMembers(response.data.result.tickets[i].members);
+      }
+    } catch (error) {
       console.error(error);
     }
   };
@@ -116,11 +128,19 @@ const TicketLists = ({ type }: { type: string }) => {
               {ticket.meeting === null ? '-' : ticket.meeting}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails className="flex pt-6 pb-5">
+          <AccordionDetails className="pl-4">
             <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-              eget.
+              {members &&
+                members.map((member) => (
+                  <span key={member.id}>
+                    <span className="text-base font-medium text-gray-60 pl-3 pr-6">
+                      이름 : {member.name}
+                    </span>
+                    <span className="text-base font-medium text-gray-60">
+                      전화번호 : {member.phone_num}
+                    </span>
+                  </span>
+                ))}
             </Typography>
           </AccordionDetails>
         </Accordion>
