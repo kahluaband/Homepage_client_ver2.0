@@ -1,4 +1,3 @@
-import { resourceUsage } from 'process';
 import { SongList } from '../performance/SongList';
 import PerformanceCard from './PerformanceCard';
 

@@ -25,7 +25,6 @@ const TicketIntroPad: React.FC<props> = ({ className }) => {
           performanceName="2024년 3월 정기 공연"
           place="001 클럽"
           time={['2021', '03', '01', '18']}
-          className=""
         />
       </div>
     </div>
@@ -46,7 +45,6 @@ const TicketIntroPhone: React.FC<props> = ({ className }) => {
               performanceName="2024년 3월 정기 공연"
               place="001 클럽"
               time={['2021', '03', '01', '18']}
-              className=""
             />
           </div>
         </div>

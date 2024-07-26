@@ -2,8 +2,6 @@ import About from '@/components/main/About';
 import Performance from '@/components/main/Performance';
 import Recruit from '@/components/main/Recruit';
 import Ticket from '@/components/main/Ticket';
-import TopRightRoundBorder from '@/components/ui/RoundBorder';
-import Image from 'next/image';
 
 export default function Home() {
   return (

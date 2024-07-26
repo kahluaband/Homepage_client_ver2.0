@@ -6,7 +6,6 @@ interface TicketInfoProps {
   performanceName: string;
   place: string;
   time: string[];
-  className: string;
 }
 
 interface buttonProps {
@@ -17,7 +16,6 @@ const TicketInfo: React.FC<TicketInfoProps> = ({
   performanceName,
   place,
   time,
-  className,
 }) => {
   return (
     <div className="flex flex-row">
