@@ -9,32 +9,69 @@ interface SongProps {
 
 const PerformanceCard: React.FC<SongProps> = ({ songs }) => {
     return (
-      <div className="flex flex-row flex-wrap">
-        {songs.map((song) => (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
-            <div
-              className="cursor-pointer"
-              onClick={() => {
-                window.open(song.url);
-              }}
-            >
-              <Image
-                src={song.src}
-                alt="thumbnail"
-                quality={80}
-                className="rounded-[12px]"
-              />
-            </div>
-            <p className="text-[20px] font-semibold leading-8">
-              {song.name}
-            </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
-              {song.description}
-            </span>
+      <div className="overflow-hidden flex flex-col">
+        <div className="relative w-screen inline-flex animate-slide-left-ph1 pad:animate-slide-left-dt1 hover:animation-pause mt-[24px] pad:mt-[32px]">
+          <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+            <Playlist1 songs={songs}/>
+            <Playlist1 songs={songs}/>
           </div>
-        ))}
+        </div>
+        <div className="relative w-screen inline-flex animate-slide-left-ph2 pad:animate-slide-left-dt2 hover:animation-pause mt-[32px] pad:mt-[72px]">
+          <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+            <Playlist2 songs={songs}/>
+            <Playlist2 songs={songs}/>
+          </div>
+        </div>
       </div>
     );
 };    
 
 export default PerformanceCard;
+
+const Playlist1: React.FC<SongProps> = ({ songs }) => {
+  return(
+    <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+      {songs.map((song, index: number) => (
+        index < 7 &&
+        <div className="w-[282px] pad:w-[384px] h-auto flex flex-col items-start">
+          <Image
+            src={song.src}
+            alt="thumbnail"
+            quality={80}
+            className="rounded-[12px]"
+          />
+          <p className="text-[20px] pad:text-[22px] font-semibold mt-[8px] pad:mt-[12px]">
+            {song.name}
+          </p>
+          <span className="text-[16px] pad:text-[18px] text-gray-40 font-medium mt-[4px]">
+            {song.description}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+const Playlist2: React.FC<SongProps> = ({ songs }) => {
+  return(
+    <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
+      {songs.map((song, index: number) => (
+        index > 7 &&
+        <div className="w-[282px] pad:w-[384px] h-auto flex flex-col items-start">
+          <Image
+            src={song.src}
+            alt="thumbnail"
+            quality={80}
+            className="rounded-[12px]"
+          />
+          <p className="text-[20px] pad:text-[22px] font-semibold mt-[8px] pad:mt-[12px]">
+            {song.name}
+          </p>
+          <span className="text-[16px] pad:text-[18px] text-gray-40 font-medium mt-[4px]">
+            {song.description}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}

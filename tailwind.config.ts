@@ -91,6 +91,31 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'ticket-complete': "linear-gradient(rgba(27, 28, 35, 0.60), rgba(27, 28, 35, 0.60)), url('/image/ticket/Poster.svg')"
       },
+
+      keyframes: {
+        'slide-left-dt1': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-2856px)' },
+        },
+        'slide-left-dt2': {
+          from: { transform: 'translateX(-192px)' },
+          to: { transform: 'translateX(-3048px)' },
+        },
+        'slide-left-phone1': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-2086px)' },
+        },
+        'slide-left-phone2': {
+          from: { transform: 'translateX(-141px)' },
+          to: { transform: 'translateX(-2227px)' },
+        },
+      },
+      animation: {
+        'slide-left-dt1': 'slide-left-dt1 16s infinite linear',
+        'slide-left-dt2': 'slide-left-dt2 16s infinite linear',
+        'slide-left-ph1': 'slide-left-phone1 16s infinite linear',
+        'slide-left-ph2': 'slide-left-phone2 16s infinite linear',
+      },
     },
   },
   corePlugins: {
