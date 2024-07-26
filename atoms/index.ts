@@ -14,3 +14,8 @@ export const ticketType = atom<string>({
   key: 'ticketType',
   default: 'All',
 });
+
+export const totalTicket = atom<number>({
+  key: 'totalTicket',
+  default: 0,
+});

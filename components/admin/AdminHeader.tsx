@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import logo_black from '@/public/image/KAHLUA-black.svg';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';

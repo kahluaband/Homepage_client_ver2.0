@@ -2,49 +2,22 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ticketing_image from '@/public/image/admin/ticketing.svg';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/navigation';
-import { authInstance } from '@/api/auth/axios';
-
-interface TicketProps {
-  id: number;
-  status: string;
-  reservation_id: string;
-  buyer: string;
-  phone_num: string;
-  total_ticket: number;
-  major: string | null;
-  meeting: string | null;
-}
+import { useRecoilValue } from 'recoil';
+import { totalTicket } from '@/atoms';
+import TicketLists from '@/components/admin/ticketing/TicketLists';
 
 const page = () => {
   const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
-  const [allTicketList, setAllTicketList] = useState<TicketProps[]>([]);
-  const [total, setTotal] = useState(0);
-
-  const getTicketList = async () => {
-    try {
-      const response = await authInstance.get('/admin/tickets');
-      console.log(response.data);
-      setAllTicketList(response.data.result.tickets);
-      setTotal(response.data.result.total);
-    } catch (error: any) {
-      console.error(error);
-    }
-  };
+  const total = useRecoilValue(totalTicket);
 
   // middleware로 수정 가능성
   useEffect(() => {
     if (!localStorage.getItem('access_token')) {
       router.push('/login');
     }
-    getTicketList();
   }, []);
 
   return (
@@ -111,55 +84,7 @@ const page = () => {
             </div>
           </div>
           <div className="max-w-[1200px] h-auto">
-            {allTicketList.map((ticket) => (
-              <Accordion key={ticket.id}>
-                <AccordionSummary
-                  className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  {ticket.status === 'FINISH' ? (
-                    <Typography className="w-[94px] text-center text-base font-medium text-success-40">
-                      결제 완료
-                    </Typography>
-                  ) : (
-                    <Typography className="w-[94px] text-center text-base font-medium text-danger-40">
-                      결제 대기
-                    </Typography>
-                  )}
-
-                  <Typography className="w-[186px] text-center text-base font-medium text-gray-60">
-                    {ticket.reservation_id}
-                  </Typography>
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticket.buyer}
-                  </Typography>
-                  <Typography className="w-[160px] text-center text-base font-medium text-gray-60">
-                    {ticket.phone_num}
-                  </Typography>
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticket.total_ticket}장
-                  </Typography>
-
-                  <Typography className="w-[256px] text-center text-base font-medium text-gray-60">
-                    {ticket.major === null ? '-' : ticket.major}
-                  </Typography>
-
-                  {/* 워딩 생각해보겠슴 */}
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticket.meeting === null ? '-' : ticket.meeting}
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails className="flex pt-6 pb-5">
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
+            <TicketLists type={type} />
           </div>
         </section>
       </div>
