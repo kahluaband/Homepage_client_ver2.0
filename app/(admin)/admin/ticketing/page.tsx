@@ -10,70 +10,30 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/navigation';
 import { authInstance } from '@/api/auth/axios';
 
-interface TicketingProps {
+interface TicketProps {
+  id: number;
   status: string;
-  number: number;
-  name: string;
-  phone: string;
-  count: number;
-  department?: string;
-  afterParty?: boolean;
+  reservation_id: string;
+  buyer: string;
+  phone_num: string;
+  total_ticket: number;
+  major: string | null;
+  meeting: string | null;
 }
-
-/// dummy data
-const freshmenTicketingList: TicketingProps[] = [
-  {
-    status: '결제 완료',
-    number: 1234567890123,
-    name: '홍길동',
-    phone: '010-1234-5678',
-    count: 2,
-    department: '디자인커뮤니케이션학과',
-    afterParty: true,
-  },
-  {
-    status: '미결제',
-    number: 9876543210987,
-    name: '서가영',
-    phone: '010-5678-1234',
-    count: 3,
-    department: '컴퓨터공학과',
-    afterParty: false,
-  },
-];
-
-const generalTicketingList: TicketingProps[] = [
-  {
-    status: '결제 완료',
-    number: 1234567890123,
-    name: '홍길동',
-    phone: '010-1234-5678',
-    count: 2,
-  },
-  {
-    status: '미결제',
-    number: 12322890123,
-    name: '홍길동',
-    phone: '010-1234-5678',
-    count: 2,
-  },
-  {
-    status: '결제 완료',
-    number: 1234563390123,
-    name: '홍길동',
-    phone: '010-1234-5678',
-    count: 2,
-  },
-];
 
 const page = () => {
   const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
+  const [allTicketList, setAllTicketList] = useState<TicketProps[]>([]);
+  const [total, setTotal] = useState(0);
 
   const getTicketList = async () => {
     try {
       const response = await authInstance.get('/admin/tickets');
+      console.log(response.data);
+      setAllTicketList(response.data.result.tickets);
+      setTotal(response.data.result.total);
     } catch (error: any) {
       console.error(error);
     }
@@ -84,7 +44,8 @@ const page = () => {
     if (!localStorage.getItem('access_token')) {
       router.push('/login');
     }
-  });
+    getTicketList();
+  }, []);
 
   return (
     <div className="w-full h-full">
@@ -100,7 +61,7 @@ const page = () => {
               </span>
               {/* 데이터 연동 필요 */}
               <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
-                00
+                {total}
               </span>
             </section>
             <section className="w-[252px] h-8 rounded-[32px] bg-gray-0">
@@ -150,90 +111,47 @@ const page = () => {
             </div>
           </div>
           <div className="max-w-[1200px] h-auto">
-            {freshmenTicketingList.map((ticketing) => (
-              <Accordion key={ticketing.number}>
+            {allTicketList.map((ticket) => (
+              <Accordion key={ticket.id}>
                 <AccordionSummary
                   className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  {ticketing.status === '결제 완료' ? (
+                  {ticket.status === 'FINISH' ? (
                     <Typography className="w-[94px] text-center text-base font-medium text-success-40">
-                      {ticketing.status}
+                      결제 완료
                     </Typography>
                   ) : (
                     <Typography className="w-[94px] text-center text-base font-medium text-danger-40">
-                      {ticketing.status}
+                      결제 대기
                     </Typography>
                   )}
 
                   <Typography className="w-[186px] text-center text-base font-medium text-gray-60">
-                    {ticketing.number}
+                    {ticket.reservation_id}
                   </Typography>
                   <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticketing.name}
+                    {ticket.buyer}
                   </Typography>
                   <Typography className="w-[160px] text-center text-base font-medium text-gray-60">
-                    {ticketing.phone}
+                    {ticket.phone_num}
                   </Typography>
                   <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticketing.count}장
+                    {ticket.total_ticket}장
                   </Typography>
+
                   <Typography className="w-[256px] text-center text-base font-medium text-gray-60">
-                    {ticketing.department}
+                    {ticket.major === null ? '-' : ticket.major}
                   </Typography>
+
+                  {/* 워딩 생각해보겠슴 */}
                   <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticketing.afterParty ? '참석' : 'X'}
+                    {ticket.meeting === null ? '-' : ticket.meeting}
                   </Typography>
                 </AccordionSummary>
                 <AccordionDetails className="flex pt-6 pb-5">
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse malesuada lacus ex, sit amet blandit leo
-                    lobortis eget.
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-
-            {generalTicketingList.map((ticketing) => (
-              <Accordion key={ticketing.number}>
-                <AccordionSummary
-                  className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  {ticketing.status === '결제 완료' ? (
-                    <Typography className="w-[94px] text-center text-base font-medium text-success-40">
-                      {ticketing.status}
-                    </Typography>
-                  ) : (
-                    <Typography className="w-[94px] text-center text-base font-medium text-danger-40">
-                      {ticketing.status}
-                    </Typography>
-                  )}
-                  <Typography className="w-[186px] text-center text-base font-medium text-gray-60">
-                    {ticketing.number}
-                  </Typography>
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticketing.name}
-                  </Typography>
-                  <Typography className="w-[160px] text-center text-base font-medium text-gray-60">
-                    {ticketing.phone}
-                  </Typography>
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    {ticketing.count}장
-                  </Typography>
-                  <Typography className="w-[256px] text-center text-base font-medium text-gray-60">
-                    -
-                  </Typography>
-                  <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
-                    -
-                  </Typography>
-                </AccordionSummary>
-                <AccordionDetails>
                   <Typography>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Suspendisse malesuada lacus ex, sit amet blandit leo
