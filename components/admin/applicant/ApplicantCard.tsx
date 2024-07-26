@@ -31,9 +31,25 @@ const dummy_applicant = {
     '동아리의 발전을 위해 새로운 아이디어를 제시하고, 다양한 활동을 기획하여 동아리가 더욱 활기차고 성장할 수 있도록 기여하겠습니다. 또한, 신입 회원들의 멘토 역할을 자청하여 후배들이 잘 적응하고 성장할 수 있도록 돕겠습니다. 밴드 동아리에서 저의 열정과 노력을 다해 활동하며, 멋진 음악을 만들어 나가겠습니다. 감사합니다.',
 };
 
-const ApplicantCard = () => {
-  // TODO: 데이터 연동 필요 !!! 일단 더미 데이터로 대체
-
+const ApplicantCard = ({
+  name,
+  phone_num,
+  birth_date,
+  gender,
+  address,
+  major,
+  first_preference,
+  second_preference,
+}: {
+  name: string;
+  phone_num: string;
+  birth_date: string;
+  gender: string;
+  address: string;
+  major: string;
+  first_preference: string;
+  second_preference: string;
+}) => {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
 
@@ -50,17 +66,11 @@ const ApplicantCard = () => {
     <div className="max-w-[384px] h-[242px] rounded-3xl font-pretendard flex flex-col">
       {/* 카드 상단 부분 : 이름 및 기본 개인 정보 */}
       <div className="relative w-full h-[58px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center pl-6">
-        <span className="text-xl font-semibold text-gray-0">
-          {dummy_applicant.name}
-        </span>
+        <span className="text-xl font-semibold text-gray-0">{name}</span>
         <span className="text-lg font-medium text-gray-50">·</span>
-        <span className="text-lg font-medium text-gray-50">
-          {dummy_applicant.gender}
-        </span>
+        <span className="text-lg font-medium text-gray-50">{gender}</span>
         <span className="text-lg font-medium text-gray-50">·</span>
-        <span className="text-lg font-medium text-gray-50">
-          {dummy_applicant.birth}
-        </span>
+        <span className="text-lg font-medium text-gray-50">{birth_date}</span>
         <Image
           src={show_more}
           alt="show_more_icon"
@@ -74,9 +84,7 @@ const ApplicantCard = () => {
       <div className="w-full h-[184px] bg-gray-5 rounded-b-3xl pl-6 pt-4">
         <div className="flex gap-2 pb-3">
           <Image src={phone_icon} alt="phone_icon" width={20} height={20} />
-          <span className="text-lg font-medium text-gray-80">
-            {dummy_applicant.phone}
-          </span>
+          <span className="text-lg font-medium text-gray-80">{phone_num}</span>
         </div>
         <div className="flex gap-2 pb-3">
           <Image
@@ -85,27 +93,23 @@ const ApplicantCard = () => {
             width={20}
             height={20}
           />
-          <span className="text-lg font-medium text-gray-80">
-            {dummy_applicant.department}
-          </span>
+          <span className="text-lg font-medium text-gray-80">{major}</span>
         </div>
         <div className="flex gap-2 pb-3">
           <Image src={address_icon} alt="address_icon" width={20} height={20} />
-          <span className="text-lg font-medium text-gray-80">
-            {dummy_applicant.address}
-          </span>
+          <span className="text-lg font-medium text-gray-80">{address}</span>
         </div>
         <div className="flex gap-5">
           <div className="flex gap-2">
             <span className="text-lg font-medium text-gray-40">1지망</span>
             <span className="text-lg font-medium text-gray-80">
-              {dummy_applicant.session1}
+              {first_preference}
             </span>
           </div>
           <div className="flex gap-2">
             <span className="text-lg font-medium text-gray-40">2지망</span>
             <span className="text-lg font-medium text-gray-80">
-              {dummy_applicant.session2}
+              {second_preference}
             </span>
           </div>
         </div>
@@ -121,16 +125,12 @@ const ApplicantCard = () => {
       >
         <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
           {' '}
-          <span className="text-2xl font-semibold text-gray-0">
-            {dummy_applicant.name}
-          </span>
+          <span className="text-2xl font-semibold text-gray-0">{name}</span>
+          <span className="text-2xl font-medium text-gray-50">·</span>
+          <span className="text-2xl font-medium text-gray-50">{gender}</span>
           <span className="text-2xl font-medium text-gray-50">·</span>
           <span className="text-2xl font-medium text-gray-50">
-            {dummy_applicant.gender}
-          </span>
-          <span className="text-2xl font-medium text-gray-50">·</span>
-          <span className="text-2xl font-medium text-gray-50">
-            {dummy_applicant.birth}
+            {birth_date}
           </span>
           <DialogActions>
             <Button onClick={handleClose} className="absolute right-8">
@@ -150,7 +150,7 @@ const ApplicantCard = () => {
                   height={20}
                 />
                 <span className="text-lg font-medium text-gray-80">
-                  {dummy_applicant.phone}
+                  {phone_num}
                 </span>
               </div>
               <div className="flex gap-2">
@@ -161,7 +161,7 @@ const ApplicantCard = () => {
                   height={20}
                 />
                 <span className="text-lg font-medium text-gray-80">
-                  {dummy_applicant.address}
+                  {address}
                 </span>
               </div>
             </div>
@@ -174,7 +174,7 @@ const ApplicantCard = () => {
                   height={20}
                 />
                 <span className="text-lg font-medium text-gray-80">
-                  {dummy_applicant.department}
+                  {major}
                 </span>
               </div>
               <div className="flex gap-5">
@@ -183,7 +183,7 @@ const ApplicantCard = () => {
                     1지망
                   </span>
                   <span className="text-lg font-medium text-gray-80">
-                    {dummy_applicant.session1}
+                    {first_preference}
                   </span>
                 </div>
                 <div className="flex gap-2">
@@ -191,7 +191,7 @@ const ApplicantCard = () => {
                     2지망
                   </span>
                   <span className="text-lg font-medium text-gray-80">
-                    {dummy_applicant.session2}
+                    {second_preference}
                   </span>
                 </div>
               </div>

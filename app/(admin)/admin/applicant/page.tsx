@@ -6,10 +6,24 @@ import { useState } from 'react';
 import ApplicantCard from '@/components/admin/applicant/ApplicantCard';
 import chevron_down_blue from '@/public/image/performance/chevron-down-blue.svg';
 import { useRouter } from 'next/navigation';
+import { authInstance } from '@/api/auth/axios';
+
+interface ApplicantProps {
+  id: number;
+  name: string;
+  phone_num: string;
+  birth_date: string;
+  gender: string;
+  address: string;
+  major: string;
+  first_preference: string;
+  second_preference: string;
+}
 
 const page = () => {
   const router = useRouter();
   const sessionArr = ['ALL', '보컬', '기타', '드럼', '베이스', '신디'];
+  const [applicantList, setApplicantList] = useState<ApplicantProps[]>([]);
   const [session, setSession] = useState('ALL');
 
   const [showMore, setShowMore] = useState(false);
@@ -17,7 +31,24 @@ const page = () => {
     setShowMore(!showMore);
   };
 
+  const fetchApplicantList = async () => {
+    try {
+      const response = await authInstance.get('/admin/apply');
+      console.log(response.data);
+      setApplicantList(response.data.result.applies);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  // middleware로 수정 가능성
+  useEffect(() => {
+    if (!localStorage.getItem('access_token')) {
+      router.push('/login');
+    }
+
+    fetchApplicantList();
+  }, []);
 
   return (
     <div className="w-full h-full">
@@ -59,15 +90,19 @@ const page = () => {
         </div>
         <div className="w-full h-full px-[360px] pt-8 grid grid-cols-3 gap-x-6 gap-y-10">
           {/* 카드 섹션 */}
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
-          <ApplicantCard />
+          {applicantList.map((applicant) => (
+            <ApplicantCard
+              key={applicant.id}
+              name={applicant.name}
+              phone_num={applicant.phone_num}
+              birth_date={applicant.birth_date}
+              gender={applicant.gender}
+              address={applicant.address}
+              major={applicant.major}
+              first_preference={applicant.first_preference}
+              second_preference={applicant.second_preference}
+            />
+          ))}
         </div>
 
         <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">

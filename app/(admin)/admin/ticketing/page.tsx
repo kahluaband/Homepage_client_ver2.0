@@ -8,6 +8,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useRouter } from 'next/navigation';
+import { authInstance } from '@/api/auth/axios';
 
 interface TicketingProps {
   status: string;
@@ -69,6 +70,21 @@ const page = () => {
   const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
+
+  const getTicketList = async () => {
+    try {
+      const response = await authInstance.get('/admin/tickets');
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
+  // middleware로 수정 가능성
+  useEffect(() => {
+    if (!localStorage.getItem('access_token')) {
+      router.push('/login');
+    }
+  });
 
   return (
     <div className="w-full h-full">
