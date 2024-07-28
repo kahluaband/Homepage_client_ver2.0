@@ -6,14 +6,17 @@ import ApplicantInfo from '@/components/templates/apply/ApplicantInfo';
 import CLInfo from '@/components/templates/apply/CLInfo';
 import OtherInfo from '@/components/templates/apply/OtherInfo';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
+import axios, { AxiosInstance } from 'axios';
+import { axiosInstance } from '@/api/auth/axios';
+import { after } from 'node:test';
 
 const page = () => {
   const [PersonalInfo, setPersonalInfo] = useState({
     name: '',
-    birthday: '',
+    birth_date: '',
     phone_num: '',
-    department: '',
-    residence: '',
+    major: '',
+    address: '',
     gender: '',
   });
 
@@ -31,18 +34,21 @@ const page = () => {
     afterparty: true,
   });
 
-  const handlePersonalInfoChange = (Personalinfo: {
+  const handlePersonalInfoChange = (info: {
     name: string;
-    birthday: string;
+    birth_date: string;
     phone_num: string;
-    department: string;
-    residence: string;
+    major: string;
+    address: string;
     gender: string;
   }) => {
-    setPersonalInfo(Personalinfo);
+    setPersonalInfo((prevState) => ({
+      ...prevState,
+      ...info,
+    }));
   };
 
-  const handleCLInfoChange = (CLinfo: {
+  const handleCLInfoChange = (info: {
     session1: string;
     session2: string;
     motivation: string;
@@ -50,31 +56,33 @@ const page = () => {
     instrument: string;
     determination: string;
   }) => {
-    setCoverLetterInfo(CLinfo);
+    setCoverLetterInfo((prevState) => ({
+      ...prevState,
+      ...info,
+    }));
   };
 
-  const handleOtherInfoChange = (AdditionalInfo: {
+  const handleOtherInfoChange = (info: {
     schedule: string;
     afterparty: boolean;
   }) => {
-    setOtherInfo(AdditionalInfo);
+    setOtherInfo((prevState) => ({
+      ...prevState,
+      ...info,
+    }));
   };
 
   const [isComplete, setIsComplete] = React.useState(false);
   const [showLastCheckModal, setShowLastCheckModal] = useState(false);
 
-  const handleApplicationComplete = () => {
-    window.location.href = `/recruit/complete`;
-  };
-
   useEffect(() => {
     const isDataComplete =
-      PersonalInfo.birthday.trim() != '' &&
-      PersonalInfo.department.trim() != '' &&
+      PersonalInfo.birth_date.trim() != '' &&
+      PersonalInfo.major.trim() != '' &&
       PersonalInfo.gender.trim() != '' &&
       PersonalInfo.name.trim() != '' &&
       PersonalInfo.phone_num.trim() != '' &&
-      PersonalInfo.residence.trim() != '' &&
+      PersonalInfo.address.trim() != '' &&
       CoverLetterInfo.career.trim() != '' &&
       CoverLetterInfo.determination.trim() != '' &&
       CoverLetterInfo.instrument.trim() != '' &&
@@ -86,6 +94,62 @@ const page = () => {
 
     setIsComplete(isDataComplete);
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo]);
+
+  const handleApplicationSubmit = async () => {
+    {
+      /*
+    const { name, birth_date, phone_num, major, address, gender } =
+      PersonalInfo;
+    const {
+      session1,
+      session2,
+      motivation,
+      career,
+      instrument,
+      determination,
+    } = CoverLetterInfo;
+    const { schedule, afterparty } = AdditionalInfo;
+    */
+    }
+
+    try {
+      const formData = {
+        name: PersonalInfo.name,
+        birth_date: PersonalInfo.birth_date,
+        phone_num: PersonalInfo.phone_num,
+        major: PersonalInfo.major,
+        address: PersonalInfo.address,
+        gender: PersonalInfo.gender,
+        first_perference: CoverLetterInfo.session1,
+        second_preference: CoverLetterInfo.session2,
+        experience_and_reason: CoverLetterInfo.career,
+        play_instrument: CoverLetterInfo.instrument,
+        motive: CoverLetterInfo.motivation,
+        finish_time: AdditionalInfo.schedule,
+        meeting: AdditionalInfo.afterparty,
+        readiness: CoverLetterInfo.determination,
+      };
+
+      const response = await axiosInstance.post('/recruit/apply', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      console.log(response.config.data);
+
+      if (response.status === 200) {
+        console.log(response);
+        {
+          /*window.location.href = `/recruit/complete`;*/
+        }
+      } else {
+        console.error(`Unexpected response status: ${response.status}`);
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4 ">
@@ -125,7 +189,7 @@ const page = () => {
       <LastCheckModal
         isOpen={showLastCheckModal}
         onClose={() => setShowLastCheckModal(false)}
-        onReservationComplete={handleApplicationComplete}
+        onReservationComplete={handleApplicationSubmit}
       />
     </div>
   );
