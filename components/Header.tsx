@@ -16,6 +16,7 @@ const Header = () => {
     { name: 'PERFORMANCE', url: '/performance' },
     { name: 'TICKET', url: '/ticket' },
     { name: 'RECRUIT', url: '/recruit' },
+    { name: 'DEV', url: '/dev' },
   ];
 
   const handleLinkClick = (name: string) => {
@@ -24,14 +25,16 @@ const Header = () => {
 
   return (
     // padding 수정 필요
-    <div className={`font-pretendard w-full h-[64px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1920px]:justify-between items-center px-0 min-[1920px]:px-40 z-50 
-                    ${pathname === "/recruit" ? "bg-gray-90/20 " : "bg-gray-0"}`}>
+    <div
+      className={`font-pretendard w-full h-[64px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1920px]:justify-between items-center px-0 min-[1920px]:px-40 z-50 
+                    ${pathname === '/recruit' || pathname === '/dev' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
+    >
       <div className="min-[1920px]:hidden cursor-pointer fixed left-6">
         <Image src={table_menu} alt="moblie_menu_button" width={24} />
       </div>
       <div>
         <Link href="/" key="home">
-          {pathname === '/recruit' ? (
+          {pathname === '/recruit' || pathname === '/dev' ? (
             <Image
               src={logo_white}
               alt="logo-white"
@@ -52,7 +55,9 @@ const Header = () => {
             <li
               key={url.name}
               className={`font-medium text-center text-[18px] leading-6 ${
-                pathname === '/recruit' ? 'text-gray-0' : ''
+                pathname === '/recruit' || pathname === '/dev'
+                  ? 'text-gray-0'
+                  : ''
               }`}
             >
               <Link href={url.url} passHref>
