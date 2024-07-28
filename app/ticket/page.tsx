@@ -5,7 +5,7 @@ import TicketOption from "@/components/templates/ticket/TicketOption";
 import Bar from "@/components/ui/Bar";
 import Image from "next/image";
 import Link from "next/link";
-import DropdownMenu from '@/components/templates/ticket/Dropdown';
+import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
@@ -148,7 +148,7 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <Link href="/ticket/search/" className="mx-auto dt:ml-[56px] mt-[21px] dt:mt-[24px] w-[328px] dt:w-[280px] h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium">예매 조회/취소</Link>
+          <Link href="/ticket/search/" className="mx-auto dt:ml-[56px] mt-[21px] w-[328px] dt:w-[280px] h-[52px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium">예매 조회/취소</Link>
         </div>
         <div className='flex flex-shrink-0 mt-8 pad:hidden w-full h-2 bg-gray-5 mx-auto' />
         <div className="flex pad:hidden dt:flex flex-col mx-auto pad:ml-[164px] mt-6 pad:mt-[120px] h-[282px]">
