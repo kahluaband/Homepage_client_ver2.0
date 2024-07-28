@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
 import blurCard from '@/public/image/dev/blurCard.svg';
 import blurCard2 from '@/public/image/dev/blurCard2.svg';
+import blurCard3 from '@/public/image/dev/blurCard3.svg';
 import schoolIcon from '@/public/image/dev/school.svg';
 import githubIcon from '@/public/image/dev/github.svg';
 
@@ -8,6 +9,7 @@ interface DevCardProps {
   image: StaticImageData;
   name: string;
   role: string;
+  year?: string;
   school: string;
   githubUrl: string;
   githubName: string;
@@ -17,9 +19,10 @@ const DevCard: React.FC<DevCardProps> = ({
   image,
   name,
   role,
+  year,
   school,
   githubUrl,
-  githubName
+  githubName,
 }) => {
   return (
     <div className="relative w-[328px] h-[172px] pad:w-[384px] pad:h-[210px] dt:w-[384px] dt:h-[210px] mx-auto">
@@ -51,6 +54,11 @@ const DevCard: React.FC<DevCardProps> = ({
           <p className="absolute top-[19px] left-[104px] text-xl pad:top-[20px] pad:left-[128px] pad:text-2xl leading-normal text-gray-0 font-semibold">
             {name}
           </p>
+          {year && (
+            <div className="absolute top-[18px] left-[168px] pad:top-[22px] pad:left-[203px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]">
+              {year}기
+            </div>
+          )}
           <p className="absolute top-[56px] left-[104px] text-base pad:top-[60px] pad:left-[128px] pad:text-lg leading-normal text-gray-40 font-medium">
             {role}
           </p>
