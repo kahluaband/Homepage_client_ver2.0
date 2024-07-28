@@ -3,7 +3,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import logo_white from '@/public/image/KAHLUA.svg';
 import DevCard from '@/components/dev/DevCard';
-import Footer from '@/components/Footer';
 
 const Page = () => {
   const [isScrolled, setIsScrolled] = useState(false);
