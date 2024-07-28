@@ -6,6 +6,7 @@ import logo_white from '@/public/image/KAHLUA.svg';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import table_menu from '@/public/image/tabler_menu-2.svg';
+import table_menu_white from '@/public/image/tabler_menu-2-white.svg';
 
 const Header = () => {
   const pathname = usePathname();
@@ -29,7 +30,11 @@ const Header = () => {
                     ${pathname === '/recruit' || pathname === '/dev' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
     >
       <div className="min-[1920px]:hidden cursor-pointer fixed left-6">
-        <Image src={table_menu} alt="moblie_menu_button" width={24} />
+        {pathname === '/recruit' || pathname === '/dev' ? (
+          <Image src={table_menu_white} alt="moblie_menu_button" width={24} />
+        ) : (
+          <Image src={table_menu} alt="moblie_menu_button" width={24} />
+        )}
       </div>
       <div>
         <Link href="/" key="home">
