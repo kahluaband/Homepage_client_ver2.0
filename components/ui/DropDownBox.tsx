@@ -8,6 +8,7 @@ interface Option {
 
 interface DropDownBoxProps {
     type: 'date' | 'ticket';
+    onSelect: (value: string) => void;
 }
 
 const dateOptions: Option[] = [
@@ -15,11 +16,11 @@ const dateOptions: Option[] = [
 ];
 
 const ticketOptions: Option[] = [
-    { value: 'freshman', label: '신입생 티켓' },
-    { value: 'general', label: '일반 티켓' },
+    { value: '신입생 티켓', label: '신입생 티켓' },
+    { value: '일반 티켓', label: '일반 티켓' },
 ];
 
-const DropDownBox: React.FC<DropDownBoxProps> = ({ type }) => {
+const DropDownBox: React.FC<DropDownBoxProps> = ({ type, onSelect }) => {
     const defaultText = type === 'date' ? '회차 선택' : '좌석 선택';
     const [selectedValue, setSelectedValue] = useState<string>(defaultText);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -32,6 +33,7 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({ type }) => {
     const handleOptionClick = (value: string) => {
         setSelectedValue(value);
         setIsDropdownVisible(false);
+        onSelect(value);
     };
 
     const options = type === 'date' ? dateOptions : ticketOptions;
@@ -72,7 +74,7 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({ type }) => {
                             <button
                                 type="button"
                                 className="w-full text-start focus:outline-none flex justify-start hover:bg-gray-200 p-2"
-                                onClick={() => handleOptionClick(option.label)}
+                                onClick={() => handleOptionClick(option.value)}
                                 disabled={option.value === ''}
                             >
                                 {option.label}

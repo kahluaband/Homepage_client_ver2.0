@@ -1,12 +1,16 @@
 'use client'
 import DropDownBox from '@/components/ui/DropDownBox';
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface TicketOptionProps {
   isDays: boolean;
 }
 
 const DropdownMenu = ({ isDays }: TicketOptionProps) => {
+  const router = useRouter();
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedTicket, setSelectedTicket] = useState<string | null>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [active, setActive] = useState(isDays);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -32,6 +36,26 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
     };
   }, []);
 
+  const handleDateSelect = (value: string) => {
+    setSelectedDate(value);
+  };
+
+  const handleTicketSelect = (value: string) => {
+    setSelectedTicket(value);
+  };
+
+  const handleReserveClick = () => {
+    if (!selectedDate || !selectedTicket) {
+      return;
+    }
+
+    if (selectedTicket === '신입생 티켓') {
+      router.push('/ticket/freshman_ticket');
+    } else if (selectedTicket === '일반 티켓') {
+      router.push('/ticket/general_ticket');
+    }
+  };
+
   return (
     <div ref={dropdownRef} className="fixed pad:hidden w-screen bg-gray-0 bottom-0 z-50 min-h-[98px] ">
       <div
@@ -41,13 +65,13 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
         style={{ overflow: 'hidden', bottom: '100%' }}
       >
         <div className="h-[320px] gap-4 w-full flex flex-col items-center">
-            <DropDownBox type="date" />
-            <DropDownBox type="ticket" />
+            <DropDownBox type="date" onSelect={handleDateSelect}/>
+            <DropDownBox type="ticket" onSelect={handleTicketSelect} />
         </div>
       </div>
 
       <div
-        onClick={toggleDropdown}
+        onClick={dropdownOpen ? handleReserveClick : toggleDropdown}
         className={`relative z-10 w-[328px] h-[52px] flex flex-shrink-0 text-center justify-center items-center mt-4 mx-auto rounded-xl text-[18px] font-medium cursor-pointer
             ${active ? "text-gray-0 bg-primary-50" : "text-gray-40 bg-gray-10"}
         `}
