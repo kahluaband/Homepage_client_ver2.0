@@ -46,8 +46,7 @@ const Footer = () => {
           </div>
         </Link>
         <div className="flex flex-row mt-3">
-          {/* credit url 추후 연결 */}
-          <Link href="/">
+          <Link href="/dev">
             <span className="text-gray-50 font-normal">CREDIT</span>
             <span className="text-gray-80 mx-2">|</span>
           </Link>

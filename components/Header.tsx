@@ -16,7 +16,6 @@ const Header = () => {
     { name: 'PERFORMANCE', url: '/performance' },
     { name: 'TICKET', url: '/ticket' },
     { name: 'RECRUIT', url: '/recruit' },
-    { name: 'DEV', url: '/dev' },
   ];
 
   const handleLinkClick = (name: string) => {
