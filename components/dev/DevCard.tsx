@@ -25,62 +25,116 @@ const DevCard: React.FC<DevCardProps> = ({
   githubName,
 }) => {
   return (
-    <div className="relative w-[328px] h-[172px] pad:w-[384px] pad:h-[210px] dt:w-[384px] dt:h-[210px] mx-auto">
-      <div className="absolute bg-gray-0 rounded-xl flex justify-center items-center pad:w-[92px] pad:h-[92px] w-[68px] h-[68px] mb-3 pad:mb-3">
-        <Image
-          src={image}
-          alt={name}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-xl"
-        />
-      </div>
-      <div className="relative w-full h-full">
-        <Image
-          src={blurCard}
-          alt="blurCard"
-          layout="fill"
-          objectFit="cover"
-          className="pad:block ph:hidden"
-        />
-        <Image
-          src={blurCard2}
-          alt="blurCard2"
-          layout="fill"
-          objectFit="cover"
-          className="ph:block pad:hidden"
-        />
-        <div className="absolute w-full h-full flex">
-          <p className="absolute top-[19px] left-[104px] text-xl pad:top-[20px] pad:left-[128px] pad:text-2xl leading-normal text-gray-0 font-semibold">
-            {name}
-          </p>
-          {year && (
-            <div className="absolute top-[18px] left-[168px] pad:top-[22px] pad:left-[203px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]">
-              {year}기
+    <div>
+      {/* pad, dt */}
+      <div className="relative ph:hidden pad:block w-[384px] h-[210px] w-[384px] h-[210px] mx-auto">
+        <div className="relative w-full h-full">
+          <div className="absolute rounded-xl flex justify-center items-center w-[92px] h-[92px] mb-3">
+            <Image
+              src={image}
+              alt={name}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-xl"
+            />
+          </div>
+          <Image
+            src={blurCard}
+            alt="blurCard"
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute w-full h-full flex">
+            <p className="absolute top-[20px] left-[128px] text-2xl leading-normal text-gray-0 font-semibold">
+              {name}
+            </p>
+            {year && (
+              <div className="absolute top-[22px] left-[203px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]">
+                {year}기
+              </div>
+            )}
+            <p className="absolute top-[60px] left-[128px] text-lg leading-normal text-gray-40 font-medium">
+              {role}
+            </p>
+            <div className="absolute top-[126px] left-[24px]">
+              <Image src={schoolIcon} alt="school" />
             </div>
-          )}
-          <p className="absolute top-[56px] left-[104px] text-base pad:top-[60px] pad:left-[128px] pad:text-lg leading-normal text-gray-40 font-medium">
-            {role}
-          </p>
-          <div className="absolute top-[96px] left-[20px] pad:top-[126px] pad:left-[24px]">
-            <Image src={schoolIcon} alt="school" />
+            <p className="absolute top-[124px] left-[56px] text-lg leading-normal text-gray-40 font-medium">
+              {school}
+            </p>
+            <div className="absolute top-[165px] left-[24px]">
+              <Image src={githubIcon} alt="github" />
+            </div>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
+            >
+              @{githubName}
+            </a>
           </div>
-          <p className="absolute top-[96px] left-[52px] text-base pad:top-[124px] pad:left-[56px] pad:text-lg leading-normal text-gray-40 font-medium">
-            {school}
-          </p>
-          <div className="absolute top-[132px] left-[20px] pad:top-[165px] pad:left-[24px]">
-            <Image src={githubIcon} alt="github" />
-          </div>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[132px] left-[52px] text-base pad:top-[163px] pad:left-[56px] pad:text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
-          >
-            @{githubName}
-          </a>
         </div>
       </div>
+
+      {/* ph */}
+      {/* <div className="relative pad:hidden ph:w-[328px] ph:h-[172px] mx-auto">
+        <div className="absolute bg-gray-0 rounded-xl flex justify-center items-center w-[68px] h-[68px] left-[260px]">
+          <Image
+            src={image}
+            alt={name}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-xl"
+          />
+        </div>
+        <div className="relative w-full h-full">
+          <Image
+            src={blurCard2}
+            alt="blurCard2"
+            layout="fill"
+            objectFit="cover"
+            className="ph:block pad:hidden"
+          />
+          <Image
+            src={blurCard3}
+            alt="blurCard3"
+            layout="fill"
+            objectFit="cover"
+            className="block"
+          />
+          <div className="absolute w-full h-full flex">
+            <p className="absolute top-[19px] left-[20px] text-xl leading-normal text-gray-0 font-semibold">
+              {name}
+            </p>
+            {year && (
+              <div className="absolute top-[18px] left-[84px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]">
+                {year}기
+              </div>
+            )}
+            <p className="absolute top-[56px] left-[20px] text-base pad:text-lg leading-normal text-gray-40 font-medium">
+              {role}
+            </p>
+            <div className="absolute top-[96px] left-[20px]">
+              <Image src={schoolIcon} alt="school" />
+            </div>
+            <p className="absolute top-[96px] left-[52px] text-base leading-normal text-gray-40 font-medium">
+              {school}
+            </p>
+            <div className="absolute top-[132px] left-[20px]">
+              <Image src={githubIcon} alt="github" />
+            </div>
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20"
+            >
+              @{githubName}
+            </a>
+          </div>
+        </div>
+      </div> */}
     </div>
   );
 };
