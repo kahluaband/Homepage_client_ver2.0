@@ -17,7 +17,7 @@ const devs = [
     year: '20',
     school: '홍익대학교 컴퓨터공학과 20학번',
     githubUrl: 'https://github.com/kjiyun',
-    githubName: 'kjiyun',
+    githubName: '@kjiyun',
   },
   {
     image: GR,
@@ -25,7 +25,7 @@ const devs = [
     role: '디자인',
     school: '서울여자대학교 디지털미디어학과 21학번',
     githubUrl: '',
-    githubName: 'goorm',
+    githubName: 'rnfma5856@gmail.com',
   },
   {
     image: SW,
@@ -34,7 +34,7 @@ const devs = [
     year: '18',
     school: '홍익대학교 컴퓨터공학과 19학번',
     githubUrl: 'https://github.com/woogieon8on',
-    githubName: 'woogieon8on',
+    githubName: '@woogieon8on',
   },
   {
     image: GY,
@@ -43,7 +43,7 @@ const devs = [
     year: '20',
     school: '홍익대학교 컴퓨터공학과 21학번',
     githubUrl: 'https://github.com/caminobelllo',
-    githubName: 'caminobelllo',
+    githubName: '@caminobelllo',
   },
   {
     image: SY,
@@ -52,7 +52,7 @@ const devs = [
     year: '19',
     school: '홍익대학교 컴퓨터공학과 20학번',
     githubUrl: 'https://github.com/letthem',
-    githubName: 'letthem',
+    githubName: '@letthem',
   },
   {
     image: JE,
@@ -61,7 +61,7 @@ const devs = [
     year: '20',
     school: '홍익대학교 컴퓨터공학과 21학번',
     githubUrl: 'https://github.com/yumzen',
-    githubName: 'yumzen',
+    githubName: '@yumzen',
   },
   {
     image: GH,
@@ -70,7 +70,7 @@ const devs = [
     year: '20',
     school: '홍익대학교 컴퓨터공학과 21학번',
     githubUrl: 'https://github.com/limgahyun',
-    githubName: 'limgahyun',
+    githubName: '@limgahyun',
   },
 ];
 

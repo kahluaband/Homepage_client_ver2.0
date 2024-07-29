@@ -59,14 +59,21 @@ const PadDtCard: React.FC<DevCardProps> = ({
           <div className="absolute top-[165px] left-[24px]">
             <Image src={githubIcon} alt="github" />
           </div>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
-          >
-            @{githubName}
-          </a>
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
+            >
+              {githubName}
+            </a>
+          )}
+          {!githubUrl && (
+            <p className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20">
+              {githubName}
+            </p>
+          )}
         </div>
       </div>
     </div>
