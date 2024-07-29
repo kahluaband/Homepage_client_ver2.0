@@ -18,14 +18,12 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col mb-[-160px] dt:mb-[-194px]">
+    <div className="relative flex flex-col mb-[-160px] dt:mb-[-194px]">
       {isScrolled && (
         <div className="flex w-full h-[64px] fixed z-10 blur-lg backdrop-blur-sm top-0" />
       )}
-      <div className="flex-grow">
-        <Title />
-        <DevCardList />
-      </div>
+      <Title />
+      <DevCardList />
     </div>
   );
 };

@@ -22,7 +22,6 @@ const devs = [
   {
     image: GR,
     name: '구름',
-    year: '',
     role: '디자인',
     school: '서울여자대학교 디지털미디어학과 21학번',
     githubUrl: '',
@@ -55,7 +54,6 @@ const devs = [
     githubUrl: 'https://github.com/letthem',
     githubName: 'letthem',
   },
-
   {
     image: JE,
     name: '염지은',
@@ -65,7 +63,6 @@ const devs = [
     githubUrl: 'https://github.com/yumzen',
     githubName: 'yumzen',
   },
-
   {
     image: GH,
     name: '임가현',
@@ -106,9 +103,9 @@ const DevCardList = () => {
   }, []);
 
   return (
-    <div ref={bgGray90Ref} className="relative w-full bg-gray-90">
-      <div className="inner-div flex justify-center relative top-0 pad:top-[-325px] dt:top-[-80px] w-full">
-        <div className="grid grid-cols-1 pad:grid-cols-2 dt:grid-cols-3 gap-x-[18px] gap-y-[40px] pad:gap-y-[32px] dt:gap-y-[48px] max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px] mb-20 pad:mb-40 dt:mb-[240px]">
+    <div ref={bgGray90Ref} className="relative w-full bg-gray-90 ">
+      <div className="inner-div flex justify-center relative top-0 pad:top-[-325px] dt:top-[-80px] w-full ph:pb-20 ph:mb-[-20] pad:pb-[160px] dt:pb-[240px]">
+        <div className="grid grid-cols-1 pad:grid-cols-2 dt:grid-cols-3 gap-x-[18px] gap-y-[40px] pad:gap-y-[32px] dt:gap-y-[48px] max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px] ">
           {devs.map((dev, index) => (
             <DevCard
               key={index}
