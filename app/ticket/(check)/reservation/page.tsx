@@ -1,6 +1,7 @@
 "use client"
 
 import CancelModal from "@/components/popups/ticket/CancelModal";
+import NotFoundModal from "@/components/popups/ticket/NotFoundModal";
 import MustRead from "@/components/templates/ticket/MustRead";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
 import axios from "axios";
@@ -22,10 +23,12 @@ const Reservation = () => {
     const [state, setState] = useState<any>(null);
     const [type, setType] = useState<string>("GENERAL");
     const [inputValue, setInputValue] = useState("");
+    const [showNotFoundModal, setShowNotFoundModal] = useState(false);
 
 
     const handleOpenModal = () => {
         setIsModalOpen(true);
+        setShowNotFoundModal(false);
     };
 
     const handleCloseModal = () => {
@@ -43,13 +46,16 @@ const Reservation = () => {
                 if (response.status === 200) {
                     window.location.href = `/ticket/cancel?reservationId=${reservationId}`;
                 } else {
-                    console.error(`Unexpected response status: ${response.status}`);
+                    setIsModalOpen(false);
+                    setShowNotFoundModal(true);
                 }
             } catch (error) {
-                console.error('Error canceling the ticket:', error);
+                setIsModalOpen(false);
+                setShowNotFoundModal(true);
             }
         } else {
-            console.error('Input does not match required value');
+            setIsModalOpen(false);
+            setShowNotFoundModal(true); 
         }
     }
 
@@ -115,6 +121,7 @@ const Reservation = () => {
                 inputValue={inputValue}
                 onInputChange={handleInputChange}
             />
+             <NotFoundModal isOpen={showNotFoundModal} onClose={() => setShowNotFoundModal(false)} />
         </div>
     );
 };

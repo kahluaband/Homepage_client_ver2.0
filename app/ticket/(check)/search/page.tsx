@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import axios from "axios";
+import NotFoundModal from "@/components/popups/ticket/NotFoundModal";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const Search: React.FC = () => {
     const [reservationId, setReservationId] = useState("");
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
+    const [showNotFoundModal, setShowNotFoundModal] = useState(false);
 
     const handleSearchReservation = async () => {
         try {
@@ -16,10 +18,10 @@ const Search: React.FC = () => {
             if (response.status === 200) {
                 window.location.href = `/ticket/reservation?reservationId=${reservationId}`;
             } else {
-                console.error(`Unexpected response status: ${response.status}`);
+                setShowNotFoundModal(true);
             }
         } catch (error) {
-            console.error('Error fetching ticket details:', error);
+            setShowNotFoundModal(true);
         }  
     };
 
@@ -62,6 +64,7 @@ const Search: React.FC = () => {
             </div>
         </div>
         <Link href="/ticket/" className="fixed bottom-8 left-1/2 transform -translate-x-1/2 pad:relative pad:mt-20 pad:left-0 pad:-translate-x-0 w-[328px] pad:w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-medium text-gray-60 bg-gray-5">예매 페이지로 돌아가기</Link>
+        <NotFoundModal isOpen={showNotFoundModal} onClose={() => setShowNotFoundModal(false)} />
     </div>
     );
 };
