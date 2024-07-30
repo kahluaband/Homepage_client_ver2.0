@@ -2,13 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import axios from "axios";
+
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const Search: React.FC = () => {
     const [reservationId, setReservationId] = useState("");
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
 
-    const handleSearchReservation = () => {
-        window.location.href = `/ticket/reservation?reservation_id=${reservationId}`;
+    const handleSearchReservation = async () => {
+        try {
+            const response = await axios.get(`${baseUrl}/tickets/get?reservationId=${reservationId}`);
+            if (response.status === 200) {
+                window.location.href = `/ticket/reservation?reservationId=${reservationId}`;
+            } else {
+                console.error(`Unexpected response status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error fetching ticket details:', error);
+        }  
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

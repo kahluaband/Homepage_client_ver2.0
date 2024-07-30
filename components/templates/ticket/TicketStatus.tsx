@@ -43,7 +43,7 @@ const TicketStatus: React.FC<TicketStatusProps> = ({ reservation_id, buyer, phon
                         <p className="text-gray-80 w-[129px] ml-[39px]">{phone_num}</p>
                     </div>
                     <div className="flex flex-row h-[27px] mt-4 pad:mt-7 dt:mt-0">
-                        <p className="text-gray-40 w-[67px] dt:ml-[104px]">예매상태</p>
+                        <p className="text-gray-40 w-[67px] pad:w-[63px] dt:ml-[104px]">예매상태</p>
                         <p className="text-gray-80 w-[135px] ml-[39px]">{statusText}</p>
                     </div>
                 </div>

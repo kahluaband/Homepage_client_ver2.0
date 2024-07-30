@@ -1,19 +1,19 @@
-import * as React from "react"
-import { Placeholder } from "semantic-ui-react"
+import React from 'react';
 
-export interface InputProps
-extends React.InputHTMLAttributes<HTMLInputElement> {}
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const ModalInput = React.forwardRef<HTMLInputElement, InputProps>(
 ({ className, placeholder, ...props }, ref) => {
     return (
-    <input
-        className={`"flex h-12 w-[588px] rounded-xl border border-gray-15 px-4 py-3 text-[16px]font-normal focus:outline-none focus:border-gray-40 focus:outline-[1px]" ${className}`}
-        placeholder={placeholder}
-        {...props}
-    />
-    )
-}
-)
+        <input
+            className={`flex h-12 w-[588px] rounded-xl border border-gray-15 px-4 py-3 text-[16px] font-normal focus:outline-none focus:border-gray-40 focus:outline-[1px] ${className}`}
+            placeholder={placeholder}
+            ref={ref}
+            {...props}
+        />
+    );
+});
 
-export { ModalInput }
+ModalInput.displayName = "ModalInput";
+
+export { ModalInput };
