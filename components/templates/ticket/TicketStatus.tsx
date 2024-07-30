@@ -12,13 +12,14 @@ interface TicketStatusProps {
 
 const stateMap: Record<string, string> = {
     WAIT: "결제 대기",
-    FINISH: "결제 완료",
-    CANCEL: "취소 대기",
+    FINISH_PAYMENT: "결제 완료",
+    CANCEL_REQUEST: "취소 요청",
+    CANCEL_COMPLETE: "취소 완료"
 };
 
 
 const TicketStatus: React.FC<TicketStatusProps> = ({ reservation_id, buyer, phone_num, student_id, state, type }) => {
-    const statusText = stateMap[state] || "결제 대기";
+    const statusText = stateMap[state];
     return(
         <div className="flex flex-row w-full px-4 pad:px-12 my-10">
             <Image src="/image/ticket/Poster.svg" alt="포스터사진" width={289} height={357} className="hidden pad:flex flex-shrink-0 rounded-xl dt:w-[198px] dt:h-[263px]"/>

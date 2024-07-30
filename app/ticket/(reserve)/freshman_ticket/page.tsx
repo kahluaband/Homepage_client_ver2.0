@@ -102,9 +102,8 @@ const Freshman_ticket: React.FC = () => {
                 console.log(formData);
 
                 if (response.status === 200) {
-                    const id = response.data.result.id;
-                    console.log(id);
-                    router.push(`/ticket/complete?id=${id}`);
+                    const reservationId = response.data.result.reservationId;
+                    router.push(`/ticket/complete?reservationId=${reservationId}`);
                 }else {
                     console.error(`Unexpected response status: ${response.status}`);
                 }

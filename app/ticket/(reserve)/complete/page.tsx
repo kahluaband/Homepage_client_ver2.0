@@ -10,7 +10,7 @@ const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const Complete: React.FC = () => {
     const params = useSearchParams();
-    const id = params.get("id");
+    const reservationId = params.get("reservationId");
 
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
     const [buyer, setBuyer] = useState<string>("");
@@ -38,14 +38,14 @@ const Complete: React.FC = () => {
     useEffect(() => {
         const fetchTicketDetails = async () => {
             try {
-                const response = await axios.get(`${baseUrl}/tickets/${id}`);
+                const response = await axios.get(`${baseUrl}/tickets/get?reservationId=${reservationId}`);
                 if (response.status === 200) {
                     const result = response.data.result;
                     setBuyer(result.buyer);
                     setPhoneNum(result.phone_num);
                     setReservationId(result.reservationId); 
                     setStudentId(result.studentId); 
-                    setState(result.state); 
+                    setState(result.status); 
                     setType(result.type);
                 } else {
                     console.error(`Unexpected response status: ${response.status}`);
@@ -55,10 +55,10 @@ const Complete: React.FC = () => {
             }
         };
 
-        if (id) {
+        if (reservationId) {
             fetchTicketDetails();
         }
-    }, [id]);
+    }, [reservationId]);
 
     return (
     <div className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicHeightClass}`}>
