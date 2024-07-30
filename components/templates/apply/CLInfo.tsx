@@ -15,7 +15,7 @@ const SessionNameMap = {
   [Session.드럼]: 'DRUM',
   [Session.기타]: 'GUITAR',
   [Session.베이스]: 'BASS',
-  [Session.신디사이저]: 'SYNTHESIZER ',
+  [Session.신디사이저]: 'SYNTHESIZER',
 };
 
 const StringToEnum = (session: string): Session => {

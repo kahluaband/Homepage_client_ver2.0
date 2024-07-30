@@ -6,9 +6,10 @@ import ApplicantInfo from '@/components/templates/apply/ApplicantInfo';
 import CLInfo from '@/components/templates/apply/CLInfo';
 import OtherInfo from '@/components/templates/apply/OtherInfo';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
-import axios, { AxiosInstance } from 'axios';
 import { axiosInstance } from '@/api/auth/axios';
-import { after } from 'node:test';
+import axios from 'axios';
+
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const page = () => {
   const [PersonalInfo, setPersonalInfo] = useState({
@@ -118,42 +119,44 @@ const page = () => {
     */
     }
 
-    try {
-      const formData = {
-        name: PersonalInfo.name,
-        birth_date: PersonalInfo.birth_date,
-        phone_num: PersonalInfo.phone_num,
-        major: PersonalInfo.major,
-        address: PersonalInfo.address,
-        gender: PersonalInfo.gender,
-        first_perference: CoverLetterInfo.session1,
-        second_preference: CoverLetterInfo.session2,
-        experience_and_reason: CoverLetterInfo.career,
-        play_instrument: CoverLetterInfo.instrument,
-        motive: CoverLetterInfo.motivation,
-        finish_time: AdditionalInfo.schedule,
-        meeting: AdditionalInfo.afterparty,
-        readiness: CoverLetterInfo.determination,
-      };
+    if (isComplete) {
+      try {
+        const formData = {
+          name: PersonalInfo.name,
+          birth_date: PersonalInfo.birth_date,
+          phone_num: PersonalInfo.phone_num,
+          major: PersonalInfo.major,
+          address: PersonalInfo.address,
+          gender: PersonalInfo.gender,
+          first_perference: CoverLetterInfo.session1,
+          second_preference: CoverLetterInfo.session2,
+          experience_and_reason: CoverLetterInfo.career,
+          play_instrument: CoverLetterInfo.instrument,
+          motive: CoverLetterInfo.motivation,
+          finish_time: AdditionalInfo.schedule,
+          meeting: AdditionalInfo.afterparty,
+          readiness: CoverLetterInfo.determination,
+        };
 
-      const response = await axiosInstance.post('/recruit/apply', formData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+        const response = await axiosInstance.post(
+          `${baseUrl}/apply`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
 
-      console.log(response.config.data);
-
-      if (response.status === 200) {
-        console.log(response);
-        {
-          /*window.location.href = `/recruit/complete`;*/
+        if (response.status === 200) {
+          console.log(response.data);
+          window.location.href = `/recruit/complete`;
+        } else {
+          console.error(`Unexpected response status: ${response.status}`);
         }
-      } else {
-        console.error(`Unexpected response status: ${response.status}`);
+      } catch (error: any) {
+        console.log(error);
       }
-    } catch (error: any) {
-      console.log(error);
     }
   };
 
