@@ -2,6 +2,21 @@ import { Input } from '@/components/ui/Input';
 import TwoOptionBox from '@/components/ui/twoOptionbox';
 import React, { useEffect, useState } from 'react';
 
+export enum Gender {
+  남성,
+  여성,
+}
+
+const GenderNameMap = {
+  [Gender.남성]: 'MALE',
+  [Gender.여성]: 'FEMALE',
+};
+
+const StringToEnum = (gender: string): Gender => {
+  const enumValue = (Gender as any)[gender as keyof typeof Gender];
+  return enumValue as Gender;
+};
+
 interface ApplicantInfoProps {
   onInfoChange: (info: {
     name: string;
@@ -50,7 +65,10 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
   };
 
   const handleGenderChange = (selectedGender: string) => {
-    onInfoChange({ ...PersonalInfo, gender: selectedGender });
+    onInfoChange({
+      ...PersonalInfo,
+      gender: `${GenderNameMap[StringToEnum(selectedGender)]}`,
+    });
   };
 
   useEffect(() => {
@@ -94,8 +112,8 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
         />
         <p className="mt-6 text-[16px] font-normal leading-6">성별</p>
         <TwoOptionBox
-          option1="남성"
-          option2="여성"
+          option1={Gender[0].toString()}
+          option2={Gender[1].toString()}
           seletion={handleGenderChange}
           className=""
         />
