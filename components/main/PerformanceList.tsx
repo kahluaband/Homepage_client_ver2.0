@@ -31,7 +31,8 @@ const Playlist1: React.FC<SonglistProps> = ({ songs }) => {
   return (
     <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
       {songs.map(
-        (song, index: number) => index < 7 && <PerformanceCard song={song} />
+        (song, index: number) =>
+          index < 7 && <PerformanceCard song={song} key={song.id} />
       )}
     </div>
   );
@@ -41,7 +42,8 @@ const Playlist2: React.FC<SonglistProps> = ({ songs }) => {
   return (
     <div className="flex flex-nowrap w-auto h-auto gap-[16px] pad:gap-[24px]">
       {songs.map(
-        (song, index: number) => index > 7 && <PerformanceCard song={song} />
+        (song, index: number) =>
+          index > 7 && <PerformanceCard song={song} key={song.id} />
       )}
     </div>
   );

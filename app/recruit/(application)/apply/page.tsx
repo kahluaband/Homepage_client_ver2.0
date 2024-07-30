@@ -7,7 +7,6 @@ import CLInfo from '@/components/templates/apply/CLInfo';
 import OtherInfo from '@/components/templates/apply/OtherInfo';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
 import { axiosInstance } from '@/api/auth/axios';
-import axios from 'axios';
 
 const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -88,8 +87,8 @@ const page = () => {
       CoverLetterInfo.determination.trim() != '' &&
       CoverLetterInfo.instrument.trim() != '' &&
       CoverLetterInfo.motivation.trim() != '' &&
-      CoverLetterInfo.session1.trim() != '' &&
-      CoverLetterInfo.session2.trim() != '' &&
+      CoverLetterInfo.session1 != 'undefined' &&
+      CoverLetterInfo.session2 != 'undefined' &&
       AdditionalInfo.schedule.trim() != '' &&
       true;
 
@@ -103,22 +102,6 @@ const page = () => {
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo]);
 
   const handleApplicationSubmit = async () => {
-    {
-      /*
-    const { name, birth_date, phone_num, major, address, gender } =
-      PersonalInfo;
-    const {
-      session1,
-      session2,
-      motivation,
-      career,
-      instrument,
-      determination,
-    } = CoverLetterInfo;
-    const { schedule, afterparty } = AdditionalInfo;
-    */
-    }
-
     if (isComplete) {
       try {
         const formData = {
