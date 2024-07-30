@@ -93,6 +93,8 @@ const page = () => {
       true;
 
     setIsComplete(isDataComplete);
+
+    console.log(CoverLetterInfo.session1, CoverLetterInfo.session2);
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo]);
 
   const handleApplicationSubmit = async () => {
