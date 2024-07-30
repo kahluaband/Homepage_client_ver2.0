@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import chevron_down from '@/public/image/performance/chevron-down.svg';
 import chevron_up from '@/public/image/performance/chevron-up.svg';
 import { useRecoilState } from 'recoil';
@@ -9,36 +9,66 @@ import { selectedYear } from '@/atoms';
 const YearSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [sYear, setSYear] = useRecoilState(selectedYear);
+  const [width, setWidth] = useState(window.innerWidth);
 
   const years = ['All', '2024', '2023', '2022', '2019', '2018', '2017', '2016'];
   const year1 = ['All', '2024', '2023', '2022'];
   const year2 = ['2019', '2018', '2017', '2016'];
   const currentYearList = year2.includes(sYear) ? year2 : year1;
 
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
   const toggleBtn = () => {
     setIsOpen(!isOpen);
   };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="flex gap-2 mt-16 relative">
       {/* 연도 4개만 표시 */}
       <div className="max-w-[336px] h-[32px] bg-gray-0 rounded-[32px]">
-        {currentYearList.map((year) => (
-          <div
-            key={year}
-            onClick={() => {
-              setSYear(year);
-            }}
-            className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer "`}
-          >
-            <p
-              key={year}
-              className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
-            >
-              {year}
-            </p>
-          </div>
-        ))}
+        {width > 360
+          ? currentYearList.map((year) => (
+              <div
+                key={year}
+                onClick={() => {
+                  setSYear(year);
+                }}
+                className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer "`}
+              >
+                <p
+                  key={year}
+                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
+                >
+                  {year}
+                </p>
+              </div>
+            ))
+          : currentYearList.slice(0, 1).map((year) => (
+              <div
+                key={year}
+                onClick={() => {
+                  setSYear(year);
+                }}
+                className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer "`}
+              >
+                <p
+                  key={year}
+                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
+                >
+                  {year}
+                </p>
+              </div>
+            ))}
       </div>
 
       {/* 토글 버튼 */}
