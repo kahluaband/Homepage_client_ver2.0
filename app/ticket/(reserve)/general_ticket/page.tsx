@@ -32,6 +32,12 @@ const General_ticket: React.FC = () => {
     });
 
     useEffect(() => {
+
+        const storedMember = localStorage.getItem('member');
+        if (storedMember) {
+            setMember(parseInt(storedMember, 10)); 
+        }
+        
         let totalHeightClass = "";
         let newHeightClass = "";
 

@@ -58,8 +58,8 @@ isDays: boolean;
                     </div>
                 </div>
                 <div className="h-[280px] flex flex-col flex-shrink-0 rounded-br-xl border-gray-15 bg-gray-5 items-center">
-                    <Ticket className="focus:cursor-pointer" ticket="신입생 티켓" price="무료" state={!active ? "impossible" : freshman === true ? "selected" : "possible"} onClick={handleFreshmanClick}/>
-                    <Ticket className="focus:cursor-pointer" ticket="일반 티켓" price="5,000원" state={!active ? "impossible" : general ? "selected" : "possible"} onClick={handleGeneralClick}/>
+                    <Ticket className="focus:cursor-pointer" ticket="신입생" price="무료" state={!active ? "impossible" : freshman === true ? "selected" : "possible"} onClick={handleFreshmanClick}/>
+                    <Ticket className="focus:cursor-pointer" ticket="일반" price="5,000원" state={!active ? "impossible" : general ? "selected" : "possible"} onClick={handleGeneralClick}/>
                 </div>
             </div>
             </div>

@@ -14,6 +14,7 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [active, setActive] = useState(isDays);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [member, setMember] = useState<number>(1); 
 
   useEffect(() => {
     setActive(isDays);
@@ -52,6 +53,7 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
     if (selectedTicket === '신입생 티켓') {
       router.push('/ticket/freshman_ticket');
     } else if (selectedTicket === '일반 티켓') {
+      localStorage.setItem('member', member.toString());
       router.push('/ticket/general_ticket');
     }
   };
@@ -60,13 +62,13 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
     <div ref={dropdownRef} className="fixed pad:hidden w-screen bg-gray-0 bottom-0 z-50 min-h-[98px] ">
       <div
         className={`absolute mx-auto w-full bg-gray-0 transition-all duration-300 ease-out ${
-          dropdownOpen ? 'translate-y-0 opacity-100 max-h-[238px] p-4 rounded-t-3xl border-t border-gray-15' : 'translate-y-[100%] opacity-0 max-h-0 p-0'
+          dropdownOpen ? 'translate-y-0 opacity-100 max-h-[300px] p-4 rounded-t-3xl border-t border-gray-15' : 'translate-y-[100%] opacity-0 max-h-0 p-0'
         }`}
         style={{ overflow: 'hidden', bottom: '100%' }}
       >
-        <div className="h-[320px] gap-4 w-full flex flex-col items-center">
-            <DropDownBox type="date" onSelect={handleDateSelect}/>
-            <DropDownBox type="ticket" onSelect={handleTicketSelect} />
+        <div className="h-[300px] gap-4 w-full flex flex-col items-center">
+            <DropDownBox type="date" onSelect={handleDateSelect} member={member} setMember={setMember}/>
+            <DropDownBox type="ticket" onSelect={handleTicketSelect} member={member} setMember={setMember}/>
         </div>
       </div>
 
