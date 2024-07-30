@@ -1,29 +1,64 @@
-"use client"
+"use client";
 import MustRead from "@/components/templates/ticket/MustRead";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
-const Complete = () => {
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+const Complete: React.FC = () => {
     const params = useSearchParams();
-    const reservationId = params.get("reservation_id");
+    const id = params.get("id");
+
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
+    const [buyer, setBuyer] = useState<string>("");
+    const [phone_num, setPhoneNum] = useState<string>("");
+    const [reservation_id, setReservationId] = useState<string>("");
+    const [student_id, setStudentId] = useState<string>("");
+    const [state, setState] = useState<any>(null);
+    const [type, setType] = useState<string>("GENERAL");
+
+    // Adjust the height dynamically based on the screen size
+    useEffect(() => {
+        const updateHeightClass = () => {
+            const screenHeight = window.screen.height;
+            const adjustedHeight = screenHeight - 64;
+            setDynamicHeightClass(`h-[${adjustedHeight}px]`);
+        };
+
+        updateHeightClass();
+        window.addEventListener("resize", updateHeightClass);
+        return () => {
+            window.removeEventListener("resize", updateHeightClass);
+        };
+    }, []);
 
     useEffect(() => {
-    const updateHeightClass = () => {
-        const screenHeight = window.screen.height;
-        const adjustedHeight = screenHeight - 64; 
+        const fetchTicketDetails = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}/tickets/${id}`);
+                if (response.status === 200) {
+                    const result = response.data.result;
+                    setBuyer(result.buyer);
+                    setPhoneNum(result.phone_num);
+                    setReservationId(result.reservationId); 
+                    setStudentId(result.studentId); 
+                    setState(result.state); 
+                    setType(result.type);
+                } else {
+                    console.error(`Unexpected response status: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error fetching ticket details:', error);
+            }
+        };
 
-        setDynamicHeightClass(`h-[${adjustedHeight}px]`);
-    };
-
-    updateHeightClass();
-    window.addEventListener("resize", updateHeightClass);
-    return () => {
-        window.removeEventListener("resize", updateHeightClass);
-    };
-    }, []); 
+        if (id) {
+            fetchTicketDetails();
+        }
+    }, [id]);
 
     return (
     <div className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicHeightClass}`}>
@@ -35,8 +70,8 @@ const Complete = () => {
                 <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
             </div>
         </div>
-        <div className="h-[691px] pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
-            <TicketStatus reservation_id={reservationId as string} />
+        <div className="h-full pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
+            <TicketStatus reservation_id={reservation_id} buyer={buyer} phone_num={phone_num} student_id={student_id} state={state} type={type}/>
             <MustRead/>
         </div>
         <Link href="/ticket/" className="mt-14 pad:mt-10 w-[328px] pad:w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-medium text-gray-60 bg-gray-5">예매 페이지로 돌아가기</Link>

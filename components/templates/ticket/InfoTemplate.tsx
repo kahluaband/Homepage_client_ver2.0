@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/Input";
 import Image from 'next/image';
 
 interface InfoTemplateProps {
