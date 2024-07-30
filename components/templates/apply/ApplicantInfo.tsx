@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/components/ui/input';
 import TwoOptionBox from '@/components/ui/twoOptionbox';
 import React, { useEffect, useState } from 'react';
 
@@ -70,10 +70,6 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
       gender: `${GenderNameMap[StringToEnum(selectedGender)]}`,
     });
   };
-
-  useEffect(() => {
-    console.log('현재 성별 : ' + gender);
-  }, [gender]);
 
   return (
     <div className="flex flex-col py-10 px-4 pad:px-12">

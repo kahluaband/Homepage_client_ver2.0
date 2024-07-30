@@ -94,7 +94,11 @@ const page = () => {
 
     setIsComplete(isDataComplete);
 
-    console.log(CoverLetterInfo.session1, CoverLetterInfo.session2);
+    console.log(
+      PersonalInfo.gender,
+      CoverLetterInfo.session1,
+      CoverLetterInfo.session2
+    );
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo]);
 
   const handleApplicationSubmit = async () => {
