@@ -113,16 +113,16 @@ const Page = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1300px] pad:h-[1100px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
+    <div className="flex relative flex-col top-16 h-[1300px] mb:h-[1100px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] justify-start dt:justify-center mx-auto">
         <Image 
           src="/image/ticket/Poster.svg" 
           alt="포스터사진" 
           width={833} 
           height={376} 
-          className="z-0 sticky top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 pad:rounded-xl mx-auto pad:mx-0"
+          className="z-0 sticky mb:static overflow-hidden top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 mb:rounded-xl mx-auto pad:mx-0"
         />
-        <div className="z-10 bg-gray-0 flex flex-col w-full mb:w-[350px] pad:w-full px-4 pt-6 pad:mt-2 pad:ml-8 mx-auto">
+        <div className="z-10 bg-gray-0 flex flex-col w-full mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8 text-[16px]
           ${isDays ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-50"}`}>{isDays ? "예매 가능" : "예매 마감"}</div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
@@ -154,12 +154,12 @@ const Page = () => {
               </div>
             </div>
           </div>
-          <Link href="/ticket/search/" className="mx-auto dt:ml-[56px] mt-[21px] w-full dt:w-[280px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium">예매 조회/취소</Link>
+          <Link href="/ticket/search/" className="mx-auto dt:ml-[56px] mt-[21px] w-full dt:w-[280px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium dt:mr-0 ">예매 조회/취소</Link>
         </div>
-        <div className='z-10 bg-gray-0 h-8 w-full'/>
-        <div className='flex z-10 flex-shrink-0 pad:hidden w-full h-2 bg-gray-5 mx-auto' />
-        <div className='z-10 bg-gray-0 h-6 w-full'/>
-        <div className="flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:w-[328px] pad:ml-[164px] pad:mt-[120px] h-[282px]">
+        <div className='z-10 bg-gray-0 h-8 w-full flex pad:hidden'/>
+        <div className='flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto'/>
+        <div className='z-10 bg-gray-0 h-6 w-full flex pad:hidden'/>
+        <div className="flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] pad:mt-[120px] h-[282px] mx-auto">
           <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-gray-70 h-[27px]">공연장 위치</p>
           <div className='flex pad:hidden flex-row gap-3 mt-1'>
             <p className='text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] whitespace-nowrap truncate'>{loc}</p>
@@ -168,7 +168,7 @@ const Page = () => {
               <p className='text-gray-40 font-medium text-[16px] leading-6'>복사</p>
             </div>
           </div>
-          <div id="map" className="mt-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bottom-0"/>
+          <div id="map" className="mt-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bottom-0"/>
         </div>
       </div>
       <div className='w-full h-[98px] bg-gray-0 bottom-0 z-50 left-0'>
