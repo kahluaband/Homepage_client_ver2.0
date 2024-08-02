@@ -4,6 +4,7 @@ import blurCard2 from '@/public/image/contributors/blurCard2.svg';
 import blurCard3 from '@/public/image/contributors/blurCard3.svg';
 import schoolIcon from '@/public/image/contributors/school.svg';
 import githubIcon from '@/public/image/contributors/github.svg';
+import emailIcon from '@/public/image/contributors/email.svg';
 
 interface ContributorCardProps {
   image: StaticImageData;
@@ -11,8 +12,9 @@ interface ContributorCardProps {
   role: string;
   year?: string;
   school: string;
-  githubUrl: string;
-  githubName: string;
+  githubUrl?: string;
+  githubName?: string;
+  emailName?: string;
   index: number;
 }
 
@@ -24,6 +26,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
   school,
   githubUrl,
   githubName,
+  emailName,
 }) => {
   return (
     <div className="relative ph:hidden pad:block w-[384px] h-[210px] mx-auto">
@@ -57,9 +60,12 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             {school}
           </p>
           <div className="absolute top-[165px] left-[24px]">
-            <Image src={githubIcon} alt="github" />
+            <Image
+              src={githubUrl ? githubIcon : emailIcon}
+              alt={githubUrl ? 'github' : 'email'}
+            />
           </div>
-          {githubUrl && (
+          {githubUrl ? (
             <a
               href={githubUrl}
               target="_blank"
@@ -68,10 +74,9 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             >
               {githubName}
             </a>
-          )}
-          {!githubUrl && (
+          ) : (
             <p className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20">
-              {githubName}
+              {emailName}
             </p>
           )}
         </div>
@@ -88,6 +93,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
   school,
   githubUrl,
   githubName,
+  emailName,
   index,
 }) => {
   const isEven = index % 2 === 1;
@@ -136,16 +142,25 @@ const PhCard: React.FC<ContributorCardProps> = ({
             {school}
           </p>
           <div className="absolute top-[132px] left-[20px]">
-            <Image src={githubIcon} alt="github" />
+            <Image
+              src={githubUrl ? githubIcon : emailIcon}
+              alt={githubUrl ? 'github' : 'email'}
+            />
           </div>
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20"
-          >
-            @{githubName}
-          </a>
+          {githubUrl ? (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20"
+            >
+              {githubName}
+            </a>
+          ) : (
+            <p className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20">
+              {emailName}
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -45,6 +45,7 @@ const ContributorCardList = () => {
               school={contributor.school}
               githubUrl={contributor.githubUrl}
               githubName={contributor.githubName}
+              emailName={contributor.emailName}
               index={index}
             />
           ))}

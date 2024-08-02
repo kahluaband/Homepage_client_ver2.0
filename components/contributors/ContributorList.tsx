@@ -66,7 +66,6 @@ export const ContributorList = [
     name: '구름',
     role: '디자인',
     school: '서울여자대학교 디지털미디어학과 21학번',
-    githubUrl: '',
-    githubName: 'rnfma5856@gmail.com',
+    emailName: 'rnfma5856@gmail.com',
   },
 ];
