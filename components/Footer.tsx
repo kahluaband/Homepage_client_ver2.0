@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
         </Link>
         <div className="flex flex-row mt-3">
-          <Link href="/dev">
+          <Link href="/contributors">
             <span className="text-gray-50 font-normal">CREDIT</span>
             <span className="text-gray-80 mx-2">|</span>
           </Link>

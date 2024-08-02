@@ -27,10 +27,10 @@ const Header = () => {
     // padding 수정 필요
     <div
       className={`font-pretendard w-full h-[64px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1920px]:justify-between items-center px-0 min-[1920px]:px-40 z-50 
-                    ${pathname === '/recruit' || pathname === '/dev' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
+                    ${pathname === '/recruit' || pathname === '/contributors' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
     >
       <div className="min-[1920px]:hidden cursor-pointer fixed left-6">
-        {pathname === '/recruit' || pathname === '/dev' ? (
+        {pathname === '/recruit' || pathname === '/contributors' ? (
           <Image src={table_menu_white} alt="moblie_menu_button" width={24} />
         ) : (
           <Image src={table_menu} alt="moblie_menu_button" width={24} />
@@ -38,7 +38,7 @@ const Header = () => {
       </div>
       <div>
         <Link href="/" key="home">
-          {pathname === '/recruit' || pathname === '/dev' ? (
+          {pathname === '/recruit' || pathname === '/contributors' ? (
             <Image
               src={logo_white}
               alt="logo-white"
@@ -59,7 +59,7 @@ const Header = () => {
             <li
               key={url.name}
               className={`font-medium text-center text-[18px] leading-6 ${
-                pathname === '/recruit' || pathname === '/dev'
+                pathname === '/recruit' || pathname === '/contributors'
                   ? 'text-gray-0'
                   : ''
               }`}

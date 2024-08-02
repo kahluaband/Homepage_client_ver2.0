@@ -1,11 +1,11 @@
 import Image, { StaticImageData } from 'next/image';
-import blurCard from '@/public/image/dev/blurCard.svg';
-import blurCard2 from '@/public/image/dev/blurCard2.svg';
-import blurCard3 from '@/public/image/dev/blurCard3.svg';
-import schoolIcon from '@/public/image/dev/school.svg';
-import githubIcon from '@/public/image/dev/github.svg';
+import blurCard from '@/public/image/contributors/blurCard.svg';
+import blurCard2 from '@/public/image/contributors/blurCard2.svg';
+import blurCard3 from '@/public/image/contributors/blurCard3.svg';
+import schoolIcon from '@/public/image/contributors/school.svg';
+import githubIcon from '@/public/image/contributors/github.svg';
 
-interface DevCardProps {
+interface ContributorCardProps {
   image: StaticImageData;
   name: string;
   role: string;
@@ -16,7 +16,7 @@ interface DevCardProps {
   index: number;
 }
 
-const PadDtCard: React.FC<DevCardProps> = ({
+const PadDtCard: React.FC<ContributorCardProps> = ({
   image,
   name,
   role,
@@ -80,7 +80,7 @@ const PadDtCard: React.FC<DevCardProps> = ({
   );
 };
 
-const PhCard: React.FC<DevCardProps> = ({
+const PhCard: React.FC<ContributorCardProps> = ({
   image,
   name,
   role,
@@ -152,7 +152,7 @@ const PhCard: React.FC<DevCardProps> = ({
   );
 };
 
-const DevCard: React.FC<DevCardProps> = (props) => {
+const ContributorCard: React.FC<ContributorCardProps> = (props) => {
   return (
     <>
       <PadDtCard {...props} />
@@ -161,4 +161,4 @@ const DevCard: React.FC<DevCardProps> = (props) => {
   );
 };
 
-export default DevCard;
+export default ContributorCard;
