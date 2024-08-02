@@ -2,11 +2,15 @@
 import FinalStep from "@/components/templates/ticket/FinalStep";
 import FreshmanInfo from "@/components/templates/ticket/FreshmanInfo";
 import MemberSelection from "@/components/templates/ticket/MemberSelection";
-import PartySelection, { Action, State, reducer } from "@/components/templates/ticket/PartySelection";
+import PartySelection, { State, reducer } from "@/components/templates/ticket/PartySelection";
 import TicketSelection from "@/components/templates/ticket/TicketSelection";
-import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useReducer, useEffect} from "react";
+import { useRouter } from "next/navigation";
+import axios from 'axios';
+import Warning from "@/components/templates/ticket/Warning";
+
+const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const initialState: State = {
     participation1: false,
@@ -14,49 +18,101 @@ const initialState: State = {
     notParticipation: false,
 };
 
+const handleMeeting = (state: State): string => {
+    if (state.notParticipation) return 'NOT_ATTEND';
+    if (state.participation1 && state.participation2) return 'BOTH_ATTEND';
+    if (state.participation1) return 'DAY1_ATTEND';
+    if (state.participation2) return 'DAY2_ATTEND';
+    return 'NOT_ATTEND';
+};
+
 const Freshman_ticket: React.FC = () => {
+    const router = useRouter();
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
-        student_id: '',
-        phone_num: ''
+        studentId: '',
+        phone_num: '',
+        type: 'FRESHMAN',
     });
 
-    const handleUserInfoChange = (info: { name: string, department: string, student_id: string, phone_num: string }) => {
-        setUserInfo(info);
+    const handleUserInfoChange = (info: { name: string, department: string, studentId: string, phone_num: string }) => {
+        setUserInfo(prevState => ({
+            ...prevState,
+            ...info
+        }));
     };
 
-    const [partySelection, dispatchPartySelection] = useReducer((state: State, action: Action) => {
-        switch (action.type) {
-            case 'PARTICIPATION1':
-            case 'PARTICIPATION2':
-            case 'NOT_PARTICIPATION':
-                return reducer(state, action);
-            default:
-                return state;
-        }
-    }, initialState);
+
+    const [partySelection, dispatchPartySelection] = useReducer(reducer, initialState);
 
     const handleReservationComplete = () => {
-        window.location.href = `/ticket/complete`;
+        router.push('/ticket/complete');
     };
 
     const handleAlreadyReserved = () => {
-        window.location.href = `/ticket/search`;
+        router.push('/ticket/search');
     };
 
     useEffect(() => {
-        const { name, phone_num, department, student_id } = userInfo;
-        const isDataComplete =
-            name.trim() !== "" &&
-            phone_num.trim() !== "" &&
-            department.trim() !== "" &&
-            student_id.trim() !== "";
+        const { name, phone_num, department, studentId } = userInfo;
+        const areUserInfoComplete =
+        name.trim() !== "" &&
+        phone_num.trim() !== "" &&
+        department.trim() !== "" &&
+        studentId.trim() !== "";
+
+        const isParticipationValid =
+            partySelection.notParticipation ||
+            partySelection.participation1 ||
+            partySelection.participation2;
+
+        const isDataComplete = areUserInfoComplete && isParticipationValid;
         setIsFormComplete(isDataComplete);
-    }, [userInfo]);
+    }, [userInfo, partySelection]);
+
+    const handleSubmit = async () => {
+        const { name, phone_num, department, studentId, type } = userInfo;
+        const meeting = handleMeeting(partySelection);
+        const isDataComplete = isFormComplete;
+        console.log(name, phone_num, department, studentId, type, meeting);
+        if (isDataComplete) {
+            try {
+                const formData = { 
+                    buyer: name, 
+                    phone_num, 
+                    type, 
+                    major: department, 
+                    studentId, 
+                    meeting,
+                    members: []
+                };
+                const response = await axios.post(
+                    `${baseUrl}/tickets`,
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+                console.log(formData);
+
+                if (response.status === 200) {
+                    const id = response.data.result.id;
+                    console.log(id);
+                    router.push(`/ticket/complete?id=${id}`);
+                }else {
+                    console.error(`Unexpected response status: ${response.status}`);
+                }
+            } catch (error: any) {
+                console.log(error);
+            }
+        }
+    };
 
     return (
     <div className="h-[1850px] w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20">
@@ -65,19 +121,19 @@ const Freshman_ticket: React.FC = () => {
             <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
             <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
         </div>
-        <div className="h-[1395px] w-full rounded-b-xl border border-gray-15 flex flex-col mx-auto">
-            <div className="mx-4 pad:mx-12 flex flex-col">
+        <div className="h-[1395px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto gap-0">
+            <div className="flex flex-col">
                 <MemberSelection description="신입생은 최대 1인 1매 구매 가능합니다." min={1} max={1} ticket={"freshman"}  member={member} setMember={setMember}/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <FreshmanInfo userInfo={userInfo} onInfoChange={handleUserInfoChange}/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <TicketSelection/>
-                <Bar/>
+                <Bar className="px-4 pad:px-12"/>
                 <PartySelection dispatch={dispatchPartySelection} state={partySelection} />
-                <Bar/>
+                <Bar className="hidden pad:flex px-4 pad:px-12"/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
         </div>
     </div>
     );

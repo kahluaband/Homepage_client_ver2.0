@@ -41,8 +41,7 @@ export default function RootLayout({
           )}
           {children}
         </div>
-        {!isMainPage &&
-          !isCompletePage &&
+        {!isCompletePage &&
           !isFreshmanTicketPage &&
           !isGeneralTicketPage &&
           !isCancelPage &&
