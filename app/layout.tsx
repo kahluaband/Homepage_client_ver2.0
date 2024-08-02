@@ -35,7 +35,7 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
-        {!isMainPage && !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
+        { !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
           && !isNoticePage && !isApplyCompletePae && !isApplyPage &&(
         <Footer />
       )}

@@ -35,9 +35,10 @@
     "import/parsers": { "@typescript-eslint/parser": [".ts"] }
   },
   "rules": {
-    "react/prop-types": "off",
+    "react/prop-types": "off", //props 오류 해결하기 위해 설정
+
     "@typescript-eslint/no-explicit-any": "off",
-    "react/react-in-jsx-scope": "on", // react 17부턴 import 안해도돼서 기능 끔
+    "react/react-in-jsx-scope": "on", // react 17부턴 import 안해도돼서 기능 끔 -> 오류 해결하려고 다시 on으로 변경
     // 경고표시, 파일 확장자를 .ts나 .tsx 모두 허용함
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "react/function-component-definition": [

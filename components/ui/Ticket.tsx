@@ -17,7 +17,7 @@ const Ticket: React.FC<TicketProps> = ({ ticket, price, state, onClick,className
         )
     } else if(state==="possible"){
         return (
-            <button onClick={onClick} className={`${className}focus:cursor-pointer px-5 mt-5 flex items-center justify-center w-[352px] h-14 text-gray-60 text-[16px] font-normal leading-6 text-start`}>
+            <button onClick={onClick} className={`${className}focus:cursor-pointer px-5 mt-5 flex items-center justify-center w-[352px] h-14 text-gray-60 text-[16px] border border-gray-5 font-normal leading-6 text-start`}>
                 <p className="w-[74px]">{ticket}</p>
                 <p className="ml-[26px] w-[57px]">{price}</p>
                 <p className="ml-auto w-[61px]">예매 가능</p>
