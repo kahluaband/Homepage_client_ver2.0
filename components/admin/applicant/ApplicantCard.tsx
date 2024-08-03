@@ -12,6 +12,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import tabler_x from '@/public/image/admin/tabler_x.svg';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const dummy_applicant = {
   name: '홍길동',
@@ -30,6 +31,18 @@ const dummy_applicant = {
   determination:
     '동아리의 발전을 위해 새로운 아이디어를 제시하고, 다양한 활동을 기획하여 동아리가 더욱 활기차고 성장할 수 있도록 기여하겠습니다. 또한, 신입 회원들의 멘토 역할을 자청하여 후배들이 잘 적응하고 성장할 수 있도록 돕겠습니다. 밴드 동아리에서 저의 열정과 노력을 다해 활동하며, 멋진 음악을 만들어 나가겠습니다. 감사합니다.',
 };
+
+const theme = createTheme({
+  components: {
+    MuiDialog: {
+      styleOverrides: {
+        paper: {
+          borderRadius: '24px',
+        },
+      },
+    },
+  },
+});
 
 const ApplicantCard = ({
   name,
@@ -116,90 +129,96 @@ const ApplicantCard = ({
       </div>
 
       {/* 상세 정보 : dialog */}
-      <Dialog
-        fullWidth={true}
-        maxWidth="md"
-        open={open}
-        onClose={handleClose}
-        scroll={scroll}
-      >
-        <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
-          {' '}
-          <span className="text-2xl font-semibold text-gray-0">{name}</span>
-          <span className="text-2xl font-medium text-gray-50">·</span>
-          <span className="text-2xl font-medium text-gray-50">{gender}</span>
-          <span className="text-2xl font-medium text-gray-50">·</span>
-          <span className="text-2xl font-medium text-gray-50">
-            {birth_date}
-          </span>
-          <DialogActions>
-            <Button onClick={handleClose} className="absolute right-8">
-              <Image src={tabler_x} alt="close-dialog" width={24} height={24} />
-            </Button>
-          </DialogActions>
-        </DialogTitle>
+      <ThemeProvider theme={theme}>
+        <Dialog
+          fullWidth={true}
+          maxWidth="md"
+          open={open}
+          onClose={handleClose}
+          scroll={scroll}
+        >
+          <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
+            <span className="text-2xl font-semibold text-gray-0">{name}</span>
+            <span className="text-2xl font-medium text-gray-50">·</span>
+            <span className="text-2xl font-medium text-gray-50">{gender}</span>
+            <span className="text-2xl font-medium text-gray-50">·</span>
+            <span className="text-2xl font-medium text-gray-50">
+              {birth_date}
+            </span>
+            <DialogActions>
+              <Button onClick={handleClose} className="absolute right-8">
+                <Image
+                  src={tabler_x}
+                  alt="close-dialog"
+                  width={24}
+                  height={24}
+                />
+              </Button>
+            </DialogActions>
+          </DialogTitle>
 
-        <DialogContent className="p-0">
-          <section className="pt-6 pl-12">
-            <div className="flex pb-3 justify-between">
-              <div className="flex gap-2">
-                <Image
-                  src={phone_icon}
-                  alt="phone_icon"
-                  width={20}
-                  height={20}
-                />
-                <span className="text-lg font-medium text-gray-80">
-                  {phone_num}
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <Image
-                  src={address_icon}
-                  alt="address_icon"
-                  width={20}
-                  height={20}
-                />
-                <span className="text-lg font-medium text-gray-80">
-                  {address}
-                </span>
-              </div>
-            </div>
-            <div className="flex pb-6 justify-between">
-              <div className="flex gap-2 pb-3">
-                <Image
-                  src={department_icon}
-                  alt="department_icon"
-                  width={20}
-                  height={20}
-                />
-                <span className="text-lg font-medium text-gray-80">
-                  {major}
-                </span>
-              </div>
-              <div className="flex gap-5">
+          <DialogContent className="p-0 ">
+            <section className="pt-6 pl-12">
+              <div className="flex pb-3 justify-between">
                 <div className="flex gap-2">
-                  <span className="text-lg font-medium text-gray-40">
-                    1지망
-                  </span>
+                  <Image
+                    src={phone_icon}
+                    alt="phone_icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-lg font-medium text-gray-80">
-                    {first_preference}
+                    {phone_num}
                   </span>
                 </div>
                 <div className="flex gap-2">
-                  <span className="text-lg font-medium text-gray-40">
-                    2지망
-                  </span>
+                  <Image
+                    src={address_icon}
+                    alt="address_icon"
+                    width={20}
+                    height={20}
+                  />
                   <span className="text-lg font-medium text-gray-80">
-                    {second_preference}
+                    {address}
                   </span>
                 </div>
               </div>
-            </div>
-          </section>
-          <div className="max-w-[900px] border-solid border-[1px] border-gray-10"></div>
-        </DialogContent>
-      </Dialog>
+              <div className="flex pb-6 justify-between">
+                <div className="flex gap-2 pb-3">
+                  <Image
+                    src={department_icon}
+                    alt="department_icon"
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-lg font-medium text-gray-80">
+                    {major}
+                  </span>
+                </div>
+                <div className="flex gap-5">
+                  <div className="flex gap-2">
+                    <span className="text-lg font-medium text-gray-40">
+                      1지망
+                    </span>
+                    <span className="text-lg font-medium text-gray-80">
+                      {first_preference}
+                    </span>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="text-lg font-medium text-gray-40">
+                      2지망
+                    </span>
+                    <span className="text-lg font-medium text-gray-80">
+                      {second_preference}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div className="max-w-[900px] border-solid border-[1px] border-gray-10"></div>
+          </DialogContent>
+        </Dialog>
+      </ThemeProvider>
     </div>
   );
 };
