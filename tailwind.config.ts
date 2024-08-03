@@ -84,20 +84,15 @@ const config: Config = {
       backgroundImage: {
         performance:
           "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
-<<<<<<< HEAD
-=======
         notice:
           'radial-gradient(45% 40% at 50% 50%, rgba(21, 38, 127, 0.50) 0%, rgba(27, 28, 35, 0.00) 100%)',
         mainAbout:
           "linear-gradient(to right bottom, rgba(27, 28, 35, 1), rgba(0, 0, 0, 0)), url('/image/main/mainAbout.svg')",
->>>>>>> e7c5b4efe9cce75467916774918320175d072adb
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'ticket-complete':
           "linear-gradient(rgba(27, 28, 35, 0.60), rgba(27, 28, 35, 0.60)), url('/image/ticket/Poster.svg')",
-<<<<<<< HEAD
-=======
       },
 
       keyframes: {
@@ -123,7 +118,6 @@ const config: Config = {
         'slide-left-dt2': 'slide-left-dt2 40s infinite linear',
         'slide-right-ph1': 'slide-right-phone1 40s infinite linear',
         'slide-left-ph2': 'slide-left-phone2 40s infinite linear',
->>>>>>> e7c5b4efe9cce75467916774918320175d072adb
       },
     },
   },
