@@ -25,9 +25,9 @@ interface ApplicantProps {
 const page = () => {
   const router = useRouter();
   const sessionArr = ['ALL', '보컬', '기타', '드럼', '베이스', '신디'];
+  const [session, setSession] = useState('ALL');
   const [applicantList, setApplicantList] = useState<ApplicantProps[]>([]);
   const [shownList, setShownList] = useState<ApplicantProps[]>([]);
-  const [session, setSession] = useState('ALL');
   const [total, setTotal] = useRecoilState(totalApplicant);
   const [showMore, setShowMore] = useState(false);
 
@@ -35,13 +35,42 @@ const page = () => {
     setShowMore(!showMore);
   };
 
-  const fetchApplicantList = async () => {
+  const fetchAllApplicantList = async () => {
     try {
       const response = await authInstance.get('/admin/apply/all');
       console.log(response.data);
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
       setTotal(response.data.result.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchApplicantList = async (session: string) => {
+    var preference = '';
+
+    if (session === '보컬') {
+      preference = 'VOCAL';
+    } else if (session === '기타') {
+      preference = 'GUITAR';
+    } else if (session === '드럼') {
+      preference = 'DRUM';
+    } else if (session === '베이스') {
+      preference = 'BASS';
+    } else if (session === '신디') {
+      preference = 'SYNTHESIZER';
+    } else {
+      fetchAllApplicantList();
+      return;
+    }
+    try {
+      const response = await authInstance.get(
+        `/admin/apply?preference=${preference}`
+      );
+      console.log(response.data);
+      setApplicantList(response.data.result.applies);
+      setShownList(response.data.result.applies.slice(0, 9));
     } catch (error) {
       console.log(error);
     }
@@ -58,11 +87,16 @@ const page = () => {
   // middleware로 수정 가능성
   useEffect(() => {
     if (!localStorage.getItem('access_token')) {
+      alert('로그인이 필요합니다.');
       router.push('/login');
     }
 
-    fetchApplicantList();
+    fetchAllApplicantList();
   }, []);
+
+  useEffect(() => {
+    fetchApplicantList(session);
+  }, [session]);
 
   return (
     <div className="w-full h-full">

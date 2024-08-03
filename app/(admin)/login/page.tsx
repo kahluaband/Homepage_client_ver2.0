@@ -19,6 +19,12 @@ const page = () => {
     setPassword(e.target.value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   const handleLogin = async () => {
     try {
       const response = await axiosInstance.post(
@@ -93,6 +99,7 @@ const page = () => {
                   onChange={handlePassword}
                   placeholder="비밀번호를 입력해주세요."
                   className="w-[588px] h-12 rounded-xl border-solid border-[1px] border-gray-15 pl-4 placeholder:text-base placeholder:text-gray-20 placeholder:font-normal"
+                  onKeyDown={handleKeyDown}
                 />
               </div>
             </form>

@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { totalTicket } from '@/atoms';
+import { useRouter } from 'next/navigation';
 
 interface TicketProps {
   id: number;
@@ -27,6 +28,7 @@ interface TicketMemberProps {
 }
 
 const TicketLists = ({ type }: { type: string }) => {
+  const router = useRouter();
   const [allTicketList, setAllTicketList] = useState<TicketProps[]>([]);
   const [generallTicketList, setGeneralTicketList] = useState<TicketProps[]>(
     []
@@ -53,8 +55,12 @@ const TicketLists = ({ type }: { type: string }) => {
       for (let i = 0; i < response.data.result.tickets.length; i++) {
         setMembers(response.data.result.tickets[i].members);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      if (error.response.status === 401) {
+        alert('로그인이 필요합니다.');
+        router.push('/login');
+      }
     }
   };
 
