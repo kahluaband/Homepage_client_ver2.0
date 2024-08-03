@@ -33,7 +33,6 @@ const page = () => {
               <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
                 2024 9월 정기공연
               </span>
-              {/* 데이터 연동 필요 */}
               <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
                 {total}
               </span>
