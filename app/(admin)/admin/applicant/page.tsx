@@ -42,7 +42,6 @@ const page = () => {
   const fetchAllApplicantList = async () => {
     try {
       const response = await authInstance.get('/admin/apply/all');
-      console.log(response.data);
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
       setTotal(response.data.result.total);
@@ -72,7 +71,6 @@ const page = () => {
       const response = await authInstance.get(
         `/admin/apply?preference=${preference}`
       );
-      console.log(response.data);
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
     } catch (error) {
