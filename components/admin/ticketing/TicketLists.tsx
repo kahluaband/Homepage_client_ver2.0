@@ -19,6 +19,7 @@ interface TicketProps {
   total_ticket: number;
   major: string | null;
   meeting: string | null;
+  members: TicketMemberProps[] | null;
 }
 
 interface TicketMemberProps {
@@ -53,14 +54,12 @@ const TicketLists = ({ type }: { type: string }) => {
       setTotal(response.data.result.total);
 
       for (let i = 0; i < response.data.result.tickets.length; i++) {
-        setMembers(response.data.result.tickets[i].members);
+        if (response.data.result.tickets[i].members !== null) {
+          setMembers([...members, response.data.result.tickets[i].members]);
+        }
       }
     } catch (error: any) {
       console.error(error);
-      if (error.response.status === 401) {
-        alert('로그인이 필요합니다.');
-        router.push('/login');
-      }
     }
   };
 
@@ -129,7 +128,6 @@ const TicketLists = ({ type }: { type: string }) => {
               {ticket.major === null ? '-' : ticket.major}
             </Typography>
 
-            {/* 워딩 생각해보겠슴 */}
             <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
               {ticket.meeting === null ? '-' : ticket.meeting}
             </Typography>

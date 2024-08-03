@@ -88,10 +88,10 @@ const page = () => {
 
   // middleware로 수정 가능성
   useEffect(() => {
-    if (!localStorage.getItem('access_token')) {
-      alert('로그인이 필요합니다.');
-      router.push('/login');
-    }
+    // if (!localStorage.getItem('access_token')) {
+    //   alert('로그인이 필요합니다.');
+    //   router.push('/login');
+    // }
 
     fetchAllApplicantList();
   }, []);

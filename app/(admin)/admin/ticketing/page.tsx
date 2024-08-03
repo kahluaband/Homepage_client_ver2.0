@@ -14,12 +14,12 @@ const page = () => {
   const total = useRecoilValue(totalTicket);
 
   // middleware로 수정 가능성
-  useEffect(() => {
-    if (!localStorage.getItem('access_token')) {
-      alert('로그인이 필요합니다.');
-      router.push('/login');
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!localStorage.getItem('access_token')) {
+  //     alert('로그인이 필요합니다.');
+  //     router.push('/login');
+  //   }
+  // }, []);
 
   return (
     <div className="w-full h-full">
