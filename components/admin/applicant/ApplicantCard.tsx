@@ -96,7 +96,6 @@ const ApplicantCard = ({
   const fetchEachApplicant = async () => {
     try {
       const response = await authInstance.get(`/admin/apply/${id}`);
-      console.log(response.data);
       setDetail({
         motive: response.data.result.motive,
         experience_and_reason: response.data.result.experience_and_reason,

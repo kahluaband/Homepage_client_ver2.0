@@ -39,8 +39,6 @@ const page = () => {
           },
         }
       );
-      console.log(response.data);
-
       if (
         response.data.isSuccess === true &&
         response.data.result.role === 'ADMIN'
