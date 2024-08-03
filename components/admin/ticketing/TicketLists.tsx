@@ -9,6 +9,19 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { totalTicket } from '@/atoms';
 import { useRouter } from 'next/navigation';
+import { createTheme, ThemeProvider } from '@mui/material';
+
+const theme = createTheme({
+  components: {
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: '20px 28px',
+        },
+      },
+    },
+  },
+});
 
 interface TicketProps {
   id: number;
@@ -18,6 +31,7 @@ interface TicketProps {
   phone_num: string;
   total_ticket: number;
   major: string | null;
+  studentId?: string;
   meeting: string | null;
   members: TicketMemberProps[] | null;
 }
@@ -45,7 +59,7 @@ const TicketLists = ({ type }: { type: string }) => {
         : allTicketList;
 
   const [total, setTotal] = useRecoilState(totalTicket);
-  const [members, setMembers] = useState<TicketMemberProps[]>([]);
+  const [members, setMembers] = useState<TicketMemberProps[][]>([]);
 
   const getAllTicketList = async () => {
     try {
@@ -53,13 +67,16 @@ const TicketLists = ({ type }: { type: string }) => {
       setAllTicketList(response.data.result.tickets);
       setTotal(response.data.result.total);
 
-      for (let i = 0; i < response.data.result.tickets.length; i++) {
-        if (response.data.result.tickets[i].members !== null) {
-          setMembers([...members, response.data.result.tickets[i].members]);
-        }
-      }
+      const newMembers = response.data.result.tickets.map(
+        (ticket: TicketProps) => ticket.members || []
+      );
+      setMembers(newMembers);
     } catch (error: any) {
       console.error(error);
+      if (error.response.status === 401) {
+        alert('로그인이 필요합니다.');
+        router.push('/login');
+      }
     }
   };
 
@@ -92,8 +109,8 @@ const TicketLists = ({ type }: { type: string }) => {
   }, [type]);
 
   return (
-    <>
-      {ticketList.map((ticket) => (
+    <ThemeProvider theme={theme}>
+      {ticketList.map((ticket, index) => (
         <Accordion key={ticket.id}>
           <AccordionSummary
             className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
@@ -101,55 +118,59 @@ const TicketLists = ({ type }: { type: string }) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            {ticket.status === 'FINISH' ? (
-              <Typography className="w-[94px] text-center text-base font-medium text-success-40">
+            {ticket.status === 'FINISH_PAYMENT' ? (
+              <Typography className="min-w-[94px] text-center text-base font-medium text-success-40">
                 결제 완료
               </Typography>
             ) : (
-              <Typography className="w-[94px] text-center text-base font-medium text-danger-40">
+              <Typography className="min-w-[94px] text-center text-base font-medium text-danger-40">
                 결제 대기
               </Typography>
             )}
 
-            <Typography className="w-[186px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[186px] text-center text-base font-medium text-gray-60">
               {ticket.reservation_id}
             </Typography>
-            <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
               {ticket.buyer}
             </Typography>
-            <Typography className="w-[160px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[160px] text-center text-base font-medium text-gray-60">
               {ticket.phone_num}
             </Typography>
-            <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
               {ticket.total_ticket}장
             </Typography>
 
-            <Typography className="w-[256px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[186px] text-center text-base font-medium text-gray-60">
               {ticket.major === null ? '-' : ticket.major}
             </Typography>
 
-            <Typography className="w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
+              {ticket.studentId === null ? '-' : ticket.studentId}
+            </Typography>
+
+            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
               {ticket.meeting === null ? '-' : ticket.meeting}
             </Typography>
           </AccordionSummary>
-          <AccordionDetails className="pl-4">
+          <AccordionDetails>
             <Typography>
-              {members &&
-                members.map((member) => (
-                  <span key={member.id}>
-                    <span className="text-base font-medium text-gray-60 pl-3 pr-6">
+              {members[index] &&
+                members[index].map((member) => (
+                  <div key={member.id} className="flex gap-14">
+                    <div className="text-base font-medium text-gray-60 pb-3">
                       이름 : {member.name}
-                    </span>
-                    <span className="text-base font-medium text-gray-60">
+                    </div>
+                    <div className="text-base font-medium text-gray-60">
                       전화번호 : {member.phone_num}
-                    </span>
-                  </span>
+                    </div>
+                  </div>
                 ))}
             </Typography>
           </AccordionDetails>
         </Accordion>
       ))}
-    </>
+    </ThemeProvider>
   );
 };
 
