@@ -20,6 +20,10 @@ interface ApplicantProps {
   major: string;
   first_preference: string;
   second_preference: string;
+  motive: string;
+  experience_and_reason: string;
+  play_instrument: string;
+  readiness: string;
 }
 
 const page = () => {
@@ -140,6 +144,7 @@ const page = () => {
           {shownList.map((applicant) => (
             <ApplicantCard
               key={applicant.id}
+              id={applicant.id}
               name={applicant.name}
               phone_num={applicant.phone_num}
               birth_date={applicant.birth_date}

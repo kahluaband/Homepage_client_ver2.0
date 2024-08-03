@@ -13,7 +13,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import tabler_x from '@/public/image/admin/tabler_x.svg';
 import { createTheme, ThemeProvider } from '@mui/material';
+import { authInstance } from '@/api/auth/axios';
 
+// 라이브러리 기본 css 덮어쓰기
 const theme = createTheme({
   components: {
     MuiDialog: {
@@ -23,10 +25,43 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '32px',
+          paddingRight: '32px',
+        },
+      },
+    },
+    MuiDialogActions: {
+      styleOverrides: {
+        root: {
+          padding: '0px',
+          position: 'absolute',
+          right: '0px',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          minWidth: '0px',
+          padding: '0px',
+        },
+      },
+    },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          padding: '48px',
+        },
+      },
+    },
   },
 });
 
 const ApplicantCard = ({
+  id,
   name,
   phone_num,
   birth_date,
@@ -36,6 +71,7 @@ const ApplicantCard = ({
   first_preference,
   second_preference,
 }: {
+  id: number;
   name: string;
   phone_num: string;
   birth_date: string;
@@ -47,8 +83,31 @@ const ApplicantCard = ({
 }) => {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState<DialogProps['scroll']>('paper');
+  const [
+    { motive, experience_and_reason, play_instrument, readiness },
+    setDetail,
+  ] = useState({
+    motive: '',
+    experience_and_reason: '',
+    play_instrument: '',
+    readiness: '',
+  });
 
-  const handleClickOpen = (scrollType: DialogProps['scroll']) => () => {
+  const fetchEachApplicant = async () => {
+    try {
+      const response = await authInstance.get(`/admin/apply/${id}`);
+      console.log(response.data);
+      setDetail({
+        motive: response.data.result.motive,
+        experience_and_reason: response.data.result.experience_and_reason,
+        play_instrument: response.data.result.play_instrument,
+        readiness: response.data.result.readiness,
+      });
+    } catch (error) {}
+  };
+
+  const handleClickOpen = (scrollType: DialogProps['scroll']) => async () => {
+    await fetchEachApplicant();
     setOpen(true);
     setScroll(scrollType);
   };
@@ -119,15 +178,19 @@ const ApplicantCard = ({
           onClose={handleClose}
           scroll={scroll}
         >
-          <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center">
-            <span className="text-2xl font-semibold text-gray-0">{name}</span>
-            <span className="text-2xl font-medium text-gray-50">·</span>
-            <span className="text-2xl font-medium text-gray-50">{gender}</span>
-            <span className="text-2xl font-medium text-gray-50">·</span>
-            <span className="text-2xl font-medium text-gray-50">
-              {birth_date}
-            </span>
-            <DialogActions>
+          <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex justify-between items-center">
+            <div>
+              <span className="text-2xl font-semibold text-gray-0">{name}</span>
+              <span className="text-2xl font-medium text-gray-50 mx-1">·</span>
+              <span className="text-2xl font-medium text-gray-50">
+                {gender}
+              </span>
+              <span className="text-2xl font-medium text-gray-50 mx-1">·</span>
+              <span className="text-2xl font-medium text-gray-50">
+                {birth_date}
+              </span>
+            </div>
+            <DialogActions className="relative">
               <Button onClick={handleClose} className="absolute right-8">
                 <Image
                   src={tabler_x}
@@ -139,10 +202,10 @@ const ApplicantCard = ({
             </DialogActions>
           </DialogTitle>
 
-          <DialogContent className="p-0 ">
-            <section className="pt-6 pl-12">
-              <div className="flex pb-3 justify-between">
-                <div className="flex gap-2">
+          <DialogContent className="p-0 max-h-[760px] overflow-y-scroll">
+            <section className="flex py-6 gap-[100px]">
+              <div className="flex-col">
+                <div className="flex gap-2 pb-3">
                   <Image
                     src={phone_icon}
                     alt="phone_icon"
@@ -155,19 +218,6 @@ const ApplicantCard = ({
                 </div>
                 <div className="flex gap-2">
                   <Image
-                    src={address_icon}
-                    alt="address_icon"
-                    width={20}
-                    height={20}
-                  />
-                  <span className="text-lg font-medium text-gray-80">
-                    {address}
-                  </span>
-                </div>
-              </div>
-              <div className="flex pb-6 justify-between">
-                <div className="flex gap-2 pb-3">
-                  <Image
                     src={department_icon}
                     alt="department_icon"
                     width={20}
@@ -175,6 +225,19 @@ const ApplicantCard = ({
                   />
                   <span className="text-lg font-medium text-gray-80">
                     {major}
+                  </span>
+                </div>
+              </div>
+              <div className="flex-col">
+                <div className="flex gap-2 pb-3">
+                  <Image
+                    src={address_icon}
+                    alt="address_icon"
+                    width={20}
+                    height={20}
+                  />
+                  <span className="text-lg font-medium text-gray-80">
+                    {address}
                   </span>
                 </div>
                 <div className="flex gap-5">
@@ -197,7 +260,43 @@ const ApplicantCard = ({
                 </div>
               </div>
             </section>
+            {/* 구분선 */}
             <div className="max-w-[900px] border-solid border-[1px] border-gray-10"></div>
+            {/* 지원 동기 및 세부 내용 */}
+            <section className="mt-6 font-pretendard flex-col w-full">
+              <div className="flex-col justify-start">
+                <div className="text-lg text-gray-80 font-semibold pb-2">
+                  깔루아 지원 동기
+                </div>
+                <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
+                  {motive}
+                </div>
+              </div>
+              <div className="flex-col justify-start">
+                <div className="text-lg text-gray-80 font-semibold pb-2">
+                  지원 세션에 대한 경력 및 지원 이유
+                </div>
+                <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
+                  {experience_and_reason}
+                </div>
+              </div>
+              <div className="flex-col justify-start">
+                <div className="text-lg text-gray-80 font-semibold pb-2">
+                  이외에 다룰 줄 아는 악기
+                </div>
+                <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
+                  {play_instrument}
+                </div>
+              </div>
+              <div className="flex-col justify-start">
+                <div className="text-lg text-gray-80 font-semibold pb-2">
+                  포부 및 각오
+                </div>
+                <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px]">
+                  {readiness}
+                </div>
+              </div>
+            </section>
           </DialogContent>
         </Dialog>
       </ThemeProvider>
