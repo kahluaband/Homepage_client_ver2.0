@@ -8,6 +8,13 @@ import GH from '@/public/image/contributors/GH.avif';
 
 export const ContributorList = [
   {
+    image: GR,
+    name: '구름',
+    role: '디자인',
+    school: '서울여자대학교 디지털미디어학과 21학번',
+    emailName: 'rnfma5856@gmail.com',
+  },
+  {
     image: GY,
     name: '서가영',
     role: '프론트엔드',
@@ -60,12 +67,5 @@ export const ContributorList = [
     school: '홍익대학교 컴퓨터공학과 19학번',
     githubUrl: 'https://github.com/woogieon8on',
     githubName: '@woogieon8on',
-  },
-  {
-    image: GR,
-    name: '구름',
-    role: '디자인',
-    school: '서울여자대학교 디지털미디어학과 21학번',
-    emailName: 'rnfma5856@gmail.com',
   },
 ];

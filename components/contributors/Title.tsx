@@ -9,7 +9,7 @@ const Title = () => {
           <Image src={logo_white} layout="fill" alt="logo" />
         </div>
         <p className="dt:text-[32px] font-semibold text-gray-10 pad:text-[24px] text-[20px] leading-normal dt:mt-6 mt-8">
-          DEVELOPERS
+          CONTRIBUTORS
         </p>
       </div>
     </div>
