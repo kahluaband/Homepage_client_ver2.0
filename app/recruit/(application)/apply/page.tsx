@@ -8,8 +8,6 @@ import OtherInfo from '@/components/templates/apply/OtherInfo';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
 import { axiosInstance } from '@/api/auth/axios';
 
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-
 const page = () => {
   const [PersonalInfo, setPersonalInfo] = useState({
     name: '',
@@ -121,15 +119,11 @@ const page = () => {
           readiness: CoverLetterInfo.determination,
         };
 
-        const response = await axiosInstance.post(
-          `${baseUrl}/apply`,
-          formData,
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
+        const response = await axiosInstance.post('/apply', formData, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
         if (response.status === 200) {
           console.log(response.data);
