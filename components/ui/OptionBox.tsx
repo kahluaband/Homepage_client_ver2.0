@@ -9,7 +9,7 @@ const OptionBox: React.FC<OptionProps> = ({ option, isDays }) => {
         ${isDays ? 'bg-gray-0 text-primary-50 border-primary-50' : 'bg-gray-05 text-gray-40 border-none'}`}> 
         {option}
     </div>
-    );
-};    
+  );
+};
 
 export default OptionBox;
