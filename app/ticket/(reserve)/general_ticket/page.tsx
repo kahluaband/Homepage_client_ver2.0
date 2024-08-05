@@ -8,11 +8,8 @@ import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useEffect} from "react";
-import axios from 'axios';
-import MustRead from "@/components/templates/ticket/MustRead";
 import {useRouter} from "next/navigation";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { axiosInstance } from "@/api/auth/axios";
 
 const General_ticket: React.FC = () => {
     const router = useRouter();
@@ -92,7 +89,7 @@ const General_ticket: React.FC = () => {
             type: "GENERAL",
             members: members,
             };
-            const response = await axios.post(`${baseUrl}/tickets`, formData, {
+            const response = await axiosInstance.post(`/tickets`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },

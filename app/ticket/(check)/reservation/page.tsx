@@ -4,12 +4,10 @@ import CancelModal from "@/components/popups/ticket/CancelModal";
 import NotFoundModal from "@/components/popups/ticket/NotFoundModal";
 import MustRead from "@/components/templates/ticket/MustRead";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
-import axios from "axios";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { axiosInstance } from "@/api/auth/axios";
 
 const Reservation = () => {
     const params = useSearchParams();
@@ -42,7 +40,7 @@ const Reservation = () => {
     const handleConfirmCancel = async () => {
         if ((type === "FRESHMAN" && inputValue === student_id) || (type !== "FRESHMAN" && inputValue === phone_num)) {
             try {
-                const response = await axios.patch(`${baseUrl}/tickets/cancel-request?reservationId=${reservationId}`);
+                const response = await axiosInstance.patch(`/tickets/cancel-request?reservationId=${reservationId}`);
                 if (response.status === 200) {
                     window.location.href = `/ticket/cancel?reservationId=${reservationId}`;
                 } else {
@@ -76,7 +74,7 @@ const Reservation = () => {
     useEffect(() => {
         const fetchTicketDetails = async () => {
             try {
-                const response = await axios.get(`${baseUrl}/tickets/get?reservationId=${reservationId}`);
+                const response = await axiosInstance.get(`/tickets/get?reservationId=${reservationId}`);
                 if (response.status === 200) {
                     const result = response.data.result;
                     setBuyer(result.buyer);

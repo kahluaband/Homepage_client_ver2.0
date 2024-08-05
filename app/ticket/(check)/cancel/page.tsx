@@ -2,12 +2,10 @@
 
 import CancelRead from "@/components/templates/ticket/CancelRead";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
-import axios from "axios";
+import { axiosInstance } from "@/api/auth/axios";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const ReservationDetails = () => {
     const params = useSearchParams();
@@ -37,7 +35,7 @@ const ReservationDetails = () => {
         useEffect(() => {
             const fetchTicketDetails = async () => {
                 try {
-                    const response = await axios.get(`${baseUrl}/tickets/get?reservationId=${reservationId}`);
+                    const response = await axiosInstance.get(`/tickets/get?reservationId=${reservationId}`);
                     if (response.status === 200) {
                         const result = response.data.result;
                         setBuyer(result.buyer);

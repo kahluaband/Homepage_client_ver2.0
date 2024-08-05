@@ -29,7 +29,7 @@ const TicketStatus: React.FC<TicketStatusProps> = ({ reservation_id, buyer, phon
                 <div className="w-full dt:w-[670px] h-[1px] bg-gray-10 flex flex-shrink-0 mt-6"/> 
                 <div className="flex flex-col dt:flex-row text-[16px] pad:text-[18px] font-medium leading-7 mt-4 pad:mt-7">
                     <div className="flex flex-row h-[27px]">
-                        <p className="text-gray-40 w-[67px] pad:w-[63px]">예매자</p>
+                        <p className="text-gray-40 w-[67px] ">예매자</p>
                         <p className="text-gray-80 w-[129px] ml-[39px]">{buyer}</p>
                     </div>
                     <div className="flex flex-row h-[27px] mt-4 pad:mt-7 dt:mt-0">
@@ -39,16 +39,16 @@ const TicketStatus: React.FC<TicketStatusProps> = ({ reservation_id, buyer, phon
                 </div>
                 <div className="flex flex-col dt:flex-row text-[16px] pad:text-[18px] font-medium leading-7 mt-4 pad:mt-7">
                     <div className="flex flex-row h-[27px]">
-                        <p className="text-gray-40 w-[67px] pad:w-[63px]">전화번호</p>
+                        <p className="text-gray-40 w-[67px] ">전화번호</p>
                         <p className="text-gray-80 w-[129px] ml-[39px]">{phone_num}</p>
                     </div>
                     <div className="flex flex-row h-[27px] mt-4 pad:mt-7 dt:mt-0">
-                        <p className="text-gray-40 w-[67px] pad:w-[63px] dt:ml-[104px]">예매상태</p>
+                        <p className="text-gray-40 w-[67px] dt:ml-[104px]">예매상태</p>
                         <p className="text-gray-80 w-[135px] ml-[39px]">{statusText}</p>
                     </div>
                 </div>
                 {type === "FRESHMAN" && <div className="flex flex-row h-[27px] text-[16px] pad:text-[18px] font-medium leading-7 mt-4 pad:mt-7">
-                    <p className="text-gray-40 w-[67px] pad:w-[63px]">학번</p>
+                    <p className="text-gray-40 w-[67px] ">학번</p>
                     <p className="text-gray-80 w-[129px] ml-[39px]">{student_id}</p>
                 </div>}
             </div>
