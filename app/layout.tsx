@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
 
   const isMainPage = pathname === "/";
   const isCompletePage = pathname === "/ticket/complete";
+  const isTicketPage = pathname === "/ticket";
   const isFreshmanTicketPage = pathname === "/ticket/freshman_ticket";
   const isGeneralTicketPage = pathname === "/ticket/general_ticket";
   const isCancelPage = pathname === "/ticket/cancel";
@@ -27,6 +29,18 @@ export default function RootLayout({
   const isApplyCompletePae = pathname === "/recruit/complete";
   const isApplyPage = pathname === "/recruit/apply";
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 834); 
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
 
   return (
     <html lang="en">
@@ -36,7 +50,7 @@ export default function RootLayout({
           {children}
         </div>
         { !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
-          && !isNoticePage && !isApplyCompletePae && !isApplyPage &&(
+          && !isNoticePage && !isApplyCompletePae && !isApplyPage && !(isMobile && isTicketPage) &&(
         <Footer />
       )}
       </body>

@@ -113,8 +113,8 @@ const Page = () => {
   const closeModal = () => setIsModalOpen(false);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1300px] mb:h-[1100px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
-      <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] justify-start dt:justify-center mx-auto">
+    <div className="flex relative flex-col top-16 h-[1100px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
+      <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image 
           src="/image/ticket/Poster.svg" 
           alt="포스터사진" 
@@ -122,7 +122,7 @@ const Page = () => {
           height={376} 
           className="z-0 sticky mb:static overflow-hidden top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 mb:rounded-xl mx-auto pad:mx-0"
         />
-        <div className="z-10 bg-gray-0 flex flex-col w-full mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
+        <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8 text-[16px]
           ${isDays ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-50"}`}>{isDays ? "예매 가능" : "예매 마감"}</div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
@@ -168,7 +168,7 @@ const Page = () => {
               <p className='text-gray-40 font-medium text-[16px] leading-6'>복사</p>
             </div>
           </div>
-          <div id="map" className="mt-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bottom-0"/>
+          <div id="map" className="mt-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bottom-[100px]"/>
         </div>
       </div>
       <div className='w-full h-[98px] bg-gray-0 bottom-0 z-50 left-0'>
