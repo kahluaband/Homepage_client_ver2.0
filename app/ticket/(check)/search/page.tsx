@@ -2,13 +2,25 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import NotFoundModal from "@/components/popups/ticket/NotFoundModal";
+import { axiosInstance } from "@/api/auth/axios";
 
 const Search: React.FC = () => {
     const [reservationId, setReservationId] = useState("");
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
+    const [showNotFoundModal, setShowNotFoundModal] = useState(false);
 
-    const handleSearchReservation = () => {
-        window.location.href = `/ticket/reservation?reservation_id=${reservationId}`;
+    const handleSearchReservation = async () => {
+        try {
+            const response = await axiosInstance.get(`/tickets/get?reservationId=${reservationId}`);
+            if (response.status === 200) {
+                window.location.href = `/ticket/reservation?reservationId=${reservationId}`;
+            } else {
+                setShowNotFoundModal(true);
+            }
+        } catch (error) {
+            setShowNotFoundModal(true);
+        }  
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +62,7 @@ const Search: React.FC = () => {
             </div>
         </div>
         <Link href="/ticket/" className="fixed bottom-8 left-1/2 transform -translate-x-1/2 pad:relative pad:mt-20 pad:left-0 pad:-translate-x-0 w-[328px] pad:w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-medium text-gray-60 bg-gray-5">예매 페이지로 돌아가기</Link>
+        <NotFoundModal isOpen={showNotFoundModal} onClose={() => setShowNotFoundModal(false)} />
     </div>
     );
 };

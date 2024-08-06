@@ -8,11 +8,8 @@ import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Warning from "@/components/templates/ticket/Warning";
 import Bar from "@/components/ui/Bar";
 import {useState, useEffect} from "react";
-import axios from 'axios';
-import MustRead from "@/components/templates/ticket/MustRead";
 import {useRouter} from "next/navigation";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { axiosInstance } from "@/api/auth/axios";
 
 const General_ticket: React.FC = () => {
     const router = useRouter();
@@ -32,6 +29,12 @@ const General_ticket: React.FC = () => {
     });
 
     useEffect(() => {
+
+        const storedMember = localStorage.getItem('member');
+        if (storedMember) {
+            setMember(parseInt(storedMember, 10)); 
+        }
+        
         let totalHeightClass = "";
         let newHeightClass = "";
 
@@ -86,7 +89,7 @@ const General_ticket: React.FC = () => {
             type: "GENERAL",
             members: members,
             };
-            const response = await axios.post(`${baseUrl}/tickets`, formData, {
+            const response = await axiosInstance.post(`/tickets`, formData, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -94,9 +97,8 @@ const General_ticket: React.FC = () => {
             console.log(formData);
 
             if (response.status === 200) {
-            const id = response.data.result.id;
-            console.log(id);
-            router.push(`/ticket/complete?id=${id}`);
+            const reservationId = response.data.result.reservationId;
+            router.push(`/ticket/complete?reservationId=${reservationId}`);
             } else {
             console.error(`Unexpected response status: ${response.status}`);
             }

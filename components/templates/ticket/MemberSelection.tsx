@@ -41,7 +41,7 @@ return (
             <Image src="/image/ticket/subtract.svg" alt="minus" height={24} width={24} />
             </div>
             <p className="ml-4">{member}</p>
-            <div className="cursor-pointer ml-4" onClick={handleIncrement}>
+            <div className={`cursor-pointer ml-4 ${member >= max ? 'opacity-50' : ''}`}  onClick={handleIncrement}>
             <Image src="/image/ticket/addplus.svg" alt="plus" height={24} width={24} />
             </div>
             <p className="ml-16 text-primary-50 text-lg font-semibold">
