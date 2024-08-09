@@ -40,7 +40,6 @@ const Footer = () => {
     <div className="w-full h-[339px] relative translate-y-0 font-pretendard bg-gray-90 flex flex-col items-center">
       <div className="flex flex-col min-[834px]:flex-row text-center text-base min-[834px]:text-lg leading-6 mt-6 mb-12 min-[834px]:mb-14">
         <Link href="/ticket">
-          {/* 세부 url 나오면 수정 필요 */}
           <div className="font-medium text-gray-20 min-[834px]:hidden">
             예매 내역 조회
           </div>
@@ -61,7 +60,6 @@ const Footer = () => {
             </span>
           </Link>
           <Link href="/ticket">
-            {/* 세부 url 나오면 수정 필요 */}
             <span className="font-medium text-gray-20 hidden min-[834px]:inline">
               예매 내역 조회
             </span>

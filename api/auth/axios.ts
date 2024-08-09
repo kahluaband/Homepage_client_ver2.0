@@ -13,7 +13,7 @@ authInstance.interceptors.request.use(
     const accessToken = localStorage.getItem('access_token');
     const refreshToken = localStorage.getItem('refresh_token');
 
-    //요청시 AccessToken 계속 보내주기
+    // 요청 시 AccessToken 계속 보내주기
     if (!accessToken) {
       config.headers.accessToken = null;
       config.headers.refreshToken = null;
@@ -26,12 +26,10 @@ authInstance.interceptors.request.use(
       return config;
     }
     // Do something before request is sent
-    console.log('request start', config);
     return config;
   },
   function (error) {
     // Do something with request error
-    console.log('request error', error);
     return Promise.reject(error);
   }
 );
@@ -41,7 +39,6 @@ authInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log('get response', response);
     return response;
   },
   async (error) => {
@@ -74,7 +71,6 @@ authInstance.interceptors.response.use(
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    console.log('response error', error);
     return Promise.reject(error);
   }
 );
