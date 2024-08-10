@@ -29,12 +29,6 @@ const General_ticket: React.FC = () => {
     });
 
     useEffect(() => {
-
-        const storedMember = localStorage.getItem('member');
-        if (storedMember) {
-            setMember(parseInt(storedMember, 10)); 
-        }
-        
         let totalHeightClass = "";
         let newHeightClass = "";
 
@@ -80,6 +74,11 @@ const General_ticket: React.FC = () => {
     const handleSubmit = async () => {
         const { buyer, phone_num, members } = userInfo;
         const isDataComplete = isFormComplete;
+
+        const storedMember = localStorage.getItem('member');
+        if (storedMember) {
+            setMember(parseInt(storedMember, 10)); 
+        }
         console.log(buyer, phone_num, members);
         if (isDataComplete) {
         try {
