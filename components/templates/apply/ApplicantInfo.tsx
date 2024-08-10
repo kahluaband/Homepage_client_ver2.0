@@ -97,6 +97,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           value={birth_date}
           onChange={handleBirthdateChange}
           placeholder="8자리로 입력해주세요"
+          maxLength={8}
         />
         <p className="mt-6 text-[16px] font-normal leading-6">전화번호</p>
         <Input
@@ -105,6 +106,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           value={phone_num}
           onChange={handlePhoneNumChange}
           placeholder="전화번호 -없이 입력"
+          maxLength={11}
         />
         <p className="mt-6 text-[16px] font-normal leading-6">성별</p>
         <TwoOptionBox
