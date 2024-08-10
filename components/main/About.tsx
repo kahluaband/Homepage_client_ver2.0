@@ -6,7 +6,7 @@ import arrow from '@/public/image/arrow_right.svg';
 
 export default function About() {
   return (
-    <div className="flex flex-col w-full max-pad:max-w-[500px] items-center">
+    <div className="flex flex-col w-full max-pad:max-w-[500px] max-pad:px-[16px] items-center">
       <div className="w-full h-[260px] pad:w-[786px] dt:w-[1200px] pad:h-[744px] bg-mainAbout bg-center bg-contain object-contain rounded-[32px] pad:rounded-[48px] border-none relative z-0">
         <p className="font-mustica text-[24px] pad:text-[40px] dt:text-[64px] font-semibold text-gray-0 m-[24px] pad:m-[56px]">
           Hongik University

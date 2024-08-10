@@ -106,8 +106,8 @@ const config: Config = {
           to: { transform: 'translateX(-3048px)' },
         },
         'slide-right-phone1': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-2086px)' },
+          from: { transform: 'translateX(-2086px)' },
+          to: { transform: 'translateX(0px)' },
         },
         'slide-left-phone2': {
           from: { transform: 'translateX(-141px)' },

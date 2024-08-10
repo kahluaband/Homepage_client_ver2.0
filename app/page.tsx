@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <Suspense fallback={<Loading />}>
       <div className="font-pretendard flex flex-col relative top-16 w-full h-auto justify-start items-center pad:mt-[32px] -mb-40">
-        <div className="flex flex-col w-full h-auto justify-start items-center max-pad:px-[16px] ">
+        <div className="flex flex-col w-full h-auto justify-start items-center">
           <About />
           <Performance />
           <Ticket />
