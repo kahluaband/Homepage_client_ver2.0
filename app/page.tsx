@@ -6,7 +6,7 @@ import { FadeInSection } from '@/components/main/FadeInSection';
 import Performance from '@/components/main/Performance';
 import Recruit from '@/components/main/Recruit';
 import Ticket from '@/components/main/Ticket';
-import { MutableRefObject, Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense } from 'react';
 
 export default function Home() {
   Delaying;
