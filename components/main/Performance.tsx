@@ -2,6 +2,7 @@ import Image from 'next/image';
 import arrow from '@/public/image/arrow_right.svg';
 import PerformanceList from './PerformanceList';
 import Link from 'next/link';
+import { FadeInSection } from './FadeInSection';
 
 interface buttonProps {
   className: string;
@@ -9,14 +10,16 @@ interface buttonProps {
 
 export default function Performance() {
   return (
-    <div className="flex flex-col w-full items-center mt-[96px] pad:mt-[240px]">
+    <div className="flex flex-col w-full items-center mt-[48px] mb-[48px] pad:mt-[120px] pad:mb-[120px]">
       {/* title */}
-      <div className="flex flex-row justify-between items-center w-full h-auto max-pad:max-w-[500px] max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
-        <p className="font-mustica text-[24px] pad:text-[48px] font-semibold">
-          PERFORMANCE
-        </p>
-        <PerformanceButton className="max-pad:hidden" />
-      </div>
+      <FadeInSection>
+        <div className="flex flex-row justify-between items-center w-full h-auto max-pad:max-w-[500px] max-pad:px-[16px] pad:w-[786px] dt:w-[1200px]">
+          <p className="font-mustica text-[24px] pad:text-[48px] font-semibold">
+            PERFORMANCE
+          </p>
+          <PerformanceButton className="max-pad:hidden" />
+        </div>
+      </FadeInSection>
 
       {/* performanceList */}
       <PerformanceList />
