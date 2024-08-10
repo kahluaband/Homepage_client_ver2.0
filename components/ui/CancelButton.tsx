@@ -9,7 +9,7 @@ const CancelButton = React.forwardRef<HTMLButtonElement, CancelButtonProps>((pro
         <button
             {...rest}
             ref={ref}
-            className={`flex h-[59px] w-[180px] rounded-xl px-14 py-4 font-medium leading-6 text-[18px] text-gray-0 bg-danger-40 ${className}`}
+            className={`flex h-[59px] w-full pad:w-[180px] rounded-b-3xl pad:rounded-xl justify-center pad:px-14 py-4 font-medium leading-6 text-[18px] text-gray-0 bg-danger-40 ${className}`}
         >
             {props.children}
         </button>

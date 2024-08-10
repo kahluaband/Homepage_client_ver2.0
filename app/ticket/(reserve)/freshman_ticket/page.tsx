@@ -7,10 +7,8 @@ import TicketSelection from "@/components/templates/ticket/TicketSelection";
 import Bar from "@/components/ui/Bar";
 import {useState, useReducer, useEffect} from "react";
 import { useRouter } from "next/navigation";
-import axios from 'axios';
 import Warning from "@/components/templates/ticket/Warning";
-
-const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+import { axiosInstance } from "@/api/auth/axios";
 
 const initialState: State = {
     participation1: false,
@@ -90,8 +88,8 @@ const Freshman_ticket: React.FC = () => {
                     meeting,
                     members: []
                 };
-                const response = await axios.post(
-                    `${baseUrl}/tickets`,
+                const response = await axiosInstance.post(
+                    `/tickets`,
                     formData,
                     {
                         headers: {
@@ -102,9 +100,8 @@ const Freshman_ticket: React.FC = () => {
                 console.log(formData);
 
                 if (response.status === 200) {
-                    const id = response.data.result.id;
-                    console.log(id);
-                    router.push(`/ticket/complete?id=${id}`);
+                    const reservationId = response.data.result.reservationId;
+                    router.push(`/ticket/complete?reservationId=${reservationId}`);
                 }else {
                     console.error(`Unexpected response status: ${response.status}`);
                 }

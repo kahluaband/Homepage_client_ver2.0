@@ -2,13 +2,14 @@
 
 import CancelRead from "@/components/templates/ticket/CancelRead";
 import TicketStatus from "@/components/templates/ticket/TicketStatus";
+import { axiosInstance } from "@/api/auth/axios";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 const ReservationDetails = () => {
     const params = useSearchParams();
-    const reservationId = params.get("reservation_id");
+    const reservationId = params.get("reservationId");
     const [dynamicHeightClass, setDynamicHeightClass] = useState("");
     const [buyer, setBuyer] = useState<string>("");
     const [phone_num, setPhoneNum] = useState<string>("");
@@ -31,8 +32,32 @@ const ReservationDetails = () => {
         };
         }, []); 
 
+        useEffect(() => {
+            const fetchTicketDetails = async () => {
+                try {
+                    const response = await axiosInstance.get(`/tickets/get?reservationId=${reservationId}`);
+                    if (response.status === 200) {
+                        const result = response.data.result;
+                        setBuyer(result.buyer);
+                        setPhoneNum(result.phone_num);
+                        setStudentId(result.studentId); 
+                        setState(result.status); 
+                        setType(result.type);
+                    } else {
+                        console.error(`Unexpected response status: ${response.status}`);
+                    }
+                } catch (error) {
+                    console.error('Error fetching ticket details:', error);
+                }
+            };
+    
+            if (reservationId) {
+                fetchTicketDetails();
+            }
+        }, [reservationId]);
+
     return (
-        <div className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicHeightClass}`}>
+        <div className={`w-full pad:w-[796px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicHeightClass}`}>
             <div className="relative w-full h-[200px] pad:rounded-t-xl overflow-hidden">
                 <div className="absolute inset-0 bg-ticket-complete bg-center bg-cover filter blur-[6px] z-[-1]"></div>
                 <div className="relative flex h-full items-center justify-center pad:bg-gray-90 bg-opacity-60 rounded-t-xl">
