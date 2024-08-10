@@ -7,7 +7,8 @@ interface SongProps {
 
 const PerformanceCard: React.FC<SongProps> = ({ song }) => {
   return (
-    <div className="w-[282px] pad:w-[384px] h-auto flex flex-col items-start">
+    // hover시 카드 크기 키우려면 hover:pad:w-[440px]
+    <div className="w-[282px] pad:w-[384px] ease-in-out h-auto flex flex-col items-start">
       <Image
         src={song.src}
         alt="thumbnail"
