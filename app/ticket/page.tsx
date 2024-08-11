@@ -126,7 +126,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1100px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
+    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image 
           src="/image/ticket/Poster.svg" 
@@ -181,7 +181,8 @@ const Page = () => {
               <p className='text-gray-40 font-medium text-[16px] leading-6'>복사</p>
             </div>
           </div>
-          <div id="map" className="mt-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bottom-[100px]"/>
+          <div id="map" className="top-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0"/>
+          <div className='min-h-[140px]'/>
         </div>
       </div>
       <div className='w-full h-[98px] bg-gray-0 bottom-0 z-50 left-0'>
