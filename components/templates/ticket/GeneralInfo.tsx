@@ -23,21 +23,24 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComp
     const handleBuyerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setBuyer(event.target.value);
     };
-
+    
     const handlePhoneChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPhone(event.target.value);
+        const phoneNumber = event.target.value.replace(/[^0-9]/g, ""); 
+        const limitedPhoneNumber = phoneNumber.slice(0, 11);
+        setPhone(limitedPhoneNumber);
     };
-
+    
     const handleNamesArrayChange = (index: number, value: string) => {
         const updatedNames = [...namesArray];
         updatedNames[index] = value;
         setNamesArray(updatedNames);
     };
-
+    
     const handlePhonesArrayChange = (index: number, value: string) => {
         const phoneNumber = value.replace(/[^0-9]/g, ""); 
+        const limitedPhoneNumber = phoneNumber.slice(0, 11);
         const updatedPhones = [...phonesArray];
-        updatedPhones[index] = phoneNumber;
+        updatedPhones[index] = limitedPhoneNumber;
         setPhonesArray(updatedPhones);
     };
 

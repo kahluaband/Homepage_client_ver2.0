@@ -11,7 +11,7 @@ import { information } from '@/components/data/Information';
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 const Page = () => {
-  const loc = "서울 마포구 와우산로18길 20 지하 1층";
+  const loc = information.locationDetails;
   const [nowUrl, setNowUrl] = useState("");
   const [isDays, setIsDays] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/Input";
+import { formatPhoneNumber } from '@/components/util/utils';
 
 interface FreshmanInfoProps {
     onInfoChange: (info: { name: string, department: string, studentId: string, phone_num: string }) => void;
@@ -12,6 +13,8 @@ interface FreshmanInfoProps {
 }
 
 const FreshmanInfo: React.FC<FreshmanInfoProps> = ({ onInfoChange, userInfo }) => {
+    const [phoneValue, setPhoneValue] = useState('');
+    const [nameValue, setNameValue] = useState('');
     const { name, department, studentId, phone_num } = userInfo;
 
     const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +30,10 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({ onInfoChange, userInfo }) =
     };
 
     const handlePhoneNumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onInfoChange({ ...userInfo, phone_num: event.target.value });
-    };
+        const inputValue = event.target.value;
+        const formattedValue = formatPhoneNumber(inputValue);
+        setPhoneValue(formattedValue.replace(/[^0-9]/g, ''));
+      };
 
     return (
         <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
@@ -44,7 +49,7 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({ onInfoChange, userInfo }) =
                 <p className="mt-6 text-[16px] font-normal leading-6">학번</p>
                 <Input className="mt-2" type="text" value={studentId} onChange={handleStudentIdChange} placeholder="예) C123456" />
                 <p className="mt-6 text-[16px] font-normal leading-6">연락처</p>
-                <Input className="mt-2" type="text" value={phone_num} onChange={handlePhoneNumChange} placeholder="전화번호 -없이 입력" />
+                <Input className="mt-2" type="text" value={phoneValue} onChange={handlePhoneNumChange} placeholder="전화번호 -없이 입력" />
             </div>
         </div>
     );

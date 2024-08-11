@@ -40,6 +40,8 @@ const FinalStep: React.FC<Props> = ({ price, amount, handleSubmit, onReservation
         await handleSubmit();
         if (!isAlreadyReserved) {
             setShowLastCheckModal(false); 
+        } else {
+            setShowLastCheckModal(false); 
             setShowReservedErrorModal(true); 
         }
     };
