@@ -5,8 +5,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
-import Loading from '@/components/loading';
+import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -47,7 +46,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="font-pretendard w-full h-auto mb-40">
           <Header />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          {children}
         </div>
         {!isCompletePage &&
           !isFreshmanTicketPage &&
