@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Input } from "@/components/ui/Input";
 import Image from 'next/image';
-import { formatPhoneNumber, filterNameValue } from '@/components/util/utils';
+import { filterPhoneNumber, filterNameValue } from '@/components/util/utils';
 
 interface InfoTemplateProps {
   role: string;
@@ -26,7 +26,7 @@ const InfoTemplate: React.FC<InfoTemplateProps> = ({
 
   const handlePhoneInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
-    const formattedValue = formatPhoneNumber(inputValue);
+    const formattedValue = filterPhoneNumber(inputValue);
     setPhoneValue(formattedValue);
     const rawValue = inputValue.replace(/[^0-9]/g, '');
     role === "예매자" ? handlePhoneChange?.(event) : handlePhonesArrayChange?.(rawValue);
