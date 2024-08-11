@@ -14,6 +14,7 @@ import { axiosInstance } from "@/api/auth/axios";
 const General_ticket: React.FC = () => {
     const router = useRouter();
     const [member, setMember] = useState<number>(1);
+    const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [dynamicTotalHeightClass, setDynamicTotalHeightClass] = useState(
@@ -138,7 +139,8 @@ const General_ticket: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep handleSubmit={handleSubmit} price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep handleSubmit={handleSubmit} price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}
+                showLastCheckModal={showLastCheckModal} setShowLastCheckModal={setShowLastCheckModal}/>
         </div>
     </div>
     );
