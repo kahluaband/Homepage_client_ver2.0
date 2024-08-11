@@ -37,7 +37,7 @@ return (
             <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">{description}</div>
         </div>
         <div className="mt-5 flex flex-row h-[24px] items-center">
-            <div className="cursor-pointer" onClick={handleDecrement}>
+            <div className={`cursor-pointer ${member <= min ? 'opacity-50' : ''}`} onClick={handleDecrement}>
             <Image src="/image/ticket/subtract.svg" alt="minus" height={24} width={24} />
             </div>
             <p className="ml-4">{member}</p>

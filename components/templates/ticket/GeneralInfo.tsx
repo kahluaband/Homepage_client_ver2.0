@@ -113,7 +113,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComp
                     />
                 </div>
             ))}
-            {member < 5 && <button onClick={() => setMember(prevMember => prevMember + 1)} className='mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]'>+ 동반인 추가...</button>}
+            {member < 5 && <button onClick={() => setMember(prevMember => prevMember + 1)} className='mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-7 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]'>+ 동반인 추가...</button>}
         </div>
     );
 };

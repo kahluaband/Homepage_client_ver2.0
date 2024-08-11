@@ -25,6 +25,7 @@ const config: Config = {
       gray: {
         0: '#FFFFFF',
         5: '#F6F7F8',
+        7: '#ECECF0',
         10: '#E8E9ED',
         15: '#DADBE2',
         20: '#CBCDD7',
@@ -59,7 +60,7 @@ const config: Config = {
         30: '#3ADFAD',
         40: '#20C594',
         50: '#199A73',
-      },
+      }
     },
 
     screens: {
