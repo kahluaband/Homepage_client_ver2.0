@@ -70,7 +70,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComp
     }, [buyer, phone, namesArray, phonesArray, member, onInfoComplete]);
 
     useEffect(() => {
-        const updatedMembers = namesArray.map((name, index) => ({ name, phone_num: phonesArray[index] }));
+        const updatedMembers = namesArray.slice(0, member - 1).map((name, index) => ({ name, phone_num: phonesArray[index] }));
         if (
             buyer !== userInfo.buyer ||
             phone !== userInfo.phone_num ||
@@ -78,7 +78,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({ member, setMember, onInfoComp
         ) {
             onInfoChange({ buyer, phone_num: phone, members: updatedMembers });
         }
-    }, [buyer, phone, namesArray, phonesArray, onInfoChange, userInfo]);
+    }, [buyer, phone, namesArray, phonesArray, onInfoChange, userInfo, member]);
 
     function arraysEqual(arr1: any[], arr2: any[]) {
         if (arr1.length !== arr2.length) return false;

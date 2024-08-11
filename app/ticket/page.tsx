@@ -112,6 +112,19 @@ const Page = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 834) {
+        closeModal();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="flex relative flex-col top-16 h-[1100px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">

@@ -13,7 +13,6 @@ import { axiosInstance } from "@/api/auth/axios";
 
 const General_ticket: React.FC = () => {
     const router = useRouter();
-
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
@@ -71,15 +70,28 @@ const General_ticket: React.FC = () => {
         setUserInfo(info);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth < 834) {
+            const mem = localStorage.getItem('member');
+            if(mem){
+                setMember(parseInt(mem, 10));
+            }
+          }
+        };
+    
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
+
     const handleSubmit = async () => {
         const { buyer, phone_num, members } = userInfo;
         const isDataComplete = isFormComplete;
-
-        const storedMember = localStorage.getItem('member');
-        if (storedMember) {
-            setMember(parseInt(storedMember, 10)); 
-        }
         console.log(buyer, phone_num, members);
+
+        console.log("member수", member);
         if (isDataComplete) {
         try {
             const formData = {
