@@ -49,11 +49,13 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
   const handleBirthdateChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    onInfoChange({ ...PersonalInfo, birth_date: event.target.value });
+    const cleanedBirthdateValue = event.target.value.replace(/[^0-9]/g, '');
+    onInfoChange({ ...PersonalInfo, birth_date: cleanedBirthdateValue });
   };
 
   const handlePhoneNumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onInfoChange({ ...PersonalInfo, phone_num: event.target.value });
+    const cleanedPhonenumValue = event.target.value.replace(/[^0-9]/g, '');
+    onInfoChange({ ...PersonalInfo, phone_num: cleanedPhonenumValue });
   };
 
   const handleMajorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
