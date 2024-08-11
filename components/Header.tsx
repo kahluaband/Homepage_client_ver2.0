@@ -172,8 +172,8 @@ const Header = () => {
   ];
 
   const handleLinkClick = (name: string) => {
-    setCurrentLink(name);
     router.push(`/${name.toLowerCase()}`);
+    setCurrentLink(name);
   };
 
   return (
