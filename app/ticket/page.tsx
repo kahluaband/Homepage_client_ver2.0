@@ -6,6 +6,7 @@ import Bar from "@/components/ui/Bar";
 import Image from "next/image";
 import Link from "next/link";
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
+import { information } from '@/components/data/Information';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
@@ -81,7 +82,7 @@ const Page = () => {
 
   useEffect(() => {
     const checkEventStatus = () => {
-      const eventDate = new Date('2024-09-05T00:00:00+09:00');
+      const eventDate = information.lastReserveDate;
       const nowDate = new Date();
 
       const nowKoreanTime = new Date(
@@ -139,31 +140,31 @@ const Page = () => {
           <div className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8 text-[16px]
           ${isDays ? "bg-primary-50 text-gray-0" : "bg-gray-10 text-gray-50"}`}>{isDays ? "예매 가능" : "예매 마감"}</div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="w-[181px] pad:w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px]">2024년 3월 정기 공연</p>
+            <p className="w-[181px] pad:w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px]">{information.title}</p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
               <Image src="/image/ticket/share.svg" alt="share" width={24} height={24} className="cursor-pointer"/>
             </div>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">장소</p>
-            <p className="text-gray-90 w-[65px]">001 클럽</p>
+            <p className="text-gray-90 w-[65px]">{information.location}</p>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">일시</p>
-            <p className="text-gray-90 w-40">2024년 3월 1일 18시</p>
+            <p className="text-gray-90 w-40">{information.dateForString}</p>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal">
             <p className="text-gray-40 w-7 pad:w-8 h-7">가격</p>
             <div className="ml-6 flex flex-col">
               <div className="flex flex-row items-start h-7">
                 <p className="text-gray-90 w-[74px] pad:w-[83px] ">신입생 티켓</p>
-                <p className="text-primary-50 w-7 pad:w-8 ml-6 font-semibold">무료</p>
-                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[68px]">1인 최대 1매</p>
+                <p className="text-primary-50 w-7 pad:w-8 ml-6 font-semibold">{information.tickets.freshman.price}</p>
+                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[68px]">1인 최대 {information.tickets.freshman.maxQuantity}매</p>
               </div>
               <div className="flex flex-row items-start h-7 mt-2 pad:mt-5">
                 <p className="text-gray-90 w-[60px] pad:w-[67px]">일반 티켓</p>
-                <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-semibold">5,000원</p>
-                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">1인 최대 5매</p>
+                <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-semibold">{information.tickets.general.price}</p>
+                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">1인 최대 {information.tickets.general.maxQuantity}매</p>
               </div>
             </div>
           </div>
