@@ -29,8 +29,8 @@ const ReservedErrorModal: React.FC<ReservedErrorModalProps> = ({ isOpen, onClose
                     </p>
                 </div>
                 <div className='mt-10 pad:mt-14 flex flex-row w-full h-[59px] pad:h-[70px]'>
-                    <button className='w-[280px] h-full rounded-bl-3xl border-t-gray-15 text-center text-[18px] pad:text-[20px] font-medium text-gray-40' onClick={onClose}>돌아가기</button>
-                    <button className='w-[280px] h-full rounded-br-3xl bg-primary-50 text-center text-[18px] pad:text-[20px] font-medium text-gray-0' onClick={onAlreadyReserved}>예매 내역 조회</button>
+                    <button className='w-[280px] h-full rounded-bl-3xl border-t border-t-gray-15 text-center text-[18px] pad:text-[20px] font-medium text-gray-40' onClick={onClose}>돌아가기</button>
+                    <button className='w-[280px] h-full rounded-br-3xl border-t border-t-primary-50 bg-primary-50 text-center text-[18px] pad:text-[20px] font-medium text-gray-0' onClick={onAlreadyReserved}>예매 내역 조회</button>
                 </div>
             </div>
         </div>

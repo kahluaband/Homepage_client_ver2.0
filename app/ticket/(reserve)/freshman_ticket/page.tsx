@@ -29,6 +29,7 @@ const Freshman_ticket: React.FC = () => {
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
+    const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
@@ -102,6 +103,9 @@ const Freshman_ticket: React.FC = () => {
                 if (response.status === 200) {
                     const reservationId = response.data.result.reservationId;
                     router.push(`/ticket/complete?reservationId=${reservationId}`);
+                }else if(response.data.code === "ALREADY EXIST STUDENT_ID"){
+                    setIsAlreadyReserved(true);
+                    setShowLastCheckModal(false);
                 }else {
                     console.error(`Unexpected response status: ${response.status}`);
                 }
@@ -130,7 +134,8 @@ const Freshman_ticket: React.FC = () => {
                 <Bar className="hidden pad:flex px-4 pad:px-12"/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}
+                setShowLastCheckModal={setShowLastCheckModal} showLastCheckModal = {showLastCheckModal} />
         </div>
     </div>
     );
