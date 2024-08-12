@@ -20,6 +20,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Pretendard',
+        },
+      },
+    },
   },
 });
 
