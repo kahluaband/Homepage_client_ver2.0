@@ -207,12 +207,14 @@ const Header = () => {
             {pathname === '/recruit' || pathname === '/contributors' ? (
               <Image
                 src={logo_white}
+                width={140}
                 alt="logo-white"
                 className="h-4 min-[834px]:h-6"
               />
             ) : (
               <Image
                 src={logo_black}
+                width={140}
                 alt="logo-black"
                 className="h-4 min-[834px]:h-6"
               />
