@@ -1,10 +1,13 @@
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import TicketDetails from './TicketDetails';
+import clsx from "clsx";
+import { information } from '../data/Information';
 
 interface Option {
     value: string;
     label: string;
+    status?: string; 
 }
 
 interface DropDownBoxProps {
@@ -15,12 +18,12 @@ interface DropDownBoxProps {
 }
 
 const dateOptions: Option[] = [
-    { value: '2024년 3월 1일 18시 00분', label: '2024년 3월 1일 18시 00분' },
+    { value: information.dateForMinute , label: information.dateForMinute },
 ];
 
 const ticketOptions: Option[] = [
-    { value: '신입생 티켓', label: '신입생 티켓' },
-    { value: '일반 티켓', label: '일반 티켓' },
+    { value: '신입생 티켓', label: '신입생 티켓', status: information.isFreshmanFree ? 'ACTIVE' : 'INACTIVE' },
+    { value: '일반 티켓', label: '일반 티켓', status: 'ACTIVE' },
 ];
 
 
@@ -46,8 +49,9 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({ type, onSelect, member, setMe
     };
 
     const handleTicketDetailsClick = (event: React.MouseEvent) => {
-        event.stopPropagation(); // 이벤트 전파 중지
+        event.stopPropagation();
         setSelectedTicket(null);
+        setSelectedValue(defaultText);
         setIsDropdownVisible(true);
     };
 
@@ -88,19 +92,21 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({ type, onSelect, member, setMe
                         style={{ top: '55px', zIndex: isDropdownVisible ? 20 : -1 }}
                     >
                         <ul className="text-16px font-medium leading-6 text-gray-60 px-5">
-                            {options.map(option => (
+                        {options.map(option => (
                                 <li key={option.value}>
                                     <button
                                         type="button"
                                         className="w-full text-start focus:outline-none flex justify-start hover:bg-gray-200 py-4"
                                         onClick={() => handleOptionClick(option.value)}
-                                        disabled={option.value === ''}
+                                        disabled={option.status === 'INACTIVE'}
                                     >
-                                        <p className='text-gray-60'>{option.label}</p>
-                                        {type === "ticket" && (
+                                        <p className={clsx(option.status==="ACTIVE" ? "text-gray-60": "text-gray-30")}>{option.label}</p>
+                                        {type === 'ticket' && option.status && (
                                             <>
-                                                <p className='ml-2 text-[14px] text-primary-50'>예매가능</p>
-                                                <p className='ml-auto text-[16px]'>{option.value === "신입생 티켓" ? "무료" : "5,000원"}</p>
+                                                <p className={clsx("ml-2 text-[14px]", option.status === "INACTIVE" ? "text-gray-30": "text-primary-50")}>
+                                                    {option.status === "ACTIVE" ? '예매 가능' : '예매 불가'}
+                                                </p>
+                                                <p className={clsx("ml-auto text-[16px]", option.status==="ACTIVE" ? "text-gray-60": "text-gray-30")}>{option.value === '신입생 티켓' ? '무료' : '5,000원'}</p>
                                             </>
                                         )}
                                     </button>
