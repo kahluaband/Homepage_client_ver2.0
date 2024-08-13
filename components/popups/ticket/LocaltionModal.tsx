@@ -84,7 +84,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
                 </div>
                 <div className='px-8 py-6 flex flex-col'>
                     <div className='flex flex-row gap-3'>
-                        <p className='text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[242px] whitespace-nowrap truncate'>{loc}</p>
+                        <p className='text-[20px] font-medium leading-[30px] text-gray-90 text-start whitespace-nowrap truncate'>{loc}</p>
                         <div onClick={copyLocation} className='flex flex-row items-center gap-1'>
                             <Image src="/image/ticket/copy.svg" width={20} height={20} alt="copy"/>
                             <p className='text-gray-40 font-medium text-[16px] leading-6'>복사</p>

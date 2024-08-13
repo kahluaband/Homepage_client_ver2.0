@@ -6,7 +6,7 @@ import Travel from '@/components/about/Travel';
 
 const page = () => {
   return (
-    <div className="font-pretendard relative mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto pt-4 flex flex-col justify-center">
+    <div className="font-pretendard relative mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col justify-center">
       <Banner />
       <Ensemble />
       <Concert />

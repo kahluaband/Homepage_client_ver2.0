@@ -21,7 +21,9 @@ const TicketDetails: React.FC<{ ticketType: string, onClick: (event: React.Mouse
             <div className='flex flex-row justify-center items-center'>
                 <h3 className="text-18px font-bold">{ticketType}</h3>
                 <p className='ml-2 text-[14px] text-primary-50'>예매가능</p>
-                <Image src="/image/ticket/gray_x.svg" alt="x" width={16} height={16} className='ml-auto' onClick={onClick} />
+                <div className="ml-auto cursor-pointer" onClick={onClick}>
+                    <Image src="/image/ticket/gray_x.svg" alt="x" width={16} height={16} />
+                </div>
             </div>
             <div className="mt-4 flex flex-row h-[24px] items-center">
                 <div className={`cursor-pointer ${member <= min ? 'opacity-50' : ''}`} onClick={handleDecrement} style={{ pointerEvents: member <= min ? 'none' : 'auto' }}>

@@ -27,10 +27,10 @@ const Ticket: React.FC<TicketProps> = ({ ticket, price, state, onClick,className
           );
         } else {
           return (
-            <button onClick={onClick} className={`${className} ${baseClass} text-gray-30`}>
-              <p className="w-[100px] text-start">{ticket}</p>
+            <button onClick={onClick} disabled={true} className={`${className} ${baseClass} text-gray-30`}>
+              <p className="w-[60px] text-start">{ticket}</p>
               <p className="w-[60px] text-left">{price}</p>
-              <p className="ml-auto w-[65px] text-right">매진</p>
+              <p className="ml-auto w-[65px] text-right">예매불가</p>
             </button>
           );
     }
