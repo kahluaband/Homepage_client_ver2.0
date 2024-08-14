@@ -1,5 +1,9 @@
 import { Input } from '@/components/ui/InputBox';
 import TwoOptionBox from '@/components/ui/twoOptionbox';
+import {
+  filterBirthdateValue,
+  filterPhoneNumber,
+} from '@/components/util/utils';
 import React, { useEffect, useState } from 'react';
 
 export enum Gender {
@@ -49,11 +53,13 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
   const handleBirthdateChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    onInfoChange({ ...PersonalInfo, birth_date: event.target.value });
+    const cleanedBirthdateValue = filterBirthdateValue(event.target.value);
+    onInfoChange({ ...PersonalInfo, birth_date: cleanedBirthdateValue });
   };
 
   const handlePhoneNumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onInfoChange({ ...PersonalInfo, phone_num: event.target.value });
+    const cleanedPhonenumValue = filterPhoneNumber(event.target.value);
+    onInfoChange({ ...PersonalInfo, phone_num: cleanedPhonenumValue });
   };
 
   const handleMajorChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
@@ -16,31 +16,30 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
 
-  const isMainPage = pathname === "/";
-  const isCompletePage = pathname === "/ticket/complete";
-  const isTicketPage = pathname === "/ticket";
-  const isFreshmanTicketPage = pathname === "/ticket/freshman_ticket";
-  const isGeneralTicketPage = pathname === "/ticket/general_ticket";
-  const isCancelPage = pathname === "/ticket/cancel";
-  const isReservationPage = pathname === "/ticket/reservation";
-  const isSearchPage = pathname === "/ticket/search";
-  
-  const isNoticePage = pathname === "/recruit/notice";
-  const isApplyCompletePae = pathname === "/recruit/complete";
-  const isApplyPage = pathname === "/recruit/apply";
+  const isMainPage = pathname === '/';
+  const isCompletePage = pathname === '/ticket/complete';
+  const isTicketPage = pathname === '/ticket';
+  const isFreshmanTicketPage = pathname === '/ticket/freshman_ticket';
+  const isGeneralTicketPage = pathname === '/ticket/general_ticket';
+  const isCancelPage = pathname === '/ticket/cancel';
+  const isReservationPage = pathname === '/ticket/reservation';
+  const isSearchPage = pathname === '/ticket/search';
+
+  const isNoticePage = pathname === '/recruit/notice';
+  const isApplyCompletePae = pathname === '/recruit/complete';
+  const isApplyPage = pathname === '/recruit/apply';
 
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 834); 
+      setIsMobile(window.innerWidth < 834);
     };
 
     window.addEventListener('resize', handleResize);
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
 
   return (
     <html lang="en">
@@ -49,10 +48,16 @@ export default function RootLayout({
           <Header />
           {children}
         </div>
-        { !isCompletePage && !isFreshmanTicketPage && !isGeneralTicketPage && !isCancelPage && !isReservationPage && !isSearchPage 
-          && !isNoticePage && !isApplyCompletePae && !isApplyPage && !(isMobile && isTicketPage) &&(
-        <Footer />
-      )}
+        {!isCompletePage &&
+          !isFreshmanTicketPage &&
+          !isGeneralTicketPage &&
+          !isCancelPage &&
+          !isReservationPage &&
+          !isSearchPage &&
+          !isNoticePage &&
+          !isApplyCompletePae &&
+          !isApplyPage &&
+          !(isMobile && isTicketPage) && <Footer />}
       </body>
       {/* gaId 추후 발급 후 작성 필요 -> 배포 이후*/}
       <GoogleAnalytics gaId="" />

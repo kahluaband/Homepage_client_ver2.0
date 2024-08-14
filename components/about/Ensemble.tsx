@@ -57,7 +57,7 @@ const Ensemble = () => {
       altText: 'ensemble3',
     },
   ];
-  
+
   return (
     <section className="pad:mt-[72px] ph:mt-[32px] flex">
       <div className="pad:flex-col pad:grid gap-y-6 ph:hidden">
