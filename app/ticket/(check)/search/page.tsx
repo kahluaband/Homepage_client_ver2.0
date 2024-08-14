@@ -24,9 +24,12 @@ const Search: React.FC = () => {
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setReservationId(event.target.value);
+        const value = event.target.value;
+        if (value.length <= 10) {
+            setReservationId(value);
+        }
     };
-
+    
     useEffect(() => {
     const updateHeightClass = () => {
         const screenHeight = window.screen.height;

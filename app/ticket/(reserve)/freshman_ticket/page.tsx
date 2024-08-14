@@ -9,6 +9,7 @@ import {useState, useReducer, useEffect} from "react";
 import { useRouter } from "next/navigation";
 import Warning from "@/components/templates/ticket/Warning";
 import { axiosInstance } from "@/api/auth/axios";
+import { information } from "@/components/data/Information";
 
 const initialState: State = {
     participation1: false,
@@ -29,6 +30,7 @@ const Freshman_ticket: React.FC = () => {
     const [member, setMember] = useState<number>(1);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
+    const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const [userInfo, setUserInfo] = useState({
         name: '',
         department: '',
@@ -102,6 +104,9 @@ const Freshman_ticket: React.FC = () => {
                 if (response.status === 200) {
                     const reservationId = response.data.result.reservationId;
                     router.push(`/ticket/complete?reservationId=${reservationId}`);
+                }else if(response.data.code === "ALREADY EXIST STUDENT_ID"){
+                    setIsAlreadyReserved(true);
+                    setShowLastCheckModal(false);
                 }else {
                     console.error(`Unexpected response status: ${response.status}`);
                 }
@@ -115,8 +120,8 @@ const Freshman_ticket: React.FC = () => {
     <div className="h-[1850px] w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20">
         <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-auto">
             <p className="mt-10 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">신입생 티켓 예매</p>
-            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
-            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
+            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.title}</p>
+            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.subDate}</p>
         </div>
         <div className="h-[1395px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto gap-0">
             <div className="flex flex-col">
@@ -130,7 +135,8 @@ const Freshman_ticket: React.FC = () => {
                 <Bar className="hidden pad:flex px-4 pad:px-12"/>
                 <Warning/>
             </div>
-            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep price={0} amount={1} handleSubmit={handleSubmit} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}
+                setShowLastCheckModal={setShowLastCheckModal} showLastCheckModal = {showLastCheckModal} />
         </div>
     </div>
     );

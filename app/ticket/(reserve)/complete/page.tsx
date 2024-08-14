@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "@/api/auth/axios";
+import { information } from "@/components/data/Information";
 
 const Complete: React.FC = () => {
     const params = useSearchParams();
@@ -64,8 +65,8 @@ const Complete: React.FC = () => {
             <div className="absolute inset-0 bg-ticket-complete bg-center bg-cover filter blur-[6px] z-[-1]"></div>
             <div className="relative flex flex-col h-full items-center justify-center pad:bg-gray-90 bg-opacity-60 rounded-t-xl">
                 <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">예매가 완료되었습니다.</p>
-                <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
-                <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
+                <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.title}</p>
+                <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.subDate}</p>
             </div>
         </div>
         <div className="h-full pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">

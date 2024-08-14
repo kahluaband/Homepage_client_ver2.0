@@ -1,6 +1,5 @@
 "use client"
 import FinalStep from "@/components/templates/ticket/FinalStep";
-import FreshmanInfo from "@/components/templates/ticket/FreshmanInfo";
 import GeneralInfo from "@/components/templates/ticket/GeneralInfo";
 import MemberSelection from "@/components/templates/ticket/MemberSelection";
 import PaymentSelection from "@/components/templates/ticket/PaymentSelection";
@@ -10,11 +9,12 @@ import Bar from "@/components/ui/Bar";
 import {useState, useEffect} from "react";
 import {useRouter} from "next/navigation";
 import { axiosInstance } from "@/api/auth/axios";
+import { information } from "@/components/data/Information";
 
 const General_ticket: React.FC = () => {
     const router = useRouter();
-
     const [member, setMember] = useState<number>(1);
+    const [showLastCheckModal, setShowLastCheckModal] = useState(false);
     const [isFormComplete, setIsFormComplete] = useState(false);
     const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
     const [dynamicTotalHeightClass, setDynamicTotalHeightClass] = useState(
@@ -29,12 +29,6 @@ const General_ticket: React.FC = () => {
     });
 
     useEffect(() => {
-
-        const storedMember = localStorage.getItem('member');
-        if (storedMember) {
-            setMember(parseInt(storedMember, 10)); 
-        }
-        
         let totalHeightClass = "";
         let newHeightClass = "";
 
@@ -77,10 +71,28 @@ const General_ticket: React.FC = () => {
         setUserInfo(info);
     };
 
+    useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth < 834) {
+            const mem = localStorage.getItem('member');
+            if(mem){
+                setMember(parseInt(mem, 10));
+            }
+          }
+        };
+    
+        window.addEventListener('resize', handleResize);
+        handleResize();
+    
+        return () => window.removeEventListener('resize', handleResize);
+      }, []);
+
     const handleSubmit = async () => {
         const { buyer, phone_num, members } = userInfo;
         const isDataComplete = isFormComplete;
         console.log(buyer, phone_num, members);
+
+        console.log("member수", member);
         if (isDataComplete) {
         try {
             const formData = {
@@ -112,8 +124,8 @@ const General_ticket: React.FC = () => {
     <div className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicTotalHeightClass}`}>
         <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-auto">
             <p className="mt-10 text-gray-0 text-center text-2xl pad:text-[32px] font-semibold leading-[48px]">일반 티켓 예매</p>
-            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024년 3월 정기 공연</p>
-            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">2024.03.01  SAT  18:00</p>
+            <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.title}</p>
+            <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">{information.subDate}</p>
         </div>
         <div className={`w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto ${dynamicHeightClass}`}>
             <div className="flex flex-col">
@@ -127,7 +139,8 @@ const General_ticket: React.FC = () => {
                 <Bar/>
                 <Warning/>
             </div>
-            <FinalStep handleSubmit={handleSubmit} price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}/>
+            <FinalStep handleSubmit={handleSubmit} price={5000} amount={member} onReservationComplete={handleReservationComplete} isFormComplete={isFormComplete} onAlreadyReserved={handleAlreadyReserved} isAlreadyReserved = {isAlreadyReserved}
+                showLastCheckModal={showLastCheckModal} setShowLastCheckModal={setShowLastCheckModal}/>
         </div>
     </div>
     );
