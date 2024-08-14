@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/InputBox';
 import TwoOptionBox from '@/components/ui/twoOptionbox';
 import React, { useEffect, useState } from 'react';
 

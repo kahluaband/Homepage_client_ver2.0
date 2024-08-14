@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/InputBox";
 import { filterDepartmentValue, filterNameValue, filterStudentIdValue, filterPhoneNumber } from '@/components/util/utils';
 
 interface FreshmanInfoProps {
