@@ -12,14 +12,16 @@ const ReservationDetails = () => {
   const reservationId = params.get('reservationId');
   const [dynamicHeightClass, setDynamicHeightClass] = useState('');
   const [buyer, setBuyer] = useState<string>('');
-  const [phoneNum, setPhoneNum] = useState<string>('');
-  const [studentId, setStudentId] = useState<string>('');
+  const [phone_num, setPhoneNum] = useState<string>('');
+  const [student_id, setStudentId] = useState<string>('');
   const [state, setState] = useState<any>(null);
   const [type, setType] = useState<string>('GENERAL');
 
   useEffect(() => {
     const updateHeightClass = () => {
-      const adjustedHeight = window.screen.height - 64;
+      const screenHeight = window.screen.height;
+      const adjustedHeight = screenHeight - 64;
+
       setDynamicHeightClass(`h-[${adjustedHeight}px]`);
     };
 
@@ -32,8 +34,6 @@ const ReservationDetails = () => {
 
   useEffect(() => {
     const fetchTicketDetails = async () => {
-      if (!reservationId) return;
-
       try {
         const response = await axiosInstance.get(
           `/tickets/get?reservationId=${reservationId}`
@@ -53,7 +53,9 @@ const ReservationDetails = () => {
       }
     };
 
-    fetchTicketDetails();
+    if (reservationId) {
+      fetchTicketDetails();
+    }
   }, [reservationId]);
 
   return (
@@ -63,22 +65,20 @@ const ReservationDetails = () => {
       <div className="relative w-full h-[200px] pad:rounded-t-xl overflow-hidden">
         <div className="absolute inset-0 bg-ticket-complete bg-center bg-cover filter blur-[6px] z-[-1]"></div>
         <div className="relative flex h-full items-center justify-center pad:bg-gray-90 bg-opacity-60 rounded-t-xl">
-          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px] font-semibold leading-[48px]">
+          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">
             예매가 취소되었습니다.
           </p>
         </div>
       </div>
       <div className="h-full w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
-        <Suspense fallback={<div>Loading...</div>}>
-          <TicketStatus
-            reservation_id={reservationId as string}
-            buyer={buyer}
-            phone_num={phoneNum}
-            student_id={studentId}
-            state={state}
-            type={type}
-          />
-        </Suspense>
+        <TicketStatus
+          reservation_id={reservationId as string}
+          buyer={buyer}
+          phone_num={phone_num}
+          student_id={student_id}
+          state={state}
+          type={type}
+        />
         <CancelRead />
       </div>
       <Link

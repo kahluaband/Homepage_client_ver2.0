@@ -85,11 +85,11 @@ const config: Config = {
 
       backgroundImage: {
         performance:
-          "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.svg')",
+          "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.avif')",
         notice:
           'radial-gradient(45% 40% at 50% 50%, rgba(21, 38, 127, 0.50) 0%, rgba(27, 28, 35, 0.00) 100%)',
         mainAbout:
-          "linear-gradient(to right bottom, rgba(27, 28, 35, 1), rgba(0, 0, 0, 0)), url('/image/main/mainAbout.svg')",
+          "linear-gradient(to right bottom, rgba(27, 28, 35, 1), rgba(0, 0, 0, 0)), url('/image/main/mainAbout.avif')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
@@ -107,8 +107,8 @@ const config: Config = {
           to: { transform: 'translateX(-3048px)' },
         },
         'slide-right-phone1': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-2086px)' },
+          from: { transform: 'translateX(-2086px)' },
+          to: { transform: 'translateX(0px)' },
         },
         'slide-left-phone2': {
           from: { transform: 'translateX(-141px)' },

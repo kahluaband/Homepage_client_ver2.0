@@ -15,6 +15,7 @@ interface Information {
   locationDetails: string;
   dateForString: string;
   dateForMinute: string;
+  dayForString: string;
   subDate: string;
   eventDate: Date;
   lastReserveDate: Date;
@@ -26,6 +27,9 @@ interface Information {
 
 const formatDateForString = (date: Date): string =>
   `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시`;
+
+const formatDayForString = (date: Date): string =>
+  `${date.getFullYear()}.${('0' + (date.getMonth() + 1)).slice(-2)}.${('0' + date.getDate()).slice(-2)}`;
 
 const formatDay = (date: Date): string =>
   `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
@@ -52,6 +56,7 @@ export const information: Information = {
   locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
   dateForString: formatDateForString(baseEventDate),
   dateForMinute: formatDateForMinute(baseEventDate),
+  dayForString: formatDayForString(baseEventDate),
   day: formatDay(baseEventDate),
   time: formatTime(baseEventDate),
   subDate: formatSubDate(baseEventDate),
