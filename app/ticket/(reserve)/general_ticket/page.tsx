@@ -1,6 +1,5 @@
 "use client"
 import FinalStep from "@/components/templates/ticket/FinalStep";
-import FreshmanInfo from "@/components/templates/ticket/FreshmanInfo";
 import GeneralInfo from "@/components/templates/ticket/GeneralInfo";
 import MemberSelection from "@/components/templates/ticket/MemberSelection";
 import PaymentSelection from "@/components/templates/ticket/PaymentSelection";

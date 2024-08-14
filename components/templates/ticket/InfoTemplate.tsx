@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/InputBox";
 import Image from 'next/image';
 import { filterPhoneNumber, filterNameValue } from '@/components/util/utils';
 
