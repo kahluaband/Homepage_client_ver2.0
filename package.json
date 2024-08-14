@@ -21,7 +21,6 @@
     "axios": "^1.7.2",
     "framer-motion": "^11.2.13",
     "next": "^14.2.4",
-    "next-auth": "^5.0.0-beta.19",
     "react": "^18",
     "react-dom": "^18",
     "recoil": "^0.7.7",
