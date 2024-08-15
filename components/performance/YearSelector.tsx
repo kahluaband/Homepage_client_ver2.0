@@ -9,7 +9,9 @@ import { selectedYear } from '@/atoms';
 const YearSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [sYear, setSYear] = useRecoilState(selectedYear);
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
 
   const years = ['All', '2024', '2023', '2022', '2019', '2018', '2017', '2016'];
   const year1 = ['All', '2024', '2023', '2022'];
