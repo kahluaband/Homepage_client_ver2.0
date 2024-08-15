@@ -144,7 +144,7 @@ const Page = () => {
             {isDays ? '예매 가능' : '예매 마감'}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="w-[181px] pad:w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px]">
+            <p className="max-w-[181px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
               {information.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
