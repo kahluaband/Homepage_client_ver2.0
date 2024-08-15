@@ -67,7 +67,9 @@ const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 0
+  );
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
