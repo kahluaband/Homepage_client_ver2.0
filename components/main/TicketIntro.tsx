@@ -2,6 +2,8 @@ import Image from 'next/image';
 import poster from '@/public/image/ticket/Poster.svg';
 import { TicketInfo, TicketButton } from './TicketInfo';
 import React from 'react';
+import { information } from '../data/Information';
+import { title } from 'process';
 
 interface props {
   className: string;
@@ -22,9 +24,10 @@ const TicketIntroPad: React.FC<props> = ({ className }) => {
           홈페이지에서 간편하게 예매하세요
         </p>
         <TicketInfo
-          performanceName="2024년 3월 정기 공연"
-          place="001 클럽"
-          time={['2021', '03', '01', '18']}
+          day={information.dayForString}
+          performanceName={information.title}
+          place={information.location}
+          time={information.dateForString}
         />
       </div>
     </div>
@@ -42,9 +45,10 @@ const TicketIntroPhone: React.FC<props> = ({ className }) => {
           <div className="flex h-[105px] w-[120px] bg-primary-50 z-0" />
           <div className="flex h-[262px] w-full bg-primary-50 rounded-b-[32px] rounded-tl-[32px] z-0">
             <TicketInfo
-              performanceName="2024년 3월 정기 공연"
-              place="001 클럽"
-              time={['2021', '03', '01', '18']}
+              day={information.dayForString}
+              performanceName={information.title}
+              place={information.location}
+              time={information.dateForString}
             />
           </div>
         </div>

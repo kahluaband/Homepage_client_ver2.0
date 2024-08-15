@@ -26,32 +26,38 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
   onInfoChange,
   userInfo,
 }) => {
-  const { name, department, studentId, phone_num } = userInfo;
+  const [phoneValue, setPhoneValue] = useState(userInfo.phone_num || '');
+  const [nameValue, setNameValue] = useState(userInfo.name || '');
+  const [departmentValue, setDepartmentValue] = useState(
+    userInfo.department || ''
+  );
+  const [studentIdValue, setStudentIdValue] = useState(
+    userInfo.studentId || ''
+  );
 
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onInfoChange({ ...userInfo, name: event.target.value });
-  };
-
-  const handleDepartmentChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+  const handleInputChange = (
+    setter: React.Dispatch<React.SetStateAction<string>>,
+    filterFn: (value: string) => string
   ) => {
-    onInfoChange({ ...userInfo, department: event.target.value });
-  };
+    return (event: React.ChangeEvent<HTMLInputElement>) => {
+      const filteredValue = filterFn(event.target.value);
+      setter(filteredValue);
 
-  const handleStudentIdChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    onInfoChange({ ...userInfo, studentId: event.target.value });
-  };
-
-  const handlePhoneNumChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onInfoChange({ ...userInfo, phone_num: event.target.value });
+      onInfoChange({
+        name: setter === setNameValue ? filteredValue : nameValue,
+        department:
+          setter === setDepartmentValue ? filteredValue : departmentValue,
+        studentId:
+          setter === setStudentIdValue ? filteredValue : studentIdValue,
+        phone_num: setter === setPhoneValue ? filteredValue : phoneValue,
+      });
+    };
   };
 
   return (
     <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
       <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px]">
-        <div className="font-semibold  text-lg pad:text-xl leading-[30px] text-gray-90">
+        <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">
           예매자 정보 입력
         </div>
         <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">
@@ -63,32 +69,35 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
         <Input
           className="mt-2"
           type="text"
-          value={name}
-          onChange={handleNameChange}
+          value={nameValue}
+          onChange={handleInputChange(setNameValue, filterNameValue)}
           placeholder="예) 홍길동"
         />
         <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
         <Input
           className="mt-2"
           type="text"
-          value={department}
-          onChange={handleDepartmentChange}
+          value={departmentValue}
+          onChange={handleInputChange(
+            setDepartmentValue,
+            filterDepartmentValue
+          )}
           placeholder="예) 컴퓨터공학과"
         />
         <p className="mt-6 text-[16px] font-normal leading-6">학번</p>
         <Input
           className="mt-2"
           type="text"
-          value={studentId}
-          onChange={handleStudentIdChange}
+          value={studentIdValue}
+          onChange={handleInputChange(setStudentIdValue, filterStudentIdValue)}
           placeholder="예) C123456"
         />
         <p className="mt-6 text-[16px] font-normal leading-6">연락처</p>
         <Input
           className="mt-2"
           type="text"
-          value={phone_num}
-          onChange={handlePhoneNumChange}
+          value={phoneValue}
+          onChange={handleInputChange(setPhoneValue, filterPhoneNumber)}
           placeholder="전화번호 -없이 입력"
         />
       </div>
