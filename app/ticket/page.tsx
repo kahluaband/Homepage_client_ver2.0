@@ -127,7 +127,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
+    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto z-10">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image
           src="/image/ticket/Poster.svg"
