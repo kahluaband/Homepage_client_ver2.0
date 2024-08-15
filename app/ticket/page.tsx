@@ -230,7 +230,7 @@ const Page = () => {
           <div className="min-h-[140px]" />
         </div>
       </div>
-      <div className="w-full h-[98px] bg-gray-0 bottom-0 z-50 left-0">
+      <div className="w-full h-[98px] bg-gray-0 bottom-0 z-40 left-0">
         <DropdownMenu isDays={isDays} />
         <div className="w-[100%] hidden pad:flex flex-row gap-[18px] mt-4 ">
           <button
