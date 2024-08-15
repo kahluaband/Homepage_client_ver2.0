@@ -45,13 +45,13 @@ const LastCheck: React.FC<LastCheckProps> = ({
         </div>
         <div className="mt-10 pad:mt-14 flex flex-row w-full h-[59px] pad:h-[70px]">
           <button
-            className="w-[280px] h-full rounded-bl-3xl border-t border-t-gray-15 text-center text-[18px] pad:text-[20px] font-[medium] text-gray-40"
+            className="w-[280px] h-[59px] rounded-bl-3xl border-t border-t-gray-15 text-center text-[18px] pad:text-[20px] font-[medium] text-gray-40"
             onClick={onClose}
           >
             돌아가기
           </button>
           <button
-            className="w-[280px] h-hull rounded-br-3xl border-t border-t-primary-50 bg-primary-50 text-center text-[18px] pad: font-[medium] text-gray-0"
+            className="w-[280px] h-[59px] rounded-br-3xl bg-primary-50 text-center text-[18px] pad: font-[medium] text-gray-0"
             onClick={onReservationComplete}
           >
             제출
