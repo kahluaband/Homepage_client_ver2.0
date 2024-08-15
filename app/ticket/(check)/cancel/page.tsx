@@ -5,7 +5,7 @@ import TicketStatus from '@/components/templates/ticket/TicketStatus';
 import { axiosInstance } from '@/api/auth/axios';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 
 const ReservationDetails = () => {
   const params = useSearchParams();
@@ -39,7 +39,7 @@ const ReservationDetails = () => {
           `/tickets/get?reservationId=${reservationId}`
         );
         if (response.status === 200) {
-          const result = response.data.result;
+          const result = response.data;
           setBuyer(result.buyer);
           setPhoneNum(result.phone_num);
           setStudentId(result.studentId);
@@ -91,4 +91,10 @@ const ReservationDetails = () => {
   );
 };
 
-export default ReservationDetails;
+const ReservationDetailsWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ReservationDetails />
+  </Suspense>
+);
+
+export default ReservationDetailsWrapper;

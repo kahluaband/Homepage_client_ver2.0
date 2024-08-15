@@ -6,7 +6,7 @@ import MustRead from '@/components/templates/ticket/MustRead';
 import TicketStatus from '@/components/templates/ticket/TicketStatus';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
 
 const Reservation = () => {
@@ -82,7 +82,7 @@ const Reservation = () => {
           `/tickets/get?reservationId=${reservationId}`
         );
         if (response.status === 200) {
-          const result = response.data.result;
+          const result = response.data;
           setBuyer(result.buyer);
           setPhoneNum(result.phone_num);
           setStudentId(result.studentId);
@@ -109,7 +109,7 @@ const Reservation = () => {
         <p className="h-12 text-gray-0 text-center text-2xl font-semibold leading-[48px]">
           예매 내역 조회
         </p>
-        <p className="text-gray-20 text-center text-lg  font-normal leading-[27px]">
+        <p className="text-gray-20 text-center text-lg font-normal leading-[27px]">
           티켓 예매 내역을 확인하고 취소할 수 있습니다.
         </p>
       </div>
@@ -160,4 +160,10 @@ const Reservation = () => {
   );
 };
 
-export default Reservation;
+const ReservationPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Reservation />
+  </Suspense>
+);
+
+export default ReservationPage;

@@ -3,7 +3,7 @@ import MustRead from '@/components/templates/ticket/MustRead';
 import TicketStatus from '@/components/templates/ticket/TicketStatus';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
 import { information } from '@/components/data/Information';
 
@@ -13,13 +13,12 @@ const Complete: React.FC = () => {
 
   const [dynamicHeightClass, setDynamicHeightClass] = useState('');
   const [buyer, setBuyer] = useState<string>('');
-  const [phone_num, setPhoneNum] = useState<string>('');
+  const [phoneNum, setPhoneNum] = useState<string>('');
   const [reservation_id, setReservationId] = useState<string>('');
   const [student_id, setStudentId] = useState<string>('');
   const [state, setState] = useState<any>(null);
   const [type, setType] = useState<string>('GENERAL');
 
-  // Adjust the height dynamically based on the screen size
   useEffect(() => {
     const updateHeightClass = () => {
       const screenHeight = window.screen.height;
@@ -36,12 +35,14 @@ const Complete: React.FC = () => {
 
   useEffect(() => {
     const fetchTicketDetails = async () => {
+      if (!reservationId) return;
+
       try {
         const response = await axiosInstance.get(
           `/tickets/get?reservationId=${reservationId}`
         );
         if (response.status === 200) {
-          const result = response.data.result;
+          const result = response.data;
           setBuyer(result.buyer);
           setPhoneNum(result.phone_num);
           setReservationId(result.reservationId);
@@ -56,9 +57,7 @@ const Complete: React.FC = () => {
       }
     };
 
-    if (reservationId) {
-      fetchTicketDetails();
-    }
+    fetchTicketDetails();
   }, [reservationId]);
 
   return (
@@ -68,13 +67,13 @@ const Complete: React.FC = () => {
       <div className="relative w-full h-[200px] pad:rounded-t-xl overflow-hidden">
         <div className="absolute inset-0 bg-ticket-complete bg-center bg-cover filter blur-[6px] z-[-1]"></div>
         <div className="relative flex flex-col h-full items-center justify-center pad:bg-gray-90 bg-opacity-60 rounded-t-xl">
-          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">
+          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px] font-semibold leading-[48px]">
             예매가 완료되었습니다.
           </p>
-          <p className="mt-4 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">
+          <p className="mt-4 text-gray-20 text-center text-base pad:text-lg font-normal leading-[27px]">
             {information.title}
           </p>
-          <p className="mt-1 text-gray-20 text-center text-base pad:text-lg  font-normal leading-[27px]">
+          <p className="mt-1 text-gray-20 text-center text-base pad:text-lg font-normal leading-[27px]">
             {information.subDate}
           </p>
         </div>
@@ -83,7 +82,7 @@ const Complete: React.FC = () => {
         <TicketStatus
           reservation_id={reservation_id}
           buyer={buyer}
-          phone_num={phone_num}
+          phone_num={phoneNum}
           student_id={student_id}
           state={state}
           type={type}
@@ -101,4 +100,10 @@ const Complete: React.FC = () => {
   );
 };
 
-export default Complete;
+const CompleteWrapper: React.FC = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Complete />
+  </Suspense>
+);
+
+export default CompleteWrapper;

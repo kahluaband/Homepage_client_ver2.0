@@ -108,7 +108,7 @@ const Freshman_ticket: React.FC = () => {
         console.log(formData);
 
         if (response.status === 200) {
-          const reservationId = response.data.result.reservationId;
+          const reservationId = response.data.reservationId;
           router.push(`/ticket/complete?reservationId=${reservationId}`);
         } else if (response.data.code === 'ALREADY EXIST STUDENT_ID') {
           setIsAlreadyReserved(true);

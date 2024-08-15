@@ -25,7 +25,6 @@ interface Information {
   time: string;
 }
 
-// Function to format date in the "2024년 3월 1일 18시 00분" format
 const formatDateForString = (date: Date): string =>
   `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시`;
 
@@ -48,11 +47,9 @@ const formatSubDate = (date: Date): string => {
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} ${dayOfWeek} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 };
 
-// Define base dates
 const baseEventDate = new Date('2024-09-02T18:00:00+09:00');
-const lastReserveDate = new Date('2024-09-01T00:00:00+09:00');
+const lastReserveDate = new Date('2024-09-01T18:00:00+09:00');
 
-// Information object
 export const information: Information = {
   title: '2024년 9월 정기 공연',
   location: '001 클럽',
