@@ -127,7 +127,7 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto">
+    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto z-10">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image
           src="/image/ticket/Poster.svg"
@@ -144,7 +144,7 @@ const Page = () => {
             {isDays ? '예매 가능' : '예매 마감'}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="w-[181px] pad:w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px]">
+            <p className="max-w-[181px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
               {information.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
@@ -230,7 +230,7 @@ const Page = () => {
           <div className="min-h-[140px]" />
         </div>
       </div>
-      <div className="w-full h-[98px] bg-gray-0 bottom-0 z-50 left-0">
+      <div className="w-full h-[98px] bg-gray-0 bottom-0 z-40 left-0">
         <DropdownMenu isDays={isDays} />
         <div className="w-[100%] hidden pad:flex flex-row gap-[18px] mt-4 ">
           <button
