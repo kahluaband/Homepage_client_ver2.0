@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import AdminHeader from '@/components/admin/AdminHeader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -61,7 +62,13 @@ export default function RootLayout({
 
       <body className={inter.className}>
         <div className="font-pretendard w-full h-auto mb-40">
-          <Header />
+          {pathname === '/login' ||
+          pathname === '/admin/applicant' ||
+          pathname === '/admin/ticketing' ? (
+            <AdminHeader />
+          ) : (
+            <Header />
+          )}
           {children}
         </div>
         {!isCompletePage &&

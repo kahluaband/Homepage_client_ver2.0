@@ -52,6 +52,7 @@ const General_ticket: React.FC = () => {
     }
     setDynamicHeightClass(newHeightClass);
     setDynamicTotalHeightClass(totalHeightClass);
+    localStorage.setItem('member', member.toString());
   }, [member]);
 
   const handleReservationComplete = () => {
