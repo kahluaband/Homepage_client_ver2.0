@@ -7,6 +7,40 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
+import { Metadata } from 'next';
+
+import ogImg from '@/app/opengraph-image.jpg';
+
+export const metadata: Metadata = {
+  // metadataBase: new URL('https://kahluaband.com'), // 배포시 반드시 필요한 설정
+  title: 'KAHLUA BAND',
+  description: '안녕하세요 홍익대학교 컴퓨터공학과 밴드부 깔루아입니다!',
+
+  openGraph: {
+    title: 'KAHLUA BAND',
+    description: '안녕하세요 홍익대학교 컴퓨터공학과 밴드부 깔루아입니다!',
+    images: [
+      {
+        url: ogImg.src,
+        height: ogImg.height,
+        width: ogImg.width,
+        alt: 'kahlua band',
+      },
+    ],
+  },
+  twitter: {
+    title: 'KAHLUA BAND',
+    description: '안녕하세요 홍익대학교 컴퓨터공학과 밴드부 깔루아입니다!',
+    images: [
+      {
+        url: ogImg.src,
+        height: ogImg.height,
+        width: ogImg.width,
+        alt: 'kahlua band',
+      },
+    ],
+  },
+};
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -44,22 +78,6 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <head>
-        <meta property="og:title" content="KAHLUA BAND" />
-        <meta
-          property="og:description"
-          content="안녕하세요 홍익대학교 컴퓨터공학과 밴드부 깔루아입니다!"
-        />
-        <meta property="og:image" content="<generated>" />
-        <meta property="og:image:type" content="<generated>" />
-        <meta property="og:image:width" content="<generated>" />
-        <meta property="og:image:height" content="<generated>" />
-        <meta property="og:image:alt" content="Kahlua Band" />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kahluaband.com" />
-      </head>
-
       <body className={inter.className}>
         <div className="font-pretendard w-full h-auto mb-40">
           {pathname === '/login' ||
