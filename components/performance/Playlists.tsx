@@ -147,9 +147,9 @@ const Playlists = () => {
 
   return (
     <>
-      <div className="min-[834px]:max-w-[786px] min-[1920px]:max-w-[1200px] h-full grid grid-cols-1 min-[834px]:grid-cols-3 min-[1920px]:grid-cols-4 gap-x-6 gap-y-12">
+      <div className="pad:max-w-[786px] dt:max-w-[1200px] h-full grid grid-cols-1 pad:grid-cols-3 dt:grid-cols-4 gap-x-6 gap-y-12">
         {(sYear === 'All' || sYear === '2024') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -172,7 +172,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -195,7 +195,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -218,7 +218,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2023') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -241,7 +241,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -264,7 +264,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2022') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -287,7 +287,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -310,7 +310,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -333,7 +333,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2019') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -356,7 +356,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2018') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -379,7 +379,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -402,7 +402,7 @@ const Playlists = () => {
           </div>
         )}
         {(sYear === 'All' || sYear === '2017') && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -426,7 +426,7 @@ const Playlists = () => {
         )}
         {(sYear === 'All' && showMore) ||
           (sYear === '2017' && (
-            <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+            <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
               <div
                 className="cursor-pointer"
                 onClick={() => {
@@ -450,7 +450,7 @@ const Playlists = () => {
           ))}
         {/* 같이 적으니 렌더링이 이상해져서 2개로 나눠서 작성했습니다 */}
         {sYear === 'All' && showMore && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -473,7 +473,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2017' && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -496,7 +496,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === 'All' && showMore && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
@@ -519,7 +519,7 @@ const Playlists = () => {
           </div>
         )}
         {sYear === '2016' && (
-          <div className="w-[328px] min-[834px]:w-[246px] min-[1920px]:w-[282px] flex flex-col items-start gap-[8px]">
+          <div className="w-[328px] pad:w-[246px] dt:w-[282px] flex flex-col items-start gap-[8px]">
             <div
               className="cursor-pointer"
               onClick={() => {
