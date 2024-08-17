@@ -134,7 +134,7 @@ const Page = () => {
           alt="포스터사진"
           width={833}
           height={376}
-          className="z-0 sticky mb:static overflow-hidden top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 mb:rounded-xl mx-auto pad:mx-0"
+          className="z-[-1] sticky mb:static overflow-hidden top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 mb:rounded-xl mx-auto pad:mx-0"
         />
         <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           <div
@@ -144,7 +144,7 @@ const Page = () => {
             {isDays ? '예매 가능' : '예매 마감'}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="max-w-[181px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
+            <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
               {information.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
@@ -153,7 +153,7 @@ const Page = () => {
                 alt="share"
                 width={24}
                 height={24}
-                className="cursor-pointer"
+                className="cursor-pointer h-5 w-5 pad:h-6 pad:w-6"
               />
             </div>
           </div>
