@@ -9,47 +9,47 @@ interface recruitingInformation {
   activityPeriod: Date;
 }
 
-// ex. 23
+// 문자열에서 숫자만 추출 (ex. 23)
 export const getOnlyNum = (str: string) => {
   const regex = /[^0-9]/g;
   const result = str.replace(regex, '');
   return result;
 };
 
-// ex. 2024
+// 년도 네자리로 추출 (ex. 2024)
 export const formatYear = (date: Date): string => `${date.getFullYear()}`;
 
-// ex. 03
+// 월 두자리로 추출 (ex. 03)
 export const formatMonth = (date: Date): string =>
   `${('0' + (date.getMonth() + 1)).slice(-2)}`;
 
-// ex. 22
+// 일 두자리로 추출 (ex. 22)
 export const formatDay = (date: Date): string =>
   `${('0' + date.getDate()).slice(-2)}`;
 
-// ex. FRI
+// 요일 영어로 추출 (ex. FRI)
 export const formatDayofWeek = (date: Date) => {
   const week = new Array('SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT');
   const dayOfWeek = date.getDay();
   return week[dayOfWeek];
 };
 
-// ex. 2024.03.11 FRI
+// 년도부터 요일까지 (ex. 2024.03.11 FRI)
 export const formatFullDate = (date: Date): string =>
   `${formatYear(date)}.${formatMonth(date)}.${formatDay(date)} ${formatDayofWeek(date)}`;
 
-// ex. 03.11 FRI
+// 월부터 요일까지 (ex. 03.11 FRI)
 export const formatMonthToDate = (date: Date): string =>
   `${formatMonth(date)}.${formatDay(date)} ${formatDayofWeek(date)}`;
 
-// ex. 16
+// 시간 추출 (ex. 16)
 export const formatHour = (date: Date): string => `${date.getHours()}`;
 
-// ex. 59
+// 분 추출 (ex. 59)
 export const formatMinute = (date: Date): string =>
   `${String(date.getMinutes()).padStart(2, '0')}`;
 
-// ex. 16:59
+// 시간 전체 (ex. 16:59)
 export const formatTime = (date: Date): string =>
   `${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
 
