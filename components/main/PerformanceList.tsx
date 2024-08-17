@@ -1,5 +1,5 @@
-import { SongList } from '../performance/SongList';
-import { song } from '../performance/SongList';
+import { SongList } from '../data/SongList';
+import { song } from '../data/SongList';
 import PerformanceCard from './PerformanceCard';
 
 interface SonglistProps {

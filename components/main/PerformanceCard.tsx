@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { song } from '../performance/SongList';
+import { song } from '../data/SongList';
 
 interface SongProps {
   song: song;
