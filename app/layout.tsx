@@ -1,5 +1,5 @@
 'use client';
-import { Inter } from 'next/font/google';
+import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -8,7 +8,10 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
 
-const inter = Inter({ subsets: ['latin'] });
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export default function RootLayout({
   children,
@@ -53,7 +56,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kahluaband.com" />
       </head>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <div className="font-pretendard w-full h-auto mb-40">
           {pathname === '/login' ||
           pathname === '/admin/applicant' ||
