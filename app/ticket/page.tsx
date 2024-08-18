@@ -15,11 +15,23 @@ const Page = () => {
   const [nowUrl, setNowUrl] = useState('');
   const [isDays, setIsDays] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [opacity, setOpacity] = useState(1);
   const [active, setActive] = useState(isDays);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     setActive(isDays);
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const threshold = 600;
+      const newOpacity = Math.max(1 - scrollPosition / threshold, 0);
+      setOpacity(newOpacity);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [isDays]);
 
   const [freshman, setFreshman] = useState(false);
@@ -127,14 +139,19 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-screen pad:w-[768px] dt:w-[1200px] mx-auto z-10">
+    <div className="flex relative flex-col top-16 h-[1150px] mb:h-[1000px] w-full pad:w-[768px] dt:w-[1200px] mx-auto z-10">
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image
           src="/image/ticket/Poster.svg"
           alt="포스터사진"
           width={833}
           height={376}
-          className="z-0 sticky mb:static overflow-hidden top-0 w-[screen] h-[full] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] flex flex-shrink-0 mb:rounded-xl mx-auto pad:mx-0"
+          className={`z-[-1] sticky top-0 w-full h-auto mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] mb:rounded-xl mx-auto pad:mx-0 transition-opacity duration-300 ${opacity < 1 ? 'opacity-100' : 'opacity-0'}`}
+          style={
+            isClient && window.innerWidth <= 500
+              ? { opacity: opacity, transition: 'opacity 0.3s ease-out' }
+              : {}
+          }
         />
         <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           <div
@@ -144,7 +161,7 @@ const Page = () => {
             {isDays ? '예매 가능' : '예매 마감'}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="max-w-[181px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
+            <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
               {information.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
@@ -153,7 +170,7 @@ const Page = () => {
                 alt="share"
                 width={24}
                 height={24}
-                className="cursor-pointer"
+                className="cursor-pointer h-5 w-5 pad:h-6 pad:w-6"
               />
             </div>
           </div>
@@ -227,7 +244,7 @@ const Page = () => {
             id="map"
             className="top-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[384px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0"
           />
-          <div className="min-h-[140px]" />
+          <div className="min-h-[164px]" />
         </div>
       </div>
       <div className="w-full h-[98px] bg-gray-0 bottom-0 z-40 left-0">
