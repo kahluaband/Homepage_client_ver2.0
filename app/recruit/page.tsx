@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo_white from '@/public/image/KAHLUA.svg';
 import vocal from '@/public/image/recruit/vocal.svg';
-import guitar from '@/public/image/recruit/vocal.svg';
-import drum from '@/public/image/recruit/vocal.svg';
-import bass from '@/public/image/recruit/vocal.svg';
-import syn from '@/public/image/recruit/vocal.svg';
+import guitar from '@/public/image/recruit/guitar.svg';
+import drum from '@/public/image/recruit/drum.svg';
+import bass from '@/public/image/recruit/bass.svg';
+import syn from '@/public/image/recruit/syn.svg';
 
 import FAQ from './FAQ';
 import RequirementCard from '@/components/recruit/RequirementCard';
