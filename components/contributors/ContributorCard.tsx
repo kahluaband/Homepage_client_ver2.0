@@ -35,12 +35,12 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
           <Image
             src={image}
             alt={name}
-            layout="fill"
+            fill
             objectFit="cover"
             className="rounded-xl"
           />
         </div>
-        <Image src={blurCard} alt="blurCard" layout="fill" objectFit="cover" />
+        <Image src={blurCard} alt="blurCard" fill objectFit="cover" />
         <div className="absolute w-full h-full flex">
           <p className="absolute top-[20px] left-[128px] text-2xl leading-normal text-gray-0 font-semibold">
             {name}
@@ -105,7 +105,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
         <Image
           src={image}
           alt={name}
-          layout="fill"
+          fill
           objectFit="cover"
           className="rounded-xl"
         />
@@ -114,7 +114,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
         <Image
           src={isEven ? blurCard3 : blurCard2}
           alt={isEven ? 'blurCard' : 'blurCard'}
-          layout="fill"
+          fill
           objectFit="cover"
         />
         <div className="absolute w-full h-full flex">
