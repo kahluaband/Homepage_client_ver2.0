@@ -14,6 +14,15 @@ import FAQ from './FAQ';
 import RequirementCard from '@/components/recruit/RequirementCard';
 import SessionCard from '@/components/recruit/SessionCard';
 import ScheduleCard from '@/components/recruit/ScheduleCard';
+import {
+  formatFullDate,
+  formatMonth,
+  formatMonthToDate,
+  formatTime,
+  formatYear,
+  getOnlyNum,
+  Recruiting23rd,
+} from '@/components/data/RecruitingInfo';
 
 const page = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,17 +45,18 @@ const page = () => {
             <Image src={logo_white} layout="fill" alt="logo" />
           </div>
           <p className="text-[20px] pad:text-[24px] font-semibold dt:text-[32px] mt-8">
-            23rd MEMBER RECRUITMENT
+            {Recruiting23rd.num} MEMBER RECRUITMENT
           </p>
           <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-normal mt-[4px]">
-            2023.03.01 FRI ~ 2023.03.07 SAT
+            {formatFullDate(Recruiting23rd.recruitingStartDate)} ~{' '}
+            {formatFullDate(Recruiting23rd.recruitingFinishDate)}
           </p>
           <Link
             href="/recruit/notice"
             key="apply"
             className="flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer"
           >
-            KAHLUA 23기 지원하기
+            KAHLUA {getOnlyNum(Recruiting23rd.num)}기 지원하기
           </Link>
         </div>
       </div>
@@ -127,29 +137,29 @@ const Schedule = () => {
       <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-6">
         <ScheduleCard
           title="서류 지원"
-          period="~ 03.08 FRI 23:59"
-          description="보컬 영상 제출 마감<br/>03.10(일) 23:59"
+          period={`~ ${formatMonthToDate(Recruiting23rd.recruitingFinishDate)} ${formatTime(Recruiting23rd.recruitingFinishDate)}`}
+          description={`보컬 영상 제출 마감<br/>${formatMonthToDate(Recruiting23rd.vocalApplyingDue)} ${formatTime(Recruiting23rd.vocalApplyingDue)}`}
           titleClassName=""
           desClassName=""
         />
         <ScheduleCard
           title="오디션"
-          period="03.11 MON 16:00"
-          description="오디션 뒷풀이<br/>당일 19:00"
+          period={`~ ${formatMonthToDate(Recruiting23rd.audition)} ${formatTime(Recruiting23rd.audition)}`}
+          description={`오디션 뒷풀이<br/>당일 ${formatTime(Recruiting23rd.afterParty)}`}
           titleClassName=""
           desClassName=""
         />
         <ScheduleCard
           title="최종 합격 발표"
-          period="03.15 FRI"
+          period={`${formatMonthToDate(Recruiting23rd.announcementDate)}`}
           description="합격자/불합격자<br/>전체 개별 연락"
           titleClassName=""
           desClassName=""
         />
         <ScheduleCard
           title="24기 활동"
-          period="~2026.09"
-          description="선발 직후부터<br/>2026년 9월 정기공연까지"
+          period={`~ ${formatYear(Recruiting23rd.activityPeriod)}.${formatMonth(Recruiting23rd.activityPeriod)}`}
+          description={`선발 직후부터<br/>${formatYear(Recruiting23rd.activityPeriod)}년 ${formatMonth(Recruiting23rd.activityPeriod)}월 정기공연까지`}
           titleClassName="bg-primary-50"
           desClassName="text-primary-10"
         />
