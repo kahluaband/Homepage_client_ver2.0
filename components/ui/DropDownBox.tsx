@@ -106,17 +106,21 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({
             >
               {selectedValue}
             </p>
-            {!isDropdownVisible && (
-              <Image
-                src="/image/ticket/down.svg"
-                width={24}
-                height={24}
-                alt="down"
-              />
-            )}
+            <Image
+              src="/image/ticket/down.svg"
+              width={24}
+              height={24}
+              alt="down"
+              style={{
+                transform: isDropdownVisible
+                  ? 'rotate(180deg)'
+                  : 'rotate(0deg)',
+                transition: 'transform 0.2s ease-out',
+              }}
+            />
           </div>
           <div
-            className={`absolute rounded-b-xl border-t-0 left-0 right-0 bg-gray-0 border border-gray-15 transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`absolute rounded-b-xl border-t-0 left-0 right-0 bg-gray-0 border border-gray-15 transition-all duration-100 ease-in-out overflow-hidden ${
               isDropdownVisible
                 ? 'max-h-[300px] opacity-100'
                 : 'max-h-0 opacity-0'
