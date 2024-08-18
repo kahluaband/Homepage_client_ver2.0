@@ -21,6 +21,5 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'mustica pro', 'pretendard'; /* 폰트 우선 순위 설정 */
   }
 `;
-ㄴ;
 
 export default GlobalStyle;
