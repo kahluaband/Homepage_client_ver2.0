@@ -34,9 +34,9 @@ const PerformanceButton: React.FC<buttonProps> = ({ className }) => {
       className={`flex flex-row items-center w-auto h-auto px-6 py-2 gap-[10px] bg-gray-90 text-gray-0 text-[16px] pad:text-[20px] font-medium rounded-[48px] ${className}`}
     >
       공연 영상 보러가기
-      <p className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">
-        <Image src={arrow} alt=">" layout="fill" />
-      </p>
+      <div className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">
+        <Image src={arrow} alt=">" fill />
+      </div>
     </Link>
   );
 };

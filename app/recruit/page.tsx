@@ -5,10 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import logo_white from '@/public/image/KAHLUA.svg';
 import vocal from '@/public/image/recruit/vocal.svg';
-import guitar from '@/public/image/recruit/vocal.svg';
-import drum from '@/public/image/recruit/vocal.svg';
-import bass from '@/public/image/recruit/vocal.svg';
-import syn from '@/public/image/recruit/vocal.svg';
+import guitar from '@/public/image/recruit/guitar.svg';
+import drum from '@/public/image/recruit/drum.svg';
+import bass from '@/public/image/recruit/bass.svg';
+import syn from '@/public/image/recruit/syn.svg';
 
 import FAQ from './FAQ';
 import RequirementCard from '@/components/recruit/RequirementCard';
@@ -42,7 +42,7 @@ const page = () => {
       <div className="flex top-0 items-center justify-center h-auto pad:h-screen w-full bg-performance bg-center text-gray-0">
         <div className="flex flex-col items-center justify-center text-center max-pad:py-[120px] max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px]">
           <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">
-            <Image src={logo_white} layout="fill" alt="logo" />
+            <Image src={logo_white} fill alt="logo" />
           </div>
           <p className="text-[20px] pad:text-[24px] font-semibold dt:text-[32px] mt-8">
             {Recruiting23rd.num} MEMBER RECRUITMENT

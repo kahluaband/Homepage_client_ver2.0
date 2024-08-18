@@ -1,5 +1,5 @@
 'use client';
-import { Inter } from 'next/font/google';
+import { Inter, Roboto } from 'next/font/google';
 import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -8,7 +8,10 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
 
-const inter = Inter({ subsets: ['latin'] });
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export default function RootLayout({
   children,
@@ -45,6 +48,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta property="og:title" content="KAHLUA BAND" />
+        <meta
+          property="og:description"
+          content="안녕하세요 홍익대학교 컴퓨터공학과 밴드부 Kahlua 입니다!"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://kahluaband.com" />
         <link
           rel="preload"
           href="https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff"
@@ -61,7 +71,7 @@ export default function RootLayout({
         />
         <link rel="stylesheet" href="globals.css" />
       </head>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <div className="font-pretendard w-full h-auto mb-40">
           {pathname === '/login' ||
           pathname === '/admin/applicant' ||
