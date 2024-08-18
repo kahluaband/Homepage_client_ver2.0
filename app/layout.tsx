@@ -7,7 +7,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
-
+import GlobalStyle from '@/components/util/fonts';
 const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
@@ -46,55 +46,56 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en">
-      <head>
-        <meta property="og:title" content="KAHLUA BAND" />
-        <meta
-          property="og:description"
-          content="안녕하세요 홍익대학교 컴퓨터공학과 밴드부 Kahlua 입니다!"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kahluaband.com" />
-        <link
-          rel="preload"
-          href="https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff"
-          as="font"
-          type="font/woff"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="https://db.onlinewebfonts.com/t/8784ec149f84f77ada651e2dd98e0943.woff"
-          as="font"
-          type="font/woff"
-          crossOrigin="anonymous"
-        />
-        <link rel="stylesheet" href="globals.css" />
-      </head>
-      <body className={roboto.className}>
-        <div className="font-pretendard w-full h-auto mb-40">
-          {pathname === '/login' ||
-          pathname === '/admin/applicant' ||
-          pathname === '/admin/ticketing' ? (
-            <AdminHeader />
-          ) : (
-            <Header />
-          )}
-          {children}
-        </div>
-        {!isCompletePage &&
-          !isFreshmanTicketPage &&
-          !isGeneralTicketPage &&
-          !isCancelPage &&
-          !isReservationPage &&
-          !isSearchPage &&
-          !isNoticePage &&
-          !isApplyCompletePage &&
-          !isApplyPage &&
-          !(isMobile && isTicketPage) && <Footer />}
-      </body>
-      {/* gaId 추후 발급 후 작성 필요 -> 배포 이후*/}
-      <GoogleAnalytics gaId="" />
-    </html>
+    <>
+      <GlobalStyle />
+      <html lang="en">
+        <head>
+          <meta property="og:title" content="KAHLUA BAND" />
+          <meta
+            property="og:description"
+            content="안녕하세요 홍익대학교 컴퓨터공학과 밴드부 Kahlua 입니다!"
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://kahluaband.com" />
+          <link
+            rel="preload"
+            href="https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff"
+            as="font"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
+            href="https://db.onlinewebfonts.com/t/8784ec149f84f77ada651e2dd98e0943.woff"
+            as="font"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+        </head>
+        <body className={roboto.className}>
+          <div className="font-pretendard w-full h-auto mb-40">
+            {pathname === '/login' ||
+            pathname === '/admin/applicant' ||
+            pathname === '/admin/ticketing' ? (
+              <AdminHeader />
+            ) : (
+              <Header />
+            )}
+            {children}
+          </div>
+          {!isCompletePage &&
+            !isFreshmanTicketPage &&
+            !isGeneralTicketPage &&
+            !isCancelPage &&
+            !isReservationPage &&
+            !isSearchPage &&
+            !isNoticePage &&
+            !isApplyCompletePage &&
+            !isApplyPage &&
+            !(isMobile && isTicketPage) && <Footer />}
+        </body>
+        <GoogleAnalytics gaId="" />
+      </html>
+    </>
   );
 }
