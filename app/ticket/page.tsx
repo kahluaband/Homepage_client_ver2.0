@@ -94,7 +94,7 @@ const Page = () => {
 
   useEffect(() => {
     const checkEventStatus = () => {
-      const eventDate = information.lastReserveDate;
+      const eventDate = new Date(information.lastReserveDate);
       const nowDate = new Date();
 
       const nowKoreanTime = new Date(
@@ -108,7 +108,7 @@ const Page = () => {
     const interval = setInterval(checkEventStatus, 60000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [information.lastReserveDate]);
 
   const copyUrl = () => {
     navigator.clipboard.writeText(nowUrl).then(() => {
@@ -150,7 +150,7 @@ const Page = () => {
           style={
             isClient && window.innerWidth <= 500
               ? { opacity: opacity, transition: 'opacity 0.3s ease-out' }
-              : {}
+              : { opacity: 1 }
           }
         />
         <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
