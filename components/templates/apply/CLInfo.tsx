@@ -106,6 +106,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
         className="mt-4"
         value={motivation}
         onChange={handleMotivationChange}
+        maxLength={200}
         placeholder="깔루아 지원 동기에 대해 작성해주세요."
       />
 
@@ -119,6 +120,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
         className="mt-4"
         value={career}
         onChange={handleCareerChange}
+        maxLength={200}
         placeholder="지원 세션에 대한 경력 및 지원 이유를 작성해주세요."
       />
 
@@ -132,6 +134,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
         className="mt-4"
         value={instrument}
         onChange={handleInstrumentChange}
+        maxLength={200}
         placeholder="이외에 다룰 줄 아는 악기에 대해 작성해주세요."
       />
 
@@ -143,6 +146,7 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
         className="mt-4"
         value={determination}
         onChange={handleDeterminationChange}
+        maxLength={200}
         placeholder=""
       />
     </div>
