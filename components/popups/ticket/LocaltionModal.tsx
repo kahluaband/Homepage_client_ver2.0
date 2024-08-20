@@ -23,7 +23,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
 
   const copyLocation = () => {
     navigator.clipboard.writeText(loc).then(() => {
-      alert('주소 복사되었습니다!');
+      alert('주소가 복사되었습니다!');
     });
   };
 
@@ -82,7 +82,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
     >
       <div className="fixed flex flex-col rounded-3xl w-[652px] h-[515px] z-50 bg-gray-0">
         <div className="w-full h-[76px] rounded-t-3xl bg-gray-80 text-gray-0 items-center flex px-8">
-          <p className="text-[24px] font-semibold leading-9 w-[110px]">
+          <p className="text-[24px] font-semibold leading-9 w-[110px] whitespace-nowrap">
             공연장 위치
           </p>
           <Image

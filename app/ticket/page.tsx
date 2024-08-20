@@ -118,7 +118,7 @@ const Page = () => {
 
   const copyLocation = () => {
     navigator.clipboard.writeText(loc).then(() => {
-      alert('주소 복사되었습니다!');
+      alert('주소가 복사되었습니다!');
     });
   };
 
@@ -218,11 +218,11 @@ const Page = () => {
         <div className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto" />
         <div className="z-10 bg-gray-0 h-6 w-full flex pad:hidden" />
         <div className="flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] pad:mt-[120px] h-[282px] mx-auto">
-          <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-gray-70 h-[27px]">
+          <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-primary-50 h-[27px]">
             공연장 위치
           </p>
-          <div className="flex pad:hidden flex-row gap-3 mt-1">
-            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] whitespace-nowrap truncate">
+          <div className="flex flex-row gap-3 mt-1">
+            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] pad:w-[294px] whitespace-nowrap truncate">
               {loc}
             </p>
             <div

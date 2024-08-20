@@ -47,8 +47,8 @@ const formatSubDate = (date: Date): string => {
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} ${dayOfWeek} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 };
 
-const baseEventDate = new Date('2024-09-02T18:00:00+09:00');
-const lastReserveDate = new Date('2024-09-01T18:00:00+09:00');
+const baseEventDate = new Date('2024-09-02T19:00:00+09:00');
+const lastReserveDate = new Date('2024-09-01T19:00:00+09:00');
 
 export const information: Information = {
   title: '2024년 9월 정기 공연',
