@@ -55,22 +55,24 @@ const YearSelector = () => {
                 </p>
               </div>
             ))
-          : currentYearList.slice(0, 1).map((year) => (
-              <div
-                key={year}
-                onClick={() => {
-                  setSYear(year);
-                }}
-                className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] cursor-pointer "`}
-              >
-                <p
+          : currentYearList
+              .filter((year) => year === sYear)
+              .map((year) => (
+                <div
                   key={year}
-                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
+                  onClick={() => {
+                    setSYear(year);
+                  }}
+                  className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} " w-[84px] inline-flex px-[12px] py-[4px] justify-center items-center gap-[10px] rounded-[32px] border-primary-50 cursor-pointer "`}
                 >
-                  {year}
-                </p>
-              </div>
-            ))}
+                  <p
+                    key={year}
+                    className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
+                  >
+                    {year}
+                  </p>
+                </div>
+              ))}
       </div>
 
       {/* 토글 버튼 */}
