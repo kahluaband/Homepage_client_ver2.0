@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'mustica pro';
-  src: url('/fonts/MusticaPro.otf') format('opentype'); /* Corrected format */
+  src: url('/fonts/MusticaPro.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: 'pretendard';
-  src: url('/fonts/pretendard.ttf') format('truetype'); /* Corrected format */
+  src: url('/fonts/Pretendard.woff') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
