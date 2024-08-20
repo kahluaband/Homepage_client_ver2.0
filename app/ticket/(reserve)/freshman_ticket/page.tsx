@@ -145,19 +145,19 @@ const Freshman_ticket: React.FC = () => {
             member={member}
             setMember={setMember}
           />
-          <Bar className="px-4 pad:px-12" />
+          <Bar className="mx-4 pad:mx-12" />
           <FreshmanInfo
             userInfo={userInfo}
             onInfoChange={handleUserInfoChange}
           />
-          <Bar className="px-4 pad:px-12" />
+          <Bar className="mx-4 pad:mx-12" />
           <TicketSelection />
-          <Bar className="px-4 pad:px-12" />
+          <Bar className="mx-4 pad:mx-12" />
           <PartySelection
             dispatch={dispatchPartySelection}
             state={partySelection}
           />
-          <Bar className="hidden pad:flex px-4 pad:px-12" />
+          <Bar className="hidden pad:flex mx-4 pad:mx-12" />
           <Warning />
         </div>
         <FinalStep

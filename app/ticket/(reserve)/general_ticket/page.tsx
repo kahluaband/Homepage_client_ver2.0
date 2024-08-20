@@ -147,7 +147,7 @@ const General_ticket: React.FC = () => {
             member={member}
             setMember={setMember}
           />
-          <Bar />
+          <Bar className="mx-4 pad:mx-12" />
           <GeneralInfo
             userInfo={userInfo}
             member={member}
@@ -155,11 +155,11 @@ const General_ticket: React.FC = () => {
             onInfoComplete={setIsFormComplete}
             onInfoChange={handleInfoChange}
           />
-          <Bar />
+          <Bar className="mx-4 pad:mx-12" />
           <TicketSelection />
-          <Bar />
+          <Bar className="mx-4 pad:mx-12" />
           <PaymentSelection />
-          <Bar />
+          <Bar className="hidden pad:flex mx-4 pad:mx-12" />
           <Warning />
         </div>
         <FinalStep
