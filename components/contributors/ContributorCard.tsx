@@ -46,7 +46,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             {name}
           </p>
           {year && (
-            <div className="absolute top-[22px] left-[203px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]">
+            <div className="absolute top-[22px] left-[203px] w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center flex items-center justify-center">
               {year}기
             </div>
           )}
@@ -125,7 +125,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
           </p>
           {year && (
             <div
-              className={`absolute top-[18px] ${isEven ? 'left-[84px]' : 'left-[168px]'} w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center py-[4px]`}
+              className={`absolute top-[18px] ${isEven ? 'left-[84px]' : 'left-[168px]'} w-[55px] h-[32px] rounded-[32px] bg-primary-50 text-gray-0 text-medium text-base text-center flex items-center justify-center`}
             >
               {year}기
             </div>

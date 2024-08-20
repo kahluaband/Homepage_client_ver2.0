@@ -159,7 +159,7 @@ const Playlists = () => {
               <Image
                 src={detail[0].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -182,7 +182,7 @@ const Playlists = () => {
               <Image
                 src={detail[1].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -205,7 +205,7 @@ const Playlists = () => {
               <Image
                 src={detail[2].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -228,7 +228,7 @@ const Playlists = () => {
               <Image
                 src={detail[3].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -251,7 +251,7 @@ const Playlists = () => {
               <Image
                 src={detail[4].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -274,7 +274,7 @@ const Playlists = () => {
               <Image
                 src={detail[5].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -297,7 +297,7 @@ const Playlists = () => {
               <Image
                 src={detail[6].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -320,7 +320,7 @@ const Playlists = () => {
               <Image
                 src={detail[7].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -343,7 +343,7 @@ const Playlists = () => {
               <Image
                 src={detail[8].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -366,7 +366,7 @@ const Playlists = () => {
               <Image
                 src={detail[9].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -389,7 +389,7 @@ const Playlists = () => {
               <Image
                 src={detail[10].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -412,7 +412,7 @@ const Playlists = () => {
               <Image
                 src={detail[11].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -436,7 +436,7 @@ const Playlists = () => {
                 <Image
                   src={detail[12].src}
                   alt="thumbnail"
-                  quality={80}
+                  quality={50}
                   className="rounded-[12px]"
                 />
               </div>
@@ -460,7 +460,7 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -483,7 +483,7 @@ const Playlists = () => {
               <Image
                 src={detail[13].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -506,7 +506,7 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>
@@ -529,7 +529,7 @@ const Playlists = () => {
               <Image
                 src={detail[14].src}
                 alt="thumbnail"
-                quality={80}
+                quality={50}
                 className="rounded-[12px]"
               />
             </div>

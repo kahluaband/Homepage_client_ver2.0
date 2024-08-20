@@ -91,12 +91,6 @@ const page = () => {
       true;
 
     setIsComplete(isDataComplete);
-
-    console.log(
-      PersonalInfo.gender,
-      CoverLetterInfo.session1,
-      CoverLetterInfo.session2
-    );
   }, [PersonalInfo, CoverLetterInfo, AdditionalInfo]);
 
   const handleApplicationSubmit = async () => {
@@ -126,7 +120,6 @@ const page = () => {
         });
 
         if (response.status === 200) {
-          console.log(response.data);
           window.location.href = `/recruit/complete`;
         } else {
           console.error(`Unexpected response status: ${response.status}`);
