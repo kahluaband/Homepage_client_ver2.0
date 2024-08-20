@@ -103,7 +103,7 @@ const Requirement = () => {
 
 const RecruitingSession = () => {
   return (
-    <div className="flex flex-col h-full text-gray-0 text-center mt-[240px]">
+    <div className="flex flex-col h-full w-full justify-center items-center text-gray-0 text-center mt-[240px]">
       <div>
         <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">
           모집 세션
@@ -112,7 +112,7 @@ const RecruitingSession = () => {
           RECRUITING SESSION
         </p>
       </div>
-      <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-[16px] pad:gap-[20px]">
+      <div className="inline-flex flex-wrap flex-row justify-center align-top mt-16 gap-[16px] pad:gap-[20px] max-pad:max-w-[500px]">
         <SessionCard session="보컬" image={vocal} />
         <SessionCard session="기타" image={guitar} />
         <SessionCard session="드럼" image={drum} />
