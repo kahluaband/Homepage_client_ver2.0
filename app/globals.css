@@ -10,6 +10,26 @@
   }
 }
 
+@font-face {
+  font-family: 'mustica pro';
+  src: url('/fonts/MusticaPro.otf') format('opentype'); /* Corrected format */
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'pretendard';
+  src: url('/fonts/pretendard.ttf') format('truetype'); /* Corrected format */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'mustica pro', 'pretendard'; /* Font priority setting */
+}
+
 * {
   margin: 0;
   padding: 0;

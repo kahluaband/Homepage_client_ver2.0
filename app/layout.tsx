@@ -1,13 +1,13 @@
 'use client';
 import { Inter, Roboto } from 'next/font/google';
-import './globals.css';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
-import GlobalStyle from '@/components/util/fonts';
+import './globals.css';
+
 const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
@@ -47,7 +47,6 @@ export default function RootLayout({
 
   return (
     <>
-      <GlobalStyle />
       <html lang="en">
         <head>
           <meta property="og:title" content="KAHLUA BAND" />
@@ -57,20 +56,6 @@ export default function RootLayout({
           />
           <meta property="og:type" content="website" />
           <meta property="og:url" content="https://kahluaband.com" />
-          <link
-            rel="preload"
-            href="https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
-          <link
-            rel="preload"
-            href="https://db.onlinewebfonts.com/t/8784ec149f84f77ada651e2dd98e0943.woff"
-            as="font"
-            type="font/woff"
-            crossOrigin="anonymous"
-          />
         </head>
         <body className={roboto.className}>
           <div className="font-pretendard w-full h-auto mb-40">
