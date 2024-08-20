@@ -43,6 +43,9 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
+    if (type === 'date' && selectedValue !== defaultText) {
+      setSelectedValue(defaultText);
+    }
     setIsDropdownVisible((prev) => !prev);
   };
 
@@ -138,7 +141,7 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({
                   >
                     <p
                       className={clsx(
-                        option.status === 'ACTIVE'
+                        option.status === 'ACTIVE' || type === 'date'
                           ? 'text-gray-60'
                           : 'text-gray-30'
                       )}
