@@ -65,7 +65,7 @@ const getInformation = (): Information => {
     locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
     dateForString: formatDateForString(baseEventDate),
     dateForMinute: formatDateForMinute(baseEventDate),
-    dayForString: formatDayForString(baseEventDate),
+    dayForString: formatDayForString(lastReserveDate),
     day: formatDay(baseEventDate),
     time: formatTime(baseEventDate),
     subDate: formatSubDate(baseEventDate),
