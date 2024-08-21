@@ -5,6 +5,7 @@ import blurCard3 from '@/public/image/contributors/blurCard3.svg';
 import schoolIcon from '@/public/image/contributors/school.svg';
 import githubIcon from '@/public/image/contributors/github.svg';
 import emailIcon from '@/public/image/contributors/email.svg';
+import Link from 'next/link';
 
 interface ContributorCardProps {
   image: StaticImageData;
@@ -66,14 +67,14 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             />
           </div>
           {githubUrl ? (
-            <a
+            <Link
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
             >
               {githubName}
-            </a>
+            </Link>
           ) : (
             <p className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20">
               {emailName}

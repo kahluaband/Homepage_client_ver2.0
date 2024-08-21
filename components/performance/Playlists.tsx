@@ -161,6 +161,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -184,6 +185,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -207,6 +209,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -230,6 +233,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -253,6 +257,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -276,6 +281,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -299,6 +305,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -322,6 +329,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -345,6 +353,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -368,6 +377,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -391,6 +401,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -414,6 +425,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -438,6 +450,7 @@ const Playlists = () => {
                   alt="thumbnail"
                   quality={50}
                   className="rounded-[12px]"
+                  sizes="100vw"
                 />
               </div>
               <p className="text-[20px] font-semibold leading-8">
@@ -462,6 +475,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -485,6 +499,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -508,6 +523,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">
@@ -531,6 +547,7 @@ const Playlists = () => {
                 alt="thumbnail"
                 quality={50}
                 className="rounded-[12px]"
+                sizes="100vw"
               />
             </div>
             <p className="text-[20px] font-semibold leading-8">

@@ -64,7 +64,7 @@ const TicketButton: React.FC<buttonProps> = ({ className }) => {
     >
       공연 예매하기
       <div className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">
-        <Image src={arrow} alt=">" fill />
+        <Image src={arrow} alt=">" sizes="100vw" />
       </div>
     </Link>
   );
