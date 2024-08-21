@@ -46,11 +46,8 @@ const ReservationDetails = () => {
           setState(result.status);
           setType(result.type);
         } else {
-          console.error(`Unexpected response status: ${response.status}`);
         }
-      } catch (error) {
-        console.error('Error fetching ticket details:', error);
-      }
+      } catch (error) {}
     };
 
     if (reservationId) {

@@ -45,9 +45,7 @@ const page = () => {
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
       setTotal(response.data.result.total);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchApplicantList = async (session: string) => {
@@ -73,9 +71,7 @@ const page = () => {
       );
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

@@ -79,7 +79,6 @@ const TicketLists = ({ type }: { type: string }) => {
       );
       setMembers(newMembers);
     } catch (error: any) {
-      console.error(error);
       if (error.response.status === 401) {
         alert('로그인이 필요합니다.');
         router.push('/login');
@@ -91,18 +90,14 @@ const TicketLists = ({ type }: { type: string }) => {
     try {
       const response = await authInstance.get('/admin/tickets/general');
       setGeneralTicketList(response.data.result.tickets);
-    } catch (error: any) {
-      console.error(error);
-    }
+    } catch (error: any) {}
   };
 
   const getFreshmanTicketList = async () => {
     try {
       const response = await authInstance.get('/admin/tickets/freshman');
       setFreshmanTicketList(response.data.result.tickets);
-    } catch (error: any) {
-      console.error(error);
-    }
+    } catch (error: any) {}
   };
 
   useEffect(() => {

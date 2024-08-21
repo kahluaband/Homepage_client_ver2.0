@@ -122,11 +122,8 @@ const page = () => {
         if (response.status === 200) {
           window.location.href = `/recruit/complete`;
         } else {
-          console.error(`Unexpected response status: ${response.status}`);
         }
-      } catch (error: any) {
-        console.log(error);
-      }
+      } catch (error: any) {}
     }
   };
 
