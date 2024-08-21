@@ -40,7 +40,12 @@ const Card: React.FC<CardProps> = ({
         <div className={`w-[102px] h-[102px] ${bgColor} relative`}>
           <div className="w-[102px] h-[102px] rounded-bl-3xl absolute bg-gray-0">
             <div className="w-[78px] h-[78px] absolute bg-gray-5 ml-6 mb-6 rounded-3xl flex justify-center items-center">
-              <Image src={imageSrc} className="w-12 h-12" alt={altText} />
+              <Image
+                src={imageSrc}
+                className="w-12 h-12"
+                alt={altText}
+                sizes="100vw"
+              />
             </div>
           </div>
         </div>
