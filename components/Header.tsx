@@ -47,7 +47,7 @@ const theme = createTheme({
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          padding: '8px 12px',
+          padding: '8px 0',
         },
       },
     },
@@ -102,7 +102,7 @@ const Header = () => {
           <ListItem key={section} disablePadding>
             <ListItemButton>
               <div
-                className={`w-[610px] rounded-[20px] flex items-center ${width <= 834 ? 'pl-4 h-[40px]' : 'pl-6 h-[43px]'} ${section === currentLink ? 'bg-primary-50' : ''}`}
+                className={`w-[610px] rounded-[20px] flex items-center ${width <= 834 ? 'pl-8 h-[40px]' : 'pl-8 h-[43px]'} ${section === currentLink ? 'bg-primary-50' : ''}`}
                 onClick={() => handleLinkClick(section)}
               >
                 <ListItemText
