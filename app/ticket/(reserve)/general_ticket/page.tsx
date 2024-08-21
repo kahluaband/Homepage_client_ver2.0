@@ -52,7 +52,6 @@ const General_ticket: React.FC = () => {
     }
     setDynamicHeightClass(newHeightClass);
     setDynamicTotalHeightClass(totalHeightClass);
-    localStorage.setItem('member', member.toString());
   }, [member]);
 
   const handleReservationComplete = () => {
@@ -90,9 +89,6 @@ const General_ticket: React.FC = () => {
   const handleSubmit = async () => {
     const { buyer, phone_num, members } = userInfo;
     const isDataComplete = isFormComplete;
-    console.log(buyer, phone_num, members);
-
-    console.log('member수', member);
     if (isDataComplete) {
       try {
         const formData = {
