@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
+import { filterPhoneNumber } from '@/components/util/utils';
 
 const Reservation = () => {
   const params = useSearchParams();
@@ -33,7 +34,9 @@ const Reservation = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    const phoneNumber = e.target.value;
+    const limitedPhoneNumber = filterPhoneNumber(phoneNumber);
+    setInputValue(limitedPhoneNumber);
   };
 
   const handleConfirmCancel = async () => {
