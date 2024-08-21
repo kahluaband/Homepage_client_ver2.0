@@ -14,7 +14,7 @@ const PerformanceCard: React.FC<SongProps> = ({ song }) => {
         alt="thumbnail"
         quality={50}
         className="rounded-[12px]"
-        fill
+        sizes="100vw"
       />
       <p className="text-[20px] pad:text-[22px] font-semibold mt-[8px] pad:mt-[12px]">
         {song.name}
