@@ -577,9 +577,10 @@ const Playlists = () => {
               src={chevron_down_blue}
               alt="more"
               width={16}
+              height={16}
             />
           ) : (
-            <Image src={chevron_down_blue} alt="more" width={16} />
+            <Image src={chevron_down_blue} alt="more" width={16} height={16}/>
           )}
         </div>
       )}
