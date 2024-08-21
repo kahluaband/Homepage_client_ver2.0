@@ -20,10 +20,12 @@ const MemberSelection: React.FC<MemberSelectionProps> = ({
   setMember,
 }) => {
   const handleIncrement = () => {
+    localStorage.setItem('member', member.toString());
     setMember((prevMember) => (prevMember < max ? prevMember + 1 : prevMember));
   };
 
   const handleDecrement = () => {
+    localStorage.setItem('member', member.toString());
     setMember((prevMember) => (prevMember > min ? prevMember - 1 : prevMember));
   };
 
