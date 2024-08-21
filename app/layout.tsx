@@ -1,12 +1,12 @@
 'use client';
-import { Inter, Roboto } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
 import './globals.css';
+import GoogleAnalytics from '@/lib/GoogleAnalytics';
 
 const roboto = Roboto({
   weight: '400',
@@ -66,6 +66,11 @@ export default function RootLayout({
             ) : (
               <Header />
             )}
+            {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+              <GoogleAnalytics
+                gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}
+              />
+            ) : null}
             {children}
           </div>
           {!isCompletePage &&
@@ -79,7 +84,6 @@ export default function RootLayout({
             !isApplyPage &&
             !(isMobile && isTicketPage) && <Footer />}
         </body>
-        <GoogleAnalytics gaId="" />
       </html>
     </>
   );
