@@ -12,7 +12,7 @@ const SessionCard: React.FC<SessionProps> = ({ session, image }) => {
         {session}
       </p>
       <div className="relative h-[80px] w-[80px] pad:h-[120px] pad:w-[120px]">
-        <Image src={image} alt={session} />
+        <Image src={image} fill alt={session} />
       </div>
     </div>
   );

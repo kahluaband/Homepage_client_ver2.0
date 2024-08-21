@@ -24,7 +24,7 @@ export default function About() {
         {/* pad: right top 파란상자 ph: bottome left 파란상자 */}
         <div className="w-[144px] h-[56px] pad:w-[180px] pad:h-[90px] absolute bottom-0 max-pad:left-0 pad:top-0 pad:right-0 bg-primary-50 rounded-[48px] z-30">
           <div className="absolute w-[179px] h-[120px] pad:w-[195px] pad:h-[128px] bottom-0 left-[6px] pad:left-[16px]">
-            <Image src={music} fill alt="music" sizes="100vw" />
+            <Image src={music} fill alt="music" />
           </div>
         </div>
 
@@ -74,7 +74,7 @@ const AboutSmallBox = () => {
         className="absolute flex justify-center items-center right-0 bottom-0 w-[56px] h-[56px] pad:w-[78px] pad:h-[78px] z-30 bg-gray-90 rounded-full"
       >
         <div className="relative w-[40px] h-[40px] pad:w-[56px] pad:h-[56px]">
-          <Image src={arrow} sizes="100vw" alt=">" />
+          <Image src={arrow} fill alt=">" />
         </div>
       </Link>
     </div>
