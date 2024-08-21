@@ -32,13 +32,11 @@ const RecruitButton = () => {
       <Image
         src={syn}
         alt="."
-        sizes="100vw"
         className="flex absolute -rotate-[20deg] -left-[36px] -top-[30px] pad:-left-[64px] pad:-top-[56px] w-[72px] h-[72px] pad:w-[120px] pad:h-[120px] z-10"
       />
       <Image
         src={guitar}
         alt="."
-        sizes="100vw"
         className="flex absolute -right-[26px] -bottom-[26px] pad:-right-[44px] pad:-bottom-[38px] w-[72px] h-[72px] pad:w-[120px] pad:h-[120px] z-30"
       />
     </div>
