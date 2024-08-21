@@ -12,8 +12,8 @@ const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 const Page = () => {
   const loc = information.locationDetails;
+  const [isDays, setIsDays] = useState(false);
   const [nowUrl, setNowUrl] = useState('');
-  const [isDays, setIsDays] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
   const [active, setActive] = useState(isDays);
@@ -46,6 +46,10 @@ const Page = () => {
     setFreshman(false);
     setGeneral(true);
   };
+
+  useEffect(() => {
+    setIsDays(information.isDays);
+  }, []);
 
   useEffect(() => {
     setNowUrl(window.location.href);
@@ -91,24 +95,6 @@ const Page = () => {
       document.head.removeChild(script);
     };
   }, [apikey]);
-
-  useEffect(() => {
-    const checkEventStatus = () => {
-      const eventDate = new Date(information.lastReserveDate);
-      const nowDate = new Date();
-
-      const nowKoreanTime = new Date(
-        nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
-      );
-
-      setIsDays(nowKoreanTime < eventDate);
-    };
-
-    checkEventStatus();
-    const interval = setInterval(checkEventStatus, 60000);
-
-    return () => clearInterval(interval);
-  }, [information.lastReserveDate]);
 
   const copyUrl = () => {
     navigator.clipboard.writeText(nowUrl).then(() => {
@@ -227,7 +213,7 @@ const Page = () => {
             </p>
             <div
               onClick={copyLocation}
-              className="flex flex-row items-center gap-1"
+              className="flex flex-row cursor-pointer items-center gap-1"
             >
               <Image
                 src="/image/ticket/copy.svg"

@@ -20,6 +20,7 @@ interface Information {
   eventDate: Date;
   lastReserveDate: Date;
   isFreshmanFree: boolean;
+  isDays: boolean;
   tickets: Tickets;
   day: string;
   time: string;
@@ -50,29 +51,41 @@ const formatSubDate = (date: Date): string => {
 const baseEventDate = new Date('2024-09-02T19:00:00+09:00');
 const lastReserveDate = new Date('2024-09-01T19:00:00+09:00');
 
-export const information: Information = {
-  title: '2024년 9월 정기 공연',
-  location: '001 클럽',
-  locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
-  dateForString: formatDateForString(baseEventDate),
-  dateForMinute: formatDateForMinute(baseEventDate),
-  dayForString: formatDayForString(baseEventDate),
-  day: formatDay(baseEventDate),
-  time: formatTime(baseEventDate),
-  subDate: formatSubDate(baseEventDate),
-  eventDate: baseEventDate,
-  lastReserveDate: lastReserveDate,
-  isFreshmanFree: false,
-  tickets: {
-    freshman: {
-      name: '신입생 티켓',
-      price: '무료',
-      maxQuantity: 1,
+const getInformation = (): Information => {
+  const nowDate = new Date();
+  const nowKoreanTime = new Date(
+    nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
+  );
+
+  const isDays = nowKoreanTime < lastReserveDate;
+
+  return {
+    title: '2024년 9월 정기 공연',
+    location: '001 클럽',
+    locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
+    dateForString: formatDateForString(baseEventDate),
+    dateForMinute: formatDateForMinute(baseEventDate),
+    dayForString: formatDayForString(baseEventDate),
+    day: formatDay(baseEventDate),
+    time: formatTime(baseEventDate),
+    subDate: formatSubDate(baseEventDate),
+    eventDate: baseEventDate,
+    lastReserveDate: lastReserveDate,
+    isFreshmanFree: false,
+    isDays: isDays,
+    tickets: {
+      freshman: {
+        name: '신입생 티켓',
+        price: '무료',
+        maxQuantity: 1,
+      },
+      general: {
+        name: '일반 티켓',
+        price: '5,000원',
+        maxQuantity: 5,
+      },
     },
-    general: {
-      name: '일반 티켓',
-      price: '5,000원',
-      maxQuantity: 5,
-    },
-  },
+  };
 };
+
+export const information = getInformation();

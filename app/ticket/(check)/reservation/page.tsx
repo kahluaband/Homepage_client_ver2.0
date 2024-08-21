@@ -9,11 +9,12 @@ import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
 import { filterPhoneNumber } from '@/components/util/utils';
+import { information } from '@/components/data/Information';
 
 const Reservation = () => {
   const params = useSearchParams();
+  const [isDays, setIsDays] = useState(true);
   const reservationId = params.get('reservationId');
-  const [isFreshman, setIsFreshman] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dynamicHeightClass, setDynamicHeightClass] = useState('');
   const [buyer, setBuyer] = useState<string>('');
@@ -79,6 +80,10 @@ const Reservation = () => {
   }, []);
 
   useEffect(() => {
+    setIsDays(information.isDays);
+  }, []);
+
+  useEffect(() => {
     const fetchTicketDetails = async () => {
       try {
         const response = await axiosInstance.get(
@@ -140,12 +145,18 @@ const Reservation = () => {
         >
           예매 페이지로 돌아가기
         </Link>
-        <button
-          onClick={handleOpenModal}
-          className="w-[328px] pad:w-[384px] h-[59px] hidden pad:flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-0 text-danger-40 border border-danger-40"
-        >
-          예매 취소하기
-        </button>
+        {isDays ? (
+          <button
+            onClick={handleOpenModal}
+            className="w-[328px] pad:w-[384px] h-[59px] hidden pad:flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-0 text-danger-40 border border-danger-40"
+          >
+            예매 취소하기
+          </button>
+        ) : (
+          <button className=" cursor-default w-[328px] pad:w-[384px] h-[59px] hidden pad:flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-60 text-gray-0 border border-gray-60">
+            취소 가능한 기간이 아닙니다.
+          </button>
+        )}
       </div>
       <CancelModal
         isOpen={isModalOpen}
