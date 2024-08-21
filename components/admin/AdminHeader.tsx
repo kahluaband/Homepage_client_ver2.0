@@ -48,7 +48,7 @@ const AdminHeader = () => {
   return (
     // padding 수정 필요
     <div
-      className={`font-pretendard w-full h-[64px] fixed z-10 bg-gray-0 flex flex-row items-center px-[360px] ${pathname === '/login' && width <= 834 ? 'justify-center' : 'justify-between'}`}
+      className={`font-pretendard w-full h-[64px] fixed z-10 bg-gray-0 flex flex-row items-center ${pathname === '/login' && width <= 834 ? 'justify-center' : 'justify-between px-[360px]'}`}
     >
       <Link href="/admin/applicant" key="admin">
         <div className="inline-flex gap-5 items-center">
