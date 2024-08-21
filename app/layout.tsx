@@ -66,7 +66,11 @@ export default function RootLayout({
             ) : (
               <Header />
             )}
-
+            {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+              <GoogleAnalytics
+                gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}
+              />
+            ) : null}
             {children}
           </div>
           {!isCompletePage &&
