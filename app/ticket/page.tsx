@@ -12,8 +12,8 @@ const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 const Page = () => {
   const loc = information.locationDetails;
+  const [isDays, setIsDays] = useState(false);
   const [nowUrl, setNowUrl] = useState('');
-  const [isDays, setIsDays] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
   const [active, setActive] = useState(isDays);
@@ -46,6 +46,10 @@ const Page = () => {
     setFreshman(false);
     setGeneral(true);
   };
+
+  useEffect(() => {
+    setIsDays(information.isDays);
+  }, []);
 
   useEffect(() => {
     setNowUrl(window.location.href);
@@ -92,24 +96,6 @@ const Page = () => {
     };
   }, [apikey]);
 
-  useEffect(() => {
-    const checkEventStatus = () => {
-      const eventDate = new Date(information.lastReserveDate);
-      const nowDate = new Date();
-
-      const nowKoreanTime = new Date(
-        nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
-      );
-
-      setIsDays(nowKoreanTime < eventDate);
-    };
-
-    checkEventStatus();
-    const interval = setInterval(checkEventStatus, 60000);
-
-    return () => clearInterval(interval);
-  }, [information.lastReserveDate]);
-
   const copyUrl = () => {
     navigator.clipboard.writeText(nowUrl).then(() => {
       alert('링크가 복사되었습니다!');
@@ -118,7 +104,7 @@ const Page = () => {
 
   const copyLocation = () => {
     navigator.clipboard.writeText(loc).then(() => {
-      alert('주소 복사되었습니다!');
+      alert('주소가 복사되었습니다!');
     });
   };
 
@@ -218,16 +204,16 @@ const Page = () => {
         <div className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto" />
         <div className="z-10 bg-gray-0 h-6 w-full flex pad:hidden" />
         <div className="flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] pad:mt-[120px] h-[282px] mx-auto">
-          <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-gray-70 h-[27px]">
+          <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-primary-50 h-[27px]">
             공연장 위치
           </p>
-          <div className="flex pad:hidden flex-row gap-3 mt-1">
-            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] whitespace-nowrap truncate">
+          <div className="flex flex-row gap-3 mt-1">
+            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] pad:w-[294px] whitespace-nowrap truncate">
               {loc}
             </p>
             <div
               onClick={copyLocation}
-              className="flex flex-row items-center gap-1"
+              className="flex flex-row cursor-pointer items-center gap-1"
             >
               <Image
                 src="/image/ticket/copy.svg"

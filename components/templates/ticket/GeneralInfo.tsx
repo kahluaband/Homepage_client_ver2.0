@@ -67,18 +67,33 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
     ]);
     setNamesArray((prevNamesArray) => [...prevNamesArray, '']);
     setPhonesArray((prevPhonesArray) => [...prevPhonesArray, '']);
-  }, []);
+    setMember((prevMember) => prevMember + 1); // 동반인 추가 시 member 수 증가
+  }, [setMember]);
 
-  useEffect(() => {
-    if (member > namesArray.length) {
-      for (let i = namesArray.length; i < member; i++) {
-        addCompanion();
-      }
-    } else if (member < namesArray.length) {
-      setNamesArray((prevNamesArray) => prevNamesArray.slice(0, member));
-      setPhonesArray((prevPhonesArray) => prevPhonesArray.slice(0, member));
-    }
-  }, [member, namesArray.length, addCompanion]);
+  const removeCompanion = useCallback(
+    (index: number) => {
+      setNamesArray((prevNamesArray) => {
+        const updatedNames = [...prevNamesArray];
+        updatedNames.splice(index, 1);
+        return updatedNames;
+      });
+
+      setPhonesArray((prevPhonesArray) => {
+        const updatedPhones = [...prevPhonesArray];
+        updatedPhones.splice(index, 1);
+        return updatedPhones;
+      });
+
+      setCompanions((prevCompanions) => {
+        const updatedCompanions = [...prevCompanions];
+        updatedCompanions.splice(index, 1);
+        return updatedCompanions;
+      });
+
+      setMember((prevMember) => Math.max(prevMember - 1, 1));
+    },
+    [setMember]
+  );
 
   useEffect(() => {
     const isFormComplete =
@@ -124,7 +139,8 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
       </div>
       <div className="flex flex-col">
         <InfoTemplate
-          key={0}
+          index={0}
+          member={member}
           role={'예매자'}
           handleBuyerChange={handleBuyerChange}
           handlePhoneChange={handlePhoneChange}
@@ -133,7 +149,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
       {Array.from({ length: member - 1 }).map((_, index) => (
         <div key={index + 1} className="flex flex-row mt-2">
           <InfoTemplate
-            key={index + 1}
+            index={index + 1}
             role={`동반인 ${index + 1}`}
             handleNamesArrayChange={(value) =>
               handleNamesArrayChange(index, value)
@@ -141,13 +157,15 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
             handlePhonesArrayChange={(value) =>
               handlePhonesArrayChange(index, value)
             }
-            setMember={setMember}
+            removeCompanion={() => removeCompanion(index)}
+            companion={index + 1}
+            member={member}
           />
         </div>
       ))}
       {member < 5 && (
         <button
-          onClick={() => setMember((prevMember) => prevMember + 1)}
+          onClick={addCompanion}
           className="mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]"
         >
           + 동반인 추가...

@@ -25,6 +25,12 @@ const TicketStatus: React.FC<TicketStatusProps> = ({
   type,
 }) => {
   const statusText = stateMap[state];
+  const copyReservationId = () => {
+    navigator.clipboard.writeText(reservation_id).then(() => {
+      alert('예매번호가 복사되었습니다!');
+    });
+  };
+
   return (
     <div className="flex flex-row w-full px-4 pad:px-12 my-10">
       <Image
@@ -49,7 +55,21 @@ const TicketStatus: React.FC<TicketStatusProps> = ({
           </div>
           <div className="flex flex-row h-[27px] mt-4 pad:mt-7 dt:mt-0">
             <p className="text-gray-40 w-[67px] dt:ml-[104px]">예매번호</p>
-            <p className="text-gray-80 w-[135px] ml-[39px]">{reservation_id}</p>
+            <p className="text-gray-80 w-[125px] pad:w-[135px] ml-[39px]">
+              {reservation_id}
+            </p>
+            <div
+              onClick={copyReservationId}
+              className="flex items-center justify-start cursor-pointer"
+            >
+              <Image
+                src="/image/ticket/copy.svg"
+                width={20}
+                height={20}
+                alt="copy"
+                className="w-4 h-4 pad:w-5 pad:h-5"
+              />
+            </div>
           </div>
         </div>
         <div className="flex flex-col dt:flex-row text-[16px] pad:text-[18px] font-medium leading-7 mt-4 pad:mt-7">

@@ -1,6 +1,6 @@
 const MustRead = () => {
   return (
-    <div className="w-full h-[100%] bg-gray-5 pad:bg-gray-0 py-10 pad:pt-0 px-4 pad:px-12">
+    <div className="w-full h-full bg-gray-5 pad:bg-gray-0 py-6 pad:py-2 pad:mb-4 pad:pt-0 px-4 pad:px-12">
       <div className="font-semibold text-lg pad:text-xl leading-[30px]  text-gray-90">
         필독사항
       </div>

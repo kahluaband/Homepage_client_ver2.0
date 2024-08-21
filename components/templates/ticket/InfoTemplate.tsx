@@ -1,28 +1,38 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '@/components/ui/InputBox';
 import Image from 'next/image';
 import { filterPhoneNumber, filterNameValue } from '@/components/util/utils';
 
 interface InfoTemplateProps {
+  index: number;
+  member: number;
   role: string;
   handleBuyerChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleNamesArrayChange?: (value: string) => void;
   handlePhoneChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handlePhonesArrayChange?: (value: string) => void;
   setMember?: React.Dispatch<React.SetStateAction<number>>;
+  companion?: number;
+  removeCompanion?: (index: number) => void;
 }
 
 const InfoTemplate: React.FC<InfoTemplateProps> = ({
+  index,
   role,
+  member,
   handleBuyerChange,
   handleNamesArrayChange,
   handlePhoneChange,
   handlePhonesArrayChange,
   setMember,
+  companion,
+  removeCompanion,
 }) => {
   const [phoneValue, setPhoneValue] = useState('');
   const [nameValue, setNameValue] = useState('');
+
+  const isLastCompanion = index === member - 1;
 
   const handlePhoneInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -40,15 +50,13 @@ const InfoTemplate: React.FC<InfoTemplateProps> = ({
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const inputValue = event.target.value;
-    const filteredValue = filterNameValue(inputValue); // 필터링 함수에서 띄어쓰기 허용
-    console.log('필터링된 값:', filteredValue);
+    const filteredValue = filterNameValue(inputValue);
     setNameValue(filteredValue);
 
-    // 이벤트 객체가 아닌 필터링된 값을 전달
     if (role === '예매자') {
-      handleBuyerChange?.(event); // 이벤트 객체 전달
+      handleBuyerChange?.(event);
     } else {
-      handleNamesArrayChange?.(filteredValue); // 필터링된 이름 전달
+      handleNamesArrayChange?.(filteredValue);
     }
   };
 
@@ -56,10 +64,10 @@ const InfoTemplate: React.FC<InfoTemplateProps> = ({
     <div>
       <div className="w-[282px] flex flex-row justify-between">
         <p className="mt-6 text-[16px] font-normal leading-6">{role}</p>
-        {role !== '예매자' && (
+        {role !== '예매자' && isLastCompanion && (
           <div
             className="pad:hidden cursor-pointer mt-6"
-            onClick={() => setMember?.((prevMember) => prevMember - 1)}
+            onClick={() => removeCompanion?.(index)}
           >
             <Image
               src="/image/ticket/subtract.svg"
@@ -83,10 +91,10 @@ const InfoTemplate: React.FC<InfoTemplateProps> = ({
           value={phoneValue}
           onChange={handlePhoneInputChange}
         />
-        {role !== '예매자' && (
+        {role !== '예매자' && isLastCompanion && (
           <div
             className="hidden pad:flex cursor-pointer w-12"
-            onClick={() => setMember?.((prevMember) => prevMember - 1)}
+            onClick={() => removeCompanion?.(index)}
           >
             <Image
               src="/image/ticket/subtract.svg"
