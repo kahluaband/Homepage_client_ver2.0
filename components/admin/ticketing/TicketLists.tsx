@@ -121,42 +121,69 @@ const TicketLists = ({ type }: { type: string }) => {
             id="panel1a-header"
           >
             {ticket.status === 'FINISH_PAYMENT' ? (
-              <Typography className="min-w-[94px] text-center text-base font-medium text-success-40">
+              <Typography
+                component="div"
+                className="min-w-[94px] text-center text-base font-medium text-success-40"
+              >
                 결제 완료
               </Typography>
             ) : (
-              <Typography className="min-w-[94px] text-center text-base font-medium text-danger-40">
+              <Typography
+                component="div"
+                className="min-w-[94px] text-center text-base font-medium text-danger-40"
+              >
                 결제 대기
               </Typography>
             )}
 
-            <Typography className="min-w-[186px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[186px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.reservation_id}
             </Typography>
-            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.buyer}
             </Typography>
-            <Typography className="min-w-[160px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[160px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.phone_num}
             </Typography>
-            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.total_ticket}장
             </Typography>
 
-            <Typography className="min-w-[186px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[186px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.major === null ? '-' : ticket.major}
             </Typography>
 
-            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.studentId === null ? '-' : ticket.studentId}
             </Typography>
 
-            <Typography className="min-w-[120px] text-center text-base font-medium text-gray-60">
+            <Typography
+              component="div"
+              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+            >
               {ticket.meeting === null ? '-' : ticket.meeting}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography component="div">
               {members[index] &&
                 members[index].map((member) => (
                   <div key={member.id} className="flex gap-14">
