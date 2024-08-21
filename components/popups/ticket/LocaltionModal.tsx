@@ -7,6 +7,12 @@ interface LocationModalProps {
   onClose: () => void;
 }
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {

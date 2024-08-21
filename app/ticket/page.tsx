@@ -10,6 +10,12 @@ import { information } from '@/components/data/Information';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
+declare global {
+  interface Window {
+    kakao: any;
+  }
+}
+
 const Page = () => {
   const loc = information.locationDetails;
   const [isDays, setIsDays] = useState(false);
