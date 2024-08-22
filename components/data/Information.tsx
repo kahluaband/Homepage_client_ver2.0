@@ -48,8 +48,23 @@ const formatSubDate = (date: Date): string => {
   return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} ${dayOfWeek} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
 };
 
-const baseEventDate = new Date('2024-09-02T19:00:00+09:00');
-const lastReserveDate = new Date('2024-09-01T19:00:00+09:00');
+const createEventDates = (
+  eventDateString: string,
+  reserveDateString: string
+): { eventDate: Date; lastReserveDate: Date } => {
+  return {
+    eventDate: new Date(eventDateString),
+    lastReserveDate: new Date(reserveDateString),
+  };
+};
+
+const dynamicEventDateString = '2024-09-02T19:00:00+09:00';
+const dynamicLastReserveDateString = '2024-09-01T19:00:00+09:00';
+
+const { eventDate, lastReserveDate } = createEventDates(
+  dynamicEventDateString,
+  dynamicLastReserveDateString
+);
 
 const getInformation = (): Information => {
   const nowDate = new Date();
@@ -63,13 +78,13 @@ const getInformation = (): Information => {
     title: '2024년 9월 정기 공연',
     location: '001 클럽',
     locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
-    dateForString: formatDateForString(baseEventDate),
-    dateForMinute: formatDateForMinute(baseEventDate),
-    dayForString: formatDayForString(baseEventDate),
-    day: formatDay(baseEventDate),
-    time: formatTime(baseEventDate),
-    subDate: formatSubDate(baseEventDate),
-    eventDate: baseEventDate,
+    dateForString: formatDateForString(eventDate),
+    dateForMinute: formatDateForMinute(eventDate),
+    dayForString: formatDayForString(eventDate),
+    day: formatDay(eventDate),
+    time: formatTime(eventDate),
+    subDate: formatSubDate(eventDate),
+    eventDate: eventDate,
     lastReserveDate: lastReserveDate,
     isFreshmanFree: false,
     isDays: isDays,
