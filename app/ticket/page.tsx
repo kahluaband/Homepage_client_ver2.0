@@ -153,7 +153,7 @@ const Page = () => {
             {isDays ? '예매 가능' : '예매 마감'}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
-            <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-medium leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
+            <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
               {information.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
@@ -166,34 +166,34 @@ const Page = () => {
               />
             </div>
           </div>
-          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-light gap-6 h-7">
+          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">장소</p>
             <p className="text-gray-90 w-[65px]">{information.location}</p>
           </div>
-          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-light gap-6 h-7">
+          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">일시</p>
             <p className="text-gray-90 w-40">{information.dateForString}</p>
           </div>
-          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-light">
+          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal">
             <p className="text-gray-40 w-7 pad:w-8 h-7">가격</p>
             <div className="ml-6 flex flex-col">
               <div className="flex flex-row items-start h-7">
                 <p className="text-gray-90 w-[74px] pad:w-[83px] ">
                   신입생 티켓
                 </p>
-                <p className="text-primary-50 w-7 pad:w-8 ml-6 font-medium">
+                <p className="text-primary-50 w-7 pad:w-8 ml-6 font-semibold">
                   {information.tickets.freshman.price}
                 </p>
-                <p className="text-gray-40 text-[14px] font-light ml-2 flex justify-center w-[68px]">
+                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[68px]">
                   1인 최대 {information.tickets.freshman.maxQuantity}매
                 </p>
               </div>
               <div className="flex flex-row items-start h-7 mt-2 pad:mt-5">
                 <p className="text-gray-90 w-[60px] pad:w-[67px]">일반 티켓</p>
-                <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-medium">
+                <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-semibold">
                   {information.tickets.general.price}
                 </p>
-                <p className="text-gray-40 text-[14px] font-light ml-2 flex justify-center w-[70px]">
+                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">
                   1인 최대 {information.tickets.general.maxQuantity}매
                 </p>
               </div>
@@ -201,7 +201,7 @@ const Page = () => {
           </div>
           <Link
             href="/ticket/search/"
-            className="mx-auto dt:ml-[56px] mt-[21px] w-full dt:w-[280px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-normal dt:mr-0 "
+            className="mx-auto dt:ml-[56px] mt-[21px] w-full dt:w-[280px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium dt:mr-0 "
           >
             예매 조회/취소
           </Link>
@@ -210,11 +210,11 @@ const Page = () => {
         <div className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto" />
         <div className="z-10 bg-gray-0 h-6 w-full flex pad:hidden" />
         <div className="flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] pad:mt-[120px] h-[282px] mx-auto">
-          <p className="text-[16px] pad:text-[18px] font-normal left-9 text-primary-60 pad:text-primary-50 h-[27px]">
+          <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-primary-50 h-[27px]">
             공연장 위치
           </p>
           <div className="flex flex-row gap-3 mt-1">
-            <p className="text-[16px] pad:text-[20px] font-normal leading-[30px] text-gray-90 text-center w-[194px] pad:w-[294px] whitespace-nowrap truncate">
+            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] pad:w-[294px] whitespace-nowrap truncate">
               {loc}
             </p>
             <div
@@ -227,7 +227,7 @@ const Page = () => {
                 height={20}
                 alt="copy"
               />
-              <p className="text-gray-40 font-normal text-[16px] leading-6">
+              <p className="text-gray-40 font-medium text-[16px] leading-6">
                 복사
               </p>
             </div>
@@ -244,13 +244,13 @@ const Page = () => {
         <div className="w-[100%] hidden pad:flex flex-row gap-[18px] mt-4 ">
           <button
             onClick={openModal}
-            className="w-[384px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-gray-90 rounded-xl text-[18px] font-normal underline"
+            className="w-[384px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-gray-90 rounded-xl text-[18px] font-medium underline"
           >
             공연장 위치 ↗
           </button>
           <Link
             href="/ticket/search/"
-            className="w-[384px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-primary-50 rounded-xl text-[18px] font-normal"
+            className="w-[384px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-primary-50 rounded-xl text-[18px] font-medium"
           >
             예매 조회/취소
           </Link>

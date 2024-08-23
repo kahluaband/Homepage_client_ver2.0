@@ -27,8 +27,10 @@ const OtherInfo: React.FC<OtherInfoProps> = ({ onInfoChange, OtherInfo }) => {
   return (
     <div className="flex flex-col py-10 px-4 pad:px-12">
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end">
-        <p className="text-gray-90 text-[20px] font-medium">3월 18일 스케줄</p>
-        <p className="text-gray-40 text-[16px] font-normal">
+        <p className="text-gray-90 text-[20px] font-semibold">
+          3월 18일 스케줄
+        </p>
+        <p className="text-gray-40 text-[16px] font-medium">
           면접 시간 조정을 위해 수업이 끝나는 시간을 정확하게 작성해주세요.
         </p>
       </div>
@@ -41,10 +43,10 @@ const OtherInfo: React.FC<OtherInfoProps> = ({ onInfoChange, OtherInfo }) => {
       />
 
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12">
-        <p className="text-gray-90 text-[20px] font-medium">
+        <p className="text-gray-90 text-[20px] font-semibold">
           면접 후 뒷풀이 참석 여부
         </p>
-        <p className="text-gray-40 text-[16px] font-normal">
+        <p className="text-gray-40 text-[16px] font-medium">
           참석하시는 분은 신분증을 꼭 지참해주세요.
         </p>
       </div>

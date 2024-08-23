@@ -1,4 +1,4 @@
-import guitar from '@/public/image/recruit/guitar.svg';
+import guitar from '@/public/image/about/guitar.svg';
 import concert1 from '@/public/image/about/concert1.avif';
 import concert2 from '@/public/image/about/concert2.avif';
 import concert3 from '@/public/image/about/concert3.avif';

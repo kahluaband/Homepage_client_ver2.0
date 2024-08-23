@@ -88,7 +88,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
     >
       <div className="fixed flex flex-col rounded-3xl w-[652px] h-[515px] z-50 bg-gray-0">
         <div className="w-full h-[76px] rounded-t-3xl bg-gray-80 text-gray-0 items-center flex px-8">
-          <p className="text-[24px] font-medium leading-9 w-[110px] whitespace-nowrap">
+          <p className="text-[24px] font-semibold leading-9 w-[110px] whitespace-nowrap">
             공연장 위치
           </p>
           <Image
@@ -102,7 +102,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
         </div>
         <div className="px-8 py-6 flex flex-col">
           <div className="flex flex-row gap-3">
-            <p className="text-[20px] font-normal leading-[30px] text-gray-90 text-start whitespace-nowrap truncate">
+            <p className="text-[20px] font-medium leading-[30px] text-gray-90 text-start whitespace-nowrap truncate">
               {loc}
             </p>
             <div
@@ -115,7 +115,7 @@ const LocationModal: React.FC<LocationModalProps> = ({ isOpen, onClose }) => {
                 height={20}
                 alt="copy"
               />
-              <p className="text-gray-40 font-normal text-[16px] leading-6">
+              <p className="text-gray-40 font-medium text-[16px] leading-6">
                 복사
               </p>
             </div>

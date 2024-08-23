@@ -18,10 +18,10 @@ const PerformanceCard: React.FC<SongProps> = ({ song }) => {
         width={384}
         height={216}
       />
-      <p className="text-[20px] pad:text-[22px] font-medium mt-[8px] pad:mt-[12px]">
+      <p className="text-[20px] pad:text-[22px] font-semibold mt-[8px] pad:mt-[12px]">
         {song.name}
       </p>
-      <span className="text-[16px] pad:text-[18px] text-gray-40 font-normal mt-[4px]">
+      <span className="text-[16px] pad:text-[18px] text-gray-40 font-medium mt-[4px]">
         {song.description}
       </span>
     </div>

@@ -5,7 +5,7 @@ export default function Ticket() {
   return (
     <div className="flex flex-col w-full max-pad:max-w-[500px] max-pad:px-[16px] pad:w-[786px] dt:w-[1200px] h-auto items-center mt-[48px] mb-[80px] pad:mt-[120px] pad:mb-[240px] ">
       {/* title */}
-      <div className="flex justify-start w-full font-mustica text-[24px] pad:text-[48px] font-medium">
+      <div className="flex justify-start w-full font-mustica text-[24px] pad:text-[48px] font-semibold">
         TICKET
       </div>
 

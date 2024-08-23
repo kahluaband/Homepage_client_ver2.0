@@ -37,10 +37,10 @@ const CancelModal: React.FC<CancelModalProps> = ({
     >
       <div className="fixed flex flex-col rounded-3xl w-[328px] h-[250px] pad:w-[652px] pad:h-[341px] z-50 bg-[white]">
         <div className="mt-5 pad:mt-0 pad:bg-gray-80 pad:h-[76px] px-6 pad:px-8 rounded-t-3xl w-full flex flex-row justify-between items-center">
-          <h2 className="hidden pad:flex text-2xl font-medium text-gray-0">
+          <h2 className="hidden pad:flex text-2xl font-semibold text-gray-0">
             예매를 취소하시겠습니까?
           </h2>
-          <h2 className="flex pad:hidden text-[18px] font-medium text-gray-90">
+          <h2 className="flex pad:hidden text-[18px] font-semibold text-gray-90">
             예매 취소
           </h2>
           <Image

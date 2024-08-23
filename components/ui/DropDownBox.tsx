@@ -99,7 +99,7 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({
       ) : (
         <>
           <div
-            className={`z-10 mx-auto px-5 justify-between items-center flex flex-row appearance-none outline-none text-16px font-normal text-start leading-6 cursor-pointer w-full h-[56px] rounded-xl bg-gray-0 border border-gray-15 transition-all duration-300 ${
+            className={`z-10 mx-auto px-5 justify-between items-center flex flex-row appearance-none outline-none text-16px font-medium text-start leading-6 cursor-pointer w-full h-[56px] rounded-xl bg-gray-0 border border-gray-15 transition-all duration-300 ${
               isDropdownVisible ? 'border-b-0 rounded-b-none' : ''
             }`}
             onClick={toggleDropdown}
@@ -130,7 +130,7 @@ const DropDownBox: React.FC<DropDownBoxProps> = ({
             }`}
             style={{ top: '55px', zIndex: isDropdownVisible ? 20 : -1 }}
           >
-            <ul className="text-16px font-normal leading-6 text-gray-60 px-5">
+            <ul className="text-16px font-medium leading-6 text-gray-60 px-5">
               {options.map((option) => (
                 <li key={option.value}>
                   <button

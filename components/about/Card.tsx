@@ -31,7 +31,7 @@ const Card: React.FC<CardProps> = ({
         <div
           className={`pad:w-[282px] ph:w-[202px] h-[102px] rounded-t-3xl ${bgColor} text-gray-0`}
         >
-          <p className="pad:mt-8 pad:ml-8 ph:mt-6 ph:ml-6 pad:text-[32px] ph:text-[24px] font-medium leading-[150%]">
+          <p className="pad:mt-8 pad:ml-8 ph:mt-6 ph:ml-6 pad:text-[32px] ph:text-[24px] font-semibold leading-[150%]">
             <span>{title1}</span>
             <br />
             <span>{title2}</span>
@@ -50,7 +50,7 @@ const Card: React.FC<CardProps> = ({
       >
         <div className="flex-grow"></div>
         <p
-          className={`${width} ${height} ph:h-36 pad:mb-8 ph:mb-6 pad:text-lg ph:text-base font-normal leading-[150%]`}
+          className={`${width} ${height} ph:h-36 pad:mb-8 ph:mb-6 pad:text-lg ph:text-base font-medium leading-[150%]`}
         >
           <span className="pad:block ph:hidden">
             {descriptions.default.map((line, index) => (

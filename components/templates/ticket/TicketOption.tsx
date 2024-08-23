@@ -32,7 +32,7 @@ const TicketOption: React.FC<TicketOptionProps> = ({ isDays }) => {
     <div className="hidden pad:block dt:flex flex-col w-[786px] dt:w-[1200px]">
       <div className="w-[full] h-[331px] mx-auto rounded-xl flex flex-row mt-[40px]">
         <div className="w-[262px] dt:w-[400px] flex flex-col">
-          <div className="bg-gray-0 h-[51px] text-[18px] font-normal leading-[27px] text-gray-80 flex items-center">
+          <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
             <div className="flex w-[392px] justify-center">
               <p className="h-[27px] w-[67px] text-center justify-center flex">
                 날짜
@@ -44,7 +44,7 @@ const TicketOption: React.FC<TicketOptionProps> = ({ isDays }) => {
           </div>
         </div>
         <div className="w-[262px] dt:w-[400px] flex flex-col">
-          <div className="bg-gray-0 h-[51px] text-[18px] font-normal leading-[27px] text-gray-80 flex items-center">
+          <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
             <div className="flex w-[392px] justify-center ">
               <p className="h-[27px] w-[67px] text-center justify-center  flex">
                 시간
@@ -56,7 +56,7 @@ const TicketOption: React.FC<TicketOptionProps> = ({ isDays }) => {
           </div>
         </div>
         <div className="w-[262px] dt:w-[400px] flex flex-col">
-          <div className="bg-gray-0 h-[51px] text-[18px] font-normal leading-[27px] text-gray-80 flex items-center">
+          <div className="bg-gray-0 h-[51px] text-[18px] font-medium leading-[27px] text-gray-80 flex items-center">
             <div className="flex w-[392px] justify-center ">
               <p className="h-[27px] w-[67px] text-center justify-center flex">
                 좌석
@@ -93,7 +93,7 @@ const TicketOption: React.FC<TicketOptionProps> = ({ isDays }) => {
             ? 'ticket/freshman_ticket/'
             : 'ticket/general_ticket/'
         }
-        className={`mt-[24px] w-[280px] h-[60px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-normal 
+        className={`mt-[24px] w-[280px] h-[60px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium 
           ${isDays ? '' : 'cursor-default'}
                 ${
                   active == true

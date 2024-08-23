@@ -107,7 +107,7 @@ const Header = () => {
               >
                 <ListItemText
                   primary={section}
-                  className={`font-pretendard font-normal ${section === currentLink ? 'text-gray-0' : 'text-gray-70'} ${width <= 834 ? 'text-base' : 'text-lg'}`}
+                  className={`font-pretendard font-medium ${section === currentLink ? 'text-gray-0' : 'text-gray-70'} ${width <= 834 ? 'text-base' : 'text-lg'}`}
                 />
               </div>
             </ListItemButton>
@@ -228,7 +228,7 @@ const Header = () => {
             {Url.map((url) => (
               <li
                 key={url.name}
-                className={`font-normal text-center text-[18px] leading-6 ${
+                className={`font-medium text-center text-[18px] leading-6 ${
                   pathname === '/recruit' || pathname === '/contributors'
                     ? 'text-gray-0'
                     : ''

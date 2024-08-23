@@ -105,14 +105,14 @@ const page = () => {
       <div className="font-pretendard w-full pt-[64px] flex flex-col items-center">
         <div className="w-full h-[259px] bg-gray-5 flex justify-between px-[360px]">
           <div className="flex flex-col mt-16">
-            <span className="font-mustica text-[40px] text-gray-90 font-medium leading-10 pb-[15px]">
+            <span className="font-mustica text-[40px] text-gray-90 font-semibold leading-10 pb-[15px]">
               Applicant
             </span>
             <section className="flex gap-2 pb-10">
-              <span className="font-pretendard text-2xl text-gray-90 font-medium leading-9">
+              <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
                 24기 지원자 정보
               </span>
-              <span className="font-pretendard text-2xl text-primary-50 font-medium leading-9">
+              <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
                 {total}
               </span>
             </section>
@@ -127,7 +127,7 @@ const page = () => {
                 >
                   <span
                     key={sessionName}
-                    className={`${session === sessionName ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
+                    className={`${session === sessionName ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-medium leading-6 "`}
                   >
                     {sessionName}
                   </span>
@@ -157,11 +157,11 @@ const page = () => {
 
         <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
           {showMore ? (
-            <span className="text-primary-50 text-center text-lg font-normal">
+            <span className="text-primary-50 text-center text-lg font-medium">
               닫기
             </span>
           ) : (
-            <span className="text-primary-50 text-center text-lg font-normal">
+            <span className="text-primary-50 text-center text-lg font-medium">
               더보기
             </span>
           )}
