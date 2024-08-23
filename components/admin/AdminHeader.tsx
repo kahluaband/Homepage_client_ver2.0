@@ -39,19 +39,20 @@ const AdminHeader = () => {
           <li
             className="text-lg font-medium cursor-pointer"
             onClick={() => {
-              router.push('/admin/applicant');
-            }}
-          >
-            지원 관리
-          </li>
-          <li
-            className="text-lg font-medium cursor-pointer"
-            onClick={() => {
               router.push('/admin/ticketing');
             }}
           >
             예매 관리
           </li>
+          <li
+            className="text-lg font-medium cursor-pointer"
+            onClick={() => {
+              router.push('/admin/applicant');
+            }}
+          >
+            지원 관리
+          </li>
+
           <li
             className="text-lg font-medium text-danger-40 cursor-pointer"
             onClick={handleLogout}

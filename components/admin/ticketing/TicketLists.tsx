@@ -79,8 +79,10 @@ const TicketLists = ({ type }: { type: string }) => {
       );
       setMembers(newMembers);
     } catch (error: any) {
-      alert('로그인이 필요합니다.');
-      router.push('/login');
+      if (error.response.status === 401) {
+        alert('로그인이 필요합니다.');
+        router.push('/login');
+      }
     }
   };
 
