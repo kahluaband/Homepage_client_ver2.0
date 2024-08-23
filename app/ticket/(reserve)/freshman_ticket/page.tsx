@@ -88,7 +88,6 @@ const Freshman_ticket: React.FC = () => {
     const { name, phone_num, department, studentId, type } = userInfo;
     const meeting = handleMeeting(partySelection);
     const isDataComplete = isFormComplete;
-    console.log(name, phone_num, department, studentId, type, meeting);
     if (isDataComplete) {
       try {
         const formData = {
@@ -105,7 +104,6 @@ const Freshman_ticket: React.FC = () => {
             'Content-Type': 'application/json',
           },
         });
-        console.log(formData);
 
         if (response.status === 200) {
           const reservationId = response.data.reservationId;
@@ -114,11 +112,8 @@ const Freshman_ticket: React.FC = () => {
           setIsAlreadyReserved(true);
           setShowLastCheckModal(false);
         } else {
-          console.error(`Unexpected response status: ${response.status}`);
         }
-      } catch (error: any) {
-        console.log(error);
-      }
+      } catch (error: any) {}
     }
   };
 

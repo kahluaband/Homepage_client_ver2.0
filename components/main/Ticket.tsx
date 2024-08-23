@@ -1,4 +1,3 @@
-import { FadeInSection } from './FadeInSection';
 import { TicketIntroPad, TicketIntroPhone } from './TicketIntro';
 
 export default function Ticket() {

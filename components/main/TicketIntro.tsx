@@ -53,7 +53,7 @@ const TicketIntroPhone: React.FC<props> = ({ className }) => {
         </div>
 
         <div className="flex shrink-0 absolute top-0 rounded-[16px] w-[264px] h-[351px]">
-          <Image src={poster} alt="poster" sizes="100vw" />
+          <Image src={poster} alt="poster" fill />
         </div>
       </div>
       <TicketButton className="flex mt-[32px]" />

@@ -102,17 +102,12 @@ const General_ticket: React.FC = () => {
             'Content-Type': 'application/json',
           },
         });
-
-        console.log(response);
         if (response.status === 200) {
           const reservationId = response.data.reservationId;
           router.push(`/ticket/complete?reservationId=${reservationId}`);
         } else {
-          console.error(`Unexpected response status: ${response.status}`);
         }
-      } catch (error: any) {
-        console.log(error);
-      }
+      } catch (error: any) {}
     }
   };
 

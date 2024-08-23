@@ -2,24 +2,14 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ticketing_image from '@/public/image/admin/ticketing.svg';
-import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 import { totalTicket } from '@/atoms';
 import TicketLists from '@/components/admin/ticketing/TicketLists';
 
 const page = () => {
-  const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
   const total = useRecoilValue(totalTicket);
-
-  // middleware로 수정 가능성
-  // useEffect(() => {
-  //   if (!localStorage.getItem('access_token')) {
-  //     alert('로그인이 필요합니다.');
-  //     router.push('/login');
-  //   }
-  // }, []);
 
   return (
     <div className="w-full h-full">

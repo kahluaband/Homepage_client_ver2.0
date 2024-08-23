@@ -37,11 +37,11 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             src={image}
             alt={name}
             fill
-            objectFit="cover"
+            style={{objectFit: "cover"}}
             className="rounded-xl"
           />
         </div>
-        <Image src={blurCard} alt="blurCard" fill objectFit="cover" />
+        <Image src={blurCard} alt="blurCard" fill style={{objectFit: "cover"}} />
         <div className="absolute w-full h-full flex">
           <p className="absolute top-[20px] left-[128px] text-2xl leading-normal text-gray-0 font-semibold">
             {name}
@@ -55,7 +55,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             {role}
           </p>
           <div className="absolute top-[126px] left-[24px]">
-            <Image src={schoolIcon} alt="school" />
+            <Image src={schoolIcon} alt="school" sizes="100vw" />
           </div>
           <p className="absolute top-[124px] left-[56px] text-lg leading-normal text-gray-40 font-medium">
             {school}
@@ -64,6 +64,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
             <Image
               src={githubUrl ? githubIcon : emailIcon}
               alt={githubUrl ? 'github' : 'email'}
+              sizes="100vw"
             />
           </div>
           {githubUrl ? (
@@ -107,7 +108,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
           src={image}
           alt={name}
           fill
-          objectFit="cover"
+          style={{objectFit: "cover"}}
           className="rounded-xl"
         />
       </div>
@@ -116,7 +117,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
           src={isEven ? blurCard3 : blurCard2}
           alt={isEven ? 'blurCard' : 'blurCard'}
           fill
-          objectFit="cover"
+          style={{objectFit: "cover"}}
         />
         <div className="absolute w-full h-full flex">
           <p
@@ -137,7 +138,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
             {role}
           </p>
           <div className="absolute top-[96px] left-[20px]">
-            <Image src={schoolIcon} alt="school" />
+            <Image src={schoolIcon} alt="school" sizes="100vw" />
           </div>
           <p className="absolute top-[96px] left-[52px] text-base leading-normal text-gray-40 font-medium">
             {school}
@@ -146,6 +147,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
             <Image
               src={githubUrl ? githubIcon : emailIcon}
               alt={githubUrl ? 'github' : 'email'}
+              sizes="100vw"
             />
           </div>
           {githubUrl ? (

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import arrow from '@/public/image/arrow_right.svg';
 import PerformanceList from './PerformanceList';
 import Link from 'next/link';
-import { FadeInSection } from './FadeInSection';
 
 interface buttonProps {
   className: string;
@@ -35,7 +34,7 @@ const PerformanceButton: React.FC<buttonProps> = ({ className }) => {
     >
       공연 영상 보러가기
       <div className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">
-        <Image src={arrow} alt=">" sizes="100vw" />
+        <Image src={arrow} alt=">" fill />
       </div>
     </Link>
   );

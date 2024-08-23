@@ -1,6 +1,5 @@
 import MultipleOptionBox from '@/components/ui/MultipleOptionbox';
 import { Textarea } from '@/components/ui/textarea';
-import React from 'react';
 
 export enum Session {
   보컬,

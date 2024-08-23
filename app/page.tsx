@@ -1,10 +1,8 @@
 'use client';
 import About from '@/components/main/About';
-import { FadeInSection } from '@/components/main/FadeInSection';
 import Performance from '@/components/main/Performance';
 import Recruit from '@/components/main/Recruit';
 import Ticket from '@/components/main/Ticket';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export default function Home() {
   return (
@@ -21,8 +19,6 @@ export default function Home() {
       <div className="flex flex-col w-full h-auto justify-start items-center max-pad:px-[16px] bg-gray-90 bg-notice">
         <Recruit />
       </div>
-
-      <SpeedInsights />
     </div>
   );
 }

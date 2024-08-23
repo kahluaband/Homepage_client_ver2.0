@@ -45,9 +45,7 @@ const page = () => {
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
       setTotal(response.data.result.total);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const fetchApplicantList = async (session: string) => {
@@ -73,9 +71,7 @@ const page = () => {
       );
       setApplicantList(response.data.result.applies);
       setShownList(response.data.result.applies.slice(0, 9));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -86,13 +82,7 @@ const page = () => {
     }
   }, [showMore]);
 
-  // middleware로 수정 가능성
   useEffect(() => {
-    // if (!localStorage.getItem('access_token')) {
-    //   alert('로그인이 필요합니다.');
-    //   router.push('/login');
-    // }
-
     fetchAllApplicantList();
   }, []);
 
@@ -171,6 +161,7 @@ const page = () => {
               src={chevron_down_blue}
               alt="more"
               width={16}
+              height={16}
             />
           ) : (
             <Image src={chevron_down_blue} alt="more" width={16} />

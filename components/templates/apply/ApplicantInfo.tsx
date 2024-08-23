@@ -4,7 +4,6 @@ import {
   filterBirthdateValue,
   filterPhoneNumber,
 } from '@/components/util/utils';
-import React, { useEffect, useState } from 'react';
 
 export enum Gender {
   남성,
