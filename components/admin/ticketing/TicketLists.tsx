@@ -79,10 +79,8 @@ const TicketLists = ({ type }: { type: string }) => {
       );
       setMembers(newMembers);
     } catch (error: any) {
-      if (error.response.status === 401) {
-        alert('로그인이 필요합니다.');
-        router.push('/login');
-      }
+      alert('로그인이 필요합니다.');
+      router.push('/login');
     }
   };
 
@@ -123,18 +121,32 @@ const TicketLists = ({ type }: { type: string }) => {
             {ticket.status === 'FINISH_PAYMENT' ? (
               <Typography
                 component="div"
-                className="min-w-[94px] text-center text-base font-medium text-success-40"
+                className="min-w-[94px] text-center text-base font-medium text-primary-50"
               >
                 결제 완료
               </Typography>
-            ) : (
+            ) : ticket.status === 'WAIT' ? (
+              <Typography
+                component="div"
+                className="min-w-[94px] text-center text-base font-medium text-gray-30"
+              >
+                결제 대기
+              </Typography>
+            ) : ticket.status === 'CANCEL_REQUEST' ? (
               <Typography
                 component="div"
                 className="min-w-[94px] text-center text-base font-medium text-danger-40"
               >
-                결제 대기
+                취소 요청
               </Typography>
-            )}
+            ) : ticket.status === 'CANCEL_COMPLETE' ? (
+              <Typography
+                component="div"
+                className="min-w-[94px] text-center text-base font-medium text-gray-30"
+              >
+                예매 취소
+              </Typography>
+            ) : null}
 
             <Typography
               component="div"
