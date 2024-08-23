@@ -2,7 +2,6 @@ import Image from 'next/image';
 import arrow from '@/public/image/arrow_right.svg';
 import PerformanceList from './PerformanceList';
 import Link from 'next/link';
-import { FadeInSection } from './FadeInSection';
 
 interface buttonProps {
   className: string;

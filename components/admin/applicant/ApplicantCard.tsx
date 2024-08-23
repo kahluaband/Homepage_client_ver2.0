@@ -9,13 +9,11 @@ import Button from '@mui/material/Button';
 import Dialog, { DialogProps } from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import tabler_x from '@/public/image/admin/tabler_x.svg';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { authInstance } from '@/api/auth/axios';
 
-// 라이브러리 기본 css 덮어쓰기
 const theme = createTheme({
   components: {
     MuiDialog: {

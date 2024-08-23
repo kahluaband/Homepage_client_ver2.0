@@ -1,5 +1,4 @@
 'use client';
-
 import CancelModal from '@/components/popups/ticket/CancelModal';
 import NotFoundModal from '@/components/popups/ticket/NotFoundModal';
 import MustRead from '@/components/templates/ticket/MustRead';
