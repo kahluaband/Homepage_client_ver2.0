@@ -1,6 +1,6 @@
 import TopRightRoundBorder from '@/components/ui/RoundBorder';
 import Image from 'next/image';
-import music from '@/public/image/main/music.svg';
+import music from '@/public/image/main/mainMusic.svg';
 import Link from 'next/link';
 import arrow from '@/public/image/arrow_right.svg';
 
