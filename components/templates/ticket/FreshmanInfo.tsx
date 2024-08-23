@@ -57,15 +57,15 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
   return (
     <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
       <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px]">
-        <div className="font-medium text-lg pad:text-xl leading-[30px] text-gray-90">
+        <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">
           예매자 정보 입력
         </div>
-        <div className="flex pad:ml-3 font-normal text-[16px] leading-6 text-gray-40 items-center">
+        <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">
           신입생 확인을 위해 정확한 정보를 입력해주세요.
         </div>
       </div>
       <div className="flex flex-col">
-        <p className="mt-6 text-[16px] font-light leading-6">이름</p>
+        <p className="mt-6 text-[16px] font-normal leading-6">이름</p>
         <Input
           className="mt-2"
           type="text"
@@ -73,7 +73,7 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
           onChange={handleInputChange(setNameValue, filterNameValue)}
           placeholder="예) 홍길동"
         />
-        <p className="mt-6 text-[16px] font-light leading-6">학과</p>
+        <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
         <Input
           className="mt-2"
           type="text"
@@ -84,7 +84,7 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
           )}
           placeholder="예) 컴퓨터공학과"
         />
-        <p className="mt-6 text-[16px] font-light leading-6">학번</p>
+        <p className="mt-6 text-[16px] font-normal leading-6">학번</p>
         <Input
           className="mt-2"
           type="text"
@@ -92,7 +92,7 @@ const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
           onChange={handleInputChange(setStudentIdValue, filterStudentIdValue)}
           placeholder="예) C123456"
         />
-        <p className="mt-6 text-[16px] font-light leading-6">연락처</p>
+        <p className="mt-6 text-[16px] font-normal leading-6">연락처</p>
         <Input
           className="mt-2"
           type="text"

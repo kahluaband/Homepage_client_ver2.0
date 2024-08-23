@@ -49,7 +49,7 @@ const YearSelector = () => {
               >
                 <p
                   key={year}
-                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-light leading-6 "`}
+                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
                 >
                   {year}
                 </p>
@@ -67,7 +67,7 @@ const YearSelector = () => {
                 >
                   <p
                     key={year}
-                    className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-light leading-6 "`}
+                    className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} " text-center font-pretendard text-[16px] font-normal leading-6 "`}
                   >
                     {year}
                   </p>
@@ -106,7 +106,7 @@ const YearSelector = () => {
                 className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} px-[12px] py-[4px] flex justify-center items-center gap-[10px] cursor-pointer rounded-[32px]`}
               >
                 <p
-                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} w-[60px] justify-center flex items-center text-center font-pretendard text-base font-light`}
+                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} w-[60px] justify-center flex items-center text-center font-pretendard text-base font-normal`}
                 >
                   {year}
                 </p>
@@ -125,7 +125,7 @@ const YearSelector = () => {
                 className={`${sYear === year ? 'bg-primary-50' : 'bg-gray-0'} px-[12px] py-[4px] justify-center items-center gap-[10px] cursor-pointer rounded-[32px]`}
               >
                 <p
-                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} w-[60px] justify-center items-center text-center font-pretendard text-base font-light`}
+                  className={`${sYear === year ? 'text-gray-0' : 'text-gray-50'} w-[60px] justify-center items-center text-center font-pretendard text-base font-normal`}
                 >
                   {year}
                 </p>

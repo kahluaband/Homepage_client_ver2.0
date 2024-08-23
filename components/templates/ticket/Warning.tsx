@@ -1,10 +1,10 @@
 const Warning = () => {
   return (
     <div className="w-full h-[100%] bg-gray-5 pad:bg-gray-0 py-[36px] px-4 pad:px-12">
-      <div className="font-medium text-lg pad:text-xl leading-[30px]  text-gray-90">
+      <div className="font-semibold text-lg pad:text-xl leading-[30px]  text-gray-90">
         유의사항 및 취소 규정
       </div>
-      <ol className="mx-4 list-disc list-inside font-light leading-6 text-gray-40 text-[16px] mt-2">
+      <ol className="mx-4 list-disc list-inside font-normal leading-6 text-gray-40 text-[16px] mt-2">
         <li>
           예매취소는 공연 24시간 이전에만 가능하며 그 이후에는 환불이
           불가합니다.

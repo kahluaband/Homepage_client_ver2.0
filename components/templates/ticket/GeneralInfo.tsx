@@ -132,10 +132,10 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
   return (
     <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
       <div className="flex flex-col pad:flex-row h-[55px] pad:h-[30px]">
-        <div className="font-medium text-lg pad:text-xl leading-[30px] text-gray-90">
+        <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-90">
           예매자 정보 입력
         </div>
-        <div className="flex pad:ml-3 font-normal text-[16px] leading-6 text-gray-40 items-center">
+        <div className="flex pad:ml-3 font-medium text-[16px] leading-6 text-gray-40 items-center">
           본인확인을 위해 정확한 정보를 입력해주세요.
         </div>
       </div>
@@ -168,7 +168,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({
       {member < 5 && (
         <button
           onClick={addCompanion}
-          className="mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-light leading-6 text-[18px]"
+          className="mt-6 flex items-center justify-center w-[282px] pad:w-[588px] h-[59px] bg-gray-5 rounded-xl text-gray-60 text-center font-normal leading-6 text-[18px]"
         >
           + 동반인 추가...
         </button>

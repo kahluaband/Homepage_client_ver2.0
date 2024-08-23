@@ -81,8 +81,8 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
   return (
     <div className="flex flex-col py-10 px-4 pad:px-12 bg-gray-5">
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end">
-        <p className="text-gray-90 text-[20px] font-medium">지원세션</p>
-        <p className="text-gray-40 text-[16px] font-normal">
+        <p className="text-gray-90 text-[20px] font-semibold">지원세션</p>
+        <p className="text-gray-40 text-[16px] font-medium">
           지원하고자 하는 세션을 2지망까지 선택해주세요.
         </p>
       </div>
@@ -97,8 +97,10 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
       />
 
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12">
-        <p className="text-gray-90 text-[20px] font-medium">깔루아 지원동기</p>
-        <p className="text-gray-40 text-[16px] font-normal">200자 이내</p>
+        <p className="text-gray-90 text-[20px] font-semibold">
+          깔루아 지원동기
+        </p>
+        <p className="text-gray-40 text-[16px] font-medium">200자 이내</p>
       </div>
       <Textarea
         className="mt-4"
@@ -109,10 +111,10 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
       />
 
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12">
-        <p className="text-gray-90 text-[20px] font-medium">
+        <p className="text-gray-90 text-[20px] font-semibold">
           지원 세션에 대한 경력 및 지원 이유
         </p>
-        <p className="text-gray-40 text-[16px] font-normal">200자 이내</p>
+        <p className="text-gray-40 text-[16px] font-medium">200자 이내</p>
       </div>
       <Textarea
         className="mt-4"
@@ -123,10 +125,10 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
       />
 
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12">
-        <p className="text-gray-90 text-[20px] font-medium">
+        <p className="text-gray-90 text-[20px] font-semibold">
           이외에 다룰 줄 아는 악기
         </p>
-        <p className="text-gray-40 text-[16px] font-normal">200자 이내</p>
+        <p className="text-gray-40 text-[16px] font-medium">200자 이내</p>
       </div>
       <Textarea
         className="mt-4"
@@ -137,8 +139,8 @@ const CLInfo: React.FC<CLInfoProps> = ({ onInfoChange, CoverLetterInfo }) => {
       />
 
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end mt-12">
-        <p className="text-gray-90 text-[20px] font-medium">포부 및 각오</p>
-        <p className="text-gray-40 text-[16px] font-normal">200자 이내</p>
+        <p className="text-gray-90 text-[20px] font-semibold">포부 및 각오</p>
+        <p className="text-gray-40 text-[16px] font-medium">200자 이내</p>
       </div>
       <Textarea
         className="mt-4"

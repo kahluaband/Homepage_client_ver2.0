@@ -26,13 +26,13 @@ const page = () => {
   return (
     <div className="flex flex-col relative top-16 items-center justify-start text-center mx-auto w-full pad:w-[786px] dt:w-[996px] h-auto mt-4">
       <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-aut">
-        <p className="mt-10 text-gray-0 text-center text-[24px] pad:text-[32px] font-medium leading-[48px]">
+        <p className="mt-10 text-gray-0 text-center text-[24px] pad:text-[32px] font-semibold leading-[48px]">
           지원 전 필독사항
         </p>
-        <p className="mt-4 text-gray-20 text-center text-[16px] pad:text-[18px] font-light leading-[27px] hidden pad:block">
+        <p className="mt-4 text-gray-20 text-center text-[16px] pad:text-[18px] font-normal leading-[27px] hidden pad:block">
           안녕하세요! 홍익대학교 컴퓨터공학과 밴드학회 깔루아입니다.
         </p>
-        <p className="text-gray-20 text-center text-[16px] pad:text-[18px]  font-light leading-[27px] max-pad:px-6">
+        <p className="text-gray-20 text-center text-[16px] pad:text-[18px]  font-normal leading-[27px] max-pad:px-6">
           단순 인원 집계용으로 사용되는 가입 지원서이므로 부담 없이 작성해
           주시면 됩니다.
         </p>
@@ -71,7 +71,7 @@ const page = () => {
 const Activity = () => {
   return (
     <div className="text-left h-auto">
-      <p className="text-[18px] pad:text-[20px] font-medium text-gray-90">
+      <p className="text-[18px] pad:text-[20px] font-semibold text-gray-90">
         깔루아 활동
       </p>
       <ul className="text-[16px] pad:text-[18px] text-gray-60 text-left mt-2 list-outside list-disc ml-[18px]">
@@ -99,7 +99,7 @@ const Activity = () => {
 const VocalNotice = () => {
   return (
     <div className="mt-12 text-left h-auto">
-      <p className="text-[18px] pad:text-[20px] font-medium text-gray-90">
+      <p className="text-[18px] pad:text-[20px] font-semibold text-gray-90">
         보컬 세션 지원
       </p>
       <ul className="text-[16px] pad:text-[18px] text-gray-60 text-left mt-2 list-outside list-disc ml-[18px]">
@@ -118,7 +118,7 @@ const VocalNotice = () => {
 const OtherSessionNotice = () => {
   return (
     <div className="mt-12 mb-10 text-left h-auto">
-      <p className="text-[18px] pad:text-[20px] font-medium text-gray-90">
+      <p className="text-[18px] pad:text-[20px] font-semibold text-gray-90">
         드럼 / 기타 / 베이스 / 신디사이저 세션 지원
       </p>
       <ul className="text-[16px] pad:text-[18px] text-gray-60 text-left mt-2 list-outside list-disc ml-[18px]">
@@ -136,7 +136,7 @@ const OtherSessionNotice = () => {
 const Warning = () => {
   return (
     <div className="mt-10 mb-10 text-left h-auto">
-      <p className="text-[18px] pad:text-[20px] font-medium text-danger-40">
+      <p className="text-[18px] pad:text-[20px] font-semibold text-danger-40">
         ! 주의사항
       </p>
       <ul className="text-[16px] pad:text-[18px] text-gray-90 text-left mt-2 list-outside list-disc ml-[18px]">

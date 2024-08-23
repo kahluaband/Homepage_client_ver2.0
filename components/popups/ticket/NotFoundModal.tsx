@@ -31,7 +31,7 @@ const NotFoundModal: React.FC<NotFoundModalProps> = ({ isOpen, onClose }) => {
           onClick={onClose}
           className="ml-auto mt-6 cursor-pointer"
         />
-        <p className="text-[18px] pad:text-[22px] font-normal leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
+        <p className="text-[18px] pad:text-[22px] font-medium leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
           입력한 정보가 일치하지 않습니다.
           <br />
           다시 확인해주세요.

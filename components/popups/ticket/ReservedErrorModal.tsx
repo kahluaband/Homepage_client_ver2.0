@@ -37,7 +37,7 @@ const ReservedErrorModal: React.FC<ReservedErrorModalProps> = ({
             onClick={onClose}
             className="ml-auto mt-6 cursor-pointer"
           />
-          <p className="h-12 pad:h-[66px] text-[18px] pad:text-[22px] font-normal leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
+          <p className="h-12 pad:h-[66px] text-[18px] pad:text-[22px] font-medium leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
             이미 예약한 정보입니다.
             <br />
             입력한 정보를 다시 확인해주세요.
@@ -45,13 +45,13 @@ const ReservedErrorModal: React.FC<ReservedErrorModalProps> = ({
         </div>
         <div className="mt-10 pad:mt-14 flex flex-row w-full h-[59px] pad:h-[70px]">
           <button
-            className="w-full h-[59px] pad:h-[70px] pad:w-[280px] rounded-bl-3xl bg-gray-0 border-t border-t-gray-15 text-center text-[18px] pad:text-[20px] font-normal text-gray-40"
+            className="w-full h-[59px] pad:h-[70px] pad:w-[280px] rounded-bl-3xl bg-gray-0 border-t border-t-gray-15 text-center text-[18px] pad:text-[20px] font-medium text-gray-40"
             onClick={onClose}
           >
             돌아가기
           </button>
           <button
-            className="w-full h-[59px] pad:h-[70px] pad:w-[280px] rounded-bl-3xl  bg-primary-50 text-center text-[18px] pad:text-[20px] font-normal text-gray-0"
+            className="w-full h-[59px] pad:h-[70px] pad:w-[280px] rounded-bl-3xl  bg-primary-50 text-center text-[18px] pad:text-[20px] font-medium text-gray-0"
             onClick={onAlreadyReserved}
           >
             예매 내역 조회

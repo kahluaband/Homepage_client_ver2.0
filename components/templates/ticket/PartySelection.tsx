@@ -48,7 +48,7 @@ const PartySelection: React.FC<PartySelectionProps> = ({ dispatch, state }) => {
   return (
     <div className="flex flex-col mt-10 mb-10 w-full px-4 pad:px-12">
       <div className="flex h-[30px]">
-        <div className="font-medium text-lg pad:text-xl leading-[30px] text-gray-900">
+        <div className="font-semibold text-lg pad:text-xl leading-[30px] text-gray-900">
           새내기 소모임 참석 여부
         </div>
       </div>

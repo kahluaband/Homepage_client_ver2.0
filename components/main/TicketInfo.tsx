@@ -22,25 +22,25 @@ const TicketInfo: React.FC<TicketInfoProps> = ({
   return (
     <div className="flex flex-row">
       <div className="flex flex-col max-pad:justify-end w-full h-full pad:h-[232px] max-pad:px-[32px] py-[24px] pad:pl-[36px] dt:pl-[40px] pad:py-[32px] rounded-br-[48px] rounded-l-[48px] pad:rounded-br-[32px] bg-primary-50 z-0">
-        <p className="rounded-[32px] h-[32px] w-[120px] px-[12px] py-[4px] bg-gray-0 text-primary-50 text-[16px] font-normal">
+        <p className="rounded-[32px] h-[32px] w-[120px] px-[12px] py-[4px] bg-gray-0 text-primary-50 text-[16px] font-medium">
           ~{day}
         </p>
-        <p className="text-[20px] pad:text-[24px] font-medium text-gray-0 mt-[12px] pad:mt-[16px]">
+        <p className="text-[20px] pad:text-[24px] font-semibold text-gray-0 mt-[12px] pad:mt-[16px]">
           {performanceName}
         </p>
         <div className="flex flex-row gap-[24px] mt-[8px] pad:mt-[16px]">
-          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-normal text-primary-20">
+          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-medium text-primary-20">
             장소
           </p>
-          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-normal text-primary-0">
+          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-medium text-primary-0">
             {place}
           </p>
         </div>
         <div className="flex flex-row gap-[24px] mt-[8px]">
-          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-normal text-primary-20">
+          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-medium text-primary-20">
             일시
           </p>
-          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-normal text-primary-0">
+          <p className="text-[16px] pad:text-[18px] dt:text-[20px] font-medium text-primary-0">
             {time}
           </p>
         </div>
@@ -60,7 +60,7 @@ const TicketButton: React.FC<buttonProps> = ({ className }) => {
   return (
     <Link
       href={'/ticket'}
-      className={`flex flex-row items-center w-auto h-auto px-6 py-2 gap-[10px] bg-gray-90 text-gray-0 text-[16px] pad:text-[20px] font-normal rounded-[48px] ${className}`}
+      className={`flex flex-row items-center w-auto h-auto px-6 py-2 gap-[10px] bg-gray-90 text-gray-0 text-[16px] pad:text-[20px] font-medium rounded-[48px] ${className}`}
     >
       공연 예매하기
       <div className="relative w-[16px] h-[16px] pad:w-[24px] pad:h-[24px]">

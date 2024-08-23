@@ -8,7 +8,7 @@ const Title = () => {
         <div className="flex relative pad:w-[376px] pad:h-[64px] w-[235px] h-[40px]">
           <Image src={logo_white} fill alt="logo" sizes="100vw" />
         </div>
-        <p className="dt:text-[32px] font-medium text-gray-10 pad:text-[24px] text-[20px] leading-normal dt:mt-6 mt-8">
+        <p className="dt:text-[32px] font-semibold text-gray-10 pad:text-[24px] text-[20px] leading-normal dt:mt-6 mt-8">
           CONTRIBUTORS
         </p>
       </div>
