@@ -6,7 +6,6 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import AdminHeader from '@/components/admin/AdminHeader';
 import './globals.css';
-import GoogleAnalytics from '@/lib/GoogleAnalytics';
 
 const roboto = Roboto({
   weight: '400',
@@ -66,11 +65,6 @@ export default function RootLayout({
             ) : (
               <Header />
             )}
-            {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
-              <GoogleAnalytics
-                gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}
-              />
-            ) : null}
             {children}
           </div>
           {!isCompletePage &&
