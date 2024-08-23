@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ticketing_image from '@/public/image/admin/ticketing.svg';
-import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 import { totalTicket } from '@/atoms';
 import TicketLists from '@/components/admin/ticketing/TicketLists';

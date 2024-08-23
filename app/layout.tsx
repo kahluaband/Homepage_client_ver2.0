@@ -19,7 +19,6 @@ export default function RootLayout({
 }) {
   const pathname = usePathname();
 
-  const isMainPage = pathname === '/';
   const isCompletePage = pathname === '/ticket/complete';
   const isTicketPage = pathname === '/ticket';
   const isFreshmanTicketPage = pathname === '/ticket/freshman_ticket';

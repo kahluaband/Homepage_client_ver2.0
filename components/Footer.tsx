@@ -4,6 +4,7 @@ import logo from '../public/image/KAHLUA.svg';
 import youtube_icon from '../public/image/youtube-icon.svg';
 import instagram_icon from '../public/image/instagram-icon.svg';
 import kakaotalk_icon from '../public/image/kakaotalk-icon.svg';
+import { useRouter } from 'next/navigation';
 
 export interface SocialIconProps {
   href: string;
@@ -36,6 +37,7 @@ const SocialIcon: React.FC<SocialIconProps> = ({
 );
 
 const Footer = () => {
+  const router = useRouter();
   return (
     <div className="w-full h-[339px] relative translate-y-0 font-pretendard bg-gray-90 flex flex-col items-center">
       <div className="flex flex-col min-[834px]:flex-row text-center text-base min-[834px]:text-lg leading-6 mt-6 mb-12 min-[834px]:mb-14">
@@ -94,7 +96,15 @@ const Footer = () => {
         </ul>
       </div>
       {/* 로고 */}
-      <Image src={logo} alt="logo" height={32} className="mt-8 mb-3" />
+      <Image
+        src={logo}
+        alt="logo"
+        height={32}
+        className="mt-8 mb-3"
+        onClick={() => {
+          router.push('/admin/ticketing');
+        }}
+      />
       {/* 저작권 관련 */}
       <p className="text-gray-50 text-center text-base font-medium leading-6 mb-20">
         © 2024 KAHLUA. All rights reserved.

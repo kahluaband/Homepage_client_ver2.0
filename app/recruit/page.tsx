@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +6,6 @@ import logo_white from '@/public/image/KAHLUA.svg';
 import vocal from '@/public/image/recruit/vocal.svg';
 import guitar from '@/public/image/recruit/guitar.svg';
 import drum from '@/public/image/recruit/drum.svg';
-import bass from '@/public/image/recruit/bass.svg';
 import syn from '@/public/image/recruit/syn.svg';
 
 import FAQ from './FAQ';
@@ -26,12 +24,22 @@ import {
 
 const page = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isInPeriod, setIsInPeriod] = useState(false);
+
+  const nowDate = new Date();
+  const nowKoreanTime = new Date(
+    nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
+  );
+  const isDays =
+    nowKoreanTime >= Recruiting23rd.recruitingStartDate &&
+    nowKoreanTime <= Recruiting23rd.recruitingFinishDate;
 
   // redering과정에서 document를 사용할 수 없어서 발생하는 문제 해결
   useEffect(() => {
     document.addEventListener('scroll', () => {
       setIsScrolled(true);
     });
+    setIsInPeriod(isDays);
   }, []);
 
   return (
@@ -52,11 +60,13 @@ const page = () => {
             {formatFullDate(Recruiting23rd.recruitingFinishDate)}
           </p>
           <Link
-            href="/recruit/notice"
+            href={isInPeriod ? '/recruit/notice' : ''}
             key="apply"
-            className="flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] bg-gray-90/30 border border-gray-0 mt-[72px] text-[18px] font-semibold cursor-pointer"
+            className={`flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] mt-[72px] text-[18px] font-semibold bg-gray-90/30 border ${isInPeriod ? 'border-gray-0 text-gray-0 cursor-pointer' : 'border-gray-40 text-gray-40 cursor-not-allowed'}`}
           >
-            KAHLUA {getOnlyNum(Recruiting23rd.num)}기 지원하기
+            {isInPeriod
+              ? `KAHLUA ${getOnlyNum(Recruiting23rd.num)}기 지원하기`
+              : '모집이 마감되었어요'}
           </Link>
         </div>
       </div>
@@ -116,7 +126,7 @@ const RecruitingSession = () => {
         <SessionCard session="보컬" image={vocal} />
         <SessionCard session="기타" image={guitar} />
         <SessionCard session="드럼" image={drum} />
-        <SessionCard session="베이스" image={bass} />
+        <SessionCard session="베이스" image={guitar} />
         <SessionCard session="신디사이저" image={syn} />
       </div>
     </div>

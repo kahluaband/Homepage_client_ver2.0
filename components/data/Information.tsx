@@ -1,3 +1,12 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault('Asia/Seoul');
+dayjs.locale('ko');
+
 interface TicketInfo {
   name: string;
   price: string;
@@ -27,49 +36,57 @@ interface Information {
 }
 
 const formatDateForString = (date: Date): string =>
-  `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시`;
+  dayjs(date).tz().format('YYYY년 M월 D일 H시');
 
 const formatDayForString = (date: Date): string =>
-  `${date.getFullYear()}.${('0' + (date.getMonth() + 1)).slice(-2)}.${('0' + date.getDate()).slice(-2)}`;
+  dayjs(date).tz().format('YYYY.MM.DD');
 
 const formatDay = (date: Date): string =>
-  `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`;
+  dayjs(date).tz().format('YYYY년 M월 D일');
 
-const formatTime = (date: Date): string =>
-  `${date.getHours()}시 ${String(date.getMinutes()).padStart(2, '0')}분`;
+const formatTime = (date: Date): string => dayjs(date).tz().format('H시 mm분');
 
 const formatDateForMinute = (date: Date): string =>
-  `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 ${date.getHours()}시 ${String(date.getMinutes()).padStart(2, '0')}분`;
+  dayjs(date).tz().format('YYYY년 M월 D일 H시 mm분');
 
 const formatSubDate = (date: Date): string => {
-  const dayOfWeek = date
-    .toLocaleDateString('en-US', { weekday: 'short' })
-    .toUpperCase();
-  return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')} ${dayOfWeek} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+  const dayOfWeek = dayjs(date).tz().format('ddd').toUpperCase();
+  return `${dayjs(date).tz().format('YYYY.MM.DD')} ${dayOfWeek} ${dayjs(date).tz().format('H:mm')}`;
 };
 
-const baseEventDate = new Date('2024-09-02T19:00:00+09:00');
-const lastReserveDate = new Date('2024-09-01T19:00:00+09:00');
+const createEventDates = (
+  eventDateString: string,
+  reserveDateString: string
+): { eventDate: Date; lastReserveDate: Date } => {
+  return {
+    eventDate: new Date(eventDateString),
+    lastReserveDate: new Date(reserveDateString),
+  };
+};
+
+const dynamicEventDateString = '2024-09-02T19:00:00+09:00';
+const dynamicLastReserveDateString = '2024-09-01T19:00:00+09:00';
+
+const { eventDate, lastReserveDate } = createEventDates(
+  dynamicEventDateString,
+  dynamicLastReserveDateString
+);
 
 const getInformation = (): Information => {
-  const nowDate = new Date();
-  const nowKoreanTime = new Date(
-    nowDate.toLocaleString('en-US', { timeZone: 'Asia/Seoul' })
-  );
-
+  const nowKoreanTime = dayjs().tz('Asia/Seoul').toDate();
   const isDays = nowKoreanTime < lastReserveDate;
 
   return {
     title: '2024년 9월 정기 공연',
     location: '001 클럽',
     locationDetails: '서울 마포구 와우산로18길 20 지하 1층',
-    dateForString: formatDateForString(baseEventDate),
-    dateForMinute: formatDateForMinute(baseEventDate),
-    dayForString: formatDayForString(baseEventDate),
-    day: formatDay(baseEventDate),
-    time: formatTime(baseEventDate),
-    subDate: formatSubDate(baseEventDate),
-    eventDate: baseEventDate,
+    dateForString: formatDateForString(eventDate),
+    dateForMinute: formatDateForMinute(eventDate),
+    dayForString: formatDayForString(lastReserveDate),
+    day: formatDay(eventDate),
+    time: formatTime(eventDate),
+    subDate: formatSubDate(eventDate),
+    eventDate: eventDate,
     lastReserveDate: lastReserveDate,
     isFreshmanFree: false,
     isDays: isDays,

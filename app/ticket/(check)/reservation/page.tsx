@@ -1,5 +1,4 @@
 'use client';
-
 import CancelModal from '@/components/popups/ticket/CancelModal';
 import NotFoundModal from '@/components/popups/ticket/NotFoundModal';
 import MustRead from '@/components/templates/ticket/MustRead';
@@ -35,6 +34,7 @@ const Reservation = () => {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
     const phoneNumber = e.target.value;
     const limitedPhoneNumber = filterPhoneNumber(phoneNumber);
     setInputValue(limitedPhoneNumber);
@@ -43,7 +43,8 @@ const Reservation = () => {
   const handleConfirmCancel = async () => {
     if (
       (type === 'FRESHMAN' && inputValue === student_id) ||
-      (type !== 'FRESHMAN' && inputValue === phone_num)
+      (type !== 'FRESHMAN' &&
+        inputValue.replace(/[^0-9]/g, '').slice(0, 11) === phone_num)
     ) {
       try {
         const response = await axiosInstance.patch(
