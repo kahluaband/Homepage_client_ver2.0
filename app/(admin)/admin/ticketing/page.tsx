@@ -8,24 +8,15 @@ import { totalTicket } from '@/atoms';
 import TicketLists from '@/components/admin/ticketing/TicketLists';
 
 const page = () => {
-  const router = useRouter();
   const typeArr = ['All', '신입생', '일반'];
   const [type, setType] = useState('All');
   const total = useRecoilValue(totalTicket);
 
-  // middleware로 수정 가능성
-  // useEffect(() => {
-  //   if (!localStorage.getItem('access_token')) {
-  //     alert('로그인이 필요합니다.');
-  //     router.push('/login');
-  //   }
-  // }, []);
-
   return (
     <div className="w-full h-full">
       <div className="font-pretendard w-full pt-[64px] flex flex-col items-center">
-        <div className="w-full h-[259px] bg-gray-5 flex justify-between px-[360px]">
-          <div className="flex flex-col mt-16">
+        <div className="w-full h-[259px] bg-gray-5 flex justify-between px-6 pad:px-[360px]">
+          <div className="w-full flex flex-col mt-16">
             <span className="font-mustica text-[40px] text-gray-90 font-semibold leading-10 pb-[15px]">
               Ticketing List
             </span>
@@ -56,37 +47,42 @@ const page = () => {
               ))}
             </section>
           </div>
-          <Image src={ticketing_image} alt="image" width={443} height={259} />
+          <Image
+            src={ticketing_image}
+            alt="image"
+            style={{ objectFit: 'fill' }}
+            className="w-[417px] h-[244px] pad:w-[443px] pad:h-[259px]"
+          />
         </div>
         {/* 데이터 섹션 */}
         <section className="w-full h-full flex flex-col items-center">
-          <div className="w-[1200px] h-[51px] bg-gray-90 rounded-t-3xl mt-8 font-pretendard flex justify-start items-center px-5">
-            <div className="min-w-[94px] text-center text-lg font-medium text-gray-0">
+          <div className="w-full dt:w-[1200px] h-[51px] bg-gray-90 dt:rounded-t-3xl mt-8 font-pretendard hidden pad:flex justify-start items-center px-8">
+            <div className="text-center text-lg font-medium text-gray-0">
               상태
             </div>
-            <div className="min-w-[186px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               예매 번호
             </div>
-            <div className="min-w-[120px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               이름
             </div>
-            <div className="min-w-[160px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               전화번호
             </div>
-            <div className="min-w-[120px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               매수
             </div>
-            <div className="min-w-[186px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               학과
             </div>
-            <div className="min-w-[120px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               학번
             </div>
-            <div className="min-w-[120px] text-center text-lg font-medium text-gray-0">
+            <div className="text-center text-lg font-medium text-gray-0">
               뒷풀이
             </div>
           </div>
-          <div className="max-w-[1200px] h-auto">
+          <div className="w-full dt:w-[1200px] h-auto">
             <TicketLists type={type} />
           </div>
         </section>

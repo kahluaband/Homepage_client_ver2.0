@@ -27,6 +27,14 @@ const theme = createTheme({
         },
       },
     },
+    // MuiAccordionSummary: {
+    //   styleOverrides: {
+    //     content: {
+    //       display: 'flex',
+    //       justifyContent: 'space-between',
+    //     },
+    //   },
+    // },
   },
 });
 
@@ -115,7 +123,7 @@ const TicketLists = ({ type }: { type: string }) => {
       {ticketList.map((ticket, index) => (
         <Accordion key={ticket.id}>
           <AccordionSummary
-            className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
+            className="w-full dt:w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
@@ -123,14 +131,14 @@ const TicketLists = ({ type }: { type: string }) => {
             {ticket.status === 'FINISH_PAYMENT' ? (
               <Typography
                 component="div"
-                className="min-w-[94px] text-center text-base font-medium text-success-40"
+                className="text-center text-base font-medium text-success-40"
               >
                 결제 완료
               </Typography>
             ) : (
               <Typography
                 component="div"
-                className="min-w-[94px] text-center text-base font-medium text-danger-40"
+                className="text-center text-base font-medium text-danger-40"
               >
                 결제 대기
               </Typography>
@@ -138,32 +146,32 @@ const TicketLists = ({ type }: { type: string }) => {
 
             <Typography
               component="div"
-              className="min-w-[186px] text-center text-base font-medium text-gray-60"
+              className="text-center text-base font-medium text-gray-60"
             >
               {ticket.reservation_id}
             </Typography>
             <Typography
               component="div"
-              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+              className="text-center text-base font-medium text-gray-60"
             >
               {ticket.buyer}
             </Typography>
             <Typography
               component="div"
-              className="min-w-[160px] text-center text-base font-medium text-gray-60"
+              className="text-center text-base font-medium text-gray-60"
             >
               {ticket.phone_num}
             </Typography>
             <Typography
               component="div"
-              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+              className="text-center text-base font-medium text-gray-60"
             >
               {ticket.total_ticket}장
             </Typography>
 
             <Typography
               component="div"
-              className="min-w-[186px] text-center text-base font-medium text-gray-60"
+              className="text-center text-base font-medium text-gray-60"
             >
               {ticket.major === null ? '-' : ticket.major}
             </Typography>
