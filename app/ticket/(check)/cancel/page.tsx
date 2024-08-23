@@ -65,7 +65,7 @@ const ReservationDetails = () => {
       <div className="relative w-full h-[200px] pad:rounded-t-xl overflow-hidden">
         <div className="absolute inset-0 bg-ticket-complete bg-center bg-cover filter blur-[6px] z-[-1]"></div>
         <div className="relative flex h-full items-center justify-center pad:bg-gray-90 bg-opacity-60 rounded-t-xl">
-          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px]  font-semibold leading-[48px]">
+          <p className="h-12 text-gray-0 text-center text-2xl pad:text-[32px]  font-medium leading-[48px]">
             예매가 취소되었습니다.
           </p>
         </div>
@@ -83,7 +83,7 @@ const ReservationDetails = () => {
       </div>
       <Link
         href="/ticket/"
-        className="mt-10 w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-medium text-gray-60 bg-gray-5"
+        className="mt-10 w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center mx-auto rounded-xl text-[18px] font-normal text-gray-60 bg-gray-5"
       >
         예매 페이지로 돌아가기
       </Link>

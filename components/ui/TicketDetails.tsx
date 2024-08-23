@@ -60,7 +60,7 @@ const TicketDetails: React.FC<{
             width={24}
           />
         </div>
-        <p className="ml-auto text-gray-60 text-[16px] font-medium">
+        <p className="ml-auto text-gray-60 text-[16px] font-normal">
           {ticket === 'freshman' ? '무료' : `${finalAmount.toLocaleString()}원`}
         </p>
       </div>

@@ -53,17 +53,17 @@ const page = () => {
           <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">
             <Image src={logo_white} fill alt="logo" sizes="100vw" />
           </div>
-          <p className="text-[20px] pad:text-[24px] font-semibold dt:text-[32px] mt-8">
+          <p className="text-[20px] pad:text-[24px] font-medium dt:text-[32px] mt-8">
             {Recruiting23rd.num} MEMBER RECRUITMENT
           </p>
-          <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-normal mt-[4px]">
+          <p className="text-[16px] pad:text-[20px] dt:text-[24px] font-light mt-[4px]">
             {formatFullDate(Recruiting23rd.recruitingStartDate)} ~{' '}
             {formatFullDate(Recruiting23rd.recruitingFinishDate)}
           </p>
           <Link
             href={isInPeriod ? '/recruit/notice' : ''}
             key="apply"
-            className={`flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] mt-[72px] text-[18px] font-semibold bg-gray-90/30 border ${isInPeriod ? 'border-gray-0 text-gray-0 cursor-pointer' : 'border-gray-40 text-gray-40 cursor-not-allowed'}`}
+            className={`flex justify-center items-center text-center w-full max-w-[384px] pad:w-[384px] h-[75px] rounded-[16px] mt-[72px] text-[18px] font-medium bg-gray-90/30 border ${isInPeriod ? 'border-gray-0 text-gray-0 cursor-pointer' : 'border-gray-40 text-gray-40 cursor-not-allowed'}`}
           >
             {isInPeriod
               ? `KAHLUA ${getOnlyNum(Recruiting23rd.num)}기 지원하기`
@@ -87,10 +87,10 @@ const Requirement = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-medium">
           지원자격
         </p>
-        <p className="text-primary-40 text-[18px] font-semibold mt-1">
+        <p className="text-primary-40 text-[18px] font-medium mt-1">
           REQUIREMENT
         </p>
       </div>
@@ -116,10 +116,10 @@ const RecruitingSession = () => {
   return (
     <div className="flex flex-col h-full w-full justify-center items-center text-gray-0 text-center mt-[240px]">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-medium">
           모집 세션
         </p>
-        <p className="text-primary-40 text-[18px] font-semibold mt-1">
+        <p className="text-primary-40 text-[18px] font-medium mt-1">
           RECRUITING SESSION
         </p>
       </div>
@@ -138,10 +138,10 @@ const Schedule = () => {
   return (
     <div className="flex flex-col h-full text-gray-0 text-center mt-[240px] mb-[334px]">
       <div>
-        <p className="text-gray-10 text-[24px] pad:text-[32px] font-semibold">
+        <p className="text-gray-10 text-[24px] pad:text-[32px] font-medium">
           모집 일정
         </p>
-        <p className="text-primary-40 text-[18px] font-semibold mt-1">
+        <p className="text-primary-40 text-[18px] font-medium mt-1">
           RECRUITMENT SCHEDULE
         </p>
       </div>

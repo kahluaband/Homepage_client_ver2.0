@@ -37,7 +37,7 @@ const LastCheck: React.FC<LastCheckProps> = ({
             onClick={onClose}
             className="ml-auto mt-6 cursor-pointer"
           />
-          <p className="h-12 pad:h-[66px] text-[18px] pad:text-[22px] font-medium leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
+          <p className="h-12 pad:h-[66px] text-[18px] pad:text-[22px] font-normal leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
             제출한 이후에는 수정할 수 없습니다.
             <br />
             제출하시겠습니까?

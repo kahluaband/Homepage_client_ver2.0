@@ -43,7 +43,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
         </div>
         <Image src={blurCard} alt="blurCard" fill objectFit="cover" />
         <div className="absolute w-full h-full flex">
-          <p className="absolute top-[20px] left-[128px] text-2xl leading-normal text-gray-0 font-semibold">
+          <p className="absolute top-[20px] left-[128px] text-2xl leading-normal text-gray-0 font-medium">
             {name}
           </p>
           {year && (
@@ -51,13 +51,13 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
               {year}기
             </div>
           )}
-          <p className="absolute top-[60px] left-[128px] text-lg leading-normal text-gray-40 font-medium">
+          <p className="absolute top-[60px] left-[128px] text-lg leading-normal text-gray-40 font-normal">
             {role}
           </p>
           <div className="absolute top-[126px] left-[24px]">
             <Image src={schoolIcon} alt="school" />
           </div>
-          <p className="absolute top-[124px] left-[56px] text-lg leading-normal text-gray-40 font-medium">
+          <p className="absolute top-[124px] left-[56px] text-lg leading-normal text-gray-40 font-normal">
             {school}
           </p>
           <div className="absolute top-[165px] left-[24px]">
@@ -71,12 +71,12 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20"
+              className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-normal hover:text-gray-20"
             >
               {githubName}
             </Link>
           ) : (
-            <p className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-medium hover:text-gray-20">
+            <p className="absolute top-[163px] left-[56px] text-lg leading-normal text-gray-40 font-normal hover:text-gray-20">
               {emailName}
             </p>
           )}
@@ -120,7 +120,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
         />
         <div className="absolute w-full h-full flex">
           <p
-            className={`absolute top-[19px] ${isEven ? 'left-[20px]' : 'left-[104px]'} text-xl leading-normal text-gray-0 font-semibold`}
+            className={`absolute top-[19px] ${isEven ? 'left-[20px]' : 'left-[104px]'} text-xl leading-normal text-gray-0 font-medium`}
           >
             {name}
           </p>
@@ -132,14 +132,14 @@ const PhCard: React.FC<ContributorCardProps> = ({
             </div>
           )}
           <p
-            className={`absolute top-[56px] ${isEven ? 'left-[20px]' : 'left-[104px]'} text-base leading-normal text-gray-40 font-medium`}
+            className={`absolute top-[56px] ${isEven ? 'left-[20px]' : 'left-[104px]'} text-base leading-normal text-gray-40 font-normal`}
           >
             {role}
           </p>
           <div className="absolute top-[96px] left-[20px]">
             <Image src={schoolIcon} alt="school" />
           </div>
-          <p className="absolute top-[96px] left-[52px] text-base leading-normal text-gray-40 font-medium">
+          <p className="absolute top-[96px] left-[52px] text-base leading-normal text-gray-40 font-normal">
             {school}
           </p>
           <div className="absolute top-[132px] left-[20px]">
@@ -153,12 +153,12 @@ const PhCard: React.FC<ContributorCardProps> = ({
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20"
+              className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-normal hover:text-gray-20"
             >
               {githubName}
             </a>
           ) : (
-            <p className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-medium hover:text-gray-20">
+            <p className="absolute top-[132px] left-[52px] text-base leading-normal text-gray-40 font-normal hover:text-gray-20">
               {emailName}
             </p>
           )}

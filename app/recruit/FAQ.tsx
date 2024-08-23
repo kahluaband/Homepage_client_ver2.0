@@ -16,10 +16,10 @@ const FAQ = () => {
   return (
     <div className="bg-gradient-to-b from-gray-5 to-primary-0 flex flex-col justify-center items-center text-center h-auto -mb-40 pt-40 pb-[324px]">
       <div>
-        <p className="text-gray-90 text-[24px] pad:text-[32px] font-semibold">
+        <p className="text-gray-90 text-[24px] pad:text-[32px] font-medium">
           자주 묻는 질문
         </p>
-        <p className="text-primary-40 text-[18px] font-semibold mt-1">FAQ</p>
+        <p className="text-primary-40 text-[18px] font-medium mt-1">FAQ</p>
       </div>
       <div className="pt-16 flex flex-col items-start">
         <Accordion
@@ -45,7 +45,7 @@ const FAQ = () => {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1"
             id="panel1-header"
-            className={`p-8 text-[16px] pad:text-[18px] font-medium text-left ${expanded === 'panel1' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
+            className={`p-8 text-[16px] pad:text-[18px] font-normal text-left ${expanded === 'panel1' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
           >
             <p
               className={`pr-2 ${expanded === 'panel1' ? 'text-gray-0' : 'text-primary-50'}`}
@@ -58,7 +58,7 @@ const FAQ = () => {
             </p>
           </AccordionSummary>
           <AccordionDetails
-            className="text-primary-10 text-[16px] pad:text-[18px] font-medium text-left flex flex-row px-8 pb-8"
+            className="text-primary-10 text-[16px] pad:text-[18px] font-normal text-left flex flex-row px-8 pb-8"
             sx={{
               pt: 0,
               marginTop: 0,
@@ -97,7 +97,7 @@ const FAQ = () => {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2"
             id="panel1-header"
-            className={`p-8 text-[16px] pad:text-[18px] font-medium text-left ${expanded === 'panel2' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
+            className={`p-8 text-[16px] pad:text-[18px] font-normal text-left ${expanded === 'panel2' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
           >
             <p
               className={`pr-2 ${expanded === 'panel2' ? 'text-gray-0' : 'text-primary-50'}`}
@@ -109,7 +109,7 @@ const FAQ = () => {
               있나요?
             </p>
           </AccordionSummary>
-          <AccordionDetails className="text-primary-10 text-[16px] pad:text-[18px] font-medium text-left flex flex-row px-8 pb-8">
+          <AccordionDetails className="text-primary-10 text-[16px] pad:text-[18px] font-normal text-left flex flex-row px-8 pb-8">
             <p className="pr-2">A.</p>
             <p>
               네! 저도 자율전공이랍니다. “컴퓨터 공학과에 진입할 예정” 이라면
@@ -141,7 +141,7 @@ const FAQ = () => {
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel3"
             id="panel1-header"
-            className={`p-8 text-[16px] pad:text-[18px] font-medium text-left ${expanded === 'panel3' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
+            className={`p-8 text-[16px] pad:text-[18px] font-normal text-left ${expanded === 'panel3' ? 'text-gray-0 pb-4' : 'text-gray-80'}`}
           >
             <p
               className={`pr-2 ${expanded === 'panel3' ? 'text-gray-0' : 'text-primary-50'}`}
@@ -150,7 +150,7 @@ const FAQ = () => {
             </p>
             <p>모집인원은 몇 명인가요?</p>
           </AccordionSummary>
-          <AccordionDetails className="text-primary-10 text-[16px] pad:text-[18px] font-medium text-left flex flex-row px-8 pb-8">
+          <AccordionDetails className="text-primary-10 text-[16px] pad:text-[18px] font-normal text-left flex flex-row px-8 pb-8">
             <p className="pr-2">A.</p>
             <p>
               보컬 2명, 드럼 2명, 기타 4명, 베이스 2명, 신디사이저 2명으로 총
