@@ -56,28 +56,28 @@ const page = () => {
         {/* 데이터 섹션 */}
         <section className="w-full h-full flex flex-col items-center">
           <div className="w-full dt:w-[1200px] h-[51px] bg-gray-90 dt:rounded-t-3xl mt-8 font-pretendard hidden pad:flex justify-start items-center px-8">
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               상태
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               예매 번호
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               이름
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               전화번호
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               매수
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               학과
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               학번
             </div>
-            <div className="text-center text-lg font-medium text-gray-0">
+            <div className="text-center w-[94px] text-lg font-medium text-gray-0">
               뒷풀이
             </div>
           </div>

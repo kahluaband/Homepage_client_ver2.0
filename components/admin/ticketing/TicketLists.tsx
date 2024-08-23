@@ -167,46 +167,46 @@ const TicketLists = ({ type }: { type: string }) => {
 
             <Typography
               component="div"
-              className="text-center text-base font-medium text-gray-60"
+              className="text-center w-[94px] text-base font-medium text-gray-60"
             >
               {ticket.reservation_id}
             </Typography>
             <Typography
               component="div"
-              className="text-center text-base font-medium text-gray-60"
+              className="text-center w-[94px] text-base font-medium text-gray-60"
             >
               {ticket.buyer}
             </Typography>
             <Typography
               component="div"
-              className="text-center text-base font-medium text-gray-60"
+              className="text-center w-[94px] text-base font-medium text-gray-60"
             >
               {ticket.phone_num}
             </Typography>
             <Typography
               component="div"
-              className="text-center text-base font-medium text-gray-60"
+              className="text-center w-[94px] text-base font-medium text-gray-60"
             >
               {ticket.total_ticket}장
             </Typography>
 
             <Typography
               component="div"
-              className="text-center text-base font-medium text-gray-60"
+              className="text-center w-[94px] text-base font-medium text-gray-60"
             >
               {ticket.major === null ? '-' : ticket.major}
             </Typography>
 
             <Typography
               component="div"
-              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+              className="w-[120px] text-center text-base font-medium text-gray-60"
             >
               {ticket.studentId === null ? '-' : ticket.studentId}
             </Typography>
 
             <Typography
               component="div"
-              className="min-w-[120px] text-center text-base font-medium text-gray-60"
+              className="w-[120px] text-center text-base font-medium text-gray-60"
             >
               {ticket.meeting === null ? '-' : ticket.meeting}
             </Typography>
