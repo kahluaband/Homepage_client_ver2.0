@@ -26,7 +26,7 @@ const TwoOptionBox: React.FC<twoOptionProps> = ({
     <div className={`flex flex-row gap-4 pad:flex-col ${className}`}>
       <div
         onClick={(e) => setSelected(option1)}
-        className={`mt-2 flex items-center justify-between px-4 h-12 w-[156px] pad:w-[282px] rounded-xl border ${selected === option1 ? 'border-primary-50 text-primary-50' : 'border-gray-40 text-gray-90'} bg-gray-0 text-[16px] font-normal leading-6 text-center`}
+        className={`mt-2 flex items-center justify-between px-4 h-12 w-[156px] pad:w-[282px] rounded-xl border ${selected === option1 ? 'border-primary-50 text-primary-50' : 'border-gray-40 text-gray-90'} bg-gray-0 text-[16px] font-light leading-6 text-center`}
       >
         {option1}
         {selected === option1 && (
@@ -41,7 +41,7 @@ const TwoOptionBox: React.FC<twoOptionProps> = ({
       </div>
       <div
         onClick={(e) => setSelected(option2)}
-        className={`mt-2 pad:mt-0 flex items-center justify-between px-4 h-12 w-[156px] pad:w-[282px] rounded-xl border ${selected === option2 ? 'border-primary-50 text-primary-50' : 'border-gray-40 text-gray-90'} bg-gray-0 text-[16px] font-normal leading-6 text-center`}
+        className={`mt-2 pad:mt-0 flex items-center justify-between px-4 h-12 w-[156px] pad:w-[282px] rounded-xl border ${selected === option2 ? 'border-primary-50 text-primary-50' : 'border-gray-40 text-gray-90'} bg-gray-0 text-[16px] font-light leading-6 text-center`}
       >
         {option2}
         {selected === option2 && (

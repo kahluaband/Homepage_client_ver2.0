@@ -80,15 +80,13 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
   return (
     <div className="flex flex-col py-10 px-4 pad:px-12">
       <div className="flex flex-col pad:flex-row gap-1 pad:gap-3 pad:items-end">
-        <p className="text-gray-90 text-[20px] font-semibold">
-          지원자 인적사항
-        </p>
-        <p className="text-gray-40 text-[16px] font-medium">
+        <p className="text-gray-90 text-[20px] font-medium">지원자 인적사항</p>
+        <p className="text-gray-40 text-[16px] font-normal">
           신입생 확인을 위해 정확한 정보를 입력해주세요.
         </p>
       </div>
       <div className="flex flex-col">
-        <p className="mt-6 text-[16px] font-normal leading-6">이름</p>
+        <p className="mt-6 text-[16px] font-light leading-6">이름</p>
         <Input
           className="mt-2"
           type="text"
@@ -96,7 +94,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           onChange={handleNameChange}
           placeholder="예) 홍길동"
         />
-        <p className="mt-6 text-[16px] font-normal leading-6">생년월일</p>
+        <p className="mt-6 text-[16px] font-light leading-6">생년월일</p>
         <Input
           className="mt-2"
           type="text"
@@ -104,7 +102,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           onChange={handleBirthdateChange}
           placeholder="8자리로 입력해주세요"
         />
-        <p className="mt-6 text-[16px] font-normal leading-6">전화번호</p>
+        <p className="mt-6 text-[16px] font-light leading-6">전화번호</p>
         <Input
           className="mt-2"
           type="text"
@@ -112,14 +110,14 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           onChange={handlePhoneNumChange}
           placeholder="전화번호 -없이 입력"
         />
-        <p className="mt-6 text-[16px] font-normal leading-6">성별</p>
+        <p className="mt-6 text-[16px] font-light leading-6">성별</p>
         <TwoOptionBox
           option1={Gender[0].toString()}
           option2={Gender[1].toString()}
           seletion={handleGenderChange}
           className=""
         />
-        <p className="mt-6 text-[16px] font-normal leading-6">학과</p>
+        <p className="mt-6 text-[16px] font-light leading-6">학과</p>
         <Input
           className="mt-2"
           type="text"
@@ -127,7 +125,7 @@ const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
           onChange={handleMajorChange}
           placeholder="예) 컴퓨터공학과"
         />
-        <p className="mt-6 text-[16px] font-normal leading-6">거주지</p>
+        <p className="mt-6 text-[16px] font-light leading-6">거주지</p>
         <Input
           className="mt-2 w-full pad:w-[588px]"
           type="text"

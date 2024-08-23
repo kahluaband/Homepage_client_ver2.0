@@ -32,7 +32,7 @@ const AdminHeader = () => {
       <Link href="/admin/applicant" key="admin">
         <div className="inline-flex gap-5 items-center">
           <Image src={logo_black} alt="logo-black" height={24} />
-          <p className="font-mustica text-2xl text-gray-60 font-semibold">
+          <p className="font-mustica text-2xl text-gray-60 font-medium">
             Admin
           </p>
         </div>
@@ -40,7 +40,7 @@ const AdminHeader = () => {
       <div>
         <ul className="flex flex-row gap-[64px]">
           <li
-            className="text-lg font-medium cursor-pointer"
+            className="text-lg font-normal cursor-pointer"
             onClick={() => {
               router.push('/admin/applicant');
             }}
@@ -48,7 +48,7 @@ const AdminHeader = () => {
             지원 관리
           </li>
           <li
-            className="text-lg font-medium cursor-pointer"
+            className="text-lg font-normal cursor-pointer"
             onClick={() => {
               router.push('/admin/ticketing');
             }}
@@ -56,7 +56,7 @@ const AdminHeader = () => {
             예매 관리
           </li>
           <li
-            className="text-lg font-medium text-danger-40 cursor-pointer"
+            className="text-lg font-normal text-danger-40 cursor-pointer"
             onClick={handleLogout}
           >
             로그아웃

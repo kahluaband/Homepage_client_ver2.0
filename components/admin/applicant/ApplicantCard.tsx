@@ -119,11 +119,11 @@ const ApplicantCard = ({
     <div className="max-w-[384px] h-[242px] rounded-3xl font-pretendard flex flex-col">
       {/* 카드 상단 부분 : 이름 및 기본 개인 정보 */}
       <div className="relative w-full h-[58px] bg-gray-80 rounded-t-3xl flex gap-1 justify-start items-center pl-6">
-        <span className="text-xl font-semibold text-gray-0">{name}</span>
-        <span className="text-lg font-medium text-gray-50">·</span>
-        <span className="text-lg font-medium text-gray-50">{gender}</span>
-        <span className="text-lg font-medium text-gray-50">·</span>
-        <span className="text-lg font-medium text-gray-50">{birth_date}</span>
+        <span className="text-xl font-medium text-gray-0">{name}</span>
+        <span className="text-lg font-normal text-gray-50">·</span>
+        <span className="text-lg font-normal text-gray-50">{gender}</span>
+        <span className="text-lg font-normal text-gray-50">·</span>
+        <span className="text-lg font-normal text-gray-50">{birth_date}</span>
         <Image
           src={show_more}
           alt="show_more_icon"
@@ -137,7 +137,7 @@ const ApplicantCard = ({
       <div className="w-full h-[184px] bg-gray-5 rounded-b-3xl pl-6 pt-4">
         <div className="flex gap-2 pb-3">
           <Image src={phone_icon} alt="phone_icon" width={20} height={20} />
-          <span className="text-lg font-medium text-gray-80">{phone_num}</span>
+          <span className="text-lg font-normal text-gray-80">{phone_num}</span>
         </div>
         <div className="flex gap-2 pb-3">
           <Image
@@ -146,22 +146,22 @@ const ApplicantCard = ({
             width={20}
             height={20}
           />
-          <span className="text-lg font-medium text-gray-80">{major}</span>
+          <span className="text-lg font-normal text-gray-80">{major}</span>
         </div>
         <div className="flex gap-2 pb-3">
           <Image src={address_icon} alt="address_icon" width={20} height={20} />
-          <span className="text-lg font-medium text-gray-80">{address}</span>
+          <span className="text-lg font-normal text-gray-80">{address}</span>
         </div>
         <div className="flex gap-5">
           <div className="flex gap-2">
-            <span className="text-lg font-medium text-gray-40">1지망</span>
-            <span className="text-lg font-medium text-gray-80">
+            <span className="text-lg font-normal text-gray-40">1지망</span>
+            <span className="text-lg font-normal text-gray-80">
               {first_preference}
             </span>
           </div>
           <div className="flex gap-2">
-            <span className="text-lg font-medium text-gray-40">2지망</span>
-            <span className="text-lg font-medium text-gray-80">
+            <span className="text-lg font-normal text-gray-40">2지망</span>
+            <span className="text-lg font-normal text-gray-80">
               {second_preference}
             </span>
           </div>
@@ -179,13 +179,13 @@ const ApplicantCard = ({
         >
           <DialogTitle className="relative w-full h-[76px] bg-gray-80 rounded-t-3xl flex justify-between items-center">
             <div>
-              <span className="text-2xl font-semibold text-gray-0">{name}</span>
-              <span className="text-2xl font-medium text-gray-50 mx-1">·</span>
-              <span className="text-2xl font-medium text-gray-50">
+              <span className="text-2xl font-medium text-gray-0">{name}</span>
+              <span className="text-2xl font-normal text-gray-50 mx-1">·</span>
+              <span className="text-2xl font-normal text-gray-50">
                 {gender}
               </span>
-              <span className="text-2xl font-medium text-gray-50 mx-1">·</span>
-              <span className="text-2xl font-medium text-gray-50">
+              <span className="text-2xl font-normal text-gray-50 mx-1">·</span>
+              <span className="text-2xl font-normal text-gray-50">
                 {birth_date}
               </span>
             </div>
@@ -211,7 +211,7 @@ const ApplicantCard = ({
                     width={20}
                     height={20}
                   />
-                  <span className="text-lg font-medium text-gray-80">
+                  <span className="text-lg font-normal text-gray-80">
                     {phone_num}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ const ApplicantCard = ({
                     width={20}
                     height={20}
                   />
-                  <span className="text-lg font-medium text-gray-80">
+                  <span className="text-lg font-normal text-gray-80">
                     {major}
                   </span>
                 </div>
@@ -235,24 +235,24 @@ const ApplicantCard = ({
                     width={20}
                     height={20}
                   />
-                  <span className="text-lg font-medium text-gray-80">
+                  <span className="text-lg font-normal text-gray-80">
                     {address}
                   </span>
                 </div>
                 <div className="flex gap-5">
                   <div className="flex gap-2">
-                    <span className="text-lg font-medium text-gray-40">
+                    <span className="text-lg font-normal text-gray-40">
                       1지망
                     </span>
-                    <span className="text-lg font-medium text-gray-80">
+                    <span className="text-lg font-normal text-gray-80">
                       {first_preference}
                     </span>
                   </div>
                   <div className="flex gap-2">
-                    <span className="text-lg font-medium text-gray-40">
+                    <span className="text-lg font-normal text-gray-40">
                       2지망
                     </span>
-                    <span className="text-lg font-medium text-gray-80">
+                    <span className="text-lg font-normal text-gray-80">
                       {second_preference}
                     </span>
                   </div>
@@ -264,7 +264,7 @@ const ApplicantCard = ({
             {/* 지원 동기 및 세부 내용 */}
             <section className="mt-6 font-pretendard flex-col w-full">
               <div className="flex-col justify-start">
-                <div className="text-lg text-gray-80 font-semibold pb-2">
+                <div className="text-lg text-gray-80 font-medium pb-2">
                   깔루아 지원 동기
                 </div>
                 <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
@@ -272,7 +272,7 @@ const ApplicantCard = ({
                 </div>
               </div>
               <div className="flex-col justify-start">
-                <div className="text-lg text-gray-80 font-semibold pb-2">
+                <div className="text-lg text-gray-80 font-medium pb-2">
                   지원 세션에 대한 경력 및 지원 이유
                 </div>
                 <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
@@ -280,7 +280,7 @@ const ApplicantCard = ({
                 </div>
               </div>
               <div className="flex-col justify-start">
-                <div className="text-lg text-gray-80 font-semibold pb-2">
+                <div className="text-lg text-gray-80 font-medium pb-2">
                   이외에 다룰 줄 아는 악기
                 </div>
                 <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px] mb-12">
@@ -288,7 +288,7 @@ const ApplicantCard = ({
                 </div>
               </div>
               <div className="flex-col justify-start">
-                <div className="text-lg text-gray-80 font-semibold pb-2">
+                <div className="text-lg text-gray-80 font-medium pb-2">
                   포부 및 각오
                 </div>
                 <div className="inline-flex flex-wrap w-full p-6 justify-center align-center bg-gray-5 rounded-xl gap-[10px]">

@@ -34,7 +34,7 @@ const DetailsErrorModal: React.FC<DetailsErrorModalProps> = ({
           onClick={onClose}
           className="ml-auto mt-6 cursor-pointer"
         />
-        <p className="text-[18px] pad:text-[22px] font-medium leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
+        <p className="text-[18px] pad:text-[22px] font-normal leading-[27px] pad:leading-[33px] text-gray-90 text-center mt-2 pad:mt-6">
           모든 정보를 입력해야 합니다.
           <br />
           입력한 정보를 다시 확인해주세요.

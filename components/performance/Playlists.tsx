@@ -164,10 +164,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[0].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[0].description}
             </span>
           </div>
@@ -188,10 +188,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[1].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[1].description}
             </span>
           </div>
@@ -212,10 +212,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[2].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[2].description}
             </span>
           </div>
@@ -236,10 +236,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[3].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[3].description}
             </span>
           </div>
@@ -260,10 +260,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[4].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[4].description}
             </span>
           </div>
@@ -284,10 +284,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[5].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[5].description}
             </span>
           </div>
@@ -308,10 +308,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[6].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[6].description}
             </span>
           </div>
@@ -332,10 +332,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[7].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[7].description}
             </span>
           </div>
@@ -356,10 +356,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[8].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[8].description}
             </span>
           </div>
@@ -380,10 +380,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[9].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[9].description}
             </span>
           </div>
@@ -404,10 +404,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[10].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[10].description}
             </span>
           </div>
@@ -428,10 +428,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[11].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[11].description}
             </span>
           </div>
@@ -453,10 +453,10 @@ const Playlists = () => {
                   sizes="100vw"
                 />
               </div>
-              <p className="text-[20px] font-semibold leading-8">
+              <p className="text-[20px] font-medium leading-8">
                 {detail[12].name}
               </p>
-              <span className="text-[16px] text-gray-40 font-medium leading-6">
+              <span className="text-[16px] text-gray-40 font-normal leading-6">
                 {detail[12].description}
               </span>
             </div>
@@ -478,10 +478,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[13].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[13].description}
             </span>
           </div>
@@ -502,10 +502,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[13].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[13].description}
             </span>
           </div>
@@ -526,10 +526,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[14].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[14].description}
             </span>
           </div>
@@ -550,10 +550,10 @@ const Playlists = () => {
                 sizes="100vw"
               />
             </div>
-            <p className="text-[20px] font-semibold leading-8">
+            <p className="text-[20px] font-medium leading-8">
               {detail[14].name}
             </p>
-            <span className="text-[16px] text-gray-40 font-medium leading-6">
+            <span className="text-[16px] text-gray-40 font-normal leading-6">
               {detail[14].description}
             </span>
           </div>
@@ -563,11 +563,11 @@ const Playlists = () => {
       {sYear === 'All' && (
         <div onClick={handleMore} className="flex mt-16 gap-2 cursor-pointer">
           {showMore ? (
-            <span className="text-primary-50 text-center text-lg font-medium">
+            <span className="text-primary-50 text-center text-lg font-normal">
               닫기
             </span>
           ) : (
-            <span className="text-primary-50 text-center text-lg font-medium">
+            <span className="text-primary-50 text-center text-lg font-normal">
               더보기
             </span>
           )}

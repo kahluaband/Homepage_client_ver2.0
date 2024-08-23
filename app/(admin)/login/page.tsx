@@ -69,25 +69,25 @@ const page = () => {
               height={136}
               className="opacity-50 fill-gray-0 absolute top-[43px] z-10"
             />
-            <p className="font-mustica absolute top-[37px] left-[299px] text-center text-[64px] font-semibold text-gray-0">
+            <p className="font-mustica absolute top-[37px] left-[299px] text-center text-[64px] font-medium text-gray-0">
               Admin
             </p>
           </div>
           <div className="font-pretendard w-full h-[324px] flex flex-col items-center justify-center border-solid border-[1px] border-gray-15 rounded-b-xl">
             <form>
               <div className="mb-[40px] flex flex-col gap-2">
-                <span className="text-xl font-semibold text-gray-90">ID</span>
+                <span className="text-xl font-medium text-gray-90">ID</span>
                 <input
                   type="email"
                   name="email"
                   value={email}
                   onChange={handleEmail}
                   placeholder="ID를 입력해주세요."
-                  className="w-[588px] h-12 rounded-xl border-solid border-[1px] border-gray-15 pl-4 placeholder:text-base placeholder:text-gray-20 placeholder:font-normal"
+                  className="w-[588px] h-12 rounded-xl border-solid border-[1px] border-gray-15 pl-4 placeholder:text-base placeholder:text-gray-20 placeholder:font-light"
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <span className="text-xl font-semibold text-gray-90">
+                <span className="text-xl font-medium text-gray-90">
                   비밀번호
                 </span>
                 <input
@@ -96,7 +96,7 @@ const page = () => {
                   value={password}
                   onChange={handlePassword}
                   placeholder="비밀번호를 입력해주세요."
-                  className="w-[588px] h-12 rounded-xl border-solid border-[1px] border-gray-15 pl-4 placeholder:text-base placeholder:text-gray-20 placeholder:font-normal"
+                  className="w-[588px] h-12 rounded-xl border-solid border-[1px] border-gray-15 pl-4 placeholder:text-base placeholder:text-gray-20 placeholder:font-light"
                   onKeyDown={handleKeyDown}
                 />
               </div>
@@ -107,7 +107,7 @@ const page = () => {
           className="w-[384px] h-[59px] bg-gray-5 rounded-xl flex justify-center items-center cursor-pointer"
           onClick={handleLogin}
         >
-          <span className="font-pretendard text-gray-60 text-center text-lg font-medium">
+          <span className="font-pretendard text-gray-60 text-center text-lg font-normal">
             로그인
           </span>
         </div>

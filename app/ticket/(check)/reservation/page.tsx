@@ -114,10 +114,10 @@ const Reservation = () => {
       className={`w-full pad:w-[786px] dt:w-[996px] flex flex-col relative mx-auto top-20 ${dynamicHeightClass}`}
     >
       <div className="h-[200px] w-full pad:rounded-t-xl bg-gray-90 flex flex-col mx-auto items-center justify-center gap-4">
-        <p className="h-12 text-gray-0 text-center text-2xl font-semibold leading-[48px]">
+        <p className="h-12 text-gray-0 text-center text-2xl font-medium leading-[48px]">
           예매 내역 조회
         </p>
-        <p className="text-gray-20 text-center text-lg font-normal leading-[27px]">
+        <p className="text-gray-20 text-center text-lg font-light leading-[27px]">
           티켓 예매 내역을 확인하고 취소할 수 있습니다.
         </p>
       </div>
@@ -132,7 +132,7 @@ const Reservation = () => {
         />
         <MustRead />
       </div>
-      <div className="flex flex-col mb-8 pad:flex-row mt-10 gap-[18px] dt:gap-6 text-[18px] font-medium mx-auto">
+      <div className="flex flex-col mb-8 pad:flex-row mt-10 gap-[18px] dt:gap-6 text-[18px] font-normal mx-auto">
         <button
           onClick={handleOpenModal}
           className="pad:hidden w-[328px] pad:w-[384px] h-[59px] flex flex-shrink-0 text-center justify-center items-center rounded-xl bg-gray-0 text-danger-40 border border-danger-40"

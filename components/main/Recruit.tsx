@@ -6,13 +6,13 @@ import guitar from '@/public/image/recruit/guitar.svg';
 export default function Recruit() {
   return (
     <div className="flex flex-col w-full justify-center items-center pt-[158px] pb-[200px] pad:pt-[120px] pad:pb-[300px] text-gray-0">
-      <p className="font-mustica text-[32px] pad:text-[48px] font-semibold">
+      <p className="font-mustica text-[32px] pad:text-[48px] font-medium">
         Join Us!
       </p>
-      <p className="font-pretendard text-[24px] pad:text-[32px] font-semibold mt-[24px] pad:mt-[40px] ">
+      <p className="font-pretendard text-[24px] pad:text-[32px] font-medium mt-[24px] pad:mt-[40px] ">
         우리 같이 깔루아할래요?
       </p>
-      <p className="font-pretendard text-[16px] pad:text-[24px] text-gray-50 font-medium mt-[8px]">
+      <p className="font-pretendard text-[16px] pad:text-[24px] text-gray-50 font-normal mt-[8px]">
         깔루아는 매년 3월 멤버를 모집하고 있어요
       </p>
       <RecruitButton />
@@ -25,7 +25,7 @@ const RecruitButton = () => {
     <div className="flex relative justify-center w-[278px] h-[62px] pad:w-[404px] pad:h-[84px] mt-[72px] pad:mt-[104px]">
       <Link
         href={'/recruit'}
-        className="flex justify-center items-center w-full h-full rounded-[48px] bg-gradient-to-r from-[#128DFF] to-primary-50 text-[20px] pad:text-[24px] font-semibold z-20"
+        className="flex justify-center items-center w-full h-full rounded-[48px] bg-gradient-to-r from-[#128DFF] to-primary-50 text-[20px] pad:text-[24px] font-medium z-20"
       >
         지원하기
       </Link>

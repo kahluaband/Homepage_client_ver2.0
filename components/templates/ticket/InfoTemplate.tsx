@@ -63,7 +63,7 @@ const InfoTemplate: React.FC<InfoTemplateProps> = ({
   return (
     <div>
       <div className="w-[282px] flex flex-row justify-between">
-        <p className="mt-6 text-[16px] font-normal leading-6">{role}</p>
+        <p className="mt-6 text-[16px] font-light leading-6">{role}</p>
         {role !== '예매자' && isLastCompanion && (
           <div
             className="pad:hidden cursor-pointer mt-6"

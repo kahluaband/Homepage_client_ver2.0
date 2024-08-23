@@ -1,6 +1,6 @@
 import TopRightRoundBorder from '@/components/ui/RoundBorder';
 import Image from 'next/image';
-import music from '@/public/image/main/music.svg';
+import music from '@/public/image/main/mainMusic.svg';
 import Link from 'next/link';
 import arrow from '@/public/image/arrow_right.svg';
 
@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div className="flex flex-col w-full max-pad:max-w-[500px] max-pad:px-[16px] items-center mb-[48px] pad:mb-[120px]">
       <div className="w-full h-[260px] pad:w-[786px] dt:w-[1200px] pad:h-[744px] bg-mainAbout bg-center bg-contain object-contain rounded-[32px] pad:rounded-[48px] border-none relative z-0">
-        <p className="font-mustica text-[24px] pad:text-[40px] dt:text-[64px] font-semibold text-gray-0 m-[24px] pad:m-[56px]">
+        <p className="font-mustica text-[24px] pad:text-[40px] dt:text-[64px] font-medium text-gray-0 m-[24px] pad:m-[56px]">
           Hongik University
           <br />
           Computer Engineering
@@ -48,11 +48,11 @@ export default function About() {
 const AboutSmallBox = () => {
   return (
     <div className="w-full h-full pad:w-[384px] pad:h-[300px] rounded-[32px] pad:rounded-[48px] bg-primary-50 z-0 text-gray-0 py-[24px] px-[32px] pad:py-[32px] pad:px-[40px]">
-      <p className="text-[24px] font-semibold pad:text-[32px] pad:font-bold">
+      <p className="text-[24px] font-medium pad:text-[32px] pad:font-bold">
         아 우리는
         <br />깔 깔 깔 깔루아!
       </p>
-      <p className="text-[16px] pad:text-[20px] font-medium text-primary-10 mt-[16px] pad:mt-[24px]">
+      <p className="text-[16px] pad:text-[20px] font-normal text-primary-10 mt-[16px] pad:mt-[24px]">
         KAHLUA는 2003년부터 지금까지
         <br />
         21년의 전통을 이어오고 있는

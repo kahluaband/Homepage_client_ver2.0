@@ -17,7 +17,7 @@ const TicketIntroPad: React.FC<props> = ({ className }) => {
         <Image src={poster} alt="poster" sizes="100vw" priority />
       </div>
       <div className="flex flex-col justify-end w-full h-auto gap-[32px]">
-        <p className="pad:text-[24px] dt:text-[32px] font-semibold">
+        <p className="pad:text-[24px] dt:text-[32px] font-medium">
           깔루아 공연!
           <br />
           홈페이지에서 간편하게 예매하세요
