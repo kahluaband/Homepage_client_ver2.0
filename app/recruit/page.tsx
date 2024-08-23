@@ -7,7 +7,6 @@ import logo_white from '@/public/image/KAHLUA.svg';
 import vocal from '@/public/image/recruit/vocal.svg';
 import guitar from '@/public/image/recruit/guitar.svg';
 import drum from '@/public/image/recruit/drum.svg';
-import bass from '@/public/image/recruit/bass.svg';
 import syn from '@/public/image/recruit/syn.svg';
 
 import FAQ from './FAQ';
@@ -128,7 +127,7 @@ const RecruitingSession = () => {
         <SessionCard session="보컬" image={vocal} />
         <SessionCard session="기타" image={guitar} />
         <SessionCard session="드럼" image={drum} />
-        <SessionCard session="베이스" image={bass} />
+        <SessionCard session="베이스" image={guitar} />
         <SessionCard session="신디사이저" image={syn} />
       </div>
     </div>
