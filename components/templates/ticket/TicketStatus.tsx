@@ -31,10 +31,16 @@ const TicketStatus: React.FC<TicketStatusProps> = ({
     });
   };
 
+  const copyBankAccount = () => {
+    navigator.clipboard.writeText('100075789563').then(() => {
+      alert('계좌번호가 복사되었습니다!');
+    });
+  };
+
   return (
     <div className="flex flex-row w-full px-4 pad:px-12 my-10">
       <Image
-        src="/image/ticket/Poster.svg"
+        src="/image/ticket/Poster.avif"
         alt="포스터사진"
         width={289}
         height={357}
@@ -55,7 +61,7 @@ const TicketStatus: React.FC<TicketStatusProps> = ({
           </div>
           <div className="flex flex-row h-[27px] mt-4 pad:mt-7 dt:mt-0">
             <p className="text-gray-40 w-[67px] dt:ml-[104px]">예매번호</p>
-            <p className="text-gray-80 w-[125px] pad:w-[135px] ml-[39px]">
+            <p className="text-gray-80 w-[125px] pad:w-[135px] dt:w-[155px] ml-[39px]">
               {reservation_id}
             </p>
             <div
@@ -88,6 +94,26 @@ const TicketStatus: React.FC<TicketStatusProps> = ({
             <p className="text-gray-80 w-[129px] ml-[39px]">{student_id}</p>
           </div>
         )}
+        {
+          <div className="flex flex-row h-[27px] text-[16px] pad:text-[18px] font-medium leading-7 mt-4 pad:mt-7">
+            <p className="text-gray-40 w-[67px] ">계좌번호</p>
+            <p className="text-gray-80 w-[185px] pad:w-[210px] ml-[39px] whitespace-nowrap">
+              토스뱅크 100075789563
+            </p>
+            <div
+              onClick={copyBankAccount}
+              className="flex items-center justify-start cursor-pointer"
+            >
+              <Image
+                src="/image/ticket/copy.svg"
+                width={20}
+                height={20}
+                alt="copy"
+                className="w-4 h-4 pad:w-5 pad:h-5"
+              />
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const Complete: React.FC = () => {
           </p>
         </div>
       </div>
-      <div className="h-full pad:h-[642px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
+      <div className="h-full pad:h-[668px] dt:h-[517px] w-full pad:rounded-b-xl pad:border pad:border-gray-15 flex flex-col mx-auto">
         <TicketStatus
           reservation_id={reservation_id}
           buyer={buyer}
