@@ -4,6 +4,5 @@
  * @returns {Promise<void>} 비동기 함수. 반환 없음
  */
 async function delay(ms: number) {
-  console.log('delay' + ms);
   return new Promise((res) => setTimeout(res, ms));
 }

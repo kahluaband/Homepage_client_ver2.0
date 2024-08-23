@@ -9,13 +9,10 @@ import table_menu from '@/public/image/tabler_menu-2.svg';
 import table_menu_white from '@/public/image/tabler_menu-2-white.svg';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { createTheme, ThemeProvider } from '@mui/material';
 import kahlua_logo from '@/public/image/KAHLUA-black.svg';
 import youtube_logo from '@/public/image/youtube-icon.svg';
@@ -90,11 +87,11 @@ const Header = () => {
 
   const DrawerList = (
     <Box role="presentation" onClick={toggleDrawer(false)}>
-      <div className="w-full mt-8 ml-8 mb-8">
+      <div className="w-auto mt-8 ml-8 mb-8">
         {width <= 834 ? (
-          <Image src={kahlua_logo} alt="kahlua_logo" height={16} />
+          <Image src={kahlua_logo} alt="kahlua_logo" height={16} width={94} />
         ) : (
-          <Image src={kahlua_logo} alt="kahlua_logo" height={24} />
+          <Image src={kahlua_logo} alt="kahlua_logo" height={24} width={140} />
         )}
       </div>
       <List>

@@ -1,6 +1,5 @@
 'use client';
 import { SelectBox } from '@/components/ui/selectBox';
-import React from 'react';
 
 export interface State {
   participation1: boolean;

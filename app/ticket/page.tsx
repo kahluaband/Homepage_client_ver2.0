@@ -40,19 +40,6 @@ const Page = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDays]);
 
-  const [freshman, setFreshman] = useState(false);
-  const [general, setGeneral] = useState(true);
-
-  const handleFreshmanClick = () => {
-    setFreshman(true);
-    setGeneral(false);
-  };
-
-  const handleGeneralClick = () => {
-    setFreshman(false);
-    setGeneral(true);
-  };
-
   useEffect(() => {
     setIsDays(information.isDays);
   }, []);
