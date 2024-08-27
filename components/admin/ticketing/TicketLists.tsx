@@ -242,7 +242,7 @@ const TicketLists = ({ type }: { type: string }) => {
             </div>
             <Typography
               component="div"
-              className="min-w-[140px] text-center text-base font-medium text-gray-60"
+              className="min-w-[160px] text-center text-base font-medium text-gray-60"
             >
               {ticket.total_ticket}장
             </Typography>
