@@ -6,7 +6,6 @@ import { useRecoilValue } from 'recoil';
 import { totalTicket } from '@/atoms';
 import TicketLists from '@/components/admin/ticketing/TicketLists';
 import PublishIcon from '@mui/icons-material/Publish';
-import LocalPrintshopOutlinedIcon from '@mui/icons-material/LocalPrintshopOutlined';
 import { authInstance } from '@/api/auth/axios';
 import { information } from '@/components/data/Information';
 
@@ -46,7 +45,7 @@ const page = () => {
             <span className="font-mustica text-[40px] text-gray-90 font-semibold leading-10 pb-[15px]">
               Ticketing List
             </span>
-            <section className="flex gap-2 pb-10 justify-center items-center">
+            <section className="flex gap-2 pb-10 items-center">
               <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
                 {information.title}
               </span>
