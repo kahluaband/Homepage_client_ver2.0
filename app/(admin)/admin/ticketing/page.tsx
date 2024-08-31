@@ -8,6 +8,7 @@ import TicketLists from '@/components/admin/ticketing/TicketLists';
 import PublishIcon from '@mui/icons-material/Publish';
 import LocalPrintshopOutlinedIcon from '@mui/icons-material/LocalPrintshopOutlined';
 import { authInstance } from '@/api/auth/axios';
+import { information } from '@/components/data/Information';
 
 const page = () => {
   const typeArr = ['All', '신입생', '일반'];
@@ -47,7 +48,7 @@ const page = () => {
             </span>
             <section className="flex gap-2 pb-10 justify-center items-center">
               <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
-                2024 9월 정기공연
+                {information.title}
               </span>
               <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
                 {total}

@@ -9,6 +9,10 @@ import { useRouter } from 'next/navigation';
 import { authInstance } from '@/api/auth/axios';
 import { totalApplicant } from '@/atoms';
 import { useRecoilState } from 'recoil';
+import {
+  DynamicRecruitingInfo,
+  recruitingInfo,
+} from '@/components/data/RecruitingInfo';
 
 interface ApplicantProps {
   id: number;
@@ -100,7 +104,7 @@ const page = () => {
             </span>
             <section className="flex gap-2 pb-10">
               <span className="font-pretendard text-2xl text-gray-90 font-semibold leading-9">
-                24기 지원자 정보
+                {DynamicRecruitingInfo.num}기 지원자 정보
               </span>
               <span className="font-pretendard text-2xl text-primary-50 font-semibold leading-9">
                 {total}
