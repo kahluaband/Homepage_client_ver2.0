@@ -1,7 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import ticketing_image from '@/public/image/admin/ticketing.svg';
 import { useRecoilValue } from 'recoil';
 import { totalTicket } from '@/atoms';
 import TicketLists from '@/components/admin/ticketing/TicketLists';
@@ -78,7 +77,6 @@ const page = () => {
               ))}
             </section>
           </div>
-          <Image src={ticketing_image} alt="image" width={443} height={259} />
         </div>
         {/* 데이터 섹션 */}
         <section className="w-full h-full flex flex-col items-center">
