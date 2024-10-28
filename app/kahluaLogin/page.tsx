@@ -4,7 +4,7 @@ import kakao from '@/public/image/login/kakao.svg';
 
 const page = () => {
     return(
-        <div className="font-pretendard w-full h-full flex justify-center items-center mt-16 text-gray-0 text-center max-pad:-mb-40">
+        <div className="w-full h-full justify-center items-center pad:w-[786px] dt:w-[876px] pad:h-[536px] flex flex-col pt-[32px] pad:pt-[58px] pb-[78px] px-[16px] pad:px-[64px] dt:px-[118px] gap-[48px] bg-gray-90 pad:rounded-[24px] mt-[16px] pad:mt-[32px]">
             <div className="w-full h-full justify-center items-center pad:w-[786px] dt:w-[876px] pad:h-[536px] flex flex-col pt-[58px] pb-[78px] px-[16px] pad:px-[118px] gap-[48px] bg-gray-90 pad:rounded-[24px] mt-[32px]">
                 <div className="flex flex-col gap-[16px] w-full justify-center items-center">
                     <div className="font-semibold text-[64px]">LOGIN</div>
