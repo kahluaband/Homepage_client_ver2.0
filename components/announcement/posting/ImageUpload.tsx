@@ -5,6 +5,7 @@ const ImageUpload = () => {
   const [hasScrollbar, setHasScrollbar] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // 이미지 추가
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files) {
@@ -13,6 +14,11 @@ const ImageUpload = () => {
       );
       setImages((prevImages) => [...prevImages, ...newImages]);
     }
+  };
+
+  // 이미지 삭제
+  const handleImageDelete = (index: number) => {
+    setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
   // 스크롤바 유무 감지
@@ -49,18 +55,27 @@ const ImageUpload = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="pad:w-[300px] ph:w-[234px] pad:h-[400px] ph:h-[328px] rounded-[12px] flex justify-center items-center overflow-hidden flex-shrink-0"
-              style={{ boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, 1)' }}
+              className="pad:w-[300px] ph:w-[234px] pad:h-[400px] ph:h-[328px] rounded-[12px] flex justify-center items-center overflow-hidden flex-shrink-0 group"
             >
               <img
                 src={image}
                 alt={`uploaded-${index}`}
-                className="pad:w-[298px] ph:w-[232px] pad:h-[398px] ph:h-[326px] object-cover rounded-[11px]"
+                className="relative w-full h-full object-cover rounded-[11px] transition duration-200 ease-in-out group-hover:blur-sm"
               />
+
+              {/* Hover 시 blur 및 삭제 버튼 */}
+              <div className="absolute pad:w-[300px] ph:w-[234px] pad:h-[400px] ph:h-[328px] bg-[black]/50 rounded-[11px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                <button
+                  onClick={() => handleImageDelete(index)}
+                  className="w-8 h-8 rounded-full bg-danger-40 text-[white] text-[24px] font-[500] flex items-center justify-center mb-1"
+                >
+                  -
+                </button>
+              </div>
             </div>
           ))}
 
-          {/* 추가버튼 box */}
+          {/* 추가 버튼 box */}
           {images.length < 5 && (
             <label
               className="pad:w-[400px] ph:w-[328px] pad:h-[400px] ph:h-[328px] rounded-[12px] flex justify-center items-center cursor-pointer flex-shrink-0"
