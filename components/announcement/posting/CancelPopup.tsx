@@ -39,7 +39,7 @@ const CancelPopup: React.FC<CancelPopupProps> = ({ onClose, onConfirm }) => {
             onClick={onClose}
           />
         </div>
-        <div className="pad:mt-[107px] ph:mt-[52px] pad:text-[22px] ph:text-[16px] font-[500] leading-[150%] text-black">
+        <div className="pad:mt-[107px] ph:mt-[52px] pad:text-[22px] ph:text-[16px] font-[500] leading-[150%] text-[black]">
           <div className="ph:hidden pad:block">
             <p>게시글 작성을 취소하시겠습니까?</p>
             <p>취소 시 작성하던 게시글은 저장되지 않습니다.</p>
