@@ -1,7 +1,12 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 
 const Page = () => {
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const isPostActive = title.trim() !== '' && content.trim() !== '';
+
   return (
     <div className="relative flex flex-col items-center mt-[96px] mb-[-160px] font-pretendard">
       <section className="dt:w-[1200px] pad:w-[786px] ph:w-[328px] dt:pb-[578px] pad:pb-[559px] ph:pb-[171px]">
@@ -10,7 +15,9 @@ const Page = () => {
           <div className="w-[51px] h-[46px] flex justify-center items-center rounded-[12px] mr-4 text-gray-40 text-[20px] font-[500] leading-[150%] cursor-pointer">
             취소
           </div>
-          <div className="w-[100px] h-[46px] flex justify-center items-center rounded-[12px] bg-gray-10 text-[20px] font-[500] leading-[150%] text-gray-0 cursor-pointer">
+          <div
+            className={`w-[100px] h-[46px] flex justify-center items-center rounded-[12px] ${isPostActive ? 'bg-primary-50 cursor-pointer' : 'bg-gray-10 cursor-not-allowed'} text-[20px] font-[500] leading-[150%] text-gray-0`}
+          >
             게시하기
           </div>
         </div>
@@ -18,12 +25,16 @@ const Page = () => {
         <input
           type="text"
           placeholder="제목"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="w-full pad:h-[64px] ph:h-[52px] shadow-[0_0_0_1px_black] rounded-[8px] px-3 py-2 pad:text-[32px] ph:text-[24px] font-[500] leading-[150%] text-black placeholder-gray-40
           focus:shadow-outline focus:shadow-primary-50 focus:outline-none mb-10"
         />
         {/* 내용 */}
         <textarea
           placeholder="내용을 입력하세요"
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           className="w-full h-[586px] shadow-[0_0_0_1px_black] rounded-[8px] px-3 py-2 pad:text-[20px] ph:text-[16px] font-[500] leading-[150%] text-black placeholder-gray-40
           focus:shadow-outline focus:shadow-primary-50 focus:outline-none resize-none mb-10"
         />
