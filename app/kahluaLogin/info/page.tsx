@@ -5,6 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import { useEffect } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
 import { Height } from '@mui/icons-material';
@@ -23,6 +24,7 @@ const page = () => {
     const [name, setName] = React.useState<string>();
     const [generation, setGeneration] = React.useState<string>();
     const [session, setSession] = React.useState<string>();
+    const [isComplete, setIsComplete] = React.useState<boolean>(false);
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value as string)
@@ -35,6 +37,11 @@ const page = () => {
     const handleSessionChange = (e: SelectChangeEvent) => {
         setSession(e.target.value as string);
     };
+
+    useEffect(() => {
+        const isFull = name != '' && generation != '' && session != '';
+        setIsComplete(isFull)
+    }, [name, generation, session]);
 
     return(
         <div className="font-pretendard w-full h-full flex justify-center items-center mt-16 text-gray-0 text-center max-pad:-mb-40">
@@ -120,9 +127,12 @@ const page = () => {
                         </Select>
                     </div>
                 </div>
-                <div className="w-full pad:w-[384px] h-[60px] rounded-[12px] ">
+                <button 
+                    className={`w-full pad:w-[384px] h-[60px] rounded-[12px] bg-gray-10 ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
+                    disabled={!isComplete}
+                    >
                     KAHLUA 가입 신청하러 가기 
-                </div>
+                </button>
             </div>
         </div>
     )
