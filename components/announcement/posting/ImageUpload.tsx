@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const ImageUpload = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -13,6 +13,7 @@ const ImageUpload = () => {
         (file) => URL.createObjectURL(file) // 이미지 미리 볼 수 있게
       );
       setImages((prevImages) => [...prevImages, ...newImages]);
+      setTimeout(checkScrollbar, 20);
     }
   };
 
@@ -21,22 +22,14 @@ const ImageUpload = () => {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  // 스크롤바 유무 감지
-  useEffect(() => {
-    const checkScrollbar = () => {
-      if (containerRef.current) {
-        const hasScroll =
-          containerRef.current.scrollWidth > containerRef.current.clientWidth;
-        setHasScrollbar(hasScroll);
-      }
-    };
-
-    checkScrollbar();
-
-    // 이미지가 변경될 때마다 스크롤바 상태 확인
-    window.addEventListener('resize', checkScrollbar);
-    return () => window.removeEventListener('resize', checkScrollbar);
-  }, [images]);
+  // 스크롤바 유무 감지 함수
+  const checkScrollbar = () => {
+    if (containerRef.current) {
+      const hasScroll =
+        containerRef.current.scrollWidth > containerRef.current.clientWidth;
+      setHasScrollbar(hasScroll);
+    }
+  };
 
   return (
     <div className="mb-10">
@@ -55,16 +48,16 @@ const ImageUpload = () => {
           {images.map((image, index) => (
             <div
               key={index}
-              className="pad:w-[300px] ph:w-[234px] pad:h-[400px] ph:h-[328px] rounded-[12px] flex justify-center items-center overflow-hidden flex-shrink-0 group"
+              className="relative pad:h-[400px] ph:h-[328px] rounded-[12px] flex justify-center items-center overflow-hidden flex-shrink-0 group"
             >
               <img
                 src={image}
                 alt={`uploaded-${index}`}
-                className="relative w-full h-full object-cover rounded-[11px] transition duration-200 ease-in-out group-hover:blur-sm"
+                className="w-auto h-full object-cover rounded-[11px] transition duration-200 ease-in-out group-hover:blur-sm"
               />
 
               {/* Hover 시 blur 및 삭제 버튼 */}
-              <div className="absolute pad:w-[300px] ph:w-[234px] pad:h-[400px] ph:h-[328px] bg-[black]/50 rounded-[11px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+              <div className="absolute top-0 left-0 h-full w-full pad:h-[400px] ph:h-[328px] bg-[black]/50 rounded-[11px] opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
                 <button
                   onClick={() => handleImageDelete(index)}
                   className="w-8 h-8 rounded-full bg-danger-40 text-[white] text-[24px] font-[500] flex items-center justify-center mb-1"
