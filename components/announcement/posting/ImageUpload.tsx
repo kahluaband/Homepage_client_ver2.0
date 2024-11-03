@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ImageUpload = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -31,6 +31,15 @@ const ImageUpload = () => {
     }
   };
 
+  // 이미지가 추가될 때마다 오른쪽으로 스크롤 이동
+  useEffect(() => {
+    if (hasScrollbar && containerRef.current) {
+      setTimeout(() => {
+        containerRef.current!.scrollLeft = containerRef.current!.scrollWidth;
+      }, 20);
+    }
+  }, [images, hasScrollbar]);
+
   return (
     <div className="mb-10">
       <p className="text-gray-90 text-[20px] font-[400] leading-normal pad:mb-2 ph:mb-4">
@@ -38,7 +47,10 @@ const ImageUpload = () => {
       </p>
 
       {/* container */}
-      <div ref={containerRef} className="mt-2 overflow-x-auto w-full">
+      <div
+        ref={containerRef}
+        className="mt-2 overflow-x-auto w-full image-upload-scrollbar"
+      >
         <div
           className={`flex ${
             images.length === 0 ? 'justify-center' : 'space-x-4'
