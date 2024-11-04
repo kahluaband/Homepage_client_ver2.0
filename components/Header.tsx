@@ -178,8 +178,10 @@ const Header = () => {
   ];
 
   const handleLinkClick = (name: string) => {
-    router.push(`/${name.toLowerCase()}`);
-    setCurrentLink(name);
+    if (name !== 'KAHLUA') {
+      router.push(`/${name.toLowerCase()}`);
+      setCurrentLink(name);
+    }
   };
 
   const [isHovered, setIsHovered] = useState(false);
@@ -261,7 +263,9 @@ const Header = () => {
                   <Link href={url.url} passHref>
                     <div
                       ref={url.name === 'KAHLUA' ? kahluaRef : null}
-                      onClick={() => handleLinkClick(url.name)}
+                      onClick={() => {
+                        handleLinkClick(url.name);
+                      }}
                     >
                       {url.name}
                     </div>
