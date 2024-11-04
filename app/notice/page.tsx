@@ -1,12 +1,13 @@
 'use client';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import CommentList from '@/components/notice/CommentList';
 import Image from 'next/image';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import FullHeart from '@/public/image/notice/FullHeart.svg';
 import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
-import chat from '@/public/image/notice/chat.svg';
 import send from '@/public/image/notice/send.svg';
-import arrow from '@/public/image/notice/Left.svg';
-import React, { useState } from 'react';
+import chat from '@/public/image/notice/chat.svg';
 
 const Page = () => {
   const text = `❗️깔루아 9월 정기공연❗️
@@ -32,10 +33,9 @@ const Page = () => {
   const [heartCount, setHeartCount] = useState(0);
   const [chatCount, setChatCount] = useState(0);
 
-  // 댓글 상태 관리
   const [comments, setComments] = useState<
     {
-      id: number;
+      id: string;
       name: string;
       date: string;
       text: string;
@@ -44,51 +44,35 @@ const Page = () => {
     }[]
   >([]);
   const [commentText, setCommentText] = useState('');
-  const [replyText, setReplyText] = useState('');
 
   const handleToggle = () => {
     setIsFilled((prev) => !prev);
-    setHeartCount((prev) => (isFilled ? prev - 1 : prev + 1)); // 하트 수 조정
+    setHeartCount((prev) => (isFilled ? prev - 1 : prev + 1));
   };
-  const formatDate = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
 
-    return `${year}. ${month}. ${day} ${hours}:${minutes}`;
-  };
   const addComment = () => {
     if (commentText.trim() === '') return;
     const newComment = {
-      id: comments.length + 1,
-      name: '오연서',
-      date: formatDate(new Date()),
+      id: uuidv4(),
+      name: '원마루',
+      date: new Date().toLocaleString(),
       text: commentText,
       replying: false,
       replies: [],
     };
-    setComments([...comments, newComment]);
+    setComments((prevComments) => {
+      const updatedComments = [...prevComments, newComment];
+      return updatedComments;
+    });
     setCommentText('');
     setChatCount((prev) => prev + 1);
   };
 
-  const toggleReplyInput = (id: number) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id
-          ? { ...comment, replying: !comment.replying }
-          : comment
-      )
-    );
-  };
-  const addReply = (id: number) => {
-    if (replyText.trim() === '') return;
+  const addReply = (id: string, replyText: string) => {
     const newReply = {
-      id: comments.length + 1, // Or a better unique ID handling
-      name: '오연서',
-      date: formatDate(new Date()),
+      id: uuidv4(),
+      name: '원채영',
+      date: new Date().toLocaleString(),
       text: replyText,
       replying: false,
     };
@@ -102,19 +86,19 @@ const Page = () => {
           : comment
       )
     );
-    setReplyText('');
     setChatCount((prev) => prev + 1);
   };
+
   return (
     <div className="w-full h-full px-4 ph:px-4 pad:px-6 dt:px-[150px]">
-      <div className="font-pretendard pt-[64px] flex flex-col justify-center items-center">
+      <div className="w-full font-pretendard pt-[64px] flex flex-col justify-center items-center">
         <div
           className="flex flex-col 
           w-full 
           max-w-[500px] 
           pad:max-w-[786px] 
           dt:max-w-[1200px] 
-          gap-16 "
+          gap-16"
         >
           <div className="flex mt-8">
             <Image
@@ -187,122 +171,8 @@ const Page = () => {
           </div>
         </div>
 
-        {/* 댓글 목록 */}
-        {comments.length > 0 && (
-          <div
-            className="w-full max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px] flex flex-col gap-10 mb-10"
-          >
-            {comments.map((comment) => (
-              <div key={comment.id} className="flex items-start ">
-                <div className="flex flex-col w-full">
-                  <div className="flex flex-row gap-3 items-start">
-                    <Image
-                      src={defaultImg}
-                      alt="default-profile"
-                      width={54}
-                      height={54}
-                      className="rounded-full"
-                    />
-                    <div className="w-full flex flex-col gap-1 overflow-auto">
-                      <div className="flex flex-row justify-between">
-                        <div className="flex flex-row gap-1">
-                          <span className="font-pretendard text-base font-normal">
-                            {comment.name}
-                          </span>
-                          <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
-                            {comment.date}
-                          </span>
-                        </div>
-                        <div>
-                          <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
-                            삭제
-                          </span>
-                        </div>
-                      </div>
-
-                      <p className="font-pretendard text-base break-words">
-                        {comment.text}
-                      </p>
-                      <button
-                        className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
-                        onClick={() => toggleReplyInput(comment.id)}
-                      >
-                        답글달기
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* 답글 리스트 */}
-                  {comment.replies && comment.replies.length > 0 && (
-                    <div className="flex flex-col gap-8 mt-8 ml-6">
-                      {comment.replies.map((reply) => (
-                        <div key={reply.id} className="flex items-start gap-3">
-                          <Image
-                            src={defaultImg}
-                            alt="default-profile"
-                            width={54}
-                            height={54}
-                            className="rounded-full"
-                          />
-                          <div className="w-full flex flex-col gap-1 overflow-auto">
-                            <div className="flex flex-row justify-between">
-                              <div className="flex flex-row gap-1">
-                                <span className="font-pretendard text-base font-normal">
-                                  {reply.name}
-                                </span>
-                                <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
-                                  {reply.date}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
-                                  삭제
-                                </span>
-                              </div>
-                            </div>
-
-                            <p className="font-pretendard text-base break-words">
-                              {reply.text}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* 답글 입력창 */}
-                  {comment.replying && (
-                    <div className="w-full flex items-start gap-3 mt-8 ml-6">
-                      <input
-                        type="text"
-                        value={replyText}
-                        onChange={(e) => setReplyText(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.nativeEvent.isComposing) return;
-                          if (e.key === 'Enter') {
-                            addReply(comment.id);
-                          }
-                        }}
-                        className="min-h-[60px] min-w-[calc(100%-94px)] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2  placeholder:text-gray-40 focus:outline-none"
-                        placeholder=" 댓글을 입력하세요"
-                      />
-                      <div
-                        className="flex items-center justify-center border rounded-lg border-black w-[60px] h-[60px] cursor-pointer"
-                        onClick={() => {
-                          addReply(comment.id);
-                        }}
-                      >
-                        <Image src={send} alt="send" width={20} height={20} />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* 댓글 리스트 */}
+        <CommentList comments={comments} onAddReply={addReply} />
 
         {/* 댓글 입력창 */}
         <div
@@ -316,35 +186,17 @@ const Page = () => {
             onChange={(e) => setCommentText(e.target.value)}
             onKeyDown={(e) => {
               if (e.nativeEvent.isComposing) return;
-              if (e.key === 'Enter') {
-                addComment();
-              }
+              if (e.key === 'Enter') addComment();
             }}
             placeholder=" 댓글을 입력하세요"
-            className="min-h-[60px] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2 w-full placeholder:text-gray-40 focus:outline-none"
+            className="w-full min-h-[60px] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2 placeholder:text-gray-40 focus:outline-none"
           />
-          <div className="relative">
-            <div
-              className="flex items-center justify-center border rounded-lg border-black w-[60px] h-[60px] cursor-pointer"
-              onClick={addComment}
-            >
-              <Image src={send} alt="send" width={20} height={20} />
-            </div>
-          </div>
-        </div>
-        <div
-          className="w-full max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px] "
-        >
-          <div className="flex items-start w-full">
-            <div className="flex w-[90px]  cursor-pointer gap-[10px]">
-              <Image src={arrow} alt="arrow" width={24} height={24} />
-              <span className="font-pretendard text-base font-medium">
-                목록으로
-              </span>
-            </div>
-          </div>
+          <button
+            className="border rounded-lg border-black min-w-[60px] min-h-[60px] cursor-pointer flex items-center justify-center"
+            onClick={addComment}
+          >
+            <Image src={send} alt="send" width={20} height={20} />
+          </button>
         </div>
       </div>
     </div>
