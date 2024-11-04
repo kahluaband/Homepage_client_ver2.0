@@ -42,12 +42,14 @@ const Page = () => {
     setIsFilled((prev) => !prev);
     setHeartCount((prev) => (isFilled ? prev - 1 : prev + 1)); // 하트 수 조정
   };
-
   const formatDate = (date: Date) => {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    return `${year}. ${month}. ${day}`;
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    return `${year}. ${month}. ${day} ${hours}:${minutes}`;
   };
 
   const addComment = () => {
@@ -62,17 +64,25 @@ const Page = () => {
     setCommentText('');
   };
   return (
-    <div className="w-full h-full">
-      <div className="font-pretendard w-full pt-[64px] flex flex-col justify-center items-center ">
-        <div className="flex flex-col w-[1200px] gap-16">
+    <div className="w-full h-full px-4 ph:px-4 pad:px-6 dt:px-[150px]">
+      <div className="font-pretendard pt-[64px] flex flex-col justify-center items-center">
+        <div
+          className="flex flex-col 
+          w-full 
+          max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px] 
+          gap-16 "
+        >
           <div className="flex mt-8">
             <Image
               src={defaultImg}
               alt="default-profile"
               width={88}
               height={88}
+              className="dt:flex pad:flex ph:hidden"
             />
-            <div className="flex flex-col ml-[24px]">
+            <div className="flex flex-col dt:ml-[24px] pad:ml-[24px] ph:ml-0">
               <span className="font-pretendard text-[32px] font-semibold">
                 2024년 9월 정기공연
               </span>
@@ -93,8 +103,12 @@ const Page = () => {
           </div>
           <div className="w-full border-b border-gray-15 mb-10" />
         </div>
-        <div>
-          <div className="flex flex-col w-[1200px] items-start mb-10">
+        <div
+          className="w-full max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px]"
+        >
+          <div className="flex flex-col mb-10">
             <div className="flex items-center">
               <div
                 onClick={handleToggle}
@@ -122,7 +136,11 @@ const Page = () => {
 
           {/* 댓글 목록 */}
           {comments.length > 0 && (
-            <div className="w-[1200px] flex flex-col gap-10 mt-10 mb-10">
+            <div
+              className="w-full max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px] flex flex-col gap-10 mt-10 mb-10"
+            >
               {comments.map((comment) => (
                 <div key={comment.id} className="flex items-start gap-3">
                   <Image
@@ -153,7 +171,11 @@ const Page = () => {
         </div>
 
         {/* 댓글 입력창 */}
-        <div className="w-[1200px]  flex items-start gap-3 mb-10">
+        <div
+          className="w-full max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px] flex items-start gap-3 mb-10"
+        >
           <input
             type="text"
             value={commentText}
@@ -176,9 +198,13 @@ const Page = () => {
             </div>
           </div>
         </div>
-        <div className="w-[1200px]">
+        <div
+          className="w-full max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px] "
+        >
           <div className="flex items-start w-full">
-            <div className="flex w-[90px]  cursor-pointer  gap-[10px]">
+            <div className="flex w-[90px]  cursor-pointer gap-[10px]">
               <Image src={arrow} alt="arrow" width={24} height={24} />
               <span className="font-pretendard text-base font-medium">
                 목록으로
