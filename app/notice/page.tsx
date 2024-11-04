@@ -205,7 +205,7 @@ const Page = () => {
                       height={54}
                       className="rounded-full"
                     />
-                    <div className="w-full flex flex-col gap-1">
+                    <div className="w-full flex flex-col gap-1 overflow-auto">
                       <div className="flex flex-row justify-between">
                         <div className="flex flex-row gap-1">
                           <span className="font-pretendard text-base font-normal">
@@ -222,7 +222,7 @@ const Page = () => {
                         </div>
                       </div>
 
-                      <p className="font-pretendard text-base">
+                      <p className="font-pretendard text-base break-words">
                         {comment.text}
                       </p>
                       <button
@@ -246,7 +246,7 @@ const Page = () => {
                             height={54}
                             className="rounded-full"
                           />
-                          <div className="w-full flex flex-col gap-1">
+                          <div className="w-full flex flex-col gap-1 overflow-auto">
                             <div className="flex flex-row justify-between">
                               <div className="flex flex-row gap-1">
                                 <span className="font-pretendard text-base font-normal">
@@ -263,7 +263,7 @@ const Page = () => {
                               </div>
                             </div>
 
-                            <p className="font-pretendard text-base">
+                            <p className="font-pretendard text-base break-words">
                               {reply.text}
                             </p>
                           </div>
@@ -279,7 +279,13 @@ const Page = () => {
                         type="text"
                         value={replyText}
                         onChange={(e) => setReplyText(e.target.value)}
-                        className="min-h-[60px] max-w-[1108px] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2 w-full placeholder:text-gray-40 focus:outline-none"
+                        onKeyDown={(e) => {
+                          if (e.nativeEvent.isComposing) return;
+                          if (e.key === 'Enter') {
+                            addReply(comment.id);
+                          }
+                        }}
+                        className="min-h-[60px] min-w-[calc(100%-94px)] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2  placeholder:text-gray-40 focus:outline-none"
                         placeholder=" 댓글을 입력하세요"
                       />
                       <div
