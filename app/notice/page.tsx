@@ -34,9 +34,17 @@ const Page = () => {
 
   // 댓글 상태 관리
   const [comments, setComments] = useState<
-    { id: number; name: string; date: string; text: string }[]
+    {
+      id: number;
+      name: string;
+      date: string;
+      text: string;
+      replying: boolean;
+      replies?: any[];
+    }[]
   >([]);
   const [commentText, setCommentText] = useState('');
+  const [replyText, setReplyText] = useState('');
 
   const handleToggle = () => {
     setIsFilled((prev) => !prev);
@@ -51,17 +59,51 @@ const Page = () => {
 
     return `${year}. ${month}. ${day} ${hours}:${minutes}`;
   };
-
   const addComment = () => {
     if (commentText.trim() === '') return;
     const newComment = {
       id: comments.length + 1,
-      name: '임가현',
+      name: '오연서',
       date: formatDate(new Date()),
       text: commentText,
+      replying: false,
+      replies: [],
     };
     setComments([...comments, newComment]);
     setCommentText('');
+    setChatCount((prev) => prev + 1);
+  };
+
+  const toggleReplyInput = (id: number) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === id
+          ? { ...comment, replying: !comment.replying }
+          : comment
+      )
+    );
+  };
+  const addReply = (id: number) => {
+    if (replyText.trim() === '') return;
+    const newReply = {
+      id: comments.length + 1, // Or a better unique ID handling
+      name: '오연서',
+      date: formatDate(new Date()),
+      text: replyText,
+      replying: false,
+    };
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === id
+          ? {
+              ...comment,
+              replies: [...(comment.replies || []), newReply],
+            }
+          : comment
+      )
+    );
+    setReplyText('');
+    setChatCount((prev) => prev + 1);
   };
   return (
     <div className="w-full h-full px-4 ph:px-4 pad:px-6 dt:px-[150px]">
@@ -82,18 +124,28 @@ const Page = () => {
               height={88}
               className="dt:flex pad:flex ph:hidden"
             />
-            <div className="flex flex-col dt:ml-[24px] pad:ml-[24px] ph:ml-0">
+            <div className="w-full flex flex-col dt:ml-[24px] pad:ml-[24px] ph:ml-0">
               <span className="font-pretendard text-[32px] font-semibold">
                 2024년 9월 정기공연
               </span>
-              <span className="flex flex-row mt-[16px] items-center gap-2">
-                <span className="font-pretendard text-base font-medium flex">
-                  관리자
-                </span>
-                <div className="h-[24px] border-l border-black" />
-                <span className="font-pretendard text-base font-medium flex">
-                  2024. 08. 01
-                </span>
+              <span className="w-full flex flex-row mt-[16px] items-center  justify-between">
+                <div className="flex flex-row gap-2">
+                  <span className="font-pretendard text-base font-medium flex">
+                    관리자
+                  </span>
+                  <div className="h-[24px] border-l border-black" />
+                  <span className="font-pretendard text-base font-medium flex">
+                    2024. 08. 01
+                  </span>
+                </div>
+                <div className="flex gap-4">
+                  <span className="font-pretendard text-base font-normal cursor-pointer">
+                    수정
+                  </span>
+                  <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+                    삭제
+                  </span>
+                </div>
               </span>
             </div>
           </div>
@@ -133,42 +185,118 @@ const Page = () => {
               </div>
             </div>
           </div>
-
-          {/* 댓글 목록 */}
-          {comments.length > 0 && (
-            <div
-              className="w-full max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px] flex flex-col gap-10 mt-10 mb-10"
-            >
-              {comments.map((comment) => (
-                <div key={comment.id} className="flex items-start gap-3">
-                  <Image
-                    src={defaultImg}
-                    alt="default-profile"
-                    width={54}
-                    height={54}
-                    className="rounded-full"
-                  />
-                  <div className="flex flex-col gap-2">
-                    <div className="flex flex-row gap-1">
-                      <span className="font-pretendard text-base font-normal">
-                        {comment.name}
-                      </span>
-                      <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
-                        {comment.date}
-                      </span>
-                    </div>
-                    <p className="font-pretendard text-base">{comment.text}</p>
-                    <button className="flex items-start font-pretendard text-sm text-gray-40 hover:underline">
-                      답글달기
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
+
+        {/* 댓글 목록 */}
+        {comments.length > 0 && (
+          <div
+            className="w-full max-w-[500px] 
+          pad:max-w-[786px] 
+          dt:max-w-[1200px] flex flex-col gap-10 mb-10"
+          >
+            {comments.map((comment) => (
+              <div key={comment.id} className="flex items-start ">
+                <div className="flex flex-col w-full">
+                  <div className="flex flex-row gap-3 items-start">
+                    <Image
+                      src={defaultImg}
+                      alt="default-profile"
+                      width={54}
+                      height={54}
+                      className="rounded-full"
+                    />
+                    <div className="w-full flex flex-col gap-1">
+                      <div className="flex flex-row justify-between">
+                        <div className="flex flex-row gap-1">
+                          <span className="font-pretendard text-base font-normal">
+                            {comment.name}
+                          </span>
+                          <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
+                            {comment.date}
+                          </span>
+                        </div>
+                        <div>
+                          <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+                            삭제
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="font-pretendard text-base">
+                        {comment.text}
+                      </p>
+                      <button
+                        className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
+                        onClick={() => toggleReplyInput(comment.id)}
+                      >
+                        답글달기
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 답글 리스트 */}
+                  {comment.replies && comment.replies.length > 0 && (
+                    <div className="flex flex-col gap-8 mt-8 ml-6">
+                      {comment.replies.map((reply) => (
+                        <div key={reply.id} className="flex items-start gap-3">
+                          <Image
+                            src={defaultImg}
+                            alt="default-profile"
+                            width={54}
+                            height={54}
+                            className="rounded-full"
+                          />
+                          <div className="w-full flex flex-col gap-1">
+                            <div className="flex flex-row justify-between">
+                              <div className="flex flex-row gap-1">
+                                <span className="font-pretendard text-base font-normal">
+                                  {reply.name}
+                                </span>
+                                <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
+                                  {reply.date}
+                                </span>
+                              </div>
+                              <div>
+                                <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+                                  삭제
+                                </span>
+                              </div>
+                            </div>
+
+                            <p className="font-pretendard text-base">
+                              {reply.text}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 답글 입력창 */}
+                  {comment.replying && (
+                    <div className="w-full flex items-start gap-3 mt-8 ml-6">
+                      <input
+                        type="text"
+                        value={replyText}
+                        onChange={(e) => setReplyText(e.target.value)}
+                        className="min-h-[60px] max-w-[1108px] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2 w-full placeholder:text-gray-40 focus:outline-none"
+                        placeholder=" 댓글을 입력하세요"
+                      />
+                      <div
+                        className="flex items-center justify-center border rounded-lg border-black w-[60px] h-[60px] cursor-pointer"
+                        onClick={() => {
+                          addReply(comment.id);
+                        }}
+                      >
+                        <Image src={send} alt="send" width={20} height={20} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* 댓글 입력창 */}
         <div
