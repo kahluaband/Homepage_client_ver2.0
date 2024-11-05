@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
-import send from '@/public/image/notice/send.svg';
+import Send from '@mui/icons-material/Send';
 
 interface CommentProps {
   comment: {
@@ -122,7 +122,7 @@ const Comment: React.FC<CommentProps> = ({
             className="flex items-center justify-center border rounded-lg border-black w-[60px] h-[60px] cursor-pointer"
             onClick={handleAddReply}
           >
-            <Image src={send} alt="send" width={20} height={20} />
+            <Send width={20} height={20} />
           </div>
         </div>
       )}

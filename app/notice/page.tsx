@@ -6,7 +6,7 @@ import Image from 'next/image';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import FullHeart from '@/public/image/notice/FullHeart.svg';
 import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
-import send from '@/public/image/notice/send.svg';
+import Send from '@mui/icons-material/Send';
 import chat from '@/public/image/notice/chat.svg';
 
 const Page = () => {
@@ -195,7 +195,7 @@ const Page = () => {
             className="border rounded-lg border-black min-w-[60px] min-h-[60px] cursor-pointer flex items-center justify-center"
             onClick={addComment}
           >
-            <Image src={send} alt="send" width={20} height={20} />
+            <Send width={20} height={20} />
           </button>
         </div>
       </div>
