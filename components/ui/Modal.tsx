@@ -23,7 +23,8 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         >
             <div className="fixed flex flex-col rounded-3xl w-[328px] h-auto pad:w-[560px] pad:h-[300px] bg-gray-0 px-[40px] py-[52px] pad:py-[80px]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    className='absolute right-[40px] top-[24px]'>
+                    className='absolute right-[40px] top-[24px]'
+                    onClick={onClose}>
                     <path d="M6 6L18 18M6 18L18 6" stroke="#31333F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div className='w-full'>
