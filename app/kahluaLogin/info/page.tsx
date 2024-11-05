@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from 'react';
-import MenuItem from '@mui/material/MenuItem';
 import { useEffect } from 'react';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
 import LoginModal from '@/components/kahluaLogin/loginModal'
+import LoginSelectBox from '@/components/ui/LoginSelectBox';
+import NameInput from '@/components/kahluaLogin/nameInput';
 
 // 기수 23 ~ 1기
 const generations: string[] = Array.from({ length: 23 }, (_, i) => `${23 - i}기`);
@@ -36,8 +36,8 @@ const Page = () => {
                 </div>
                 <div className="flex flex-col pad:flex-row gap-[20px] justify-center items-center">
                     <NameInput data={name} setData={setName} />
-                    <GenerationInput data={generation} setData={setGeneration} />
-                    <SessionInput data={session} setData={setSession} />
+                    <LoginSelectBox data={generation} setData={setGeneration} id='generation' itemList={generations}/>
+                    <LoginSelectBox data={session} setData={setSession} id='session' itemList={sessions}/>
                 </div>
                 <button 
                     className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
@@ -51,72 +51,5 @@ const Page = () => {
         </div>
     );
 };
-
-interface InputProps {
-    data: string;
-    setData: React.Dispatch<React.SetStateAction<string>>;
-}
-
-const NameInput: React.FC<InputProps> = ({ data, setData }) => (
-    <div className="flex flex-row w-[200px] h-[48px] px-[20px] py-[10px] justify-center items-center gap-[24px] rounded-[12px] bg-black">
-        <p className="text-primary-50">이름</p>
-        <input
-            type="text"
-            value={data}
-            onChange={(e) => setData(e.target.value)}
-            className="w-full bg-black border-none outline-none shadow-none appearance-none text-gray-0"
-        />
-    </div>
-);
-
-const GenerationInput: React.FC<InputProps> = ({ data, setData }) => (
-    <div className="flex flex-row w-[200px] h-[48px] px-[20px] py-[10px] justify-center items-center gap-[24px] rounded-[12px] bg-black">
-        <p className="text-primary-50">기수</p>
-        <Select
-            labelId="generation"
-            value={data}
-            onChange={(e: SelectChangeEvent) => setData(e.target.value)}
-            sx={{
-                border: 'none',
-                padding: 0,
-                margin: 0,
-                '.MuiSelect-icon': { color: '#ffffff' },
-                '.MuiOutlinedInput-notchedOutline': { border: 0 },
-                '&.Mui-focused': { outline: 'none', border: 'none' },
-            }}
-            MenuProps={{ PaperProps: { style: { maxHeight: 152, width: 178, backgroundColor: '#000000', marginTop: 4, padding: 0, borderRadius: 12 } } }}
-            className="w-full h-[48px] text-gray-0 text-start p-0"
-        >
-            {generations.map((gen) => (
-                <MenuItem key={gen} value={gen} sx={{ height: 48 }} className="text-gray-0">
-                    {gen}
-                </MenuItem>
-            ))}
-        </Select>
-    </div>
-);
-
-const SessionInput: React.FC<InputProps> = ({ data, setData }) => (
-    <div className="flex flex-row w-[200px] h-[48px] px-[20px] py-[10px] justify-center items-center gap-[24px] rounded-[12px] bg-black">
-        <p className="text-primary-50">세션</p>
-        <Select
-            labelId="session"
-            value={data}
-            onChange={(e: SelectChangeEvent) => setData(e.target.value)}
-            sx={{
-                border: 'none',
-                '.MuiSelect-icon': { color: '#ffffff' },
-            }}
-            MenuProps={{ PaperProps: { style: { maxHeight: 152, width: 178, backgroundColor: '#000000', marginTop: 4, padding: 0, borderRadius: 12 } } }}
-            className="w-full h-[48px] text-gray-0"
-        >
-            {sessions.map((sess) => (
-                <MenuItem key={sess} value={sess} sx={{ height: 48 }} className="text-gray-0">
-                    {sess}
-                </MenuItem>
-            ))}
-        </Select>
-    </div>
-)
 
 export default Page;
