@@ -60,7 +60,7 @@ const Comment: React.FC<CommentProps> = ({
           </p>
           <button
             className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
-            onClick={() => onToggleReplying(comment.id)} // 답글 입력 토글 함수 호출
+            onClick={() => onToggleReplying(comment.id)}
           >
             답글달기
           </button>

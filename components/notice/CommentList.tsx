@@ -7,7 +7,7 @@ interface Comment {
   date: string;
   text: string;
   replying: boolean;
-  replies?: Comment[]; // Use Comment type for replies
+  replies?: Comment[];
 }
 
 interface CommentListProps {
@@ -38,7 +38,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments, onAddReply }) => {
         <div className="flex flex-col gap-10 mb-10">
           {commentList.map((comment) => (
             <Comment
-              key={comment.id} // Using comment.id as a unique key
+              key={comment.id}
               comment={comment}
               onAddReply={onAddReply}
               onToggleReplying={handleToggleReplying}
