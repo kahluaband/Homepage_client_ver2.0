@@ -81,6 +81,7 @@ const Page = () => {
         comment.id === id
           ? {
               ...comment,
+              replying: true,
               replies: [...(comment.replies || []), newReply],
             }
           : comment
