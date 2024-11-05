@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import LoginModal from '@/components/kahluaLogin/loginModal'
-import LoginSelectBox from '@/components/ui/LoginSelectBox';
+import LoginSelectBox from '@/components/kahluaLogin/LoginSelectBox';
 import NameInput from '@/components/kahluaLogin/nameInput';
 
 // 기수 23 ~ 1기
