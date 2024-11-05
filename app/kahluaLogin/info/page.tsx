@@ -5,9 +5,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { useEffect } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useState } from 'react';
+import LoginModal from '@/components/kahluaLogin/loginModal'
 
+// 기수 23 ~ 1기
 const generations: string[] = Array.from({ length: 23 }, (_, i) => `${23 - i}기`);
 
+// 세션
 const sessions: string[] = ['보컬', '드럼', '기타', '베이스', '신디사이저'];
 
 const Page = () => {
@@ -15,6 +18,7 @@ const Page = () => {
     const [generation, setGeneration] = useState<string>('');
     const [session, setSession] = useState<string>('');
     const [isComplete, setIsComplete] = useState<boolean>(false);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
     useEffect(() => {
         setIsComplete(name !== '' && generation !== '' && session !== '');
@@ -35,12 +39,14 @@ const Page = () => {
                     <GenerationInput data={generation} setData={setGeneration} />
                     <SessionInput data={session} setData={setSession} />
                 </div>
-                <button
-                    className={`w-full pad:w-[384px] h-[60px] rounded-[12px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
+                <button 
+                    className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
                     disabled={!isComplete}
+                    onClick={() => setIsModalOpen(true)}
                 >
                     KAHLUA 가입 신청하러 가기
                 </button>
+                <LoginModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}/>
             </div>
         </div>
     );
