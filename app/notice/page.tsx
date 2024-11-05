@@ -8,6 +8,7 @@ import FullHeart from '@/public/image/notice/FullHeart.svg';
 import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
 import Send from '@mui/icons-material/Send';
 import chat from '@/public/image/notice/chat.svg';
+import DeletePopup from '@/components/notice/DeletePostPopup';
 
 const Page = () => {
   const text = `❗️깔루아 9월 정기공연❗️
@@ -44,6 +45,7 @@ const Page = () => {
     }[]
   >([]);
   const [commentText, setCommentText] = useState('');
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
 
   const handleToggle = () => {
     setIsFilled((prev) => !prev);
@@ -90,6 +92,19 @@ const Page = () => {
     setChatCount((prev) => prev + 1);
   };
 
+  const handleDeleteClick = () => {
+    setShowDeletePopup(true); // 삭제 팝업 열기
+  };
+
+  const handleDeleteConfirm = () => {
+    // 삭제 로직 추가
+    setShowDeletePopup(false); // 팝업 닫기
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeletePopup(false); // 팝업 닫기
+  };
+
   return (
     <div className="w-full h-full px-4 ph:px-4 pad:px-6 dt:px-[150px]">
       <div className="w-full font-pretendard pt-[64px] flex flex-col justify-center items-center">
@@ -127,7 +142,10 @@ const Page = () => {
                   <span className="font-pretendard text-base font-normal cursor-pointer">
                     수정
                   </span>
-                  <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+                  <span
+                    className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
+                    onClick={handleDeleteClick}
+                  >
                     삭제
                   </span>
                 </div>
@@ -200,6 +218,12 @@ const Page = () => {
           </button>
         </div>
       </div>
+      {showDeletePopup && (
+        <DeletePopup
+          onConfirm={handleDeleteConfirm}
+          onClose={handleDeleteCancel}
+        />
+      )}
     </div>
   );
 };

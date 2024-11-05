@@ -31,7 +31,7 @@ const CancelPopup: React.FC<DeletePostPopupProps> = ({
       onClick={handleOverlayClick}
       className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-[#0000008a] flex justify-center items-center"
     >
-      <div className="fixed bg-[white] overflow-hidden rounded-[24px] pad:w-[600px] ph:w-[328px] pad:h-[300px] ph:h-[224px] flex flex-col items-center text-center">
+      <div className="fixed bg-[white] overflow-hidden rounded-[24px] pad:w-[600px] ph:w-[328px] pad:h-[300px] ph:h-[200px] flex flex-col items-center text-center">
         <div className="absolute top-6 right-10 cursor-pointer">
           <Image
             src="/image/black_x.svg"

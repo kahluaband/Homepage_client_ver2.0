@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import Send from '@mui/icons-material/Send';
+import DeletePopup from '@/components/notice/DeleteCommentPopup';
 
 interface CommentProps {
   comment: {
@@ -14,19 +15,42 @@ interface CommentProps {
   };
   onAddReply: (id: string, replyText: string) => void;
   onToggleReplying: (id: string) => void;
+  onDeleteComment: (id: string) => void;
+  onDeleteReply: (commentId: string, replyId: string) => void;
 }
 
 const Comment: React.FC<CommentProps> = ({
   comment,
   onAddReply,
   onToggleReplying,
+  onDeleteComment,
+  onDeleteReply,
 }) => {
   const [replyText, setReplyText] = useState('');
+  const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [showDeleteReplyPopup, setShowDeleteReplyPopup] = useState<
+    string | null
+  >(null);
 
   const handleAddReply = () => {
     if (replyText.trim() === '') return;
     onAddReply(comment.id, replyText);
     setReplyText('');
+  };
+
+  const handleDeleteCommentConfirm = () => {
+    onDeleteComment(comment.id); // 댓글 삭제 호출
+    setShowDeletePopup(false); // 댓글 삭제 팝업 닫기
+  };
+
+  const handleDeleteReplyConfirm = (replyId: string) => {
+    onDeleteReply(comment.id, replyId); // 답글 삭제 호출
+    setShowDeleteReplyPopup(null); // 답글 삭제 팝업 닫기
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeletePopup(false); // 댓글 삭제 팝업 닫기
+    setShowDeleteReplyPopup(null); // 답글 삭제 팝업 닫기
   };
 
   return (
@@ -50,7 +74,10 @@ const Comment: React.FC<CommentProps> = ({
               </span>
             </div>
             <div>
-              <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+              <span
+                className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
+                onClick={() => setShowDeletePopup(true)}
+              >
                 삭제
               </span>
             </div>
@@ -90,7 +117,10 @@ const Comment: React.FC<CommentProps> = ({
                     </span>
                   </div>
                   <div>
-                    <span className="font-pretendard text-base text-danger-50 font-normal cursor-pointer">
+                    <span
+                      className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
+                      onClick={() => setShowDeleteReplyPopup(reply.id)}
+                    >
                       삭제
                     </span>
                   </div>
@@ -99,6 +129,12 @@ const Comment: React.FC<CommentProps> = ({
                   {reply.text}
                 </p>
               </div>
+              {showDeleteReplyPopup === reply.id && (
+                <DeletePopup
+                  onConfirm={() => handleDeleteReplyConfirm(reply.id)} // 답글 삭제 확인
+                  onClose={handleDeleteCancel} // 취소 버튼
+                />
+              )}
             </div>
           ))}
         </div>
@@ -125,6 +161,12 @@ const Comment: React.FC<CommentProps> = ({
             <Send width={20} height={20} />
           </div>
         </div>
+      )}
+      {showDeletePopup && (
+        <DeletePopup
+          onConfirm={handleDeleteCommentConfirm} // 댓글 삭제 확인
+          onClose={handleDeleteCancel} // 취소 버튼
+        />
       )}
     </div>
   );
