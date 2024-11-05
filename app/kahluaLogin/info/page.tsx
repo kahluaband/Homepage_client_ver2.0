@@ -36,8 +36,8 @@ const Page = () => {
                 </div>
                 <div className="flex flex-col pad:flex-row gap-[20px] justify-center items-center">
                     <NameInput data={name} setData={setName} />
-                    <LoginSelectBox data={generation} setData={setGeneration} id='generation' itemList={generations}/>
-                    <LoginSelectBox data={session} setData={setSession} id='session' itemList={sessions}/>
+                    <LoginSelectBox data={generation} setData={setGeneration} id='generation' itemList={generations}>기수</LoginSelectBox>
+                    <LoginSelectBox data={session} setData={setSession} id='session' itemList={sessions}>세션</LoginSelectBox>
                 </div>
                 <button 
                     className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
