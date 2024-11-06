@@ -40,7 +40,7 @@ const CommentList: React.FC<CommentListProps> = ({
   };
 
   return (
-    <div className="w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px]">
+    <div className="w-full ">
       {commentList.length > 0 && (
         <div className="flex flex-col gap-10 mb-10">
           {commentList.map((comment) => (

@@ -182,11 +182,7 @@ const Page = () => {
           </div>
           <div className="w-full border-b border-gray-15 mb-10" />
         </div>
-        <div
-          className="w-full max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px]"
-        >
+        <div className="w-full">
           <div className="flex flex-col mb-10">
             <div className="flex items-center">
               <div
@@ -223,11 +219,7 @@ const Page = () => {
         />
 
         {/* 댓글 입력창 */}
-        <div
-          className="w-full max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px] flex items-start gap-3 mb-10"
-        >
+        <div className="w-full flex items-start gap-3 mb-10">
           <input
             type="text"
             value={commentText}
@@ -246,7 +238,7 @@ const Page = () => {
             <Send width={20} height={20} />
           </button>
         </div>
-        <div className="w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px]">
+        <div className="w-full">
           <div className="flex items-start w-full">
             <div className="flex w-[90px]  cursor-pointer  gap-[10px]">
               <Image src={arrow} alt="arrow" width={24} height={24} />
