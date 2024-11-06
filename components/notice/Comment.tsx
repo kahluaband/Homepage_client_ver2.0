@@ -41,7 +41,6 @@ const Comment: React.FC<CommentProps> = ({
 
   const handleDeleteCommentConfirm = () => {
     onDeleteComment(comment.id);
-    comment.deleted = true;
     setShowDeletePopup(false);
   };
 
@@ -57,44 +56,50 @@ const Comment: React.FC<CommentProps> = ({
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex items-start gap-3">
-        <Image
-          src={defaultImg}
-          alt="default-profile"
-          width={54}
-          height={54}
-          className="rounded-full"
-        />
-        <div className="w-full flex flex-col gap-1 overflow-auto">
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-row gap-1">
-              <span className="font-pretendard text-base font-normal">
-                {comment.name}
-              </span>
-              <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
-                {comment.date}
-              </span>
-            </div>
-            {!comment.deleted && (
-              <span
-                className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
-                onClick={() => setShowDeletePopup(true)}
+      {comment.deleted && comment.replies && comment.replies.length > 0 ? (
+        <p className="font-pretendard text-base break-words">
+          삭제된 댓글입니다.
+        </p>
+      ) : (
+        !comment.deleted && (
+          <div className="flex items-start gap-3 ">
+            <Image
+              src={defaultImg}
+              alt="default-profile"
+              width={54}
+              height={54}
+              className="rounded-full"
+            />
+            <div className="w-full flex flex-col gap-1 overflow-auto">
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-row gap-1">
+                  <span className="font-pretendard text-base font-normal">
+                    {comment.name}
+                  </span>
+                  <span className="flex items-center font-pretendard text-[10px] text-gray-40 font-normal">
+                    {comment.date}
+                  </span>
+                </div>
+                <span
+                  className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
+                  onClick={() => setShowDeletePopup(true)}
+                >
+                  삭제
+                </span>
+              </div>
+              <p className="font-pretendard text-base break-words">
+                {comment.text}
+              </p>
+              <button
+                className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
+                onClick={() => onToggleReplying(comment.id)}
               >
-                삭제
-              </span>
-            )}
+                답글달기
+              </button>
+            </div>
           </div>
-          <p className="font-pretendard text-base break-words">
-            {comment.deleted ? '삭제된 댓글입니다.' : comment.text}
-          </p>
-          <button
-            className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
-            onClick={() => onToggleReplying(comment.id)}
-          >
-            답글달기
-          </button>
-        </div>
-      </div>
+        )
+      )}
 
       {/* 답글 리스트 */}
       {comment.replies && comment.replies.length > 0 && (

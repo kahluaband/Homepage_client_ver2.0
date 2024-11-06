@@ -5,6 +5,7 @@ import CommentList from '@/components/notice/CommentList';
 import Image from 'next/image';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import FullHeart from '@/public/image/notice/FullHeart.svg';
+import arrow from '@/public/image/notice/Left.svg';
 import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
 import Send from '@mui/icons-material/Send';
 import chat from '@/public/image/notice/chat.svg';
@@ -128,7 +129,7 @@ const Page = () => {
 
   const handleDeleteConfirm = () => {
     // 삭제 로직 추가
-    setShowDeletePopup(false); // 팝업 닫기
+    setShowDeletePopup(false);
   };
 
   const handleDeleteCancel = () => {
@@ -136,16 +137,9 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full h-full px-4 ph:px-4 pad:px-6 dt:px-[150px]">
-      <div className="w-full font-pretendard pt-[64px] flex flex-col justify-center items-center">
-        <div
-          className="flex flex-col 
-          w-full 
-          max-w-[500px] 
-          pad:max-w-[786px] 
-          dt:max-w-[1200px] 
-          gap-16"
-        >
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <div className="flex flex-col items-center justify-center pt-16 w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px] max-pad:px-[16px]">
+        <div className="flex flex-col w-full gap-16">
           <div className="flex mt-8">
             <Image
               src={defaultImg}
@@ -183,7 +177,7 @@ const Page = () => {
             </div>
           </div>
           <div className="w-full border-b border-gray-15" />
-          <div className="font-pretendard text-xl font-medium whitespace-pre-line ">
+          <div className="font-pretendard text-xl font-medium whitespace-pre-wrap word-break: break-word">
             {text}
           </div>
           <div className="w-full border-b border-gray-15 mb-10" />
@@ -252,7 +246,18 @@ const Page = () => {
             <Send width={20} height={20} />
           </button>
         </div>
+        <div className="w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px]">
+          <div className="flex items-start w-full">
+            <div className="flex w-[90px]  cursor-pointer  gap-[10px]">
+              <Image src={arrow} alt="arrow" width={24} height={24} />
+              <span className="font-pretendard text-base font-medium">
+                목록으로
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
+
       {showDeletePopup && (
         <DeletePopup
           onConfirm={handleDeleteConfirm}
