@@ -10,7 +10,6 @@ interface CommentProps {
     name: string;
     date: string;
     text: string;
-    replying: boolean;
     replies?: any[];
     deleted?: boolean;
   };
@@ -18,6 +17,7 @@ interface CommentProps {
   onToggleReplying: (id: string) => void;
   onDeleteComment: (id: string) => void;
   onDeleteReply: (commentId: string, replyId: string) => void;
+  replying: boolean;
 }
 
 const Comment: React.FC<CommentProps> = ({
@@ -32,6 +32,7 @@ const Comment: React.FC<CommentProps> = ({
   const [showDeleteReplyPopup, setShowDeleteReplyPopup] = useState<
     string | null
   >(null);
+  const [replyingId, setReplyingId] = useState<string | null>(null);
 
   const handleAddReply = () => {
     if (replyText.trim() === '') return;
@@ -52,6 +53,10 @@ const Comment: React.FC<CommentProps> = ({
   const handleDeleteCancel = () => {
     setShowDeletePopup(false);
     setShowDeleteReplyPopup(null);
+  };
+
+  const handleToggleReplying = (id: string) => {
+    setReplyingId((prevId) => (prevId === id ? null : id));
   };
 
   return (
@@ -94,7 +99,7 @@ const Comment: React.FC<CommentProps> = ({
               </p>
               <button
                 className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
-                onClick={() => onToggleReplying(comment.id)}
+                onClick={() => handleToggleReplying(comment.id)}
               >
                 답글달기
               </button>
@@ -150,7 +155,7 @@ const Comment: React.FC<CommentProps> = ({
       )}
 
       {/* 답글 입력창 */}
-      {comment.replying && (
+      {!comment.deleted && replyingId === comment.id && (
         <div className="w-full flex items-start gap-3 ml-6">
           <input
             type="text"

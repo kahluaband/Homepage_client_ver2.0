@@ -13,7 +13,7 @@ interface Comment {
 interface CommentListProps {
   comments: Comment[];
   onAddReply: (id: string, replyText: string) => void;
-  onDeleteComment: (id: string) => void; // Add this line
+  onDeleteComment: (id: string) => void;
   onDeleteReply: (commentId: string, replyId: string) => void;
 }
 
@@ -24,19 +24,15 @@ const CommentList: React.FC<CommentListProps> = ({
   onDeleteReply,
 }) => {
   const [commentList, setCommentList] = useState<Comment[]>(comments);
+  const [replyingId, setReplyingId] = useState<string | null>(null);
 
   useEffect(() => {
     setCommentList(comments);
   }, [comments]);
 
+  // 답글 입력창 토글 함수
   const handleToggleReplying = (id: string) => {
-    setCommentList((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id
-          ? { ...comment, replying: !comment.replying }
-          : comment
-      )
-    );
+    setReplyingId((prevId) => (prevId === id ? null : id)); // 현재 id와 동일하면 닫고, 아니면 해당 id를 열기
   };
 
   return (
@@ -51,6 +47,7 @@ const CommentList: React.FC<CommentListProps> = ({
               onToggleReplying={handleToggleReplying}
               onDeleteComment={onDeleteComment}
               onDeleteReply={onDeleteReply}
+              replying={comment.id === replyingId}
             />
           ))}
         </div>

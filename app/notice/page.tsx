@@ -4,12 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 import CommentList from '@/components/notice/CommentList';
 import Image from 'next/image';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
-import FullHeart from '@/public/image/notice/FullHeart.svg';
 import arrow from '@/public/image/notice/Left.svg';
-import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
-import Send from '@mui/icons-material/Send';
 import chat from '@/public/image/notice/chat.svg';
 import DeletePopup from '@/components/notice/DeletePostPopup';
+import CommentInput from '@/components/notice/CommentInput';
+import LikeButton from '@/components/notice/LikeButton';
 
 const Page = () => {
   const text = `❗️깔루아 9월 정기공연❗️
@@ -31,8 +30,6 @@ const Page = () => {
 
 기타 모든 문의사항은 페이스북 메세지나 댓글, 또는 위의 전화번호로 연락주세요 ! 감사합니다🤩🤩`;
 
-  const [isFilled, setIsFilled] = useState(false);
-  const [heartCount, setHeartCount] = useState(0);
   const [chatCount, setChatCount] = useState(0);
   const [replyingToId, setReplyingToId] = useState<string | null>(null);
 
@@ -49,11 +46,6 @@ const Page = () => {
   const [commentText, setCommentText] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [replyText, setReplyText] = useState('');
-
-  const handleToggle = () => {
-    setIsFilled((prev) => !prev);
-    setHeartCount((prev) => (isFilled ? prev - 1 : prev + 1));
-  };
 
   const addComment = () => {
     if (commentText.trim() === '') return;
@@ -87,7 +79,6 @@ const Page = () => {
         comment.id === id
           ? {
               ...comment,
-              replying: true,
               replies: [...(comment.replies || []), newReply],
             }
           : comment
@@ -185,21 +176,7 @@ const Page = () => {
         <div className="w-full">
           <div className="flex flex-col mb-10">
             <div className="flex items-center">
-              <div
-                onClick={handleToggle}
-                style={{ cursor: 'pointer' }}
-                className="flex items-center"
-              >
-                <Image
-                  src={isFilled ? FullHeart : EmptyHeart}
-                  alt="heart"
-                  width={20}
-                  height={20}
-                />
-                <span className="ml-[10px] font-pretendard text-base">
-                  {heartCount}
-                </span>
-              </div>
+              <LikeButton initialCount={0} />
               <div className="flex items-center ml-[24px]">
                 <Image src={chat} alt="chat" width={24} height={24} />
                 <span className="ml-[10px] font-pretendard text-base">
@@ -219,28 +196,15 @@ const Page = () => {
         />
 
         {/* 댓글 입력창 */}
-        <div className="w-full flex items-start gap-3 mb-10">
-          <input
-            type="text"
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.nativeEvent.isComposing) return;
-              if (e.key === 'Enter') addComment();
-            }}
-            placeholder=" 댓글을 입력하세요"
-            className="w-full min-h-[60px] border font-pretendard text-base font-semibold border-black rounded-lg px-3 py-2 placeholder:text-gray-40 focus:outline-none"
-          />
-          <button
-            className="border rounded-lg border-black min-w-[60px] min-h-[60px] cursor-pointer flex items-center justify-center"
-            onClick={addComment}
-          >
-            <Send width={20} height={20} />
-          </button>
-        </div>
+        <CommentInput
+          commentText={commentText}
+          setCommentText={setCommentText}
+          onAddComment={addComment}
+        />
+
         <div className="w-full">
           <div className="flex items-start w-full">
-            <div className="flex w-[90px]  cursor-pointer  gap-[10px]">
+            <div className="flex w-[90px] cursor-pointer gap-[10px]">
               <Image src={arrow} alt="arrow" width={24} height={24} />
               <span className="font-pretendard text-base font-medium">
                 목록으로
