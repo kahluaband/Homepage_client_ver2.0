@@ -42,7 +42,7 @@ const CommentList: React.FC<CommentListProps> = ({
   return (
     <div className="w-full ">
       {commentList.length > 0 && (
-        <div className="flex flex-col gap-10 mb-10">
+        <div className="flex flex-col">
           {commentList.map((comment) => (
             <Comment
               key={comment.id}

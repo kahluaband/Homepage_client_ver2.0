@@ -55,14 +55,16 @@ const Comment: React.FC<CommentProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div
+      className={`flex flex-col gap-8 ${comment.deleted && (!comment.replies || comment.replies.length === 0) ? '' : 'mb-10'}`}
+    >
       {comment.deleted && comment.replies && comment.replies.length > 0 ? (
         <p className="font-pretendard text-base break-words">
           삭제된 댓글입니다.
         </p>
       ) : (
         !comment.deleted && (
-          <div className="flex items-start gap-3 ">
+          <div className="flex items-start gap-3">
             <Image
               src={defaultImg}
               alt="default-profile"
