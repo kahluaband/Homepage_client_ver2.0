@@ -13,9 +13,16 @@ interface Comment {
 interface CommentListProps {
   comments: Comment[];
   onAddReply: (id: string, replyText: string) => void;
+  onDeleteComment: (id: string) => void; // Add this line
+  onDeleteReply: (commentId: string, replyId: string) => void;
 }
 
-const CommentList: React.FC<CommentListProps> = ({ comments, onAddReply }) => {
+const CommentList: React.FC<CommentListProps> = ({
+  comments,
+  onAddReply,
+  onDeleteComment,
+  onDeleteReply,
+}) => {
   const [commentList, setCommentList] = useState<Comment[]>(comments);
 
   useEffect(() => {
@@ -42,6 +49,8 @@ const CommentList: React.FC<CommentListProps> = ({ comments, onAddReply }) => {
               comment={comment}
               onAddReply={onAddReply}
               onToggleReplying={handleToggleReplying}
+              onDeleteComment={onDeleteComment}
+              onDeleteReply={onDeleteReply}
             />
           ))}
         </div>

@@ -33,6 +33,7 @@ const Page = () => {
   const [isFilled, setIsFilled] = useState(false);
   const [heartCount, setHeartCount] = useState(0);
   const [chatCount, setChatCount] = useState(0);
+  const [replyingToId, setReplyingToId] = useState<string | null>(null);
 
   const [comments, setComments] = useState<
     {
@@ -46,6 +47,7 @@ const Page = () => {
   >([]);
   const [commentText, setCommentText] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
+  const [replyText, setReplyText] = useState('');
 
   const handleToggle = () => {
     setIsFilled((prev) => !prev);
@@ -60,6 +62,7 @@ const Page = () => {
       date: new Date().toLocaleString(),
       text: commentText,
       replying: false,
+      deleted: false,
       replies: [],
     };
     setComments((prevComments) => {
@@ -89,11 +92,38 @@ const Page = () => {
           : comment
       )
     );
+
+    setReplyText('');
+    setReplyingToId(null);
     setChatCount((prev) => prev + 1);
   };
 
+  const handleDeleteComment = (id: string) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === id
+          ? { ...comment, text: '삭제된 댓글입니다.', deleted: true }
+          : comment
+      )
+    );
+    setChatCount((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleDeleteReply = (commentId: string, replyId: string) => {
+    setComments((prevComments) =>
+      prevComments.map((comment) =>
+        comment.id === commentId
+          ? {
+              ...comment,
+              replies: comment.replies?.filter((reply) => reply.id !== replyId),
+            }
+          : comment
+      )
+    );
+    setChatCount((prev) => Math.max(0, prev - 1));
+  };
   const handleDeleteClick = () => {
-    setShowDeletePopup(true); // 삭제 팝업 열기
+    setShowDeletePopup(true);
   };
 
   const handleDeleteConfirm = () => {
@@ -102,7 +132,7 @@ const Page = () => {
   };
 
   const handleDeleteCancel = () => {
-    setShowDeletePopup(false); // 팝업 닫기
+    setShowDeletePopup(false);
   };
 
   return (
@@ -191,7 +221,12 @@ const Page = () => {
         </div>
 
         {/* 댓글 리스트 */}
-        <CommentList comments={comments} onAddReply={addReply} />
+        <CommentList
+          comments={comments}
+          onAddReply={addReply}
+          onDeleteComment={handleDeleteComment}
+          onDeleteReply={handleDeleteReply}
+        />
 
         {/* 댓글 입력창 */}
         <div

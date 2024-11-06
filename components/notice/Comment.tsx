@@ -12,6 +12,7 @@ interface CommentProps {
     text: string;
     replying: boolean;
     replies?: any[];
+    deleted?: boolean;
   };
   onAddReply: (id: string, replyText: string) => void;
   onToggleReplying: (id: string) => void;
@@ -39,18 +40,19 @@ const Comment: React.FC<CommentProps> = ({
   };
 
   const handleDeleteCommentConfirm = () => {
-    onDeleteComment(comment.id); // 댓글 삭제 호출
-    setShowDeletePopup(false); // 댓글 삭제 팝업 닫기
+    onDeleteComment(comment.id);
+    comment.deleted = true;
+    setShowDeletePopup(false);
   };
 
   const handleDeleteReplyConfirm = (replyId: string) => {
-    onDeleteReply(comment.id, replyId); // 답글 삭제 호출
-    setShowDeleteReplyPopup(null); // 답글 삭제 팝업 닫기
+    onDeleteReply(comment.id, replyId);
+    setShowDeleteReplyPopup(null);
   };
 
   const handleDeleteCancel = () => {
-    setShowDeletePopup(false); // 댓글 삭제 팝업 닫기
-    setShowDeleteReplyPopup(null); // 답글 삭제 팝업 닫기
+    setShowDeletePopup(false);
+    setShowDeleteReplyPopup(null);
   };
 
   return (
@@ -73,17 +75,17 @@ const Comment: React.FC<CommentProps> = ({
                 {comment.date}
               </span>
             </div>
-            <div>
+            {!comment.deleted && (
               <span
                 className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
                 onClick={() => setShowDeletePopup(true)}
               >
                 삭제
               </span>
-            </div>
+            )}
           </div>
           <p className="font-pretendard text-base break-words">
-            {comment.text}
+            {comment.deleted ? '삭제된 댓글입니다.' : comment.text}
           </p>
           <button
             className="flex items-start font-pretendard text-sm text-gray-40 hover:underline"
