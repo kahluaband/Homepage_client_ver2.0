@@ -110,7 +110,7 @@ const Header = () => {
   const DrawerList = (
     <Box
       role="presentation"
-      // toggleDrawer(false) 호출을 조건적으로 수행하여 KAHLUA 클릭 시 Drawer가 닫히지 않도록 설정
+      // KAHLUA 클릭 시 Drawer가 닫히지 않도록 설정
       onClick={(event) => {
         const target = event.target as HTMLElement;
         if (target.textContent !== 'KAHLUA') {
@@ -154,12 +154,12 @@ const Header = () => {
           )
         )}
         {isKahluaClicked && (
-          <ul>
+          <ul className="pl-11">
             {KahluaUrl.map((url) => (
               <li key={url.name}>
                 <Link href={url.url} passHref>
                   <div
-                    className="cursor-pointer"
+                    className={`py-2 cursor-pointer font-pretendard font-normal text-gray-60 ${width <= 834 ? 'text-sm' : 'text-base'}`}
                     onClick={(e) => {
                       e.stopPropagation();
                       handleLinkClick(url.name);
