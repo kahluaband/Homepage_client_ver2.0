@@ -256,9 +256,6 @@ const Header = () => {
                   onMouseOver={() =>
                     url.name === 'KAHLUA' && setIsHovered(true)
                   }
-                  onMouseOut={() =>
-                    url.name === 'KAHLUA' && setIsHovered(false)
-                  }
                 >
                   <Link href={url.url} passHref>
                     <div
