@@ -184,6 +184,13 @@ const Header = () => {
     { name: 'RECRUIT', url: '/recruit' },
   ];
 
+  let KahluaUrl = [
+    { name: 'RESERVATION', url: '/reservation' },
+    { name: 'ANNOUNCEMENT', url: '/announcement' },
+    { name: 'MYPAGE', url: '/mypage' },
+    { name: 'ADMIN', url: '/admin' },
+  ];
+
   const handleLinkClick = (name: string) => {
     if (name !== 'KAHLUA') {
       router.push(`/${name.toLowerCase()}`);
@@ -316,10 +323,19 @@ const Header = () => {
             onMouseOut={handleLeave}
           >
             <ul className="gap-[60px] w-full h-full flex flex-row justify-end">
-              <li>RESERVATION</li>
-              <li>ANNOUNCEMENT</li>
-              <li>MYPAGE</li>
-              <li>ADMIN</li>
+              {KahluaUrl.map((url) => (
+                <li key={url.name}>
+                  <Link href={url.url} passHref>
+                    <div
+                      onClick={() => {
+                        handleLinkClick(url.name);
+                      }}
+                    >
+                      {url.name}
+                    </div>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         )}
