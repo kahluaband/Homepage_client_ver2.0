@@ -89,8 +89,11 @@ const Header = () => {
     };
   }, []);
 
+  // 모바일 화면에서 보여줄 DrawerList
   const DrawerList = (
     <Box role="presentation" onClick={toggleDrawer(false)}>
+      {/* 상단 로고 */}
+
       <div className="w-auto mt-8 ml-8 mb-8">
         {width <= 834 ? (
           <Image src={kahlua_logo} alt="kahlua_logo" height={16} width={94} />
@@ -98,6 +101,8 @@ const Header = () => {
           <Image src={kahlua_logo} alt="kahlua_logo" height={24} width={140} />
         )}
       </div>
+
+      {/* 페이지 부분 */}
       <List>
         {['ABOUT', 'PERFORMANCE', 'TICKET', 'RECRUIT', 'KAHLUA'].map(
           (section, index) => (
@@ -117,6 +122,8 @@ const Header = () => {
           )
         )}
       </List>
+
+      {/* 하단 로고 및 SNS 버튼 */}
       <div className="fixed bottom-14 left-8">
         {width <= 834 ? (
           <Image
@@ -174,7 +181,7 @@ const Header = () => {
     { name: 'PERFORMANCE', url: '/performance' },
     { name: 'TICKET', url: '/ticket' },
     { name: 'RECRUIT', url: '/recruit' },
-    { name: 'KAHLUA', url: '/kahlua' },
+    { name: 'RECRUIT', url: '/recruit' },
   ];
 
   const handleLinkClick = (name: string) => {
@@ -186,13 +193,23 @@ const Header = () => {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleHover = () => {
+    kahluaRef.current?.onmouseover;
+    setIsHovered(true);
+  };
+
+  const handleLeave = () => {
+    kahluaRef.current?.onmouseout;
+    setIsHovered(false);
+  };
+
   useEffect(() => {
     // KAHLUA 요소의 위치를 가져와 설정
     if (kahluaRef.current) {
       const { right } = kahluaRef.current.getBoundingClientRect();
       setKahluaRightOffset(window.innerWidth - right); // 오른쪽 기준 위치로 조정
     }
-  }, [isHovered, width]); // 크기 변경이나 hover 상태 변경 시 업데이트
+  }, [isHovered, width, kahluaRef]); // 크기 변경이나 hover 상태 변경 시 업데이트
 
   return (
     <ThemeProvider theme={theme}>
@@ -242,7 +259,8 @@ const Header = () => {
             </Link>
           </div>
           {/* KAHLUA와 추가 요소를 감싸는 공통 div */}
-          <div>
+
+          <div className="hidden min-[1500px]:flex flex-row gap-[64px]">
             <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
               {Url.map((url) => (
                 <li
@@ -253,13 +271,12 @@ const Header = () => {
                       : ''
                   }`}
                   // 마우스가 KAHLUA에 올라가면 추가 요소 표시
-                  onMouseOver={() =>
-                    url.name === 'KAHLUA' && setIsHovered(true)
-                  }
+                  // onMouseOver={() =>
+                  //   url.name === 'KAHLUA' && setIsHovered(true)
+                  // }
                 >
                   <Link href={url.url} passHref>
                     <div
-                      ref={url.name === 'KAHLUA' ? kahluaRef : null}
                       onClick={() => {
                         handleLinkClick(url.name);
                       }}
@@ -270,7 +287,19 @@ const Header = () => {
                 </li>
               ))}
             </ul>
+            <span
+              className={`font-medium text-center text-[18px] leading-6 ${
+                pathname === '/recruit' || pathname === '/contributors'
+                  ? 'text-gray-0'
+                  : ''
+              }`}
+              onMouseOver={handleHover}
+              ref={kahluaRef}
+            >
+              KAHLUA
+            </span>
           </div>
+
           <div className="hidden min-[1500px]:flex ">
             {/* 로그인 코드 작성 후 수정 필요 */}
             <p className="text-lg text-gray-50 text-center">로그인</p>
@@ -282,9 +311,9 @@ const Header = () => {
         {isHovered && (
           <div
             className="absolute top-[64px] text-gray-60 h-10 hidden min-[1500px]:flex"
-            style={{ right: `${kahluaRightOffset - 28}px` }}
-            onMouseOver={() => setIsHovered(true)}
-            onMouseOut={() => setIsHovered(false)}
+            style={{ right: `${kahluaRightOffset - 100}px` }}
+            onMouseOver={handleHover}
+            onMouseOut={handleLeave}
           >
             <ul className="gap-[60px] w-full h-full flex flex-row justify-end">
               <li>RESERVATION</li>
