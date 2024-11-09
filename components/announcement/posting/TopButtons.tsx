@@ -29,7 +29,7 @@ const TopButtons: React.FC<TopButtonsProps> = ({ isPostActive }) => {
       <div className="flex justify-end mb-10">
         <div
           onClick={handleCancelClick}
-          className="w-[51px] h-[46px] flex justify-center items-center rounded-[12px] mr-4 text-gray-40 text-[20px] font-[500] leading-[150%] cursor-pointer"
+          className="w-[51px] h-[46px] flex justify-center items-center rounded-[12px] mr-4 text-gray-40 text-[20px] font-[500] cursor-pointer"
         >
           취소
         </div>
@@ -38,7 +38,7 @@ const TopButtons: React.FC<TopButtonsProps> = ({ isPostActive }) => {
             isPostActive
               ? 'bg-primary-50 cursor-pointer'
               : 'bg-gray-10 cursor-not-allowed'
-          } text-[20px] font-[500] leading-[150%] text-gray-0`}
+          } text-[20px] font-[500] text-gray-0`}
         >
           게시하기
         </div>
