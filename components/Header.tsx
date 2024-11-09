@@ -61,6 +61,21 @@ const theme = createTheme({
 });
 
 const Header = () => {
+  let Url = [
+    { name: 'ABOUT', url: '/about' },
+    { name: 'PERFORMANCE', url: '/performance' },
+    { name: 'TICKET', url: '/ticket' },
+    { name: 'RECRUIT', url: '/recruit' },
+    { name: 'RECRUIT', url: '/recruit' },
+  ];
+
+  let KahluaUrl = [
+    { name: 'RESERVATION', url: '/reservation' },
+    { name: 'ANNOUNCEMENT', url: '/announcement' },
+    { name: 'MYPAGE', url: '/mypage' },
+    { name: 'ADMIN', url: '/admin' },
+  ];
+
   const router = useRouter();
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
@@ -68,6 +83,7 @@ const Header = () => {
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isKahluaClicked, setIsKahluaClicked] = useState(false); // KAHLUA 클릭 여부 (Drawer 내부)
 
   const [kahluaRightOffset, setKahluaRightOffset] = useState(0); // 추가 요소 위치
 
@@ -75,6 +91,8 @@ const Header = () => {
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setIsDrawerOpen(newOpen);
+
+    if (!newOpen) setIsKahluaClicked(false); // Drawer가 닫힐 때 isKahluaClicked를 초기화
   };
 
   const handleResize = () => {
@@ -89,11 +107,19 @@ const Header = () => {
     };
   }, []);
 
-  // 모바일 화면에서 보여줄 DrawerList
   const DrawerList = (
-    <Box role="presentation" onClick={toggleDrawer(false)}>
+    <Box
+      role="presentation"
+      // toggleDrawer(false) 호출을 조건적으로 수행하여 KAHLUA 클릭 시 Drawer가 닫히지 않도록 설정
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.textContent !== 'KAHLUA') {
+          setIsKahluaClicked(false); // KAHLUA 외의 항목을 클릭했을 때 Drawer 닫기
+          toggleDrawer(false)();
+        }
+      }}
+    >
       {/* 상단 로고 */}
-
       <div className="w-auto mt-8 ml-8 mb-8">
         {width <= 834 ? (
           <Image src={kahlua_logo} alt="kahlua_logo" height={16} width={94} />
@@ -105,12 +131,18 @@ const Header = () => {
       {/* 페이지 부분 */}
       <List>
         {['ABOUT', 'PERFORMANCE', 'TICKET', 'RECRUIT', 'KAHLUA'].map(
-          (section, index) => (
+          (section) => (
             <ListItem key={section} disablePadding>
               <ListItemButton>
                 <div
                   className={`w-[610px] rounded-[20px] flex items-center ${width <= 834 ? 'pl-5 h-[40px]' : 'pl-5 h-[43px]'} ${section === currentLink ? 'bg-primary-50' : ''}`}
-                  onClick={() => handleLinkClick(section)}
+                  onClick={() => {
+                    if (section === 'KAHLUA') {
+                      setIsKahluaClicked(!isKahluaClicked);
+                    } else {
+                      handleLinkClick(section);
+                    }
+                  }}
                 >
                   <ListItemText
                     primary={section}
@@ -120,6 +152,25 @@ const Header = () => {
               </ListItemButton>
             </ListItem>
           )
+        )}
+        {isKahluaClicked && (
+          <ul>
+            {KahluaUrl.map((url) => (
+              <li key={url.name}>
+                <Link href={url.url} passHref>
+                  <div
+                    className="cursor-pointer"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLinkClick(url.name);
+                    }}
+                  >
+                    {url.name}
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
       </List>
 
@@ -176,21 +227,6 @@ const Header = () => {
     </Box>
   );
 
-  let Url = [
-    { name: 'ABOUT', url: '/about' },
-    { name: 'PERFORMANCE', url: '/performance' },
-    { name: 'TICKET', url: '/ticket' },
-    { name: 'RECRUIT', url: '/recruit' },
-    { name: 'RECRUIT', url: '/recruit' },
-  ];
-
-  let KahluaUrl = [
-    { name: 'RESERVATION', url: '/reservation' },
-    { name: 'ANNOUNCEMENT', url: '/announcement' },
-    { name: 'MYPAGE', url: '/mypage' },
-    { name: 'ADMIN', url: '/admin' },
-  ];
-
   const handleLinkClick = (name: string) => {
     if (name !== 'KAHLUA') {
       router.push(`/${name.toLowerCase()}`);
@@ -216,7 +252,7 @@ const Header = () => {
       const { right } = kahluaRef.current.getBoundingClientRect();
       setKahluaRightOffset(window.innerWidth - right); // 오른쪽 기준 위치로 조정
     }
-  }, [isHovered, width, kahluaRef]); // 크기 변경이나 hover 상태 변경 시 업데이트
+  }, [isHovered, width]); // 크기 변경이나 hover 상태 변경 시 업데이트
 
   return (
     <ThemeProvider theme={theme}>
@@ -247,7 +283,13 @@ const Header = () => {
             )}
           </div>
           <div>
-            <Link href="/" key="home">
+            <Link
+              href="/"
+              key="home"
+              onClick={() => {
+                setCurrentLink('/');
+              }}
+            >
               {pathname === '/recruit' || pathname === '/contributors' ? (
                 <Image
                   src={logo_white}
