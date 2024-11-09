@@ -20,6 +20,7 @@ import kakaotalk_logo from '@/public/image/kakaotalk-icon.svg';
 import instagram_logo from '@/public/image/instagram-icon.svg';
 import { useRouter } from 'next/navigation';
 
+// MUI 테마 커스텀
 const theme = createTheme({
   components: {
     MuiPaper: {
@@ -60,45 +61,53 @@ const theme = createTheme({
   },
 });
 
+// 공통 사용 변수 (URL)
+let Url = [
+  { name: 'ABOUT', url: '/about' },
+  { name: 'PERFORMANCE', url: '/performance' },
+  { name: 'TICKET', url: '/ticket' },
+  { name: 'RECRUIT', url: '/recruit' },
+  { name: 'RECRUIT', url: '/recruit' },
+];
+
+let KahluaUrl = [
+  { name: 'RESERVATION', url: '/reservation' },
+  { name: 'ANNOUNCEMENT', url: '/announcement' },
+  { name: 'MYPAGE', url: '/mypage' },
+  { name: 'ADMIN', url: '/admin' },
+];
+
 const Header = () => {
-  let Url = [
-    { name: 'ABOUT', url: '/about' },
-    { name: 'PERFORMANCE', url: '/performance' },
-    { name: 'TICKET', url: '/ticket' },
-    { name: 'RECRUIT', url: '/recruit' },
-    { name: 'RECRUIT', url: '/recruit' },
-  ];
-
-  let KahluaUrl = [
-    { name: 'RESERVATION', url: '/reservation' },
-    { name: 'ANNOUNCEMENT', url: '/announcement' },
-    { name: 'MYPAGE', url: '/mypage' },
-    { name: 'ADMIN', url: '/admin' },
-  ];
-
   const router = useRouter();
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
+
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isKahluaClicked, setIsKahluaClicked] = useState(false); // KAHLUA 클릭 여부 (Drawer 내부)
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
+  const [isKahluaClicked, setIsKahluaClicked] = useState(false); // Drawer 내부 KAHLUA 클릭 여부
   const [kahluaRightOffset, setKahluaRightOffset] = useState(0); // 추가 요소 위치
+  const kahluaRef = useRef<HTMLDivElement>(null); // 데스크탑 KAHLUA 요소 참조
 
-  const kahluaRef = useRef<HTMLDivElement>(null);
-
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = (newOpen: boolean) => () => {
     setIsDrawerOpen(newOpen);
 
     if (!newOpen) setIsKahluaClicked(false); // Drawer가 닫힐 때 isKahluaClicked를 초기화
   };
 
-  const handleResize = () => {
-    setWidth(window.innerWidth);
+  const handleLinkClick = (name: string) => {
+    if (name !== 'KAHLUA') {
+      router.push(`/${name.toLowerCase()}`);
+      setCurrentLink(name);
+    }
   };
 
+  // 화면 크기 변경 시 width 업데이트
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -227,20 +236,13 @@ const Header = () => {
     </Box>
   );
 
-  const handleLinkClick = (name: string) => {
-    if (name !== 'KAHLUA') {
-      router.push(`/${name.toLowerCase()}`);
-      setCurrentLink(name);
-    }
-  };
-
+  // 데스크탑에서 KAHLUA 요소에 대한 hover 상태 관리 및 함수
   const [isHovered, setIsHovered] = useState(false);
 
   const handleHover = () => {
     kahluaRef.current?.onmouseover;
     setIsHovered(true);
   };
-
   const handleLeave = () => {
     kahluaRef.current?.onmouseout;
     setIsHovered(false);
@@ -319,10 +321,6 @@ const Header = () => {
                       ? 'text-gray-0'
                       : ''
                   }`}
-                  // 마우스가 KAHLUA에 올라가면 추가 요소 표시
-                  // onMouseOver={() =>
-                  //   url.name === 'KAHLUA' && setIsHovered(true)
-                  // }
                 >
                   <Link href={url.url} passHref>
                     <div
