@@ -264,7 +264,14 @@ const Header = () => {
         {/* 기존 Header */}
         <div
           className={`font-pretendard w-full min-h-[64px] max-h-[104px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1500px]:justify-between items-center px-0 min-[1500px]:px-40 z-50 
-                ${pathname === '/recruit' || pathname === '/contributors' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
+            ${
+              (pathname === '/recruit' || pathname === '/contributors') &&
+              !isHovered
+                ? 'bg-gray-90/20'
+                : isHovered
+                  ? 'bg-gray-0'
+                  : 'bg-gray-0'
+            }`}
         >
           <div className="min-[1500px]:hidden cursor-pointer fixed left-6">
             {pathname === '/recruit' || pathname === '/contributors' ? (
@@ -362,7 +369,13 @@ const Header = () => {
             onMouseOut={handleLeave}
           >
             <div className="w-full">
-              <ul className="gap-[60px] w-full h-full flex flex-row justify-end">
+              <ul
+                className={`gap-[60px] w-full h-full flex flex-row justify-end ${
+                  pathname === '/recruit' || pathname === '/contributors'
+                    ? 'text-gray-0'
+                    : ''
+                }`}
+              >
                 {KahluaUrl.map((url) => (
                   <li key={url.name}>
                     <Link href={url.url} passHref>
