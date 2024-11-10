@@ -28,7 +28,7 @@ const Page = () => {
   }, [name, generation, session]);
 
   return (
-    <div className="font-pretendard w-full h-full flex justify-center items-center mt-16 text-gray-0 text-center max-pad:-mb-40">
+    <div className="font-pretendard w-full min-h-[calc(100vh-320px)] h-full flex justify-center items-center mt-16 text-gray-0 text-center max-pad:-mb-40 max-pad:bg-gray-90">
       <div className="w-full h-full justify-center items-center pad:w-[786px] dt:w-[876px] pad:h-[536px] flex flex-col pt-[32px] pad:pt-[58px] pb-[78px] px-[16px] pad:px-[64px] dt:px-[118px] gap-[48px] bg-gray-90 pad:rounded-[24px] mt-[16px] pad:mt-[32px]">
         <div className="flex flex-col gap-[16px] w-full justify-center items-center">
           <div className="font-semibold text-[64px]">JOIN</div>
@@ -39,7 +39,7 @@ const Page = () => {
             있습니다.
           </div>
         </div>
-        <div className="flex flex-col pad:flex-row gap-[20px] justify-center items-center">
+        <div className="flex flex-col pad:flex-row gap-[20px] justify-center items-center text-[16px]">
           <NameInput data={name} setData={setName} />
           <LoginSelectBox
             data={generation}
@@ -59,7 +59,7 @@ const Page = () => {
           </LoginSelectBox>
         </div>
         <button
-          className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
+          className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] text-[22px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
           disabled={!isComplete}
           onClick={() => setIsModalOpen(true)}
         >

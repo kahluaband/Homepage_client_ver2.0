@@ -24,13 +24,10 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
       value={data}
       onChange={(e: SelectChangeEvent) => setData(e.target.value)}
       sx={{
-        border: 'none',
         padding: 0,
-        margin: 0,
         '.MuiSelect-icon': { color: '#ffffff' },
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
           border: 'none',
-          outline: 'none',
         },
       }}
       MenuProps={{
@@ -50,13 +47,21 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
           '*::-webkit-scrollbar': {
             width: '4px',
             borderRadius: '4px',
+            margin: '8px',
+            transform: 'translateX(28px)',
           },
           '*::-webkit-scrollbar-thumb': {
             backgroundColor: '#CBCDD7',
             borderRadius: '4px',
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: '#777777',
+            backgroundColor: 'white',
+          },
+          '*::-webkit-scrollbar-track': {
+            backgroundColor: 'transparent',
+            borderRadius: '4px',
+            border: '1px solid #CBCDD7',
+            margin: '8px',
           },
         },
       }}
