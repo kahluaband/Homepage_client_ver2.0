@@ -67,7 +67,6 @@ let Url = [
   { name: 'PERFORMANCE', url: '/performance' },
   { name: 'TICKET', url: '/ticket' },
   { name: 'RECRUIT', url: '/recruit' },
-  { name: 'RECRUIT', url: '/recruit' },
 ];
 
 let KahluaUrl = [
@@ -362,21 +361,23 @@ const Header = () => {
             onMouseOver={handleHover}
             onMouseOut={handleLeave}
           >
-            <ul className="gap-[60px] w-full h-full flex flex-row justify-end">
-              {KahluaUrl.map((url) => (
-                <li key={url.name}>
-                  <Link href={url.url} passHref>
-                    <div
-                      onClick={() => {
-                        handleLinkClick(url.name);
-                      }}
-                    >
-                      {url.name}
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="w-full">
+              <ul className="gap-[60px] w-full h-full flex flex-row justify-end">
+                {KahluaUrl.map((url) => (
+                  <li key={url.name}>
+                    <Link href={url.url} passHref>
+                      <div
+                        onClick={() => {
+                          handleLinkClick(url.name);
+                        }}
+                      >
+                        {url.name}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </div>
