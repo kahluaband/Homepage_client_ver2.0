@@ -3,16 +3,15 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import CommentList from '@/components/notice/CommentList';
 import Image from 'next/image';
-import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import arrow from '@/public/image/notice/Left.svg';
-import chat from '@/public/image/notice/chat.svg';
 import DeletePopup from '@/components/notice/DeletePostPopup';
 import CommentInput from '@/components/notice/CommentInput';
-import LikeButton from '@/components/notice/LikeButton';
+import Post from '@/components/notice/Post';
 
 const Page = () => {
-  const text = `❗️깔루아 9월 정기공연❗️
-안녕하세요 깔루아 21기 기장 최승원입니다🤩
+  const noticeData = {
+    title: '❗️깔루아 9월 정기공연❗️',
+    text: `안녕하세요 깔루아 21기 기장 최승원입니다🤩
 9월 1일 금요일, 깔루아의 9월 정기공연이 있습니다‼️
 재학생이신 선배님들께서는 수업이 끝난 후에, 졸업생이신 선배님들께서는 시간이 되신다면 공연 보러오셔서 함께 즐겨주시면 좋을 것 같습니다 !!
 
@@ -28,7 +27,10 @@ const Page = () => {
 공연 이후에 뒷풀이를 진행할 예정입니다. 뒷풀이 장소 예약을 위해서 대략적인 인원을 확인하고 있습니다!
 혹시 공연에 참석하시는 선배님들이나, 뒷풀이에 참석하시는 선배님들께서는 010-4827-2589로 연락주시면 감사하겠습니다🤩
 
-기타 모든 문의사항은 페이스북 메세지나 댓글, 또는 위의 전화번호로 연락주세요 ! 감사합니다🤩🤩`;
+기타 모든 문의사항은 페이스북 메세지나 댓글, 또는 위의 전화번호로 연락주세요 ! 감사합니다🤩🤩`,
+    author: '관리자',
+    date: '2024. 08. 01',
+  };
 
   const [chatCount, setChatCount] = useState(0);
   const [replyingToId, setReplyingToId] = useState<string | null>(null);
@@ -41,11 +43,21 @@ const Page = () => {
       text: string;
       replying: boolean;
       replies?: any[];
+      deleted?: boolean;
     }[]
   >([]);
   const [commentText, setCommentText] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [replyText, setReplyText] = useState('');
+  const commentCount = comments.filter((comment) => !comment.deleted).length;
+  const replyCount = comments.reduce(
+    (total, comment) =>
+      total +
+      (comment.replies
+        ? comment.replies.filter((reply) => !reply.deleted).length
+        : 0),
+    0
+  );
 
   const addComment = () => {
     if (commentText.trim() === '') return;
@@ -107,7 +119,11 @@ const Page = () => {
         comment.id === commentId
           ? {
               ...comment,
-              replies: comment.replies?.filter((reply) => reply.id !== replyId),
+              replies: comment.replies
+                ?.map((reply) =>
+                  reply.id === replyId ? { ...reply, deleted: true } : reply
+                )
+                .filter((reply) => !reply.deleted), // Filter out deleted replies
             }
           : comment
       )
@@ -130,62 +146,11 @@ const Page = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex flex-col items-center justify-center pt-16 w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px] max-pad:px-[16px]">
-        <div className="flex flex-col w-full gap-16">
-          <div className="flex mt-8">
-            <Image
-              src={defaultImg}
-              alt="default-profile"
-              width={88}
-              height={88}
-              className="dt:flex pad:flex ph:hidden"
-            />
-            <div className="w-full flex flex-col dt:ml-[24px] pad:ml-[24px] ph:ml-0">
-              <span className="font-pretendard text-[32px] font-semibold">
-                2024년 9월 정기공연
-              </span>
-              <span className="w-full flex flex-row mt-[16px] items-center  justify-between">
-                <div className="flex flex-row gap-2">
-                  <span className="font-pretendard text-base font-medium flex">
-                    관리자
-                  </span>
-                  <div className="h-[24px] border-l border-black" />
-                  <span className="font-pretendard text-base font-medium flex">
-                    2024. 08. 01
-                  </span>
-                </div>
-                <div className="flex gap-4">
-                  <span className="font-pretendard text-base font-normal cursor-pointer">
-                    수정
-                  </span>
-                  <span
-                    className="font-pretendard text-base text-danger-50 font-normal cursor-pointer"
-                    onClick={handleDeleteClick}
-                  >
-                    삭제
-                  </span>
-                </div>
-              </span>
-            </div>
-          </div>
-          <div className="w-full border-b border-gray-15" />
-          <div className="font-pretendard text-xl font-medium whitespace-pre-wrap word-break: break-word">
-            {text}
-          </div>
-          <div className="w-full border-b border-gray-15 mb-10" />
-        </div>
-        <div className="w-full">
-          <div className="flex flex-col mb-10">
-            <div className="flex items-center">
-              <LikeButton initialCount={0} />
-              <div className="flex items-center ml-[24px]">
-                <Image src={chat} alt="chat" width={24} height={24} />
-                <span className="ml-[10px] font-pretendard text-base">
-                  {chatCount}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Post
+          noticeData={noticeData}
+          commentCount={commentCount}
+          replyCount={replyCount}
+        />
 
         {/* 댓글 리스트 */}
         <CommentList

@@ -172,7 +172,11 @@ const Comment: React.FC<CommentProps> = ({
             className="flex items-center justify-center border rounded-lg border-black w-[60px] h-[60px] cursor-pointer"
             onClick={handleAddReply}
           >
-            <Send width={20} height={20} />
+            <Send
+              width={20}
+              height={20}
+              style={{ transform: 'rotate(-40deg)' }}
+            />
           </div>
         </div>
       )}

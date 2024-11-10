@@ -31,7 +31,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
         className="border rounded-lg border-black min-w-[60px] min-h-[60px] cursor-pointer flex items-center justify-center"
         onClick={onAddComment}
       >
-        <Send width={20} height={20} />
+        <Send width={20} height={20} style={{ transform: 'rotate(-40deg)' }} />
       </button>
     </div>
   );

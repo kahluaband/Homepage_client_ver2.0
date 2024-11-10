@@ -24,8 +24,8 @@ const LikeButton: React.FC<LikeButtonProps> = ({ initialCount = 0 }) => {
       <Image
         src={isFilled ? FullHeart : EmptyHeart}
         alt="Heart Icon"
-        width={24}
-        height={24}
+        width={14}
+        height={14}
       />
       <span>{heartCount}</span>
     </button>
