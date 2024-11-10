@@ -357,7 +357,7 @@ const Header = () => {
         {isHovered && (
           <div
             className="absolute top-[64px] text-gray-60 h-10 hidden min-[1500px]:flex z-50"
-            style={{ right: `${kahluaRightOffset - 100}px` }}
+            style={{ right: `${kahluaRightOffset - 24}px` }}
             onMouseOver={handleHover}
             onMouseOut={handleLeave}
           >
