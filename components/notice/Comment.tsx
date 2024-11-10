@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import defaultImg from '@/public/image/notice/defaultProfile.svg';
 import Send from '@mui/icons-material/Send';
 import DeletePopup from '@/components/notice/DeleteCommentPopup';
@@ -34,30 +34,33 @@ const Comment: React.FC<CommentProps> = ({
   >(null);
   const [replyingId, setReplyingId] = useState<string | null>(null);
 
-  const handleAddReply = () => {
+  const handleAddReply = useCallback(() => {
     if (replyText.trim() === '') return;
     onAddReply(comment.id, replyText);
     setReplyText('');
-  };
+  }, [replyText, onAddReply, comment.id]);
 
-  const handleDeleteCommentConfirm = () => {
+  const handleDeleteCommentConfirm = useCallback(() => {
     onDeleteComment(comment.id);
     setShowDeletePopup(false);
-  };
+  }, [onDeleteComment, comment.id]);
 
-  const handleDeleteReplyConfirm = (replyId: string) => {
-    onDeleteReply(comment.id, replyId);
-    setShowDeleteReplyPopup(null);
-  };
+  const handleDeleteReplyConfirm = useCallback(
+    (replyId: string) => {
+      onDeleteReply(comment.id, replyId);
+      setShowDeleteReplyPopup(null);
+    },
+    [onDeleteReply, comment.id]
+  );
 
-  const handleDeleteCancel = () => {
+  const handleDeleteCancel = useCallback(() => {
     setShowDeletePopup(false);
     setShowDeleteReplyPopup(null);
-  };
+  }, []);
 
-  const handleToggleReplying = (id: string) => {
+  const handleToggleReplying = useCallback((id: string) => {
     setReplyingId((prevId) => (prevId === id ? null : id));
-  };
+  }, []);
 
   return (
     <div
