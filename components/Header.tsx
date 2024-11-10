@@ -356,7 +356,7 @@ const Header = () => {
         {/* 추가 요소를 헤더 아래에 위치시키기 위해 마진 조정 */}
         {isHovered && (
           <div
-            className="absolute top-[64px] text-gray-60 h-10 hidden min-[1500px]:flex"
+            className="absolute top-[64px] text-gray-60 h-10 hidden min-[1500px]:flex z-50"
             style={{ right: `${kahluaRightOffset - 100}px` }}
             onMouseOver={handleHover}
             onMouseOut={handleLeave}
