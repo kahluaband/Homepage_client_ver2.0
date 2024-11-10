@@ -263,7 +263,7 @@ const Header = () => {
       <div className={`flex flex-col ${isHovered ? 'mt-[64px]' : ''}`}>
         {/* 기존 Header */}
         <div
-          className={`font-pretendard w-full min-h-[64px] max-h-[104px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1500px]:justify-between items-center px-0 min-[1500px]:px-40 z-50 
+          className={`font-pretendard w-full min-h-[64px] max-h-[104px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1500px]:justify-between items-center px-0 min-[1500px]:px-[150px] z-50 
             ${pathname === '/recruit' || pathname === '/contributors' ? 'bg-gray-90/20 ' : 'bg-gray-0'}}`}
         >
           <div className="min-[1500px]:hidden cursor-pointer fixed left-6">
@@ -310,7 +310,7 @@ const Header = () => {
           </div>
           {/* KAHLUA와 추가 요소를 감싸는 공통 div */}
 
-          <div className="hidden min-[1500px]:flex flex-row gap-[64px]">
+          <div className="hidden min-[1500px]:flex flex-row gap-[64px] absolute right-72">
             <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
               {Url.map((url) => (
                 <li
