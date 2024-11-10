@@ -21,7 +21,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       onClick={handleOverlayClick}
       className="fixed z-50 top-0 left-0 right-0 bottom-0 bg-[#0000008a] flex justify-center items-center text-black"
     >
-      <div className="fixed flex flex-col rounded-3xl w-[328px] h-auto pad:w-[560px] pad:h-[300px] bg-gray-0 px-[40px] py-[52px] pad:py-[80px]">
+      <div className="fixed flex flex-col rounded-3xl w-[328px] h-auto pad:w-[560px] pad:h-[300px] bg-gray-0 px-[40px] py-[52px] pad:py-[80px] cursor-pointer">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

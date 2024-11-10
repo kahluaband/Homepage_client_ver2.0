@@ -2,6 +2,14 @@ import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
+const selectBoxStyles = {
+  padding: 0,
+  '.MuiSelect-icon': { color: '#ffffff' },
+  '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    border: 'none',
+  },
+};
+
 interface SelectBoxProps {
   data: string;
   setData: React.Dispatch<React.SetStateAction<string>>;
@@ -23,13 +31,7 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
       labelId={id}
       value={data}
       onChange={(e: SelectChangeEvent) => setData(e.target.value)}
-      sx={{
-        padding: 0,
-        '.MuiSelect-icon': { color: '#ffffff' },
-        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          border: 'none',
-        },
-      }}
+      sx={selectBoxStyles}
       MenuProps={{
         PaperProps: {
           style: {
@@ -37,7 +39,6 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
             width: 178,
             backgroundColor: 'rgba(0, 0, 0, 0.8)',
             marginTop: 4,
-            padding: 0,
             borderTopLeftRadius: 4,
             borderBottomLeftRadius: 4,
             transform: 'translateX(-16px)',
@@ -47,8 +48,6 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
           '*::-webkit-scrollbar': {
             width: '4px',
             borderRadius: '4px',
-            margin: '8px',
-            transform: 'translateX(28px)',
           },
           '*::-webkit-scrollbar-thumb': {
             backgroundColor: '#CBCDD7',
@@ -61,7 +60,6 @@ const LoginSelectBox: React.FC<SelectBoxProps> = ({
             backgroundColor: 'transparent',
             borderRadius: '4px',
             border: '1px solid #CBCDD7',
-            margin: '8px',
           },
         },
       }}
