@@ -7,6 +7,14 @@ import arrow from '@/public/image/notice/Left.svg';
 import DeletePopup from '@/components/notice/DeletePostPopup';
 import CommentInput from '@/components/notice/CommentInput';
 import Post from '@/components/notice/Post';
+import {
+  addComment,
+  addReply,
+  handleDeleteComment,
+  handleDeleteReply,
+  handleDeleteCancel,
+  handleDeleteConfirm,
+} from '@/components/util/noticeUtils';
 
 const Page = () => {
   const noticeData = {
@@ -59,90 +67,6 @@ const Page = () => {
     0
   );
 
-  const addComment = () => {
-    if (commentText.trim() === '') return;
-    const newComment = {
-      id: uuidv4(),
-      name: '원마루',
-      date: new Date().toLocaleString(),
-      text: commentText,
-      replying: false,
-      deleted: false,
-      replies: [],
-    };
-    setComments((prevComments) => {
-      const updatedComments = [...prevComments, newComment];
-      return updatedComments;
-    });
-    setCommentText('');
-    setChatCount((prev) => prev + 1);
-  };
-
-  const addReply = (id: string, replyText: string) => {
-    const newReply = {
-      id: uuidv4(),
-      name: '원채영',
-      date: new Date().toLocaleString(),
-      text: replyText,
-      replying: false,
-    };
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id
-          ? {
-              ...comment,
-              replies: [...(comment.replies || []), newReply],
-            }
-          : comment
-      )
-    );
-
-    setReplyText('');
-    setReplyingToId(null);
-    setChatCount((prev) => prev + 1);
-  };
-
-  const handleDeleteComment = (id: string) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === id
-          ? { ...comment, text: '삭제된 댓글입니다.', deleted: true }
-          : comment
-      )
-    );
-    setChatCount((prev) => Math.max(0, prev - 1));
-  };
-
-  const handleDeleteReply = (commentId: string, replyId: string) => {
-    setComments((prevComments) =>
-      prevComments.map((comment) =>
-        comment.id === commentId
-          ? {
-              ...comment,
-              replies: comment.replies
-                ?.map((reply) =>
-                  reply.id === replyId ? { ...reply, deleted: true } : reply
-                )
-                .filter((reply) => !reply.deleted), // Filter out deleted replies
-            }
-          : comment
-      )
-    );
-    setChatCount((prev) => Math.max(0, prev - 1));
-  };
-  const handleDeleteClick = () => {
-    setShowDeletePopup(true);
-  };
-
-  const handleDeleteConfirm = () => {
-    // 삭제 로직 추가
-    setShowDeletePopup(false);
-  };
-
-  const handleDeleteCancel = () => {
-    setShowDeletePopup(false);
-  };
-
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <div className="flex flex-col items-center justify-center pt-16 w-full max-w-[500px] pad:max-w-[786px] dt:max-w-[1200px] max-pad:px-[16px]">
@@ -155,16 +79,44 @@ const Page = () => {
         {/* 댓글 리스트 */}
         <CommentList
           comments={comments}
-          onAddReply={addReply}
-          onDeleteComment={handleDeleteComment}
-          onDeleteReply={handleDeleteReply}
+          onAddReply={(id, text) =>
+            addReply(
+              id,
+              text,
+              comments,
+              setComments,
+              setReplyingToId,
+              setReplyText,
+              setChatCount
+            )
+          }
+          onDeleteComment={(id) =>
+            handleDeleteComment(id, comments, setComments, setChatCount)
+          }
+          onDeleteReply={(commentId, replyId) =>
+            handleDeleteReply(
+              commentId,
+              replyId,
+              comments,
+              setComments,
+              setChatCount
+            )
+          }
         />
 
         {/* 댓글 입력창 */}
         <CommentInput
           commentText={commentText}
           setCommentText={setCommentText}
-          onAddComment={addComment}
+          onAddComment={() =>
+            addComment(
+              commentText,
+              comments,
+              setComments,
+              setChatCount,
+              setCommentText
+            )
+          }
         />
 
         <div className="w-full">
@@ -181,8 +133,8 @@ const Page = () => {
 
       {showDeletePopup && (
         <DeletePopup
-          onConfirm={handleDeleteConfirm}
-          onClose={handleDeleteCancel}
+          onConfirm={() => handleDeleteConfirm(setShowDeletePopup)}
+          onClose={() => handleDeleteCancel(setShowDeletePopup)}
         />
       )}
     </div>
