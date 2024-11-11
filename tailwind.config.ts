@@ -10,6 +10,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
+      black: '#000000',
       primary: {
         0: '#DDE2FD',
         10: '#BCC6FB',
