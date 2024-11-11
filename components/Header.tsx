@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import logo_black from '@/public/image/KAHLUA-black.svg';
 import logo_white from '@/public/image/KAHLUA.svg';
 import Image from 'next/image';
@@ -20,6 +20,7 @@ import kakaotalk_logo from '@/public/image/kakaotalk-icon.svg';
 import instagram_logo from '@/public/image/instagram-icon.svg';
 import { useRouter } from 'next/navigation';
 
+// MUI 테마 커스텀
 const theme = createTheme({
   components: {
     MuiPaper: {
@@ -60,23 +61,52 @@ const theme = createTheme({
   },
 });
 
+// 공통 사용 변수 (URL)
+let Url = [
+  { name: 'ABOUT', url: '/about' },
+  { name: 'PERFORMANCE', url: '/performance' },
+  { name: 'TICKET', url: '/ticket' },
+  { name: 'RECRUIT', url: '/recruit' },
+];
+
+let KahluaUrl = [
+  { name: 'RESERVATION', url: '/reservation' },
+  { name: 'ANNOUNCEMENT', url: '/announcement' },
+  { name: 'MYPAGE', url: '/mypage' },
+  { name: 'ADMIN', url: '/admin' },
+];
+
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
+
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setIsDrawerOpen(newOpen);
-  };
-
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
 
+  const [isKahluaClicked, setIsKahluaClicked] = useState(false); // Drawer 내부 KAHLUA 클릭 여부
+  const [kahluaRightOffset, setKahluaRightOffset] = useState(0); // 추가 요소 위치
+  const kahluaRef = useRef<HTMLDivElement>(null); // 데스크탑 KAHLUA 요소 참조
+
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setIsDrawerOpen(newOpen);
+
+    if (!newOpen) setIsKahluaClicked(false); // Drawer가 닫힐 때 isKahluaClicked를 초기화
+  };
+
+  const handleLinkClick = (name: string) => {
+    if (name !== 'KAHLUA') {
+      router.push(`/${name.toLowerCase()}`);
+      setCurrentLink(name);
+    }
+  };
+
+  // 화면 크기 변경 시 width 업데이트
   useEffect(() => {
     window.addEventListener('resize', handleResize);
 
@@ -86,7 +116,18 @@ const Header = () => {
   }, []);
 
   const DrawerList = (
-    <Box role="presentation" onClick={toggleDrawer(false)}>
+    <Box
+      role="presentation"
+      // KAHLUA 클릭 시 Drawer가 닫히지 않도록 설정
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.textContent !== 'KAHLUA') {
+          setIsKahluaClicked(false); // KAHLUA 외의 항목을 클릭했을 때 Drawer 닫기
+          toggleDrawer(false)();
+        }
+      }}
+    >
+      {/* 상단 로고 */}
       <div className="w-auto mt-8 ml-8 mb-8">
         {width <= 834 ? (
           <Image src={kahlua_logo} alt="kahlua_logo" height={16} width={94} />
@@ -94,23 +135,54 @@ const Header = () => {
           <Image src={kahlua_logo} alt="kahlua_logo" height={24} width={140} />
         )}
       </div>
+
+      {/* 페이지 부분 */}
       <List>
-        {['ABOUT', 'PERFORMANCE', 'TICKET', 'RECRUIT'].map((section, index) => (
-          <ListItem key={section} disablePadding>
-            <ListItemButton>
-              <div
-                className={`w-[610px] rounded-[20px] flex items-center ${width <= 834 ? 'pl-5 h-[40px]' : 'pl-5 h-[43px]'} ${section === currentLink ? 'bg-primary-50' : ''}`}
-                onClick={() => handleLinkClick(section)}
-              >
-                <ListItemText
-                  primary={section}
-                  className={`font-pretendard font-medium ${section === currentLink ? 'text-gray-0' : 'text-gray-70'} ${width <= 834 ? 'text-base' : 'text-lg'}`}
-                />
-              </div>
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {['ABOUT', 'PERFORMANCE', 'TICKET', 'RECRUIT', 'KAHLUA'].map(
+          (section) => (
+            <ListItem key={section} disablePadding>
+              <ListItemButton>
+                <div
+                  className={`w-[610px] rounded-[20px] flex items-center ${width <= 834 ? 'pl-5 h-[40px]' : 'pl-5 h-[43px]'} ${section === currentLink ? 'bg-primary-50' : ''}`}
+                  onClick={() => {
+                    if (section === 'KAHLUA') {
+                      setIsKahluaClicked(!isKahluaClicked);
+                    } else {
+                      handleLinkClick(section);
+                    }
+                  }}
+                >
+                  <ListItemText
+                    primary={section}
+                    className={`font-pretendard font-medium ${section === currentLink ? 'text-gray-0' : 'text-gray-70'} ${width <= 834 ? 'text-base' : 'text-lg'}`}
+                  />
+                </div>
+              </ListItemButton>
+            </ListItem>
+          )
+        )}
+        {isKahluaClicked && (
+          <ul className="pl-11">
+            {KahluaUrl.map((url) => (
+              <li key={url.name}>
+                <Link href={url.url} passHref>
+                  <div
+                    className={`py-2 cursor-pointer font-pretendard font-normal text-gray-60 ${width <= 834 ? 'text-sm' : 'text-base'}`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLinkClick(url.name);
+                    }}
+                  >
+                    {url.name}
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
       </List>
+
+      {/* 하단 로고 및 SNS 버튼 */}
       <div className="fixed bottom-14 left-8">
         {width <= 834 ? (
           <Image
@@ -163,83 +235,157 @@ const Header = () => {
     </Box>
   );
 
-  let Url = [
-    { name: 'ABOUT', url: '/about' },
-    { name: 'PERFORMANCE', url: '/performance' },
-    { name: 'TICKET', url: '/ticket' },
-    { name: 'RECRUIT', url: '/recruit' },
-  ];
+  // 데스크탑에서 KAHLUA 요소에 대한 hover 상태 관리 및 함수
+  const [isHovered, setIsHovered] = useState(false);
 
-  const handleLinkClick = (name: string) => {
-    router.push(`/${name.toLowerCase()}`);
-    setCurrentLink(name);
+  const handleHover = () => {
+    kahluaRef.current?.onmouseover;
+    setIsHovered(true);
   };
+  const handleLeave = () => {
+    kahluaRef.current?.onmouseout;
+    setIsHovered(false);
+  };
+
+  useEffect(() => {
+    // KAHLUA 요소의 위치를 가져와 설정
+    if (kahluaRef.current) {
+      const { right } = kahluaRef.current.getBoundingClientRect();
+      setKahluaRightOffset(window.innerWidth - right); // 오른쪽 기준 위치로 조정
+    }
+  }, [isHovered, width]); // 크기 변경이나 hover 상태 변경 시 업데이트
 
   return (
     <ThemeProvider theme={theme}>
       <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
-      <div
-        className={`font-pretendard w-full h-[64px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1500px]:justify-between items-center px-0 min-[1500px]:px-40 z-50 
-                    ${pathname === '/recruit' || pathname === '/contributors' ? 'bg-gray-90/20 ' : 'bg-gray-0'}`}
-      >
-        <div className="min-[1500px]:hidden cursor-pointer fixed left-6">
-          {pathname === '/recruit' || pathname === '/contributors' ? (
-            <Image
-              src={table_menu_white}
-              alt="moblie_menu_button"
-              width={24}
-              onClick={toggleDrawer(true)}
-            />
-          ) : (
-            <Image
-              src={table_menu}
-              alt="moblie_menu_button"
-              width={24}
-              onClick={toggleDrawer(true)}
-            />
-          )}
-        </div>
-        <div>
-          <Link href="/" key="home">
+      <div className={`flex flex-col ${isHovered ? 'mt-[64px]' : ''}`}>
+        {/* 기존 Header */}
+        <div
+          className={`font-pretendard w-full min-h-[64px] max-h-[104px] fixed top-0 bg-gray-0 flex flex-row justify-center min-[1500px]:justify-between items-center px-0 min-[1500px]:px-[150px] z-50 
+            ${pathname === '/recruit' || pathname === '/contributors' ? 'bg-gray-90/20 ' : 'bg-gray-0'}}`}
+        >
+          <div className="min-[1500px]:hidden cursor-pointer fixed left-6">
             {pathname === '/recruit' || pathname === '/contributors' ? (
               <Image
-                src={logo_white}
-                width={140}
-                alt="logo-white"
-                className="h-4 min-[834px]:h-6"
+                src={table_menu_white}
+                alt="moblie_menu_button"
+                width={24}
+                onClick={toggleDrawer(true)}
               />
             ) : (
               <Image
-                src={logo_black}
-                width={140}
-                alt="logo-black"
-                className="h-4 min-[834px]:h-6"
+                src={table_menu}
+                alt="moblie_menu_button"
+                width={24}
+                onClick={toggleDrawer(true)}
               />
             )}
-          </Link>
+          </div>
+          <div>
+            <Link
+              href="/"
+              key="home"
+              onClick={() => {
+                setCurrentLink('/');
+              }}
+            >
+              {pathname === '/recruit' || pathname === '/contributors' ? (
+                <Image
+                  src={logo_white}
+                  width={140}
+                  alt="logo-white"
+                  className="h-4 min-[834px]:h-6"
+                />
+              ) : (
+                <Image
+                  src={logo_black}
+                  width={140}
+                  alt="logo-black"
+                  className="h-4 min-[834px]:h-6"
+                />
+              )}
+            </Link>
+          </div>
+          {/* KAHLUA와 추가 요소를 감싸는 공통 div */}
+
+          <div className="hidden min-[1500px]:flex flex-row gap-[64px] absolute right-72">
+            <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
+              {Url.map((url) => (
+                <li
+                  key={url.name}
+                  className={`font-medium text-center text-[18px] leading-6 ${
+                    pathname === '/recruit' || pathname === '/contributors'
+                      ? 'text-gray-0'
+                      : ''
+                  }`}
+                >
+                  <Link href={url.url} passHref>
+                    <div
+                      onClick={() => {
+                        handleLinkClick(url.name);
+                      }}
+                    >
+                      {url.name}
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <span
+              className={`font-medium text-center text-[18px] leading-6 ${
+                pathname === '/recruit' || pathname === '/contributors'
+                  ? 'text-gray-0'
+                  : ''
+              }`}
+              onMouseOver={handleHover}
+              ref={kahluaRef}
+            >
+              KAHLUA
+            </span>
+          </div>
+
+          <div className="hidden min-[1500px]:flex ">
+            {/* 로그인 코드 작성 후 수정 필요 */}
+            <p className="text-lg text-gray-50 text-center">로그인</p>
+            {/*<p className="text-lg text-danger-40 text-center">로그아웃</p>*/}
+          </div>
         </div>
-        <div>
-          <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
-            {Url.map((url) => (
-              <li
-                key={url.name}
-                className={`font-medium text-center text-[18px] leading-6 ${
+
+        {/* 추가 요소를 헤더 아래에 위치시키기 위해 마진 조정 */}
+        {isHovered && (
+          <div
+            className="absolute top-[64px] text-gray-60 h-10 hidden min-[1500px]:flex z-50"
+            style={{ right: `${kahluaRightOffset - 24}px` }}
+            onMouseOver={handleHover}
+            onMouseOut={handleLeave}
+          >
+            <div className="w-full">
+              <ul
+                className={`gap-[60px] w-full h-full flex flex-row justify-end ${
                   pathname === '/recruit' || pathname === '/contributors'
                     ? 'text-gray-0'
                     : ''
                 }`}
               >
-                <Link href={url.url} passHref>
-                  <div onClick={() => handleLinkClick(url.name)}>
-                    {url.name}
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+                {KahluaUrl.map((url) => (
+                  <li key={url.name}>
+                    <Link href={url.url} passHref>
+                      <div
+                        onClick={() => {
+                          handleLinkClick(url.name);
+                        }}
+                      >
+                        {url.name}
+                      </div>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </ThemeProvider>
   );
