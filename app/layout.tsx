@@ -79,13 +79,7 @@ export default function RootLayout({
         </head>
         <body className={roboto.className}>
           <div className="font-pretendard w-full h-auto mb-40">
-            {pathname === '/login' ||
-            pathname === '/admin/applicant' ||
-            pathname === '/admin/ticketing' ? (
-              <AdminHeader />
-            ) : (
-              <Header />
-            )}
+            <Header />
             {children}
           </div>
           {!isCompletePage &&
