@@ -166,7 +166,7 @@ const TicketLists = ({ type }: { type: string }) => {
       {ticketList.map((ticket, index) => (
         <Accordion key={ticket.id}>
           <AccordionSummary
-            className="w-[834px] border-solid border-gray-10 border-b-2 p-0 pr-6"
+            className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
