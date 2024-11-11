@@ -21,7 +21,7 @@ const page = () => {
   const handleNext = () => {
     window.scrollTo(0, 0);
     setIsFormVisible(false);
-  }
+  };
 
   // 예약 정보 서버로 전송 함수 (추가수정필요)
   const handleReservationSubmit = async (name: string) => {
@@ -46,7 +46,7 @@ const page = () => {
             onClick={handleNext}
             disabled={!selectedTime}
             className={`rounded-xl w-[280px] h-[60px] text-[#fff] text-lg
-                  ${selectedDate&&selectedTime ? 'bg-primary-50 hover:bg-primary-60' : 'bg-gray-10'}`}
+                  ${selectedDate && selectedTime ? 'bg-primary-50 hover:bg-primary-60' : 'bg-gray-10'}`}
           >
             다음
           </button>
