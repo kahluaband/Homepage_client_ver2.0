@@ -2,7 +2,6 @@
 import Banner from '@/components/reservation/Banner';
 import CalendarUI from '@/components/reservation/CalendarUI';
 import ReservationForm from '@/components/reservation/ReservationForm';
-import ReservationNotice from '@/components/reservation/ReservationNotice';
 import RoomNotice from '@/components/reservation/RoomNotice';
 import TimeTable from '@/components/reservation/TimeTable';
 import React, { useState } from 'react';
@@ -19,7 +18,10 @@ const page = () => {
   const handleTimeSelect = (time: string) => setSelectedTime(time);
 
   // 다음 버튼 클릭시 컴포넌트 전환
-  const handleNext = () => setIsFormVisible(false);
+  const handleNext = () => {
+    window.scrollTo(0, 0);
+    setIsFormVisible(false);
+  }
 
   // 예약 정보 서버로 전송 함수 (추가수정필요)
   const handleReservationSubmit = async (name: string) => {
@@ -43,7 +45,7 @@ const page = () => {
           <button
             onClick={handleNext}
             disabled={!selectedTime}
-            className={`rounded-xl w-[280px] h-[60px] text-[#fff]
+            className={`rounded-xl w-[280px] h-[60px] text-[#fff] text-lg
                   ${selectedDate&&selectedTime ? 'bg-primary-50 hover:bg-primary-60' : 'bg-gray-10'}`}
           >
             다음

@@ -23,11 +23,22 @@ const CalendarUI = ({ onSelectDate }: CalendarProps) => {
     }
   };
 
-  // 요일 필터링: 화, 수, 토만 활성화
-  const isSelectable = (date: Date) => {
-    const day = date.getDay(); // 0: 일, 1: 월, ..., 6: 토
+  const isSelectable = (date: Date): boolean => {
+    const today = new Date();
+    const day = date.getDay();
+    const twoWeeksFromToday = new Date(today);
+    twoWeeksFromToday.setDate(today.getDate() + 14);
+
+    // 오늘 이전 날짜는 비활성화
+    if (date < today) return false;
+
+    // 오늘 기준 2주 이후 날짜는 비활성화
+    if (date > twoWeeksFromToday) return false;
+
+    // 화(2), 수(3), 토(6)만 활성화
     return day === 2 || day === 3 || day === 6;
   };
+
 
   return (
     <div className="mt-10">
@@ -43,10 +54,7 @@ const CalendarUI = ({ onSelectDate }: CalendarProps) => {
         navigationLabel={({ date }) => `${date.getFullYear()}.${date.getMonth() + 1}`}
         prevLabel="<"
         nextLabel=">"
-        tileDisabled={({ date }) => {
-          const day = date.getDay();
-          return day !== 2 && day !== 3 && day !== 6; // 화, 수, 토 제외 비활성화
-        }}
+        tileDisabled={({date}) => !isSelectable(date)}
       />
     </div>
   );

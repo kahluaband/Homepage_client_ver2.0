@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <section className="pad:h-[320px] ph:h-[280px] text-center bg-gray-90 mt-20 pad:rounded-3xl ph:rounded-none">
+    <section className="pad:h-[320px] ph:h-[258px] text-center bg-gray-90 mt-20 pad:rounded-3xl ph:rounded-none">
       <h1 className="pad:pt-16 ph:pt-8 font-semibold leading-[130%] text-gray-0 pad:text-[64px] ph:text-[36px]">
         ClubRoom Reservation
       </h1>

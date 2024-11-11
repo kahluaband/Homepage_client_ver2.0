@@ -3,7 +3,7 @@ const RoomNotice = () => {
     <div className="my-4 flex flex-col gap-6">
       <h2 className="text-xl font-semibold">동아리방 사용 유의사항</h2>
       <ul className="text-sm pad:text-base list-disc pl-5 space-y-0.75 text-gray-40">
-        <li>예약 취소는 마이페이지에서 취소할 수 있습니다.</li>
+        <li>예약 취소는 [마이페이지]에서 취소할 수 있습니다.</li>
         <li>동아리방 위치는 ‘홍익대학교 D동 408호’입니다. 서울 마포구 와우산로 94 지하4층 408호</li>
         <li>정해진 동아리방 사용 시간을 엄수해주세요.</li>
         <li>동아리방 내에 깔루아 소유의 기타 2대, 베이스 1대, 드럼 1대, 신디사이저 1대, 마이크 1대, 보면대 3개, 의자 6개가 구비되어있습니다. 자유롭게 이용하시되, 이용 후에는 전원을 끄고 제자리에 두는 등의 뒷정리를 꼭 해주시기 바랍니다.</li>

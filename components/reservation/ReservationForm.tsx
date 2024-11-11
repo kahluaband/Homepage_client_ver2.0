@@ -20,7 +20,7 @@ const ReservationForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (name && selectedDate && selectedTime) {
+    if ((name||teamName) && selectedDate && selectedTime) {
       onSubmit(name); // onSubmit 구현 필요 (page.tsx)
       alert('예약이 완료되었습니다!');
     } else {
@@ -42,6 +42,12 @@ const ReservationForm = ({
     return `${dateString} ${selectedTime}`;
   };
 
+  const handleReservationTypeChange = (isPersonal: boolean) => {
+    setIsPersonal(isPersonal);
+    setName('');
+    setTeamName('');
+  }
+
   return (
     <div className="flex flex-col">
       <p className="text-gray-90 text-xl font-semibold my-10">{formattedDateTime()}</p>
@@ -54,7 +60,7 @@ const ReservationForm = ({
               id="personal"
               name="reservationType"
               checked={isPersonal}
-              onChange={() => setIsPersonal(true)}
+              onChange={() => handleReservationTypeChange(true)}
             />
             <label htmlFor="personal" className="text-base mr-8">
               개인
@@ -75,7 +81,7 @@ const ReservationForm = ({
               id="team"
               name="reservationType"
               checked={!isPersonal}
-              onChange={() => setIsPersonal(false)}
+              onChange={() => handleReservationTypeChange(false)}
             />
             <label htmlFor="team" className="text-base mr-[2.85rem]">
               팀
@@ -93,7 +99,7 @@ const ReservationForm = ({
           <ReservationNotice />
           <button
             type="submit"
-            className="bg-primary-50 w-72 h-14 mt-10 mx-auto text-gray-0 rounded-xl"
+            className="bg-primary-50 w-72 h-14 mt-10 mx-auto text-gray-0 text-lg rounded-xl"
           >
             예약하기
           </button>
