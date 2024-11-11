@@ -36,6 +36,8 @@ export default function RootLayout({
   const isAdminApplicantPage = pathname === '/admin/applicant';
   const isAdminTicketingPage = pathname === '/admin/ticketing';
 
+  const isRoomReservationPage = pathname === '/reservation';
+
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -98,6 +100,7 @@ export default function RootLayout({
             !isLoginPage &&
             !isAdminApplicantPage &&
             !isAdminTicketingPage &&
+            !isRoomReservationPage &&
             !(isMobile && isTicketPage) && <Footer />}
         </body>
       </html>
