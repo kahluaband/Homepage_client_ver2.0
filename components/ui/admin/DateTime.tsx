@@ -10,23 +10,21 @@ export default function DateTime({
   field,
   value,
   onChange,
-  isEditing,
 }: {
   field: InputFieldType;
   value: any;
   onChange: (newValue: any, label: string) => void;
-  isEditing: boolean;
 }) {
   const { label } = field;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateTimePicker
-        value={value ? dayjs(value) : dayjs()}
-        defaultValue={dayjs()}
+        value={dayjs(value)}
+        defaultValue={dayjs(value)}
         onChange={(newValue) => onChange(newValue, label)}
-        disabled={!isEditing}
         format="YYYY-MM-dd HH:mm"
+        sx={{ width: '100%' }}
       />
     </LocalizationProvider>
   );

@@ -6,14 +6,10 @@ export default function Text({
   field,
   value,
   onChange,
-  isEditing,
-  children,
 }: {
   field: TextType;
   value: any;
   onChange: (newValue: any, label: string) => void;
-  isEditing: boolean;
-  children: React.ReactNode;
 }) {
   const { label, inputType } = field;
 
@@ -23,7 +19,7 @@ export default function Text({
       type={inputType}
       value={value}
       onChange={(event) => onChange(event.target.value, label)}
-      disabled={!isEditing}
+      sx={{ width: '100%', borderRadius: '12px' }}
     />
   );
 }
