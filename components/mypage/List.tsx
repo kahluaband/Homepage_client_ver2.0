@@ -42,7 +42,7 @@ const dummyReservation: reservationProps[] = [
 // dummy data
 const dummyMyPost: myPostProps[] = [
   {
-    title: '제목1',
+    title: '제목1제목1제목1제목1제목1제목1제목1',
     like: 10,
     comment: 5,
     date: '2024.10.30',
@@ -106,9 +106,10 @@ export const MyPostList = () => {
       <ul>
         {dummyMyPost.map((post) => {
           return (
-            <li className="flex py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between">
+            <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between">
               <p>{post.title}</p>
-              <div className="flex gap-10">
+
+              <div className="flex gap-10 text-gray-40">
                 <div className="flex gap-6">
                   <div className="flex gap-[10px]">
                     <Image src={likeIcon} alt="like" width={14} height={14} />
