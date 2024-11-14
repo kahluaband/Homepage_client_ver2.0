@@ -4,9 +4,9 @@ export const recruitingInfoList: InputFieldType[] = [
   {
     title: '기수',
     label: 'generation',
-    type: 'text',
+    type: 'integer',
     required: true,
-    inputType: 'text',
+    inputType: 'number',
   },
   {
     title: '모집 시작일',
@@ -41,20 +41,20 @@ export const recruitingInfoList: InputFieldType[] = [
   {
     title: '최종 합격 발표일',
     label: 'announcement',
-    type: 'datetime',
+    type: 'date',
     required: true,
   },
   {
     title: '활동 기한',
     label: 'activity',
-    type: 'datetime',
+    type: 'date',
     required: true,
   },
 ];
 
 export const defaultData = {
   // [todo] api 연결
-  generation: '',
+  generation: '24',
   recruiting_start: '2022-04-17T15:30',
   recruiting_deadline: '2022-04-17T15:30',
   vocal_deadline: '2022-04-17T15:30',

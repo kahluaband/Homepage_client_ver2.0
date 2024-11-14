@@ -1,4 +1,6 @@
+import Date from '@/components/ui/admin/Date';
 import DateTime from '@/components/ui/admin/DateTime';
+import Integer from '@/components/ui/admin/IntBox';
 import Text from '@/components/ui/admin/TextBox';
 import { InputFieldType } from '@/components/ui/admin/type';
 import { Stack } from '@mui/material';
@@ -40,6 +42,8 @@ function renderInput(
   const components: { [key: string]: React.ComponentType<any> } = {
     text: Text,
     datetime: DateTime,
+    date: Date,
+    integer: Integer,
   };
 
   const Component = components[field.type];
