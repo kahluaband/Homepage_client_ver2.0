@@ -1,6 +1,6 @@
 'use client';
-import likeIcon from '@/public/image/notice/EmptyHeart.svg';
-import chatIcon from '@/public/image/notice/chat.svg';
+import likeIcon from '@/public/image/mypage/garyHeart.svg';
+import chatIcon from '@/public/image/mypage/grayChat.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 
