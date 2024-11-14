@@ -74,6 +74,7 @@ export const ReservationList = () => {
       <ul>
         {dummyReservation.map((reservation) => {
           return (
+            // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
             <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
               <div className="flex gap-4">
                 <p className="text-black text-xl font-semibold">
@@ -106,6 +107,7 @@ export const MyPostList = () => {
       <ul>
         {dummyMyPost.map((post) => {
           return (
+            // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
             <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between">
               <p>{post.title}</p>
 
