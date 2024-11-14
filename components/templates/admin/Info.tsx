@@ -10,6 +10,7 @@ interface AdminInfoProps {
   onChange: (newValue: any, title: string) => void;
 }
 
+// title, inputBox 형식의 information list
 const InfoList: React.FC<AdminInfoProps> = ({ data, fieldList, onChange }) => {
   return (
     <div className="flex flex-col gap-[16px]">
@@ -30,6 +31,7 @@ const InfoList: React.FC<AdminInfoProps> = ({ data, fieldList, onChange }) => {
   );
 };
 
+// type에 맞는 input box 불러오기
 function renderInput(
   field: InputFieldType,
   value: any,

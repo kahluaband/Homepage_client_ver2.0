@@ -19,7 +19,12 @@ export default function Text({
       type={inputType}
       value={value}
       onChange={(event) => onChange(event.target.value, label)}
-      sx={{ width: '100%', borderRadius: '12px' }}
+      sx={{ width: '100%' }}
+      InputProps={{
+        sx: {
+          borderRadius: '12px',
+        },
+      }}
     />
   );
 }

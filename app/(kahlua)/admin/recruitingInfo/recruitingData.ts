@@ -53,6 +53,7 @@ export const recruitingInfoList: InputFieldType[] = [
 ];
 
 export const defaultData = {
+  // [todo] api 연결
   generation: '',
   recruiting_start: '2022-04-17T15:30',
   recruiting_deadline: '2022-04-17T15:30',

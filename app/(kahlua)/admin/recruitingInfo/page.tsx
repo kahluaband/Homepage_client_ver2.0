@@ -5,9 +5,8 @@ import { useState } from 'react';
 import Banner from '@/components/ui/Banner';
 import InfoList from '@/components/templates/admin/Info'; // Use only this import
 import { defaultData, recruitingInfoList } from './recruitingData';
-import { InputFieldType } from '@/components/ui/admin/type';
-import { Button } from '@mui/material';
 import AdminButton from '@/components/ui/admin/Button';
+import isChanged from '@/components/util/isChanged';
 
 const RecruitingPage = () => {
   const [data, setData] = useState<{ [key: string]: any }>(defaultData); // Explicitly typing data
@@ -17,10 +16,13 @@ const RecruitingPage = () => {
     if (!isChanged(data, defaultData)) {
       return;
     }
+    setData(defaultData);
   };
 
   // 변경 사항 저장
-  const onSaveEdit = () => {};
+  const onSaveEdit = () => {
+    // [todo] api 연결
+  };
 
   const onChangeData = (newValue: any, label: string) => {
     setData((prevData) => ({ ...prevData, [label]: newValue }));
@@ -46,14 +48,5 @@ const RecruitingPage = () => {
     </div>
   );
 };
-
-function isChanged(dataA: any, dataB: any) {
-  for (const key in dataA) {
-    if (dataA[key] !== dataB[key]) {
-      return true;
-    }
-  }
-  return false;
-}
 
 export default RecruitingPage;
