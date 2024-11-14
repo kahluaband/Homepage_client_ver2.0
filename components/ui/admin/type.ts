@@ -1,12 +1,13 @@
 interface BasicInputType {
   type: string;
   label: string;
+  title: string;
   required?: boolean;
   disabled?: boolean;
 }
 
 export interface TextType extends BasicInputType {
-  type: 'shortText';
+  type: 'text';
   inputType: 'text' | 'number';
 }
 
@@ -20,7 +21,7 @@ interface DateTimeType extends BasicInputType {
 }
 
 interface DateType extends BasicInputType {
-  type: 'datetime';
+  type: 'date';
 }
 
-export type InputFieldType = TextType | DateTimeType | DateType;
+export type InputFieldType = TextType | DateTimeType | DateType | IntType;

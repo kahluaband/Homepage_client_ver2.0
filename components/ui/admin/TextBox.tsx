@@ -18,17 +18,12 @@ export default function Text({
   const { label, inputType } = field;
 
   return (
-    <div className="flex flex-col pad:flex-row gap-2">
-      <div className="flex items-center w-[160px] h-[30px] pad:h-12">
-        {children}
-      </div>
-      <TextField
-        variant="outlined"
-        type={inputType}
-        value={value}
-        onChange={(event) => onChange(event.target.value, label)}
-        disabled={!isEditing}
-      />
-    </div>
+    <TextField
+      variant="outlined"
+      type={inputType}
+      value={value}
+      onChange={(event) => onChange(event.target.value, label)}
+      disabled={!isEditing}
+    />
   );
 }

@@ -1,46 +1,31 @@
 'use client';
 
 import * as React from 'react';
-import { useEffect, useState } from 'react';
-import RecruitingInfo from '@/components/templates/admin/recruitingInfo';
+import { useState } from 'react';
 import Banner from '@/components/ui/Banner';
+import InfoList from '@/components/templates/admin/Info'; // Use only this import
+import { defaultData, recruitingInfoList } from './recruitingData';
+import { InputFieldType } from '@/components/ui/admin/type';
 
-const page = () => {
-  const [info, setInfo] = useState({
-    generation: '',
-    recruitingStartDate: '',
-    recruitingDeadline: '',
-    vocalDeadline: '',
-    applyDeadline: '',
-    meeting: '',
-    afterParty: '',
-    announcementDate: '',
-    activePeriod: '',
-  });
+const RecruitingPage = () => {
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [data, setData] = useState<{ [key: string]: any }>(defaultData); // Explicitly typing data
 
-  const handleInfoChange = (info: {
-    generation: BigInteger;
-    recruitingStartDate: Date;
-    recruitingDeadline: Date;
-    vocalDeadline: Date;
-    applyDeadline: Date;
-    meeting: Date;
-    afterParty: Date;
-    announcementDate: Date;
-    activePeriod: Date;
-  }) => {
-    setInfo((prevState) => ({
-      ...prevState,
-      ...info,
-    }));
+  const onChangeData = (newValue: any, label: string) => {
+    setData((prevData) => ({ ...prevData, [label]: newValue }));
   };
 
   return (
     <div className="font-pretendard mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col">
       <Banner>지원 정보 수정</Banner>
-      <RecruitingInfo onInfoChange={handleInfoChange} Info={info} />
+      <InfoList
+        data={data}
+        fieldList={recruitingInfoList}
+        isEditing={isEditing}
+        onChange={onChangeData}
+      />
     </div>
   );
 };
 
-export default page;
+export default RecruitingPage;
