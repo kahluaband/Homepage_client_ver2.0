@@ -31,12 +31,14 @@ const RecruitingPage = () => {
   return (
     <div className="font-pretendard mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col gap-[40px]">
       <Banner>지원 정보 수정</Banner>
-      <InfoList
-        data={data}
-        fieldList={recruitingInfoList}
-        onChange={onChangeData}
-      />
-      <div className="flex flex-row gap-[24px] justify-end">
+      <div className="flex flex-col w-full max-pad:px-[16px]">
+        <InfoList
+          data={data}
+          fieldList={recruitingInfoList}
+          onChange={onChangeData}
+        />
+      </div>
+      <div className="flex flex-row gap-[24px] w-full max-pad:px-[16px] justify-end">
         <AdminButton onClick={onCancelEdit}>취소하기</AdminButton>
         <AdminButton
           disabled={!isChanged(defaultData, data)}
