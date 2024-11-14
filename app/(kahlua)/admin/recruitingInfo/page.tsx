@@ -41,6 +41,7 @@ const RecruitingPage = () => {
         <AdminButton
           disabled={!isChanged(defaultData, data)}
           onClick={onSaveEdit}
+          className={`${isChanged(defaultData, data) ? 'bg-primary-50' : 'bg-gray-10'}`}
         >
           저장하기
         </AdminButton>
