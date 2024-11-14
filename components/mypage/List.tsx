@@ -67,25 +67,28 @@ const dummyMyPost: myPostProps[] = [
   },
 ];
 
+// 동방 예약 내역 리스트
 export const ReservationList = () => {
   return (
     <div>
       <ul>
         {dummyReservation.map((reservation) => {
           return (
-            <li className="flex py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
-              <p className="text-black text-xl font-semibold">
-                {reservation.date}
-              </p>
-              <p className="text-black text-xl font-semibold">
-                {reservation.time}
-              </p>
+            <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
+              <div className="flex gap-4">
+                <p className="text-black text-xl font-semibold">
+                  {reservation.date}
+                </p>
+                <p className="text-black text-xl font-semibold">
+                  {reservation.time}
+                </p>
+              </div>
               <div className="flex py-1 px-2 justify-center items-center gap-[10px] rounded-full border-[1px] border-solid border-primary-50">
                 <p className="text-primary-50 text-base font-normal">
                   {reservation.status}
                 </p>
               </div>
-              <p className="text-danger-40 text-base font-normal absolute right-0">
+              <p className="text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6">
                 예약 취소하기
               </p>
             </li>
@@ -96,6 +99,7 @@ export const ReservationList = () => {
   );
 };
 
+// 내가 쓴 글 리스트
 export const MyPostList = () => {
   return (
     <div>
