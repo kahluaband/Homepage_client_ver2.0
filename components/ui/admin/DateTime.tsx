@@ -23,7 +23,7 @@ export default function DateTime({
         value={dayjs(value)}
         defaultValue={dayjs(value)}
         onChange={(newValue) => onChange(newValue, label)}
-        format="YYYY-MM-dd HH:mm"
+        format="YYYY-MM-DD HH:mm"
         sx={{ width: '100%' }}
       />
     </LocalizationProvider>
