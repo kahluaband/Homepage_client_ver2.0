@@ -10,26 +10,33 @@ export const performanceInfoList: InputFieldType[] = [
   },
   {
     title: '장소',
-    label: 'location',
+    label: 'venue',
+    type: 'text',
+    required: true,
+    inputType: 'text',
+  },
+  {
+    title: '장소',
+    label: 'address',
     type: 'text',
     required: true,
     inputType: 'text',
   },
   {
     title: '일시',
-    label: 'event_date',
+    label: 'dateTime',
     type: 'datetime',
     required: true,
   },
   {
     title: '예매 시작일',
-    label: 'reservation_start',
+    label: 'bookingStartDate',
     type: 'datetime',
     required: true,
   },
   {
     title: '예매 마감일',
-    label: 'reservation_dealine',
+    label: 'bookingEndDate',
     type: 'datetime',
     required: true,
   },
@@ -38,8 +45,9 @@ export const performanceInfoList: InputFieldType[] = [
 export const defaultData = {
   // [todo] api 연결
   title: '2024년 9월 정기 공연',
-  location: '001 클럽',
-  event_date: '2022-04-17T15:30',
-  reservation_start: '2022-04-17T15:30',
-  reservation_dealine: '2022-04-17T15:30',
+  venue: '001 클럽',
+  address: '서울 마포구 월드컵북로2길 49',
+  dateTime: '2022-04-17T15:30',
+  bookingStartDate: '2022-04-17T15:30',
+  bookingEndDate: '2022-04-17T15:30',
 };
