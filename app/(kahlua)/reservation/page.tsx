@@ -30,7 +30,7 @@ const page = () => {
       time: selectedTime,
       name,
     };
-    window.location.reload(); // 페이지 새로고침
+    // window.location.reload(); // 페이지 새로고침
     // 서버로 전송하는 로직 추가 필요
   };
 

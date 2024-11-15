@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import ReservationNotice from './ReservationNotice';
+import ReservationSuccessModal from './ReservationSuccessModal';
+import ReservationFailureModal from './ReservationFailureModal';
 
 interface ReservationFormProps {
   selectedDate: Date | null;
@@ -15,16 +17,20 @@ const ReservationForm = ({
   const [name, setName] = useState<string>('');
   const [teamName, setTeamName] = useState<string>('');
   const [isPersonal, setIsPersonal] = useState(true); // 개인/팀 선택 상태
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isFailureModalOpen, setIsFailureModalOpen] = useState(false);
 
   // submit 제출시
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if ((name||teamName) && selectedDate && selectedTime) {
+    if ((name || teamName) && selectedDate && selectedTime) {
       onSubmit(name); // onSubmit 구현 필요 (page.tsx)
-      alert('예약이 완료되었습니다!');
+      // alert('예약이 완료되었습니다!');
+      setIsSuccessModalOpen(true);
     } else {
       alert('모든 필드를 입력해 주세요.');
+      setIsFailureModalOpen(true);
     }
   };
 
@@ -46,13 +52,17 @@ const ReservationForm = ({
     setIsPersonal(isPersonal);
     setName('');
     setTeamName('');
-  }
+  };
 
   return (
     <div className="flex flex-col">
-      <p className="text-gray-90 text-xl font-semibold my-10">{formattedDateTime()}</p>
-      <div className='py-10 border-t border-gray-30'>
-        <h3 className="text-[18px] pad:text-xl font-semibold mb-6">예약자 정보 입력</h3>
+      <p className="text-gray-90 text-xl font-semibold my-10">
+        {formattedDateTime()}
+      </p>
+      <div className="py-10 border-t border-gray-30">
+        <h3 className="text-[18px] pad:text-xl font-semibold mb-6">
+          예약자 정보 입력
+        </h3>
         <form onSubmit={handleSubmit} className="flex flex-col">
           <div className="flex items-center gap-2 mb-4">
             <input
@@ -105,6 +115,22 @@ const ReservationForm = ({
           </button>
         </form>
       </div>
+      {isSuccessModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <ReservationSuccessModal
+            formattedDateTime={formattedDateTime()}
+            onClose={() => setIsSuccessModalOpen(false)}
+          />
+        </div>
+      )}
+      {isFailureModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <ReservationFailureModal
+            formattedDateTime={formattedDateTime()}
+            onClose={() => setIsFailureModalOpen(false)}
+          />
+        </div>
+      )}
     </div>
   );
 };
