@@ -3,16 +3,29 @@ import Banner from '@/components/reservation/Banner';
 import CalendarUI from '@/components/reservation/CalendarUI';
 import ReservationForm from '@/components/reservation/ReservationForm';
 import RoomNotice from '@/components/reservation/RoomNotice';
-import TimeTable from '@/components/reservation/TimeTable';
+import TimeTable, { Reservation } from '@/components/reservation/TimeTable';
 import React, { useState } from 'react';
+
+// Dummy data
+const dummyReservations: Reservation[] = [
+  { timeRange: '10:00 ~ 10:30', status: 'unavailable' },
+  { timeRange: '10:30 ~ 11:00', status: 'booked', name: '홍길동' },
+  { timeRange: '11:00 ~ 11:30', status: 'myReservation' },
+  { timeRange: '11:30 ~ 12:00', status: 'available' },
+];
 
 const page = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isFormVisible, setIsFormVisible] = useState(true);
+  const [reservations, setReservations] = useState<Reservation[]>([]);
 
   // 날짜 선택
-  const handleDateSelect = (date: Date) => setSelectedDate(date);
+  const handleDateSelect = (date: Date) => {
+    setSelectedDate(date);
+
+    console.log(date);
+  };
 
   // 시간 선택
   const handleTimeSelect = (time: string) => setSelectedTime(time);
@@ -24,12 +37,13 @@ const page = () => {
   };
 
   // 예약 정보 서버로 전송 함수 (추가수정필요)
-  const handleReservationSubmit = async (name: string) => {
+  const handleReservationSubmit = async (reservationName: string) => {
     const reservationData = {
       date: selectedDate?.toISOString(),
       time: selectedTime,
-      name,
+      name: reservationName,
     };
+    console.log('예약 정보:', reservationData);
     // window.location.reload(); // 페이지 새로고침
     // 서버로 전송하는 로직 추가 필요
   };
@@ -40,7 +54,11 @@ const page = () => {
       {isFormVisible ? (
         <div className="mx-4 pad:m-0 flex flex-col items-center gap-y-6">
           <CalendarUI onSelectDate={handleDateSelect} />
-          <TimeTable date={selectedDate} onSelectTime={handleTimeSelect} />
+          <TimeTable
+            date={selectedDate}
+            onSelectTime={handleTimeSelect}
+            reservations={reservations}
+          />
           <RoomNotice />
           <button
             onClick={handleNext}

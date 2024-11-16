@@ -24,8 +24,10 @@ const ReservationForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if ((name || teamName) && selectedDate && selectedTime) {
-      onSubmit(name); // onSubmit 구현 필요 (page.tsx)
+    const reservationName = isPersonal ? name : teamName;
+
+    if (reservationName && selectedDate && selectedTime) {
+      onSubmit(reservationName); // onSubmit 구현 필요 (page.tsx)
       // alert('예약이 완료되었습니다!');
       setIsSuccessModalOpen(true);
     } else {
