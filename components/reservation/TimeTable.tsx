@@ -20,13 +20,13 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
   const [startTime, setStartTime] = useState<string | null>(null); // 시작 시간 추적
   const [endTime, setEndTime] = useState<string | null>(null); // 종료 시간 추적
 
-   // 시간 선택 및 해제
-   const handleTimeClick = (startTimeStr: string, endTimeStr: string) => {
+  // 시간 선택 및 해제
+  const handleTimeClick = (startTimeStr: string, endTimeStr: string) => {
     if (!date) {
       alert('날짜를 선택해 주세요!');
       return;
     }
-    
+
     // 이미 시작과 종료 시간이 선택된 상태에서 다시 클릭하면 초기화
     if (startTime && endTime) {
       setSelectedTimes([]);
@@ -39,7 +39,7 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
     if (!startTime) {
       setStartTime(startTimeStr);
       setSelectedTimes([`${startTimeStr} ~ ${endTimeStr}`]);
-    } 
+    }
     // 시작 시간이 설정된 상태에서 두 번째 클릭: 종료 시간으로 설정
     else {
       setEndTime(endTimeStr);
@@ -107,7 +107,7 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
   };
 
   return (
-    <div className="flex flex-col w-full pb-10 border-b border-gray-15">
+    <div className="flex flex-col w-full">
       <p className="text-black text-base mb-2">* 30분 단위 예약 가능</p>
       <div className="flex flex-row py-2 mb-6 overflow-x-scroll">
         {hours.map((hour) => (
@@ -117,10 +117,11 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
               <div
                 key={`${hour}:00`}
                 className={`pad:flex-1 h-[60px] w-[32px] cursor-pointer ${
-                  date ? 
-                    (getTimeSlotStatus(`${hour}:00`, `${hour}:30`) === 'selected'
+                  date
+                    ? getTimeSlotStatus(`${hour}:00`, `${hour}:30`) ===
+                      'selected'
                       ? 'bg-primary-50 text-white'
-                      : 'bg-gray-5')
+                      : 'bg-gray-5'
                     : 'bg-gray-7 cursor-not-allowed'
                 }`}
                 onClick={() => handleTimeClick(`${hour}:00`, `${hour}:30`)}
@@ -128,10 +129,11 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
               <div
                 key={`${hour}:30`}
                 className={`pad:flex-1 h-[60px] w-[32px] cursor-pointer mr-[1px] ${
-                  date ? 
-                    (getTimeSlotStatus(`${hour}:30`, `${hour + 1}:00`) === 'selected'
+                  date
+                    ? getTimeSlotStatus(`${hour}:30`, `${hour + 1}:00`) ===
+                      'selected'
                       ? 'bg-primary-50 text-white'
-                      : 'bg-gray-5')
+                      : 'bg-gray-5'
                     : 'bg-gray-7 cursor-not-allowed'
                 }`}
                 onClick={() => handleTimeClick(`${hour}:30`, `${hour + 1}:00`)}
@@ -141,14 +143,28 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
         ))}
       </div>
       <div className="flex flex-wrap pad:flex-nowrap gap-6 pb-10 border-b border-gray-15 text-sm pad:text-base">
-         <div className="flex items-center"><span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-15 mr-2"></span>예약 불가능</div>
-         <div className="flex items-center"><span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-primary-10 mr-2"></span>예약 마감</div>
-         <div className="flex items-center"><span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-warning-10 mr-2"></span>내예약</div>
-         <div className="flex items-center"><span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-5 mr-2"></span>예약 가능</div>
+        <div className="flex items-center">
+          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-15 mr-2"></span>
+          예약 불가능
+        </div>
+        <div className="flex items-center">
+          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-primary-10 mr-2"></span>
+          예약 마감
+        </div>
+        <div className="flex items-center">
+          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-warning-10 mr-2"></span>
+          내예약
+        </div>
+        <div className="flex items-center">
+          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-5 mr-2"></span>
+          예약 가능
+        </div>
       </div>
-      <div className="mt-4 text-black pad:text-2xl">
-        {formattedReservation()}
-      </div>
+      {formattedReservation() && (
+        <div className="mt-4 text-black pad:text-2xl pb-10 border-b border-gray-15">
+          {formattedReservation()}
+        </div>
+      )}
     </div>
   );
 };
