@@ -1,5 +1,5 @@
 import { Banner } from '@/components/announcement/Banner';
-import { List } from '@/components/announcement/List';
+import List from '@/components/announcement/List';
 
 const page = () => {
   return (
