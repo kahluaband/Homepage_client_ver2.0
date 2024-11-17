@@ -24,4 +24,13 @@ interface DateType extends BasicInputType {
   type: 'date';
 }
 
-export type InputFieldType = TextType | DateTimeType | DateType | IntType;
+interface ImageType extends BasicInputType {
+  type: 'string';
+}
+
+export type InputFieldType =
+  | TextType
+  | DateTimeType
+  | DateType
+  | IntType
+  | ImageType;
