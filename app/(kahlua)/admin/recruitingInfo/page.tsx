@@ -7,10 +7,8 @@ import InfoList from '@/components/templates/admin/Info'; // Use only this impor
 import { defaultData, recruitingInfoList } from './recruitingData';
 import AdminButton from '@/components/ui/admin/Button';
 import isChanged from '@/components/util/isChanged';
-import ButtonModal from '@/components/ui/ButtonModal';
 import Link from 'next/link';
 import WestIcon from '@mui/icons-material/West';
-import Modal from '@/components/ui/Modal';
 import CancelModal from '@/components/admin/CancelModal';
 import EditModal from '@/components/admin/EditModal';
 
