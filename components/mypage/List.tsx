@@ -151,9 +151,7 @@ const List = () => {
                 onClick={() => {
                   toggleHandler(category.toggle);
                 }}
-                className={
-                  toggle === category.toggle ? 'text-black' : 'text-gray-40'
-                }
+                className={`cursor-pointer ${toggle === category.toggle ? 'text-black' : 'text-gray-40'}`}
               >
                 {category.toggle}
               </li>
@@ -164,8 +162,8 @@ const List = () => {
 
       {/* 리스트 */}
       <section className="flex flex-col border-t-[1px] border-t-black border-b-[1px] border-b-black">
-        {toggle === '동방 예약 확인' && <ReservationList />}
-        {toggle === '내가 쓴 글' && <MyPostList />}
+        {toggle === toggleList[0].toggle && <ReservationList />}
+        {toggle === toggleList[1].toggle && <MyPostList />}
       </section>
     </div>
   );
