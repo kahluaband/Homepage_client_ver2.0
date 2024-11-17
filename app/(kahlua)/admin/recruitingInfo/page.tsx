@@ -24,6 +24,7 @@ const RecruitingPage = () => {
   // 변경 사항 저장
   const onSaveEdit = () => {
     // [todo] api 연결
+    setIsModalOpen(false);
   };
 
   const onChangeData = (newValue: any, label: string) => {
@@ -49,9 +50,13 @@ const RecruitingPage = () => {
         >
           저장하기
         </AdminButton>
-        <ButtonModal isOpen={isModalOpen} onClose={() => onSaveEdit()}>
-          모집 정보를 수정하시겠습니까?
-        </ButtonModal>
+        <ButtonModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          mainContent={<p>모집 정보를 수정하시겠습니까?</p>}
+          buttonContent={<p>수정하기</p>}
+          handleSubmit={() => onSaveEdit()}
+        />
       </div>
     </div>
   );
