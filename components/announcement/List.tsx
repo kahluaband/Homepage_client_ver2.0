@@ -1,9 +1,11 @@
 'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import likeIcon from '@/public/image/grayHeart.svg';
 import chatIcon from '@/public/image/grayChat.svg';
 import blackSearch from '@/public/image/announcement/blackSearch.svg';
-import Image from 'next/image';
-import { useState } from 'react';
+import blackPen from '@/public/image/announcement/blackPen.svg';
 
 interface announcementProps {
   title: string;
@@ -174,6 +176,7 @@ export const CommunityList = ({ searchQuery }: { searchQuery: string }) => {
 const List = () => {
   const [toggle, setToggle] = useState('공지사항');
   const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
 
   const toggleHandler = (toggleItem: string) => {
     setToggle(toggleItem);
@@ -199,20 +202,33 @@ const List = () => {
             );
           })}
         </ul>
-        <div className="relative">
-          <input
-            placeholder="게시글 검색"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="relative w-full pad:w-[200px] h-[38px] border-[1px] text-[20px] font-[500] border-black rounded-[8px] focus:outline-none pl-3 pr-9 py-1"
-          />
-          <Image
-            src={blackSearch}
-            alt="search"
-            width={24}
-            height={24}
-            className="absolute top-[6px] right-[11px] cursor-pointer"
-          />
+        <div className="flex justify-between gap-5">
+          <div className="relative flex-1">
+            <input
+              placeholder="게시글 검색"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={`relative w-full pad:w-[200px] ${toggle === '깔깔깔' ? 'h-[32px]' : 'h-[38px]'} pad:h-[38px] border-[1px] text-[16px] pad:text-[20px] font-[500] border-black rounded-[8px] focus:outline-none pl-3 pr-9 py-1`}
+            />
+            <Image
+              src={blackSearch}
+              alt="search"
+              width={24}
+              height={24}
+              className="absolute top-[6px] right-[12px] cursor-pointer"
+            />
+          </div>
+          {toggle === '깔깔깔' && (
+            <div
+              onClick={() => router.push('/announcement/posting')}
+              className="h-[38px] border-[1px] border-black rounded-[8px] px-3 py-1 flex gap-5 items-center cursor-pointer"
+            >
+              <span className="hidden pad:block text-gray-40 text-[20px] font-[500]">
+                글쓰기
+              </span>
+              <Image src={blackPen} alt="pen" width={24} height={24} />
+            </div>
+          )}
         </div>
       </section>
 
