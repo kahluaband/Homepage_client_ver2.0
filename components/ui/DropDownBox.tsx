@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from 'react';
 import TicketDetails from './TicketDetails';
 import clsx from 'clsx';
 import { information } from '../data/Information';
-import { info } from 'console';
 
 interface Option {
   value: string;

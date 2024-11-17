@@ -3,8 +3,6 @@ import DateTime from '@/components/ui/admin/DateTime';
 import Integer from '@/components/ui/admin/IntBox';
 import Text from '@/components/ui/admin/TextBox';
 import { InputFieldType } from '@/components/ui/admin/type';
-import { Stack } from '@mui/material';
-import { ReactNode } from 'react';
 
 interface AdminInfoProps {
   data: any;
