@@ -13,12 +13,12 @@ interface AdminInfoProps {
 // title, inputBox 형식의 information list
 const InfoList: React.FC<AdminInfoProps> = ({ data, fieldList, onChange }) => {
   return (
-    <div className="flex flex-col gap-[16px]">
+    <div className="flex flex-col gap-[16px] w-full">
       {fieldList.map((field: InputFieldType) => {
         const { label, title } = field;
         return (
           <div key={label}>
-            <div className="flex flex-col pad:flex-row gap-2">
+            <div className="flex flex-col pad:flex-row gap-2 w-full">
               <div className="flex items-center w-[160px] h-[30px] pad:h-12">
                 {title}
               </div>

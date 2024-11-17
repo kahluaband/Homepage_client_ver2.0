@@ -1,19 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { TextField } from '@mui/material';
 import { InputFieldType } from './type';
 
-export default function ImageBox({
-  field,
-  value,
-  onChange,
-}: {
+interface ImageProps {
+  data: any;
   field: InputFieldType;
-  value: string;
-  onChange: (newValue: any, label: string) => void;
-}) {
-  const { label } = field;
+  onChange: (newValue: string, title: string) => void;
+}
 
-  const [image, setImage] = useState<string[]>([]);
+const ImageBox: React.FC<ImageProps> = ({ data, field, onChange }) => {
+  const { label, title } = field;
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -21,21 +16,22 @@ export default function ImageBox({
       const newImage = Array.from(files).map(
         (file) => URL.createObjectURL(file) // 이미지 미리 볼 수 있게
       );
-      setImage((prevImage) => [...prevImage, ...newImage]);
     }
   };
 
   return (
-    <TextField
-      variant="outlined"
-      value={value}
-      onChange={(event) => onChange(event.target.value, label)}
-      sx={{ width: '300px', height: '400px' }}
-      InputProps={{
-        sx: {
-          borderRadius: '12px',
-        },
-      }}
-    />
+    <div
+      key={label}
+      onClick={() => handleImageUpload}
+      className="flex h-[438px] pad:h-[400px] w-[328px] pad:w-[300px] rounded-[12px] justify-center items-center border-gray-40 border"
+    >
+      <img
+        src={data}
+        alt={`uploaded-${label}`}
+        className="w-auto h-full object-cover rounded-[11px] transition duration-200 ease-in-out group-hover:blur-sm"
+      />
+    </div>
   );
-}
+};
+
+export default ImageBox;

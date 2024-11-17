@@ -1,5 +1,12 @@
 import { InputFieldType } from '@/components/ui/admin/type';
 
+export const performanceImage: InputFieldType = {
+  title: 'poster',
+  label: 'poster_image_url',
+  type: 'image',
+  required: true,
+};
+
 export const performanceInfoList: InputFieldType[] = [
   {
     title: '공연 제목',
@@ -41,6 +48,8 @@ export const performanceInfoList: InputFieldType[] = [
     required: true,
   },
 ];
+
+export const defaultImage = { poster_image_url: 'poster_image_url' };
 
 export const defaultData = {
   // [todo] api 연결
