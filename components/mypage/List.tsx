@@ -115,7 +115,7 @@ export const ReservationList = () => {
                   {reservation.status}
                 </p>
               </div>
-              <p className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6">
+              <p className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6 cursor-pointer">
                 예약 취소하기
               </p>
             </li>
