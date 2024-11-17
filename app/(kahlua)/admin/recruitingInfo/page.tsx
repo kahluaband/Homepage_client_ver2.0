@@ -7,9 +7,11 @@ import InfoList from '@/components/templates/admin/Info'; // Use only this impor
 import { defaultData, recruitingInfoList } from './recruitingData';
 import AdminButton from '@/components/ui/admin/Button';
 import isChanged from '@/components/util/isChanged';
+import ButtonModal from '@/components/ui/ButtonModal';
 
 const RecruitingPage = () => {
   const [data, setData] = useState<{ [key: string]: any }>(defaultData); // Explicitly typing data
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   // 수정 취소
   const onCancelEdit = () => {
@@ -30,7 +32,7 @@ const RecruitingPage = () => {
 
   return (
     <div className="font-pretendard mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col gap-[40px]">
-      <Banner>지원 정보 수정</Banner>
+      <Banner>모집 정보 수정</Banner>
       <div className="flex flex-col w-full max-pad:px-[16px]">
         <InfoList
           data={data}
@@ -42,11 +44,14 @@ const RecruitingPage = () => {
         <AdminButton onClick={onCancelEdit}>취소하기</AdminButton>
         <AdminButton
           disabled={!isChanged(defaultData, data)}
-          onClick={onSaveEdit}
+          onClick={() => setIsModalOpen(true)}
           className={`${isChanged(defaultData, data) ? 'bg-primary-50' : 'bg-gray-10'}`}
         >
           저장하기
         </AdminButton>
+        <ButtonModal isOpen={isModalOpen} onClose={() => onSaveEdit()}>
+          모집 정보를 수정하시겠습니까?
+        </ButtonModal>
       </div>
     </div>
   );
