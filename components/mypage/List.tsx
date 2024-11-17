@@ -1,5 +1,5 @@
 'use client';
-import likeIcon from '@/public/image/mypage/garyHeart.svg';
+import likeIcon from '@/public/image/mypage/grayHeart.svg';
 import chatIcon from '@/public/image/mypage/grayChat.svg';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -75,7 +75,7 @@ export const ReservationList = () => {
         {dummyReservation.map((reservation) => {
           return (
             // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
-            <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
+            <li className="flex flex-col pad:flex-row py-6 items-center gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
               <div className="flex gap-4">
                 <p className="text-black text-xl font-semibold">
                   {reservation.date}
@@ -85,11 +85,11 @@ export const ReservationList = () => {
                 </p>
               </div>
               <div className="flex py-1 px-2 justify-center items-center gap-[10px] rounded-full border-[1px] border-solid border-primary-50">
-                <p className="text-primary-50 text-base font-normal">
+                <p className="flex items-center text-primary-50 text-base font-normal">
                   {reservation.status}
                 </p>
               </div>
-              <p className="text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6">
+              <p className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6">
                 예약 취소하기
               </p>
             </li>
@@ -109,7 +109,7 @@ export const MyPostList = () => {
           return (
             // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
             <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between">
-              <p>{post.title}</p>
+              <p className="text-[20px] leading-6">{post.title}</p>
 
               <div className="flex gap-10 text-gray-40">
                 <div className="flex gap-6">
