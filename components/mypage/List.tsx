@@ -67,6 +67,32 @@ const dummyMyPost: myPostProps[] = [
   },
 ];
 
+// 카테고리 토글
+export const CategoryToggle = (props: {
+  toggleHandler: (arg0: string) => void;
+  toggle: string;
+}) => {
+  return (
+    <section className="flex mb-6 text-2xl font-semibold">
+      <ul className="flex gap-6">
+        {toggleList.map((category) => {
+          return (
+            <li
+              key={category.toggle}
+              onClick={() => {
+                props.toggleHandler(category.toggle);
+              }}
+              className={`cursor-pointer ${props.toggle === category.toggle ? 'text-black' : 'text-gray-40'}`}
+            >
+              {category.toggle}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+};
+
 // 동방 예약 내역 리스트
 export const ReservationList = () => {
   return (
@@ -142,23 +168,7 @@ const List = () => {
   return (
     <div className="flex flex-col mt-6 pad:mt-10 mx-4 pad:mx-6 dt:mx-[150px]">
       {/* 카테고리 토글 */}
-      <section className="flex mb-6 text-2xl font-semibold">
-        <ul className="flex gap-6">
-          {toggleList.map((category) => {
-            return (
-              <li
-                key={category.toggle}
-                onClick={() => {
-                  toggleHandler(category.toggle);
-                }}
-                className={`cursor-pointer ${toggle === category.toggle ? 'text-black' : 'text-gray-40'}`}
-              >
-                {category.toggle}
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <CategoryToggle toggle={toggle} toggleHandler={toggleHandler} />
 
       {/* 리스트 */}
       <section className="flex flex-col border-t-[1px] border-t-black border-b-[1px] border-b-black">
