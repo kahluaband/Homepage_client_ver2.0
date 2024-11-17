@@ -67,16 +67,13 @@ const RecruitingPage = () => {
       </div>
 
       {/* admin 홈으로 Button */}
-      <div className="flex w-auto h-auto max-pad:mx-[16px]">
-        <Link
-          href={'/admin'}
-          key="admin"
-          className="flex flex-row gap-[8px] items-center"
-          onClick={() => setIsCancelModalOpen(true)}
-        >
-          <WestIcon />
-          <span className="text-[16px] font-medium">Admin 홈으로</span>
-        </Link>
+      <div
+        key="admin"
+        className="flex flex-row w-auto h-auto max-pad:mx-[16px] gap-[8px] items-center"
+        onClick={() => setIsCancelModalOpen(true)}
+      >
+        <WestIcon />
+        <span className="text-[16px] font-medium">Admin 홈으로</span>
       </div>
       <CancelModal
         isOpen={isCandelModalOpen}
