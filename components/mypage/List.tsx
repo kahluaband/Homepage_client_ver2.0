@@ -82,7 +82,7 @@ export const CategoryToggle = (props: {
               onClick={() => {
                 props.toggleHandler(category.toggle);
               }}
-              className={`cursor-pointer ${props.toggle === category.toggle ? 'text-black' : 'text-gray-40'}`}
+              className={`cursor-pointer text-xl pad:text-2xl ${props.toggle === category.toggle ? 'text-black' : 'text-gray-40'}`}
             >
               {category.toggle}
             </li>
@@ -101,7 +101,10 @@ export const ReservationList = () => {
         {dummyReservation.map((reservation) => {
           return (
             // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
-            <li className="flex flex-col pad:flex-row py-6 pad:items-center ph:items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
+            <li
+              key={reservation.date + reservation.time}
+              className="flex flex-col pad:flex-row py-6 pad:items-center ph:items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10"
+            >
               <div className="flex gap-4">
                 <p className="text-black text-xl font-semibold">
                   {reservation.date}
@@ -134,7 +137,10 @@ export const MyPostList = () => {
         {dummyMyPost.map((post) => {
           return (
             // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
-            <li className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between">
+            <li
+              key={post.title + post.date}
+              className="flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10 justify-between"
+            >
               <p className="text-[20px] leading-6">{post.title}</p>
 
               <div className="flex gap-10 text-gray-40">
@@ -166,7 +172,7 @@ const List = () => {
   };
 
   return (
-    <div className="flex flex-col mt-6 pad:mt-10 mx-4 pad:mx-6 dt:mx-[150px]">
+    <div className="flex w-full px-4 pad:px-0 pad:mx-auto pad:w-[786px] dt:w-[1200px] flex-col mt-6 pad:mt-10">
       {/* 카테고리 토글 */}
       <CategoryToggle toggle={toggle} toggleHandler={toggleHandler} />
 
