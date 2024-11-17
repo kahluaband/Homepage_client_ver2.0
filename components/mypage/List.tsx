@@ -101,7 +101,7 @@ export const ReservationList = () => {
         {dummyReservation.map((reservation) => {
           return (
             // li 태그 스타일 코드는 그대로 쓰셔도 됩니다.
-            <li className="flex flex-col pad:flex-row py-6 items-center gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
+            <li className="flex flex-col pad:flex-row py-6 pad:items-center ph:items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10">
               <div className="flex gap-4">
                 <p className="text-black text-xl font-semibold">
                   {reservation.date}
