@@ -1,16 +1,10 @@
 interface ReservationSuccessModalProps {
   formattedDateTime: string;
-  onClose: () => void;
 }
 
 const ReservationSuccessModal = ({
   formattedDateTime,
-  onClose,
 }: ReservationSuccessModalProps) => {
-  const handleOnClose = () => {
-    onClose();
-    window.location.reload();
-  };
 
   // 날짜와 시간을 분리(모바일 전용)
   const datePart =
@@ -20,16 +14,14 @@ const ReservationSuccessModal = ({
     ' ' +
     formattedDateTime.split(' ')[2];
   const timePart =
-    formattedDateTime.split(' ')[3] + ' ' + formattedDateTime.split(' ')[4] + ' ' + formattedDateTime.split(' ')[5];
+    formattedDateTime.split(' ')[3] +
+    ' ' +
+    formattedDateTime.split(' ')[4] +
+    ' ' +
+    formattedDateTime.split(' ')[5];
 
   return (
-    <div className="w-[328px] pad:w-[600px] pad:h-[300px] flex flex-col text-center gap-6 py-[52px] px-[50px] pad:py-20 pad:px-10 bg-gray-0 rounded-3xl relative z-50">
-      <img
-        src="/image/reservation/tabler_x.svg"
-        className="w-6 h-6 cursor-pointer absolute top-4 right-10"
-        onClick={handleOnClose}
-        alt="close"
-      />
+    <div className="flex flex-col text-center gap-6">
       <div>
         <div className="hidden pad:inline pad:text-2xl font-semibold">
           {formattedDateTime}
@@ -38,7 +30,7 @@ const ReservationSuccessModal = ({
           <div>{datePart}</div>
           <div>{timePart}</div>
         </div>
-        <div className="text-lg pad:text-22px font-medium">
+        <div className="text-lg pad:text-[22px] font-medium">
           예약이 확정되었습니다.
         </div>
       </div>

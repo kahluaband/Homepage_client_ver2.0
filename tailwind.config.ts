@@ -84,11 +84,6 @@ const config: Config = {
         mustica: ['mustica pro'],
       },
 
-      fontSize: {
-        '22px': '22px',
-        '64px': '64px',
-      },
-
       backgroundImage: {
         performance:
           "linear-gradient(to bottom, rgba(21, 38, 127, 0.2), rgba(27, 28, 35, 1)), url('/image/recruit/bg.avif')",

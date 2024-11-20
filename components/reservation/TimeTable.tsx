@@ -1,12 +1,19 @@
 // TimeTable.tsx
 import React, { useState, useEffect } from 'react';
 
-// 예약 상태 타입
+// 예약 상태 타입 (todo: dto에 맞게 수정)
 export interface Reservation {
   timeRange: string;
   status: 'unavailable' | 'booked' | 'myReservation' | 'available';
   name?: string; // 예약자의 이름 (예약 마감 상태일 때만 표시)
 }
+
+export const reservationStatuses = [
+  { color: 'bg-gray-15', label: '예약 불가능' },
+  { color: 'bg-primary-10', label: '예약 마감' },
+  { color: 'bg-warning-10', label: '내예약' },
+  { color: 'bg-gray-5', label: '예약 가능' },
+];
 
 interface TimeTableProps {
   date: Date | null;
@@ -84,7 +91,6 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
   // 선택된 시간 범위를 상위 컴포넌트에 자동 업데이트
   useEffect(() => {
     onSelectTime(formatSelectedRange());
-    console.log(formatSelectedRange());
   }, [selectedTimes, onSelectTime]);
 
   // 날짜 형식과 선택된 시간 범위 문자열 결합
@@ -143,22 +149,14 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
         ))}
       </div>
       <div className="flex flex-wrap pad:flex-nowrap gap-6 pb-10 border-b border-gray-15 text-sm pad:text-base">
-        <div className="flex items-center">
-          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-15 mr-2"></span>
-          예약 불가능
-        </div>
-        <div className="flex items-center">
-          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-primary-10 mr-2"></span>
-          예약 마감
-        </div>
-        <div className="flex items-center">
-          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-warning-10 mr-2"></span>
-          내예약
-        </div>
-        <div className="flex items-center">
-          <span className="inline-block w-4 h-4 pad:w-6 pad:h-6 bg-gray-5 mr-2"></span>
-          예약 가능
-        </div>
+        {reservationStatuses.map((status, index) => (
+          <div key={index} className="flex items-center">
+            <span
+              className={`inline-block w-4 h-4 pad:w-6 pad:h-6 ${status.color} mr-2`}
+            ></span>
+            {status.label}
+          </div>
+        ))}
       </div>
       {formattedReservation() && (
         <div className="mt-4 text-black pad:text-2xl pb-10 border-b border-gray-15">

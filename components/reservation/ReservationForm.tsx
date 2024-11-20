@@ -2,6 +2,7 @@ import { useState } from 'react';
 import ReservationNotice from './ReservationNotice';
 import ReservationSuccessModal from './ReservationSuccessModal';
 import ReservationFailureModal from './ReservationFailureModal';
+import Modal from '../ui/Modal';
 
 interface ReservationFormProps {
   selectedDate: Date | null;
@@ -27,8 +28,7 @@ const ReservationForm = ({
     const reservationName = isPersonal ? name : teamName;
 
     if (reservationName && selectedDate && selectedTime) {
-      onSubmit(reservationName); // onSubmit 구현 필요 (page.tsx)
-      // alert('예약이 완료되었습니다!');
+      onSubmit(reservationName); // (todo: onSubmit 구현 필요(page.tsx))
       setIsSuccessModalOpen(true);
     } else {
       alert('모든 필드를 입력해 주세요.');
@@ -118,20 +118,20 @@ const ReservationForm = ({
         </form>
       </div>
       {isSuccessModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <ReservationSuccessModal
-            formattedDateTime={formattedDateTime()}
-            onClose={() => setIsSuccessModalOpen(false)}
-          />
-        </div>
+        <Modal
+          isOpen={isSuccessModalOpen}
+          onClose={() => setIsSuccessModalOpen(false)}
+        >
+          <ReservationSuccessModal formattedDateTime={formattedDateTime()} />
+        </Modal>
       )}
       {isFailureModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <ReservationFailureModal
-            formattedDateTime={formattedDateTime()}
-            onClose={() => setIsFailureModalOpen(false)}
-          />
-        </div>
+        <Modal
+          isOpen={isFailureModalOpen}
+          onClose={() => setIsFailureModalOpen(false)}
+        >
+          <ReservationFailureModal />
+        </Modal>
       )}
     </div>
   );
