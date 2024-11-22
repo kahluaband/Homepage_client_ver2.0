@@ -10,21 +10,23 @@ import TopButtons from '@/components/announcement/posting/TopButtons';
 
 const Page = () => {
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const title = searchParams.get('title');
   const content = searchParams.get('content');
   const imageUrls = searchParams.getAll('imageUrls');
-  const router = useRouter();
 
   const [currentTitle, setTitle] = useState('');
   const [currentContent, setContent] = useState('');
   const [currentImages, setCurrentImages] = useState<string[]>([]);
 
+  const isEditMode = title !== null;
   const isPostActive =
     currentTitle.trim() !== '' && currentContent.trim() !== '';
 
   useEffect(() => {
-    if (title) setTitle(title);
-    if (content) setContent(content);
+    setTitle(title || '');
+    setContent(content || '');
     if (imageUrls.length > 0) {
       setCurrentImages([...imageUrls]);
     }
@@ -50,10 +52,14 @@ const Page = () => {
       <section className="dt:w-[1200px] pad:w-[786px] ph:w-[328px] dt:pb-[578px] pad:pb-[559px] ph:pb-[171px]">
         <TopButtons isPostActive={isPostActive} onPublish={onPublish} />
         <TitleInput title={currentTitle} setTitle={setTitle} />
-        <ContentInput content={currentContent} setContent={setContent} />{' '}
-        {currentImages.length > 0 && (
-          <ImageUpload image={currentImages} setImage={setCurrentImages} />
-        )}
+        <ContentInput content={currentContent} setContent={setContent} />
+
+        <ImageUpload
+          image={currentImages}
+          setImage={setCurrentImages}
+          isEditMode={isEditMode}
+        />
+
         <CommunityRule />
       </section>
     </div>

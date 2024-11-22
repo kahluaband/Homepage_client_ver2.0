@@ -3,9 +3,14 @@ import React, { useEffect, useRef, useState } from 'react';
 interface ImageUploadProps {
   image: string[];
   setImage: (value: string[]) => void;
+  isEditMode: boolean;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ image, setImage }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({
+  image,
+  setImage,
+  isEditMode,
+}) => {
   const [images, setImages] = useState<string[]>(image);
   const [hasScrollbar, setHasScrollbar] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,10 +51,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ image, setImage }) => {
 
   // 이미지가 추가되거나 삭제될 때마다 부모 컴포넌트에 전달
   useEffect(() => {
-    setImage(images);
-    console.log('현재 이미지 개수:', images.length); // 이미지 개수 로그 출력
-    console.log(images);
-  }, [images, setImage]);
+    if (isEditMode) {
+      setImages(image); // 수정 모드일 때 부모로부터 전달받은 이미지를 사용
+    }
+  }, [isEditMode, image]);
 
   // 이미지가 추가될 때마다 오른쪽으로 스크롤 이동
   useEffect(() => {
