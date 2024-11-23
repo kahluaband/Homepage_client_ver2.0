@@ -13,10 +13,10 @@ import {
   performanceImage,
 } from './performanceData';
 import AdminButton from '@/components/ui/admin/Button';
-import isChanged from '@/components/util/isChanged';
 import EditModal from '@/components/admin/EditModal';
 import CancelModal from '@/components/admin/CancelModal';
 import ImageBox from '@/components/ui/admin/ImageBox';
+import { isChanged } from '@/components/util/isChanged';
 
 const PerformancePage = () => {
   const [data, setData] = useState<{ [key: string]: any }>(defaultData);
@@ -25,11 +25,13 @@ const PerformancePage = () => {
   const [isCandelModalOpen, setIsCancelModalOpen] = useState<boolean>(false);
 
   // 수정 취소
+  // [todo] : image에 대한 isChanged 적용 안됨
   const onCancelEdit = () => {
-    if (!isChanged(data, defaultData)) {
+    if (!isChanged(data, defaultData) && !isChanged(defaultImage, image)) {
       return;
     }
     setData(defaultData);
+    setImage(defaultImage);
   };
 
   // 변경 사항 저장
@@ -69,7 +71,9 @@ const PerformancePage = () => {
       <div className="flex flex-row gap-[24px] w-full max-pad:px-[16px] justify-end">
         <AdminButton onClick={onCancelEdit}>취소하기</AdminButton>
         <AdminButton
-          disabled={!isChanged(defaultData, data)}
+          disabled={
+            !isChanged(defaultData, data) && !isChanged(defaultImage, image)
+          }
           onClick={() => setIsEditModalOpen(true)}
           className={`${isChanged(defaultData, data) ? 'bg-primary-50' : 'bg-gray-10'}`}
         >
