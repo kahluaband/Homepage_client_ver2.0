@@ -2,20 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import { InputFieldType } from './type';
 
 interface ImageProps {
-  data: any;
+  data: { [key: string]: string };
   field: InputFieldType;
-  onChange: (newValue: any, label: string) => void;
+  onChange: (newValue: string, label: string) => void;
 }
 
 const ImageBox: React.FC<ImageProps> = ({ data, field, onChange }) => {
   const { label } = field;
+  const [previewImage, setPreviewImage] = useState<string>(data[label] || '');
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
-    if (files) {
-      const newImage = Array.from(files).map(
-        (file) => URL.createObjectURL(file) // 이미지 미리 볼 수 있게
-      );
+    if (files && files[0]) {
+      const newImage = URL.createObjectURL(files[0]);
+      setPreviewImage(newImage);
+      onChange(newImage, label);
     }
   };
 
@@ -32,7 +33,7 @@ const ImageBox: React.FC<ImageProps> = ({ data, field, onChange }) => {
         className="hidden"
       />
       <img
-        src={data}
+        src={previewImage}
         alt={`uploaded-${label}`}
         className="w-auto h-full object-cover rounded-[11px] transition duration-200 ease-in-out group-hover:blur-sm"
       />

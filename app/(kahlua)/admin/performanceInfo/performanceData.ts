@@ -49,7 +49,10 @@ export const performanceInfoList: InputFieldType[] = [
   },
 ];
 
-export const defaultImage = { poster_image_url: 'poster_image_url' };
+export const defaultImage = {
+  poster_image_url:
+    'https://contents.lotteon.com/itemimage/20241109010839/LM/76/10/59/42/53/71/8_/00/1/LM7610594253718_001_1.jpg/dims/optimize/dims/resizemc/400x400',
+};
 
 export const defaultData = {
   // [todo] api 연결
