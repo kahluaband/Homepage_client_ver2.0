@@ -3,25 +3,19 @@ import { formatDate } from '@/components/util/formatDate';
 import { dummyCommunity } from '@/components/announcement/list/dummy';
 import likeIcon from '@/public/image/grayHeart.svg';
 import chatIcon from '@/public/image/grayChat.svg';
+import { CommunityProps } from '@/components/announcement/list/dto';
 
 export const CommunityList = ({
-  searchQuery,
+  items,
   currentPage,
   itemsPerPage,
 }: {
-  searchQuery: string;
+  items: CommunityProps[];
   currentPage: number;
   itemsPerPage: number;
 }) => {
-  const filteredCommunity = dummyCommunity.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = filteredCommunity.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  const currentItems = items.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div>

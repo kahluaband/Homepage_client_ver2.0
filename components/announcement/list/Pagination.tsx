@@ -1,7 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
-import grayRight from '@/public/image/announcement/grayRight.svg';
-import blackRight from '@/public/image/announcement/blackRight.svg';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 interface PaginationProps {
   currentPage: number;
@@ -30,16 +28,14 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* 이전 그룹 버튼 */}
       <button
         onClick={onPrevGroup}
-        className="flex items-center"
+        className="flex items-center w-[30px] h-[30px] rotate-180"
         disabled={pageGroup === 0}
       >
-        <Image
-          src={pageGroup > 0 ? blackRight : grayRight}
-          className="rotate-180"
-          alt="previous"
-          width={30}
-          height={30}
-        />
+        {pageGroup > 0 ? (
+          <ChevronRightIcon sx={{ color: '#000000' }} />
+        ) : (
+          <ChevronRightIcon sx={{ color: '#9296AB' }} />
+        )}
       </button>
 
       {/* 페이지 번호 */}
@@ -66,19 +62,14 @@ const Pagination: React.FC<PaginationProps> = ({
       {/* 다음 그룹 버튼 */}
       <button
         onClick={onNextGroup}
-        className="flex items-center"
+        className="flex items-center w-[30px] h-[30px]"
         disabled={(pageGroup + 1) * pagesPerGroup >= totalPages}
       >
-        <Image
-          src={
-            (pageGroup + 1) * pagesPerGroup < totalPages
-              ? blackRight
-              : grayRight
-          }
-          alt="next"
-          width={30}
-          height={30}
-        />
+        {(pageGroup + 1) * pagesPerGroup < totalPages ? (
+          <ChevronRightIcon sx={{ color: '#000000' }} />
+        ) : (
+          <ChevronRightIcon sx={{ color: '#9296AB' }} />
+        )}
       </button>
     </div>
   );

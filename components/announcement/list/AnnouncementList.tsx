@@ -3,25 +3,19 @@ import { formatDate } from '@/components/util/formatDate';
 import { dummyAnnouncement } from '@/components/announcement/list/dummy';
 import likeIcon from '@/public/image/grayHeart.svg';
 import chatIcon from '@/public/image/grayChat.svg';
+import { AnnouncementProps } from '@/components/announcement/list/dto';
 
 export const AnnouncementList = ({
-  searchQuery,
+  items,
   currentPage,
   itemsPerPage,
 }: {
-  searchQuery: string;
+  items: AnnouncementProps[];
   currentPage: number;
   itemsPerPage: number;
 }) => {
-  const filteredAnnouncements = dummyAnnouncement.filter((post) =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = filteredAnnouncements.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  const currentItems = items.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div>
