@@ -172,9 +172,15 @@ const List = () => {
   };
 
   return (
-    <div className="flex w-full px-4 pad:px-0 pad:mx-auto pad:w-[786px] dt:w-[1200px] flex-col mt-6 pad:mt-10">
-      {/* 카테고리 토글 */}
-      <CategoryToggle toggle={toggle} toggleHandler={toggleHandler} />
+    <div className="flex flex-col w-full px-4 pad:px-0 pad:mx-auto pad:w-[786px] dt:w-[1200px] mt-6 pad:mt-10">
+      <section className="flex justify-between">
+        {/* 카테고리 토글 */}
+        <CategoryToggle toggle={toggle} toggleHandler={toggleHandler} />
+        {/* 탈퇴 버튼 */}
+        <button className="flex items-start text-gray-30 text-sm font-medium leading-[30px] cursor-pointer">
+          회원 탈퇴
+        </button>
+      </section>
 
       {/* 리스트 */}
       <section className="flex flex-col border-t-[1px] border-t-black border-b-[1px] border-b-black">
