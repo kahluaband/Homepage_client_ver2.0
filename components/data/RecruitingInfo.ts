@@ -6,7 +6,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.tz.setDefault('Asia/Seoul');
 
-interface recruitingInformation {
+export interface recruitingInformation {
   num: string;
   recruitingStartDate: Date;
   recruitingFinishDate: Date;
