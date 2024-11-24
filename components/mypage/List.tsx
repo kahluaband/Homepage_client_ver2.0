@@ -3,6 +3,7 @@ import likeIcon from '@/public/image/mypage/grayHeart.svg';
 import chatIcon from '@/public/image/mypage/grayChat.svg';
 import Image from 'next/image';
 import { useState } from 'react';
+import ButtonModal from '../ui/ButtonModal';
 
 interface reservationProps {
   date: string;
@@ -95,6 +96,16 @@ export const CategoryToggle = (props: {
 
 // 동방 예약 내역 리스트
 export const ReservationList = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCancleReservation = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <ul>
@@ -118,13 +129,27 @@ export const ReservationList = () => {
                   {reservation.status}
                 </p>
               </div>
-              <p className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6 cursor-pointer">
+              <p
+                className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6 cursor-pointer"
+                onClick={handleCancleReservation}
+              >
                 예약 취소하기
               </p>
             </li>
           );
         })}
       </ul>
+      {/* 취소 모달 */}
+      <ButtonModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        handleSubmit={() => {
+          console.log('예약 취소');
+          // 예약 취소 로직 작성 필요
+        }}
+        mainContent="예약을 취소하시겠습니까?"
+        buttonContent="취소하기"
+      />
     </div>
   );
 };
@@ -166,9 +191,18 @@ export const MyPostList = () => {
 
 const List = () => {
   const [toggle, setToggle] = useState('동방 예약 확인');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleHandler = (toggleItem: string) => {
     setToggle(toggleItem);
+  };
+
+  const handleSignOut = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -177,7 +211,10 @@ const List = () => {
         {/* 카테고리 토글 */}
         <CategoryToggle toggle={toggle} toggleHandler={toggleHandler} />
         {/* 탈퇴 버튼 */}
-        <button className="flex items-start text-gray-30 text-sm font-medium leading-[30px] cursor-pointer">
+        <button
+          className="flex items-start text-gray-30 text-sm font-medium leading-[30px] cursor-pointer"
+          onClick={handleSignOut}
+        >
           회원 탈퇴
         </button>
       </section>
@@ -187,6 +224,18 @@ const List = () => {
         {toggle === toggleList[0].toggle && <ReservationList />}
         {toggle === toggleList[1].toggle && <MyPostList />}
       </section>
+
+      {/* 탈퇴 모달 */}
+      <ButtonModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        handleSubmit={() => {
+          console.log('회원 탈퇴');
+          // 탈퇴 로직 작성 필요
+        }}
+        mainContent="회원을 탈퇴하시겠습니까?"
+        buttonContent="탈퇴하기"
+      />
     </div>
   );
 };
