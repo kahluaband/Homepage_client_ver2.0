@@ -23,6 +23,12 @@ const ButtonModal: React.FC<ModalProps> = ({
     }
   };
 
+  // 버튼 동작 실행 시 모달 닫기 및 handleSubmit 실행
+  const handleButtonClick = () => {
+    handleSubmit();
+    onClose();
+  };
+
   return (
     <div
       onClick={handleOverlayClick}
@@ -53,7 +59,7 @@ const ButtonModal: React.FC<ModalProps> = ({
         </div>
         <div
           className="flex flex-col rounded-b-3xl w-full h-[48px] pad:h-[64px] px-[40px] bg-danger-50 text-gray-0 justify-center text-center font-semibold text-[18px] pad:text-[22px] cursor-pointer"
-          onClick={handleSubmit}
+          onClick={handleButtonClick}
         >
           {buttonContent}
         </div>
