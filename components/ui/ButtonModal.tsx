@@ -36,7 +36,7 @@ const ButtonModal: React.FC<ModalProps> = ({
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            className="absolute right-[40px] top-[24px]"
+            className="absolute right-[40px] top-[24px] cursor-pointer"
             onClick={onClose}
           >
             <path
@@ -52,7 +52,7 @@ const ButtonModal: React.FC<ModalProps> = ({
           </div>
         </div>
         <div
-          className="flex flex-col rounded-b-3xl w-full h-[48px] pad:h-[64px] px-[40px] bg-danger-50 justify-center text-center font-semibold text-[18px] pad:text-[22px] cursor-pointer"
+          className="flex flex-col rounded-b-3xl w-full h-[48px] pad:h-[64px] px-[40px] bg-danger-50 text-gray-0 justify-center text-center font-semibold text-[18px] pad:text-[22px] cursor-pointer"
           onClick={handleSubmit}
         >
           {buttonContent}

@@ -45,6 +45,7 @@ const TopButtons: React.FC<TopButtonsProps> = ({ isPostActive }) => {
       </div>
       {isModalOpen && (
         <CancelPopup
+          isOpen={isModalOpen}
           onClose={handleModalClose}
           onConfirm={handleModalConfirm}
         />
