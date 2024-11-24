@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import CommunityRule from '@/components/announcement/posting/CommunityRule';
 import ContentInput from '@/components/announcement/posting/ContentInput';
@@ -16,21 +16,15 @@ const Page = () => {
   const content = searchParams.get('content');
   const imageUrls = searchParams.getAll('imageUrls');
 
-  const [currentTitle, setTitle] = useState('');
-  const [currentContent, setContent] = useState('');
-  const [currentImages, setCurrentImages] = useState<string[]>([]);
+  const [currentTitle, setTitle] = useState(title || '');
+  const [currentContent, setContent] = useState(content || '');
+  const [currentImages, setCurrentImages] = useState(
+    imageUrls.length > 0 ? imageUrls : []
+  );
 
   const isEditMode = title !== null;
   const isPostActive =
     currentTitle.trim() !== '' && currentContent.trim() !== '';
-
-  useEffect(() => {
-    setTitle(title || '');
-    setContent(content || '');
-    if (imageUrls.length > 0) {
-      setCurrentImages([...imageUrls]);
-    }
-  }, [title, content, imageUrls.length]);
 
   const onPublish = () => {
     const postData = {
