@@ -4,6 +4,7 @@ import chatIcon from '@/public/image/mypage/grayChat.svg';
 import Image from 'next/image';
 import { useState } from 'react';
 import ButtonModal from '../ui/ButtonModal';
+import { useRouter } from 'next/navigation';
 
 interface reservationProps {
   date: string;
@@ -207,6 +208,7 @@ export const MyPostList = () => {
 const List = () => {
   const [toggle, setToggle] = useState('동방 예약 확인');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const toggleHandler = (toggleItem: string) => {
     setToggle(toggleItem);
@@ -246,6 +248,7 @@ const List = () => {
         onClose={handleCloseModal}
         handleSubmit={() => {
           console.log('회원 탈퇴');
+          router.push('/');
           // 탈퇴 로직 작성 필요
         }}
         mainContent="회원을 탈퇴하시겠습니까?"
