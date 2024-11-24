@@ -97,13 +97,31 @@ export const CategoryToggle = (props: {
 // 동방 예약 내역 리스트
 export const ReservationList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // 개별 취소를 위한 선택한 예약 정보 state
+  const [selectedReservation, setSelectedReservation] = useState<{
+    date: string;
+    time: string;
+  } | null>(null);
 
-  const handleCancleReservation = () => {
+  const handleCancleReservation = (reservation: {
+    date: string;
+    time: string;
+  }) => {
+    setSelectedReservation(reservation);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    setSelectedReservation(null); // 선택된 예약 초기화
+  };
+
+  const handleSubmitCancellation = () => {
+    console.log(
+      `예약 취소: ${selectedReservation?.date} ${selectedReservation?.time}`
+    );
+    // 예약 취소 로직 작성 필요
+    handleCloseModal();
   };
 
   return (
@@ -131,7 +149,7 @@ export const ReservationList = () => {
               </div>
               <p
                 className="flex items-center text-danger-40 text-base font-normal absolute right-0 bottom-6 pad:top-6 cursor-pointer"
-                onClick={handleCancleReservation}
+                onClick={() => handleCancleReservation(reservation)}
               >
                 예약 취소하기
               </p>
@@ -143,10 +161,7 @@ export const ReservationList = () => {
       <ButtonModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        handleSubmit={() => {
-          console.log('예약 취소');
-          // 예약 취소 로직 작성 필요
-        }}
+        handleSubmit={handleSubmitCancellation}
         mainContent="예약을 취소하시겠습니까?"
         buttonContent="취소하기"
       />
