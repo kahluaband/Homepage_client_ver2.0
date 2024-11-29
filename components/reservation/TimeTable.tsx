@@ -1,12 +1,5 @@
-// TimeTable.tsx
+import { Reservation } from '@/app/(kahlua)/reservation/page';
 import React, { useState, useEffect } from 'react';
-
-// 예약 상태 타입 (todo: dto에 맞게 수정)
-export interface Reservation {
-  timeRange: string;
-  status: 'unavailable' | 'booked' | 'myReservation' | 'available';
-  name?: string; // 예약자의 이름 (예약 마감 상태일 때만 표시)
-}
 
 export const reservationStatuses = [
   { color: 'bg-gray-15', label: '예약 불가능' },
@@ -16,41 +9,40 @@ export const reservationStatuses = [
 ];
 
 interface TimeTableProps {
-  date: Date | null;
-  onSelectTime: (timeRange: string) => void;
-  reservations: Reservation[];
+  reservation: Reservation;
+  onChane: (key: keyof Reservation, value: string) => void;
 }
 
-const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
+const TimeTable = ({ reservation, onChane }: TimeTableProps) => {
   const hours = Array.from({ length: 12 }, (_, i) => i + 10); // 10시부터 22시까지
-  const [selectedTimes, setSelectedTimes] = useState<string[]>([]);
-  const [startTime, setStartTime] = useState<string | null>(null); // 시작 시간 추적
-  const [endTime, setEndTime] = useState<string | null>(null); // 종료 시간 추적
+
+  const [selectedTimes, setSelectedTimes] = useState<string[]>([]); 
 
   // 시간 선택 및 해제
   const handleTimeClick = (startTimeStr: string, endTimeStr: string) => {
-    if (!date) {
+    if (!reservation.reservationDate) {
       alert('날짜를 선택해 주세요!');
       return;
     }
 
     // 이미 시작과 종료 시간이 선택된 상태에서 다시 클릭하면 초기화
-    if (startTime && endTime) {
+    if (reservation.startTime && reservation.endTime) {
       setSelectedTimes([]);
-      setStartTime(null);
-      setEndTime(null);
+      onChane("startTime", '');
+      onChane("endTime", '');
       return;
     }
 
     // 시작 시간이 없을 때: 시작 시간으로 설정
-    if (!startTime) {
-      setStartTime(startTimeStr);
+    if (!reservation.startTime) {
+      onChane("startTime", startTimeStr);
+      onChane("endTime", endTimeStr);
       setSelectedTimes([`${startTimeStr} ~ ${endTimeStr}`]);
     }
     // 시작 시간이 설정된 상태에서 두 번째 클릭: 종료 시간으로 설정
     else {
-      setEndTime(endTimeStr);
-      const newSelectedTimes = generateTimeRange(startTime, endTimeStr);
+      onChane("endTime", endTimeStr);
+      const newSelectedTimes = generateTimeRange(reservation.startTime, endTimeStr); // 사이 시간 모두 선택
       setSelectedTimes(newSelectedTimes);
     }
   };
@@ -88,11 +80,6 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
     return `${startTime} ~ ${endTime}`;
   };
 
-  // 선택된 시간 범위를 상위 컴포넌트에 자동 업데이트
-  useEffect(() => {
-    onSelectTime(formatSelectedRange());
-  }, [selectedTimes, onSelectTime]);
-
   // 날짜 형식과 선택된 시간 범위 문자열 결합
   const formattedReservation = () => {
     const options: Intl.DateTimeFormatOptions = {
@@ -100,10 +87,11 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
       day: 'numeric',
       weekday: 'long',
     };
+    const date = new Date(reservation.reservationDate);
     const dateString = date ? date.toLocaleDateString('ko-KR', options) : '';
     const timeRange = formatSelectedRange();
 
-    return dateString ? `${dateString} ${timeRange}` : '';
+    return reservation.reservationDate ? `${dateString} ${timeRange}` : '';
   };
 
   // 타임 테이블 선택 및 해제 적용
@@ -123,7 +111,7 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
               <div
                 key={`${hour}:00`}
                 className={`pad:flex-1 h-[60px] w-[32px] cursor-pointer ${
-                  date
+                  reservation.reservationDate
                     ? getTimeSlotStatus(`${hour}:00`, `${hour}:30`) ===
                       'selected'
                       ? 'bg-primary-50 text-white'
@@ -135,7 +123,7 @@ const TimeTable = ({ date, onSelectTime, reservations }: TimeTableProps) => {
               <div
                 key={`${hour}:30`}
                 className={`pad:flex-1 h-[60px] w-[32px] cursor-pointer mr-[1px] ${
-                  date
+                  reservation.reservationDate
                     ? getTimeSlotStatus(`${hour}:30`, `${hour + 1}:00`) ===
                       'selected'
                       ? 'bg-primary-50 text-white'

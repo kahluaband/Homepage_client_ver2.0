@@ -3,21 +3,24 @@ import ReservationNotice from './ReservationNotice';
 import ReservationSuccessModal from './ReservationSuccessModal';
 import ReservationFailureModal from './ReservationFailureModal';
 import Modal from '../ui/Modal';
+import { Reservation } from '@/app/(kahlua)/reservation/page';
 
 interface ReservationFormProps {
-  selectedDate: Date | null;
-  selectedTime: string | null;
-  onSubmit: (name: string) => void;
+  reservation: Reservation;
+  onChange: (key: keyof Reservation, value: string) => void;
+  onSubmit: (reservation: Reservation) => void;
 }
 
 const ReservationForm = ({
-  selectedDate,
-  selectedTime,
+  reservation,
+  onChange,
   onSubmit,
 }: ReservationFormProps) => {
   const [name, setName] = useState<string>('');
   const [teamName, setTeamName] = useState<string>('');
+
   const [isPersonal, setIsPersonal] = useState(true); // 개인/팀 선택 상태
+
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isFailureModalOpen, setIsFailureModalOpen] = useState(false);
 
@@ -27,8 +30,16 @@ const ReservationForm = ({
 
     const reservationName = isPersonal ? name : teamName;
 
-    if (reservationName && selectedDate && selectedTime) {
-      onSubmit(reservationName); // (todo: onSubmit 구현 필요(page.tsx))
+    if (reservationName) {
+      const updatedReservation = {
+        ...reservation,
+        clubroomUsername: reservationName,
+        type: isPersonal ? 'PERSONAL' : 'TEAM',
+      };
+
+      onChange('clubroomUsername', reservationName);
+      onChange('type', isPersonal ? 'PERSONAL' : 'TEAM');
+      onSubmit(updatedReservation); // (todo: onSubmit 구현 필요(page.tsx))
       setIsSuccessModalOpen(true);
     } else {
       alert('모든 필드를 입력해 주세요.');
@@ -38,16 +49,15 @@ const ReservationForm = ({
 
   // xx월 xx일 x요일 00:00 ~ 00:00
   const formattedDateTime = () => {
-    if (!selectedDate || !selectedTime) return '';
-
     const options: Intl.DateTimeFormatOptions = {
       month: 'long',
       day: 'numeric',
       weekday: 'long',
     };
-    const dateString = selectedDate.toLocaleDateString('ko-KR', options);
+    const date = new Date(reservation.reservationDate);
+    const dateString = date ? date.toLocaleDateString('ko-KR', options) : '';
 
-    return `${dateString} ${selectedTime}`;
+    return `${dateString} ${reservation.startTime} ~ ${reservation.endTime}`;
   };
 
   const handleReservationTypeChange = (isPersonal: boolean) => {
