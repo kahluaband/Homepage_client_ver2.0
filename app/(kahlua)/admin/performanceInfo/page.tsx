@@ -35,7 +35,6 @@ const PerformancePage = () => {
   const [isCandelModalOpen, setIsCancelModalOpen] = useState<boolean>(false);
 
   // 수정 취소
-  // [todo] : image에 대한 isChanged 적용 안됨
   const onCancelEdit = () => {
     if (isNotChanged) {
       return;
@@ -48,9 +47,9 @@ const PerformancePage = () => {
 
   const isNotChanged: boolean =
     !isChanged(data, defaultData) &&
-    !isChanged(defaultImage, image) &&
-    !isChanged(defaultFreshmanTicketData, freshmanTicketData) &&
-    !isChanged(defaultGeneralTicketData, generalTicketData);
+    !isChanged(image, defaultImage) &&
+    !isChanged(freshmanTicketData, defaultFreshmanTicketData) &&
+    !isChanged(generalTicketData, defaultGeneralTicketData);
 
   // 변경 사항 저장
   const onSaveEdit = () => {
