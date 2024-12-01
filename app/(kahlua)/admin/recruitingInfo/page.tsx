@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import Banner from '@/components/ui/Banner';
 import InfoList from '@/components/templates/admin/Info'; // Use only this import
 import { defaultData, recruitingInfoList } from './recruitingData';
@@ -17,23 +17,28 @@ const RecruitingPage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isCandelModalOpen, setIsCancelModalOpen] = useState<boolean>(false);
 
+  // 변경 사항 유무 체크
+  const isNotChanged = useMemo(() => {
+    return !isChanged(data, defaultData);
+  }, [data]);
+
   // 수정 취소
-  const onCancelEdit = () => {
-    if (!isChanged(data, defaultData)) {
+  const onCancelEdit = useCallback(() => {
+    if (isNotChanged) {
       return;
     }
     setData(defaultData);
-  };
+  }, [isNotChanged]);
 
   // 변경 사항 저장
-  const onSaveEdit = () => {
+  const onSaveEdit = useCallback(() => {
     // [todo] api 연결
     setIsEditModalOpen(false);
-  };
+  }, []);
 
-  const onChangeData = (newValue: any, label: string) => {
+  const onChangeData = useCallback((newValue: any, label: string) => {
     setData((prevData) => ({ ...prevData, [label]: newValue }));
-  };
+  }, []);
 
   return (
     <div className="font-pretendard mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col gap-[40px]">
@@ -53,9 +58,9 @@ const RecruitingPage = () => {
       <div className="flex flex-row gap-[24px] w-full max-pad:px-[16px] justify-end">
         <AdminButton onClick={onCancelEdit}>취소하기</AdminButton>
         <AdminButton
-          disabled={!isChanged(defaultData, data)}
+          disabled={isNotChanged}
           onClick={() => setIsEditModalOpen(true)}
-          className={`${isChanged(defaultData, data) ? 'bg-primary-50' : 'bg-gray-10'}`}
+          className={`${isNotChanged ? 'bg-gray-10' : 'bg-primary-50'}`}
         >
           저장하기
         </AdminButton>
