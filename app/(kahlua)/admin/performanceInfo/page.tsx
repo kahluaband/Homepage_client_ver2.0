@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import WestIcon from '@mui/icons-material/West';
 import Banner from '@/components/ui/Banner';
@@ -35,8 +35,18 @@ const PerformancePage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
   const [isCandelModalOpen, setIsCancelModalOpen] = useState<boolean>(false);
 
+  // 변경 사항 유무 체크
+  const isNotChanged = useMemo(() => {
+    return (
+      !isChanged(data, defaultData) &&
+      !isChanged(image, defaultImage) &&
+      !isChanged(freshmanTicketData, defaultFreshmanTicketData) &&
+      !isChanged(generalTicketData, defaultGeneralTicketData)
+    );
+  }, [data, image, freshmanTicketData, generalTicketData]);
+
   // 수정 취소
-  const onCancelEdit = () => {
+  const onCancelEdit = useCallback(() => {
     if (isNotChanged) {
       return;
     }
@@ -44,35 +54,35 @@ const PerformancePage = () => {
     setImage(defaultImage);
     setfreshmanTicketData(defaultFreshmanTicketData);
     setgeneralTicketData(defaultGeneralTicketData);
-  };
-
-  const isNotChanged: boolean =
-    !isChanged(data, defaultData) &&
-    !isChanged(image, defaultImage) &&
-    !isChanged(freshmanTicketData, defaultFreshmanTicketData) &&
-    !isChanged(generalTicketData, defaultGeneralTicketData);
+  }, [isNotChanged]);
 
   // 변경 사항 저장
-  const onSaveEdit = () => {
+  const onSaveEdit = useCallback(() => {
     // [todo] api 연결
     setIsEditModalOpen(false);
-  };
+  }, []);
 
-  const onChangeData = (newValue: any, label: string) => {
+  const onChangeData = useCallback((newValue: any, label: string) => {
     setData((prevData) => ({ ...prevData, [label]: newValue }));
-  };
+  }, []);
 
-  const onChangeImage = (newValue: string, label: string) => {
+  const onChangeImage = useCallback((newValue: string, label: string) => {
     setImage((prevData) => ({ ...prevData, [label]: newValue }));
-  };
+  }, []);
 
-  const onChangeFreshmanTicketData = (newValue: number, label: string) => {
-    setfreshmanTicketData((prevData) => ({ ...prevData, [label]: newValue }));
-  };
+  const onChangeFreshmanTicketData = useCallback(
+    (newValue: number, label: string) => {
+      setfreshmanTicketData((prevData) => ({ ...prevData, [label]: newValue }));
+    },
+    []
+  );
 
-  const onChangeGeneralTicketData = (newValue: number, label: string) => {
-    setgeneralTicketData((prevData) => ({ ...prevData, [label]: newValue }));
-  };
+  const onChangeGeneralTicketData = useCallback(
+    (newValue: number, label: string) => {
+      setgeneralTicketData((prevData) => ({ ...prevData, [label]: newValue }));
+    },
+    []
+  );
 
   return (
     <div className="font-pretendard mx-auto w-full pad:w-[786px] dt:w-[1200px] h-auto flex flex-col gap-[40px]">
