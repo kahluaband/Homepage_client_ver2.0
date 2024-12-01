@@ -6,11 +6,11 @@ import Banner from '@/components/ui/Banner';
 import InfoList from '@/components/templates/admin/Info'; // Use only this import
 import { defaultData, recruitingInfoList } from './recruitingData';
 import AdminButton from '@/components/ui/admin/Button';
-import isChanged from '@/components/util/isChanged';
 import Link from 'next/link';
 import WestIcon from '@mui/icons-material/West';
 import CancelModal from '@/components/admin/CancelModal';
 import EditModal from '@/components/admin/EditModal';
+import { isChanged } from '@/components/util/isChanged';
 
 const RecruitingPage = () => {
   const [data, setData] = useState<{ [key: string]: any }>(defaultData); // Explicitly typing data
