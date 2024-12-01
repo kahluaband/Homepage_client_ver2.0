@@ -21,6 +21,7 @@ import EditModal from '@/components/admin/EditModal';
 import CancelModal from '@/components/admin/CancelModal';
 import ImageBox from '@/components/ui/admin/ImageBox';
 import { isChanged } from '@/components/util/isChanged';
+import TicketInfoList from '@/components/ui/admin/TicketInfo';
 
 const PerformancePage = () => {
   const [data, setData] = useState<{ [key: string]: any }>(defaultData);
@@ -91,26 +92,20 @@ const PerformancePage = () => {
             fieldList={performanceInfoList}
             onChange={onChangeData}
           />
-          <div className="flex flex-row w-full h-auto gap-[8px]">
-            <p className="flex w-[120px] pad:w-[160px] h-[48px] items-center">
-              신입생
-            </p>
-            <InfoList
-              data={freshmanTicketData}
-              fieldList={freshmanTiketInfoList}
-              onChange={onChangeFreshmanTicketData}
-            />
-          </div>
-          <div className="flex flex-row w-full h-auto gap-[8px]">
-            <p className="flex w-[120px] pad:w-[160px] h-[48px] items-center">
-              일반
-            </p>
-            <InfoList
-              data={generalTicketData}
-              fieldList={generalTiketInfoList}
-              onChange={onChangeGeneralTicketData}
-            />
-          </div>
+          <TicketInfoList
+            data={freshmanTicketData}
+            fieldList={freshmanTiketInfoList}
+            onChange={onChangeFreshmanTicketData}
+          >
+            신입생
+          </TicketInfoList>
+          <TicketInfoList
+            data={generalTicketData}
+            fieldList={generalTiketInfoList}
+            onChange={onChangeGeneralTicketData}
+          >
+            일반
+          </TicketInfoList>
         </div>
       </div>
 
