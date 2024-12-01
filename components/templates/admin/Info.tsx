@@ -4,7 +4,7 @@ import Text from '@/components/ui/admin/TextBox';
 import { InputFieldType } from '@/components/ui/admin/type';
 
 interface AdminInfoProps {
-  data: any;
+  data: Record<string, any>;
   fieldList: InputFieldType[];
   onChange: (newValue: any, title: string) => void;
 }
