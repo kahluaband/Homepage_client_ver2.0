@@ -1,11 +1,12 @@
 'use client';
 
 import * as React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import LoginModal from '@/components/login/loginModal';
 import LoginSelectBox from '@/components/login/LoginSelectBox';
 import NameInput from '@/components/login/nameInput';
+import axios from 'axios';
 
 // 기수 23 ~ 1기
 const generations: string[] = Array.from(
@@ -23,9 +24,28 @@ const Page = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     setIsComplete(name !== '' && generation !== '' && session !== '');
   }, [name, generation, session]);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await axios.post('/v1/auth/kakao/sign-up', {
+        name,
+        generation,
+        session,
+      });
+
+      if (response.status === 201) {
+        // Redirect to the home page after successful sign-up
+        router.push('/');
+      }
+    } catch (error) {
+      console.error('회원가입 실패:', error);
+    }
+  };
 
   return (
     <div className="font-pretendard w-full min-h-[calc(100vh-320px)] h-full flex justify-center items-center mt-16 text-gray-0 text-center max-pad:-mb-40 max-pad:bg-gray-90">
@@ -61,7 +81,7 @@ const Page = () => {
         <button
           className={`w-full pad:w-[384px] h-[60px] flex items-center justify-center rounded-[12px] text-[22px] ${isComplete ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
           disabled={!isComplete}
-          onClick={() => setIsModalOpen(true)}
+          onClick={handleSubmit}
         >
           KAHLUA 가입 신청하러 가기
         </button>
