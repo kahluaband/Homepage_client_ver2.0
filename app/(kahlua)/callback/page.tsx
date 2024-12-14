@@ -14,18 +14,20 @@ const page = () => {
     if (code) {
       const handleAuth = async () => {
         try {
-          console.log('Code:', code);
+          console.log('Code:', code); // 추후 삭제 예정 code
 
           const response = await axiosInstance.post(
-            '/v1/auth/kakao/sign-in', // 또는 구글의 경우 다른 엔드포인트
-            { code }
+            `/v1/auth/kakao/sign-in?code=${code}`
           );
 
-          console.log('Response:', response);
+          console.log('Response:', response); // 추후 삭제 예정 response
 
-          if (response.data.result.role == 'QUEST') {
+          localStorage.setItem('access_token', response.data.accessToken);
+          localStorage.setItem('refresh_token', response.data.refreshToken);
+
+          if (response.data.role == 'QUEST') {
             router.push('/login/info'); // 추가 정보 입력 페이지로 이동
-          } else {
+          } else if (response.data.role == 'KAHLUA') {
             router.push('/'); // 메인 페이지로 이동
           }
         } catch (error) {

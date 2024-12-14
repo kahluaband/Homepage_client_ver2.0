@@ -7,6 +7,7 @@ import LoginModal from '@/components/login/loginModal';
 import LoginSelectBox from '@/components/login/LoginSelectBox';
 import NameInput from '@/components/login/nameInput';
 import axios from 'axios';
+import { authInstance, axiosInstance } from '@/api/auth/axios';
 
 // 기수 23 ~ 1기
 const generations: string[] = Array.from(
@@ -32,7 +33,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/v1/user', {
+      const response = await authInstance.post('/v1/user', {
         name,
         generation,
         session,
