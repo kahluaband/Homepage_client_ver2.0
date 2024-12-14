@@ -1,4 +1,5 @@
 'use client';
+
 import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
 import logo_black from '@/public/image/KAHLUA-black.svg';
@@ -19,6 +20,10 @@ import youtube_logo from '@/public/image/youtube-icon.svg';
 import kakaotalk_logo from '@/public/image/kakaotalk-icon.svg';
 import instagram_logo from '@/public/image/instagram-icon.svg';
 import { useRouter } from 'next/navigation';
+import { authInstance } from '@/api/auth/axios';
+import Cookie from 'js-cookie';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '@/atoms/authAtom';
 
 // MUI 테마 커스텀
 const theme = createTheme({
@@ -81,18 +86,34 @@ const Header = () => {
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState); // Recoil 상태 업데이트 함수
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // localStorage에서 토큰 확인
-      const hasToken =
-        localStorage.getItem('access_token') &&
-        localStorage.getItem('refresh_token');
-      setIsLoggedIn(!!hasToken);
+      // cookie에서 토큰 확인
+      const accessToken = Cookie.get('access_token');
+      const refreshToken = Cookie.get('refresh_token');
+      setIsLoggedIn(!!(accessToken && refreshToken));
     }
-  }, []);
+  }, [Cookie, setIsLoggedIn]);
 
+  const handleLogout = async () => {
+    try {
+      const response = await authInstance.post('/v1/auth/sign-out', {});
+      if (response.data.isSuccess === true) {
+        alert(response.data.result);
+      }
+
+      // 쿠키 삭제
+      Cookie.remove('access_token');
+      Cookie.remove('refresh_token');
+
+      // recoil 상태 업데이트
+      setIsLoggedIn(false);
+
+      router.push('/');
+    } catch (error) {}
+  };
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
@@ -364,9 +385,7 @@ const Header = () => {
               <button
                 className="text-lg text-danger-40 text-center"
                 onClick={() => {
-                  localStorage.removeItem('access_token');
-                  localStorage.removeItem('refresh_token');
-                  window.location.href = '/';
+                  handleLogout();
                 }}
               >
                 로그아웃

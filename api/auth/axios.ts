@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { headers } from 'next/headers';
+import Cookie from 'js-cookie';
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -17,8 +17,8 @@ export const authInstance = axios.create({
 
 authInstance.interceptors.request.use(
   function (config) {
-    const accessToken = localStorage.getItem('access_token');
-    const refreshToken = localStorage.getItem('refresh_token');
+    const accessToken = Cookie.get('access_token');
+    const refreshToken = Cookie.get('refresh_token');
 
     // 요청 시 AccessToken 계속 보내주기
     if (!accessToken) {
@@ -56,7 +56,7 @@ authInstance.interceptors.response.use(
     if (status === 401) {
       if (error.response.data.error === 'Unauthorized') {
         const originalRequest = config;
-        const refreshToken = await localStorage.getItem('refresh_token');
+        const refreshToken = await Cookie.get('access_token');
         // token refresh 요청
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/recreate`, // token refresh api
@@ -67,10 +67,9 @@ authInstance.interceptors.response.use(
         // dispatch(userSlice.actions.setAccessToken(data.data.accessToken)); store에 저장
         const { access_token: newAccessToken, refresh_token: newRefreshToken } =
           data;
-        await localStorage.multiSet([
-          ['access_token', newAccessToken],
-          ['refresh_token', newRefreshToken],
-        ]);
+        document.cookie = `access_token=${newAccessToken}; path=/; Secure; HttpOnly; SameSite=Strict`;
+        document.cookie = `refresh_token=${newRefreshToken}; path=/; Secure; SameSite=Strict`;
+
         originalRequest.headers.authorization = `Bearer ${newAccessToken}`;
         // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
         return axios(originalRequest);

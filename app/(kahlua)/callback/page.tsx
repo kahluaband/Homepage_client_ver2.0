@@ -3,9 +3,19 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '@/atoms/authAtom';
 
 const page = () => {
   const router = useRouter();
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+
+  const setTokensInCookie = (accessToken: string, refreshToken: string) => {
+    const isSecure = window.location.protocol === 'https:';
+
+    document.cookie = `access_token=${accessToken}; path=/; ${isSecure ? 'Secure' : ''}; SameSite=Strict`;
+    document.cookie = `refresh_token=${refreshToken}; path=/; ${isSecure ? 'Secure' : ''}; SameSite=Strict`;
+  };
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -13,16 +23,17 @@ const page = () => {
 
     const handleAuth = async () => {
       try {
-        console.log('Code:', code); // 추후 삭제 예정 code
-
         const response = await axiosInstance.post(
           `/v1/auth/kakao/sign-in?code=${code}`
         );
 
-        console.log('Response:', response); // 추후 삭제 예정 response
+        const { accessToken, refreshToken } = response.data;
 
-        localStorage.setItem('access_token', response.data.accessToken);
-        localStorage.setItem('refresh_token', response.data.refreshToken);
+        // 쿠키에 토큰 저장
+        setTokensInCookie(accessToken, refreshToken);
+
+        // recoil 상태 업데이트
+        setIsLoggedIn(true);
 
         if (response.data.role == 'QUEST') {
           router.push('/login/info'); // 추가 정보 입력 페이지로 이동
@@ -40,7 +51,7 @@ const page = () => {
     } else {
       console.error('No code found in URL');
     }
-  }, [router]);
+  }, [router, setIsLoggedIn]);
 
   return <div className="h-screen">Redirecting...</div>;
 };
