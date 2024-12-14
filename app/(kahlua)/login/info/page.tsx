@@ -32,7 +32,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post('/v1/auth/kakao/sign-up', {
+      const response = await axios.post('/v1/user', {
         name,
         generation,
         session,

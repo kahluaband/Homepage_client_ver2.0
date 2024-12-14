@@ -3,44 +3,10 @@
 import Image from 'next/image';
 import google from '@/public/image/login/google.svg';
 import kakao from '@/public/image/login/kakao.svg';
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
 
 const page = () => {
-  const router = useRouter();
-
   const kakao_link = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY}&redirect_uri=${process.env.NEXT_PUBLIC_KAKAO_REDIRECT_URI}`;
   const google_link = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.GNEXT_PUBLIC_OOGLE_REDIRECT_URI}&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile`;
-
-  useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    const code = query.get('code');
-
-    if (code) {
-      const handleKakaoAuth = async () => {
-        try {
-          // OAuth 인증 코드 전송 및 액세스 토큰 발급
-          const { data: tokenData } = await axios.post(
-            '/v1/auth/kakao/sign-in',
-            { code }
-          );
-
-          if (tokenData.isMember) {
-            // 회원인 경우 메인페이지 이동
-            router.push('/');
-          } else {
-            // 회원이 아닌 경우 info 페이지 이동
-            router.push('/login/info');
-          }
-        } catch (error) {
-          console.error('Kakao login failed:', error);
-        }
-      };
-
-      handleKakaoAuth();
-    }
-  }, [router]);
 
   return (
     <div className="font-pretendard min-h-[calc(100vh)] w-full h-full flex flex-col items-center mt-16 max-pad:bg-gray-90 text-gray-0 text-center max-pad:-mb-40">
