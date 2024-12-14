@@ -26,7 +26,7 @@ const page = () => {
 
         if (response.data.role == 'QUEST') {
           router.push('/login/info'); // 추가 정보 입력 페이지로 이동
-        } else if (response.data.role == 'KAHLUA') {
+        } else {
           router.push('/'); // 메인 페이지로 이동
         }
       } catch (error) {
@@ -42,7 +42,7 @@ const page = () => {
     }
   }, [router]);
 
-  return <div>Redirecting...</div>;
+  return <div className="h-screen">Redirecting...</div>;
 };
 
 export default page;

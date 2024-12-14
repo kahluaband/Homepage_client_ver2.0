@@ -81,6 +81,18 @@ const Header = () => {
   const pathname = usePathname();
   const [currentLink, setCurrentLink] = useState('');
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // localStorage에서 토큰 확인
+      const hasToken =
+        localStorage.getItem('access_token') &&
+        localStorage.getItem('refresh_token');
+      setIsLoggedIn(!!hasToken);
+    }
+  }, []);
+
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
@@ -348,8 +360,27 @@ const Header = () => {
 
           <div className="hidden min-[1500px]:flex ">
             {/* 로그인 코드 작성 후 수정 필요 */}
-            <p className="text-lg text-gray-50 text-center">로그인</p>
-            {/*<p className="text-lg text-danger-40 text-center">로그아웃</p>*/}
+            {isLoggedIn ? (
+              <button
+                className="text-lg text-danger-40 text-center"
+                onClick={() => {
+                  localStorage.removeItem('access_token');
+                  localStorage.removeItem('refresh_token');
+                  window.location.href = '/';
+                }}
+              >
+                로그아웃
+              </button>
+            ) : (
+              <button
+                className="text-lg text-gray-50 text-center"
+                onClick={() => {
+                  window.location.href = '/login';
+                }}
+              >
+                로그인
+              </button>
+            )}
           </div>
         </div>
 
