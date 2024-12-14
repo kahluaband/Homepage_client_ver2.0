@@ -6,8 +6,7 @@ import { useRouter } from 'next/navigation';
 import LoginModal from '@/components/login/loginModal';
 import LoginSelectBox from '@/components/login/LoginSelectBox';
 import NameInput from '@/components/login/nameInput';
-import axios from 'axios';
-import { authInstance, axiosInstance } from '@/api/auth/axios';
+import { authInstance } from '@/api/auth/axios';
 
 // 기수 23 ~ 1기
 const generations: string[] = Array.from(
@@ -17,6 +16,13 @@ const generations: string[] = Array.from(
 
 // 세션
 const sessions: string[] = ['보컬', '드럼', '기타', '베이스', '신디사이저'];
+const sessionMap: { [key: string]: string } = {
+  보컬: 'VOCAL',
+  드럼: 'DRUM',
+  기타: 'GUITAR',
+  베이스: 'BASS',
+  신디사이저: 'SYNTHESIZER',
+};
 
 const Page = () => {
   const [name, setName] = useState<string>('');
@@ -25,23 +31,24 @@ const Page = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const router = useRouter();
-
   useEffect(() => {
     setIsComplete(name !== '' && generation !== '' && session !== '');
   }, [name, generation, session]);
 
   const handleSubmit = async () => {
+    const termData: number = parseInt(generation.replace('기', ''), 10); // term : integer type으로 변환
+    const sessionData: string = sessionMap[session]; // session : enum type으로 변환
+
+    console.log(sessionData, name, termData);
     try {
       const response = await authInstance.post('/v1/user', {
-        name,
-        generation,
-        session,
+        name: name,
+        term: termData,
+        session: sessionData,
       });
 
-      if (response.status === 201) {
-        // Redirect to the home page after successful sign-up
-        router.push('/');
+      if (response.data.isSuccess) {
+        setIsModalOpen(true); // login modal open
       }
     } catch (error) {
       console.error('회원가입 실패:', error);
