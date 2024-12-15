@@ -380,7 +380,6 @@ const Header = () => {
           </div>
 
           <div className="hidden min-[1500px]:flex ">
-            {/* 로그인 코드 작성 후 수정 필요 */}
             {isLoggedIn ? (
               <button
                 className="text-lg text-danger-40 text-center"

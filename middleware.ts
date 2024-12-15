@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 
 const restrictedPages = {
   undefined: ['/reservation', '/announcement', '/mypage', '/admin'],
-  GENERAL: ['/reservation', '/announcement', '/mypage'], // 'GENERAL' 사용자가 접근할 수 없는 페이지
-  KAHLUA: ['/admin'], // 'KAHLUA' 사용자가 접근할 수 없는 페이지
+  허용되지않은사용자: ['/reservation', '/announcement', '/mypage', '/admin'], // 'GENERAL' 사용자가 접근할 수 없는 페이지
+  깔루아: ['/admin'], // 'KAHLUA' 사용자가 접근할 수 없는 페이지
 };
 
 interface DecodedToken {
@@ -45,8 +45,9 @@ export function middleware(request: NextRequest) {
     if (userRole === role) {
       for (const page of pages) {
         if (request.nextUrl.pathname.startsWith(page)) {
-          alert('접근 권한이 없습니다');
-          return NextResponse.redirect(new URL('/', request.url)); // 홈으로 리디렉션
+          const redirectUrl = new URL('/error', request.url);
+          redirectUrl.searchParams.set('error', 'access_denied');
+          return NextResponse.redirect(redirectUrl); // error page로 리디렉션
         }
       }
     }
