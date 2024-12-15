@@ -99,7 +99,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await authInstance.post('/v1/auth/sign-out', {});
+      const response = await authInstance.post('/auth/sign-out', {});
       if (response.data.isSuccess === true) {
         alert(response.data.result);
       }

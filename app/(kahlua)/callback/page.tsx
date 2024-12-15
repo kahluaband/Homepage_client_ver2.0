@@ -24,7 +24,7 @@ const page = () => {
     const handleAuth = async () => {
       try {
         const response = await axiosInstance.post(
-          `/v1/auth/kakao/sign-in?code=${code}`
+          `/auth/kakao/sign-in?code=${code}`
         );
 
         const { accessToken, refreshToken } = response.data;
@@ -32,12 +32,10 @@ const page = () => {
         // 쿠키에 토큰 저장
         setTokensInCookie(accessToken, refreshToken);
 
-        // recoil 상태 업데이트
-        setIsLoggedIn(true);
-
-        if (response.data.role == 'QUEST') {
+        if (response.data.role == 'GENERAL') {
           router.push('/login/info'); // 추가 정보 입력 페이지로 이동
         } else {
+          setIsLoggedIn(true);
           router.push('/'); // 메인 페이지로 이동
         }
       } catch (error) {

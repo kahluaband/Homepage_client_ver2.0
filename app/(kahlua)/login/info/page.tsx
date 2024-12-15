@@ -7,6 +7,8 @@ import LoginModal from '@/components/login/loginModal';
 import LoginSelectBox from '@/components/login/LoginSelectBox';
 import NameInput from '@/components/login/nameInput';
 import { authInstance } from '@/api/auth/axios';
+import { useSetRecoilState } from 'recoil';
+import { isLoggedInState } from '@/atoms/authAtom';
 
 // 기수 23 ~ 1기
 const generations: string[] = Array.from(
@@ -31,6 +33,8 @@ const Page = () => {
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+
   useEffect(() => {
     setIsComplete(name !== '' && generation !== '' && session !== '');
   }, [name, generation, session]);
@@ -41,7 +45,7 @@ const Page = () => {
 
     console.log(sessionData, name, termData);
     try {
-      const response = await authInstance.post('/v1/user', {
+      const response = await authInstance.post('/user', {
         name: name,
         term: termData,
         session: sessionData,
@@ -49,6 +53,7 @@ const Page = () => {
 
       if (response.data.isSuccess) {
         setIsModalOpen(true); // login modal open
+        setIsLoggedIn(true); // recoil login 상태 업데이트
       }
     } catch (error) {
       console.error('회원가입 실패:', error);

@@ -5,8 +5,8 @@ import { cookies } from 'next/headers';
 
 const restrictedPages = {
   undefined: ['/reservation', '/announcement', '/mypage', '/admin'],
-  허용되지않은사용자: ['/reservation', '/announcement', '/mypage', '/admin'], // 'GENERAL' 사용자가 접근할 수 없는 페이지
-  깔루아: ['/admin'], // 'KAHLUA' 사용자가 접근할 수 없는 페이지
+  GENERAL: ['/reservation', '/announcement', '/mypage', '/admin'], // 'GENERAL' 사용자가 접근할 수 없는 페이지
+  KAHLUA: ['/admin'], // 'KAHLUA' 사용자가 접근할 수 없는 페이지
 };
 
 interface DecodedToken {
