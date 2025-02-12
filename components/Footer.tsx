@@ -57,15 +57,15 @@ const Footer = () => {
           </Link>
           <Link href="https://kahluaband.notion.site/f877ed4fe6de4aa4a8c0b201530b69df">
             <span className="text-gray-50 font-normal">이용약관</span>
-            {/* <span className="text-gray-80 mx-2 hidden min-[834px]:inline">
+            <span className="text-gray-80 mx-2 hidden min-[834px]:inline">
               |
-            </span> */}
+            </span>
           </Link>
-          {/* <Link href="/ticket">
+          <Link href="/ticket">
             <span className="font-medium text-gray-20 hidden min-[834px]:inline">
               예매 내역 조회
             </span>
-          </Link> */}
+          </Link>
         </div>
       </div>
 
