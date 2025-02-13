@@ -14,7 +14,7 @@ const TicketIntroPad: React.FC<props> = ({ className }) => {
     >
       <div className="flex shrink-0 relative rounded-[16px] w-[264px] h-[351px] pad:w-[246px] pad:h-[329px] dt:w-[282px] dt:h-[377px]">
         <Image
-          src="/image/ticket/Poster_202503.png"
+          src="/image/ticket/Poster_202503.avif"
           alt="poster"
           layout="fill"
           sizes="100vw"
@@ -59,7 +59,7 @@ const TicketIntroPhone: React.FC<props> = ({ className }) => {
 
         <div className="flex shrink-0 absolute top-0 rounded-[16px] w-[264px] h-[351px]">
           <Image
-            src="/image/ticket/Poster_202503.png"
+            src="/image/ticket/Poster_202503.avif"
             layout="fill"
             alt="poster"
             fill
