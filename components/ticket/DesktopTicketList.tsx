@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { RecommendData } from '../data/RecommendData';
+import { shuffleArray } from '../util/shuffleArray';
 
-const DesktopTicketList = () => {
+const DesktopTicketList = ({
+  tickets,
+  currentId,
+}: {
+  tickets: any[];
+  currentId: number;
+}) => {
   const [visibleCount, setVisibleCount] = useState(6);
+  const [shuffledTickets, setShuffledTickets] = useState<any[] | null>(null);
 
   useEffect(() => {
     const updateVisibleCount = () => {
@@ -22,30 +28,44 @@ const DesktopTicketList = () => {
 
     return () => window.removeEventListener('resize', updateVisibleCount);
   }, []);
+
+  useEffect(() => {
+    if (!tickets.length) return;
+    const filteredTickets = tickets.filter(
+      (show) => show.ticketInfoId !== currentId
+    );
+    const randomizedTickets = shuffleArray(filteredTickets);
+
+    setShuffledTickets(randomizedTickets);
+  }, [tickets, currentId]);
+
+  if (!shuffledTickets) {
+    return <div className="text-center mt-4" />;
+  }
+
   return (
     <div className="items-center mt-[21px] grid dt:grid-cols-6 pad:grid-cols-4 ph:grid-cols-1 gap-[17px]">
-      {RecommendData.slice(0, visibleCount).map((show, index) => (
-        <div key={index} className="relative block w-[184px]">
+      {shuffledTickets.slice(0, visibleCount).map((show) => (
+        <div key={show.ticketInfoId} className="relative block w-[184px]">
           {show.isLive && (
             <div className="flex items-center justify-center rounded-[20px] z-30 text-center absolute top-[15px] left-[13px] w-[42px] h-[23px] bg-primary-40 text-gray-0 text-xs font-medium rounded-5">
               공연중
             </div>
           )}
-          <Link href={show.link} className="block">
-            <div className="relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
-              <Image
-                src={show.image}
-                alt={show.title}
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </Link>
+          <div className="relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
+            <Image
+              // src={show.posterUrl}
+              src="/image/ticket/Poster_202503.avif"
+              alt={show.title}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
           <p className="mt-3 text-left font-pretendard text-base font-semibold text-gray-90">
             {show.title}
           </p>
           <p className="text-left text-sm font-pretendard font-normal text-gray-40">
-            {show.description}
+            {show.content}
           </p>
         </div>
       ))}

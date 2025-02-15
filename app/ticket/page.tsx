@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import LocationModal from '@/components/popups/ticket/LocaltionModal';
 import TicketOption from '@/components/templates/ticket/TicketOption';
 import Bar from '@/components/ui/Bar';
@@ -8,6 +9,7 @@ import Link from 'next/link';
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
 import { information } from '@/components/data/Information';
 import RecommendedList from '@/components/ticket/RecommendedList';
+import { axiosInstance } from '@/api/auth/axios';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
@@ -19,17 +21,49 @@ declare global {
 
 const Page = () => {
   const loc = information.locationDetails;
+  const pathname = usePathname();
   const [isDays, setIsDays] = useState(false);
   const [nowUrl, setNowUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
-  const [active, setActive] = useState(isDays);
   const [isClient, setIsClient] = useState(false);
+  const [ticketInfo, setTicketInfo] = useState<any>(null);
+  const [latitude, setLatitude] = useState<number | null>(null);
+  const [longitude, setLongitude] = useState<number | null>(null);
+  const [placeId, setPlaceId] = useState<string | null>(null);
+
+  const getTicketIdFromURL = () => {
+    const pathSegments = pathname.split('/');
+    return pathSegments.length > 2 ? pathSegments[2] : '1';
+  };
+
+  const getTicketDetail = async (ticketId: string) => {
+    try {
+      const response = await axiosInstance.get(`/performances/${ticketId}`);
+      if (response.data.isSuccess) {
+        setTicketInfo(response.data.result.ticketInfoResponse);
+        console.log(ticketInfo);
+
+        setIsDays(response.data.result.status === 'OPEN');
+        setIsDays(false); // 임시
+        loadKakaoMap(ticketInfo.address);
+      }
+    } catch (error) {
+      console.error('티켓 상세 정보 불러오는 중 오류 발생:', error);
+    }
+  };
+
+  useEffect(() => {
+    const ticketId = getTicketIdFromURL();
+    getTicketDetail(ticketId);
+  }, [pathname]);
 
   useEffect(() => {
     setIsClient(true);
-    setActive(isDays);
+    setNowUrl(window.location.href);
+  }, []);
 
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const threshold = 600;
@@ -40,55 +74,67 @@ const Page = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDays]);
+  const loadKakaoMap = (address: string) => {
+    if (!window.kakao) return;
 
+    window.kakao.maps.load(() => {
+      const geocoder = new window.kakao.maps.services.Geocoder();
+
+      geocoder.addressSearch(address, (result: any, status: any) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          const lat = parseFloat(result[0].y);
+          const lng = parseFloat(result[0].x);
+
+          setLatitude(lat);
+          setLongitude(lng);
+          createMap(lat, lng);
+          setPlaceId(result[0].place_url);
+        }
+      });
+    });
+  };
+
+  /** 지도 생성 */
+  const createMap = (lat: number, lng: number) => {
+    const container = document.getElementById('map');
+    if (!container) return;
+
+    const options = {
+      center: new window.kakao.maps.LatLng(lat, lng),
+      level: 3,
+    };
+
+    const map = new window.kakao.maps.Map(container, options);
+
+    const marker = new window.kakao.maps.Marker({
+      position: new window.kakao.maps.LatLng(lat, lng),
+      map: map,
+      draggable: true,
+    });
+
+    window.kakao.maps.event.addListener(marker, 'click', function () {
+      if (placeId) {
+        window.open(placeId, '_blank'); // 변환된 장소 ID로 카카오맵 열기
+      }
+    });
+  };
+
+  /** 카카오 맵 스크립트 로드 */
   useEffect(() => {
-    setIsDays(false); // 공연 상세 - 예약 가능 여부 알아오기 추가 필요
-  }, []);
-
-  useEffect(() => {
-    setNowUrl(window.location.href);
-
     const script = document.createElement('script');
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&libraries=services&autoload=false`;
     script.async = true;
     document.head.appendChild(script);
 
     script.onload = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
-
-        if (container) {
-          const options = {
-            center: new window.kakao.maps.LatLng(
-              37.55099593968109,
-              126.92401144435387
-            ),
-            level: 3,
-          };
-
-          const map = new window.kakao.maps.Map(container, options);
-
-          const markerPosition = new window.kakao.maps.LatLng(
-            37.55099593968109,
-            126.92401144435387
-          );
-
-          const marker = new window.kakao.maps.Marker({
-            position: markerPosition,
-            map: map,
-            draggable: true,
-          });
-
-          window.kakao.maps.event.addListener(marker, 'click', function () {
-            window.open('https://place.map.kakao.com/23696074', '_blank'); //위치 지도
-          });
-        }
-      });
+      const ticketId = getTicketIdFromURL();
+      getTicketDetail(ticketId); // API 호출하여 데이터 가져오기
     };
+
     return () => {
       document.head.removeChild(script);
     };
-  }, [apikey]);
+  }, []);
 
   const copyUrl = () => {
     navigator.clipboard.writeText(nowUrl).then(() => {
@@ -100,6 +146,15 @@ const Page = () => {
     navigator.clipboard.writeText(loc).then(() => {
       alert('주소가 복사되었습니다!');
     });
+  };
+  const formatDateTime = (isoString: string): string => {
+    const date = new Date(isoString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+
+    return `${year}년 ${month}월 ${day}일 ${hours}시`;
   };
 
   const openModal = () => setIsModalOpen(true);
@@ -142,7 +197,7 @@ const Page = () => {
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
             <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
-              {information.title}
+              {ticketInfo?.title}
             </p>
             <div onClick={copyUrl} className="flex flex-col justify-center">
               <Image
@@ -156,11 +211,13 @@ const Page = () => {
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">장소</p>
-            <p className="text-gray-90 w-[65px]">{information.location}</p>
+            <p className="text-gray-90">{ticketInfo?.venue}</p>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">일시</p>
-            <p className="text-gray-90 w-40">{information.dateForString}</p>
+            <p className="text-gray-90 ">
+              {formatDateTime(ticketInfo?.date_time)}
+            </p>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal">
             <p className="text-gray-40 w-7 pad:w-8 h-7">가격</p>
@@ -182,10 +239,10 @@ const Page = () => {
               <div className="flex flex-row items-start h-7 mb-9 pad:mb-12">
                 <p className="text-gray-90 w-[60px] pad:w-[67px]">일반 티켓</p>
                 <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-semibold">
-                  {information.tickets.general.price}
+                  {ticketInfo?.general_price}원
                 </p>
                 <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">
-                  1인 최대 {information.tickets.general.maxQuantity}매
+                  1인 최대 {ticketInfo?.general_max_purchase}매
                 </p>
               </div>
             </div>
@@ -247,7 +304,11 @@ const Page = () => {
           </Link>
         </div>
         <Bar className="mt-10 hidden pad:flex w-[768px] dt:w-[1200px]" />
-        {isDays ? <TicketOption isDays={isDays} /> : <RecommendedList />}
+        {isDays ? (
+          <TicketOption data={ticketInfo} isDays={isDays} />
+        ) : (
+          <RecommendedList id={ticketInfo?.id} />
+        )}
         <LocationModal isOpen={isModalOpen} onClose={closeModal} />
       </div>
     </div>
