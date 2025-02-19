@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { shuffleArray } from '../util/shuffleArray';
+import Link from 'next/link';
 
 const DesktopTicketList = ({
   tickets,
@@ -35,6 +36,7 @@ const DesktopTicketList = ({
       (show) => show.ticketInfoId !== currentId
     );
     const randomizedTickets = shuffleArray(filteredTickets);
+    console.log(randomizedTickets);
 
     setShuffledTickets(randomizedTickets);
   }, [tickets, currentId]);
@@ -53,13 +55,15 @@ const DesktopTicketList = ({
             </div>
           )}
           <div className="relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
-            <Image
-              src={show.posterUrl}
-              // src="/image/ticket/Poster_202503.avif"
-              alt={show.title}
-              layout="fill"
-              objectFit="cover"
-            />
+            <Link href={`/ticket/${show.ticketInfoId}`}>
+              <Image
+                src={show.posterUrl}
+                // src="/image/ticket/Poster_202503.avif"
+                alt={show.title}
+                layout="fill"
+                objectFit="cover"
+              />
+            </Link>
           </div>
           <p className="mt-3 text-left font-pretendard text-base font-semibold text-gray-90">
             {show.title}

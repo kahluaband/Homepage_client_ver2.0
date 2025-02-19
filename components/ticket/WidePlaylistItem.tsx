@@ -6,10 +6,11 @@ interface Show {
   posterUrl: string;
   link: string;
   content: string;
+  youtube_url: string;
   status?: boolean;
 }
 
-const WidePlaylistItem = ({ show }: { show: Show }) => {
+const WidePlaylistItem = ({ show, id }: { show: Show; id: string }) => {
   return (
     <div className="flex flex-row overflow-hidden cursor-pointer gap-[14px] w-[344px] h-[184px] rounded-[10px] border-[0.5px] border-black">
       <div className="relative w-[128px] h-[184px] overflow-hidden rounded-[10px]">
@@ -20,16 +21,16 @@ const WidePlaylistItem = ({ show }: { show: Show }) => {
         )}
 
         {/* 이미지 */}
-        {/* <Link href={show.link}> */}
-        <Image
-          src={show.posterUrl}
-          // src="/image/ticket/Poster_202503.avif"
-          alt={show.title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-[10px]"
-        />
-        {/* </Link> */}
+        <Link href={`/ticket/${id}`}>
+          <Image
+            src={show.posterUrl}
+            // src="/image/ticket/Poster_202503.avif"
+            alt={show.title}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-[10px]"
+          />
+        </Link>
       </div>
 
       {/* 텍스트 정보 */}

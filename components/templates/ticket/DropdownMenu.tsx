@@ -2,12 +2,14 @@
 import DropDownBox from '@/components/ui/DropDownBox';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import dayjs from 'dayjs';
 
 interface TicketOptionProps {
   isDays: boolean;
+  data: any;
 }
 
-const DropdownMenu = ({ isDays }: TicketOptionProps) => {
+const DropdownMenu = ({ isDays, data }: TicketOptionProps) => {
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTicket, setSelectedTicket] = useState<string | null>(null);
@@ -15,6 +17,22 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
   const [active, setActive] = useState(isDays);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [member, setMember] = useState<number>(1);
+
+  const processData = (rawData: any) => {
+    const bookingStart = dayjs(rawData?.booking_start_date);
+    const bookingEnd = dayjs(rawData?.booking_end_date);
+    const now = dayjs();
+
+    const isDays = now.isAfter(bookingStart) && now.isBefore(bookingEnd);
+
+    return {
+      ...rawData,
+      isDays,
+      dateOption: dayjs(rawData?.date_time).format('YYYY년 M월 D일 HH시 mm분'),
+    };
+  };
+
+  const processedData = processData(data);
 
   useEffect(() => {
     setActive(isDays);
@@ -80,12 +98,14 @@ const DropdownMenu = ({ isDays }: TicketOptionProps) => {
             onSelect={handleDateSelect}
             member={member}
             setMember={setMember}
+            data={processedData}
           />
           <DropDownBox
             type="ticket"
             onSelect={handleTicketSelect}
             member={member}
             setMember={setMember}
+            data={processedData}
           />
         </div>
       </div>

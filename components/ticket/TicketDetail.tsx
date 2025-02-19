@@ -7,7 +7,7 @@ import Bar from '@/components/ui/Bar';
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
 import RecommendedList from '@/components/ticket/RecommendedList';
 import { axiosInstance } from '@/api/auth/axios';
-import { information } from '@/components/data/Information';
+import dayjs from 'dayjs';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
@@ -22,7 +22,6 @@ interface TicketDetailProps {
 }
 
 const TicketDetail = ({ id }: TicketDetailProps) => {
-  const loc = information.locationDetails;
   const [isDays, setIsDays] = useState(false);
   const [ticketInfo, setTicketInfo] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,13 +31,35 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
   const [placeId, setPlaceId] = useState<string | null>(null);
+  const [loc, setLoc] = useState('');
 
   const getTicketDetail = async (id: string) => {
     try {
       const response = await axiosInstance.get(`/performances/${id}`);
       if (response.data.isSuccess) {
-        setTicketInfo(response.data.result.ticketInfoResponse);
-        setIsDays(response.data.result.status === 'OPEN');
+        const rawData = response.data.result.ticketInfoResponse;
+        const bookingStart = dayjs(rawData.booking_start_date);
+        const bookingEnd = dayjs(rawData.booking_end_date);
+        const now = dayjs();
+        const isDaysAvailable =
+          now.isAfter(bookingStart) && now.isBefore(bookingEnd);
+
+        // setLoc(rawData?.address);
+        setLoc('서울 마포구 와우산로18길 20 지하 1층');
+        setTicketInfo({
+          ...rawData,
+          dateForMinute: dayjs(rawData.date_time).format('YYYY-MM-DD HH:mm'),
+          dateOption: dayjs(rawData.date_time).format(
+            'YYYY년 MM월 DD일 HH시 mm분'
+          ),
+          freshmanPrice: rawData.freshman_price
+            ? `${rawData.freshman_price}원`
+            : '무료',
+          generalPrice: rawData.general_price
+            ? `${rawData.general_price}원`
+            : '5,000원',
+        });
+        setIsDays(!isDaysAvailable);
       }
     } catch (error) {
       console.error('티켓 상세 정보 불러오는 중 오류 발생:', error);
@@ -57,6 +78,12 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
   }, [id]);
 
   useEffect(() => {
+    if (loc) {
+      loadKakaoMap(loc);
+    }
+  }, [loc]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const threshold = 600;
@@ -67,12 +94,33 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDays]);
-  const loadKakaoMap = (address: string) => {
-    if (!window.kakao) return;
 
-    window.kakao.maps.load(() => {
+  /** ✅ 카카오 맵 스크립트 한 번만 로드 */
+  useEffect(() => {
+    if (!loc) return; // 🔹 `loc` 값이 없으면 실행하지 않음
+
+    if (!window.kakao) {
+      const script = document.createElement('script');
+      script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&libraries=services&autoload=false`;
+      script.async = true;
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        if (window.kakao && window.kakao.maps) {
+          window.kakao.maps.load(() => {
+            loadKakaoMap(loc); // ✅ `loc` 값이 있을 때만 실행
+          });
+        }
+      };
+    } else if (window.kakao && window.kakao.maps) {
+      loadKakaoMap(loc);
+    }
+  }, [loc]); // 🔹 `loc` 값이 변경될 때만 실행
+
+  /** ✅ 주소 → 좌표 변환 후 지도 생성 */
+  const loadKakaoMap = async (address: string) => {
+    if (window.kakao && window.kakao.maps) {
       const geocoder = new window.kakao.maps.services.Geocoder();
-
       geocoder.addressSearch(address, (result: any, status: any) => {
         if (status === window.kakao.maps.services.Status.OK) {
           const lat = parseFloat(result[0].y);
@@ -84,10 +132,10 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
           setPlaceId(result[0].place_url);
         }
       });
-    });
+    }
   };
 
-  /** 지도 생성 */
+  /** ✅ 지도 & 마커 생성 */
   const createMap = (lat: number, lng: number) => {
     const container = document.getElementById('map');
     if (!container) return;
@@ -107,54 +155,10 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
 
     window.kakao.maps.event.addListener(marker, 'click', function () {
       if (placeId) {
-        window.open(placeId, '_blank'); // 변환된 장소 ID로 카카오맵 열기
+        window.open(placeId, '_blank');
       }
     });
   };
-
-  /** 카카오 맵 스크립트 로드 */
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apikey}&libraries=services&autoload=false`;
-    script.async = true;
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
-
-        if (container) {
-          const options = {
-            center: new window.kakao.maps.LatLng(
-              37.55099593968109,
-              126.92401144435387
-            ),
-            level: 3,
-          };
-
-          const map = new window.kakao.maps.Map(container, options);
-
-          const markerPosition = new window.kakao.maps.LatLng(
-            37.55099593968109,
-            126.92401144435387
-          );
-
-          const marker = new window.kakao.maps.Marker({
-            position: markerPosition,
-            map: map,
-            draggable: true,
-          });
-
-          window.kakao.maps.event.addListener(marker, 'click', function () {
-            window.open('https://place.map.kakao.com/23696074', '_blank'); //위치 지도
-          });
-        }
-      });
-    };
-    return () => {
-      document.head.removeChild(script);
-    };
-  }, [apikey]);
 
   const copyUrl = () => {
     navigator.clipboard.writeText(nowUrl).then(() => {
@@ -261,8 +265,11 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
               <div className="flex flex-row items-start h-7 mb-9 pad:mb-12">
                 <p className="text-gray-90 w-[60px] pad:w-[67px]">일반 티켓</p>
                 <p className="text-primary-50 w-[58px] pad:w-[66px] ml-10 font-semibold">
-                  {ticketInfo?.general_price}원
+                  {ticketInfo?.general_price
+                    ? Number(ticketInfo.general_price).toLocaleString() + '원'
+                    : '무료'}
                 </p>
+
                 <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">
                   1인 최대 {ticketInfo?.general_max_purchase}매
                 </p>
@@ -270,7 +277,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             </div>
           </div>
           <Link
-            href={isDays ? '/ticket/search/' : '/video'} // 영상 링크 추가 필요
+            href={isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url}`} // 영상 링크 추가 필요
             className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium"
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}
@@ -310,7 +317,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         </div>
       </div>
       <div className="w-full h-[98px] bg-gray-0 bottom-0 z-40 left-0">
-        <DropdownMenu isDays={isDays} />
+        <DropdownMenu isDays={isDays} data={ticketInfo} />
         <div className="w-[100%] hidden pad:flex flex-row gap-[18px] mt-4 ">
           <button
             onClick={openModal}
@@ -331,7 +338,12 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         ) : (
           <RecommendedList id={ticketInfo?.id} />
         )}
-        <LocationModal isOpen={isModalOpen} onClose={closeModal} />
+        <LocationModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          address={loc}
+          mapLink={`https://map.kakao.com/link/search/${encodeURIComponent(loc)}`}
+        />
       </div>
     </>
   );
