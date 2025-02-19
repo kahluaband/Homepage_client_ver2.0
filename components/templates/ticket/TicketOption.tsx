@@ -15,19 +15,19 @@ const TicketOption: React.FC<TicketOptionProps> = ({ data, isDays }) => {
   const [general, setGeneral] = useState(true);
 
   const formatDateTimeSplit = (
-    isoString: string
+    isoString?: string
   ): { date: string; time: string } => {
+    if (!isoString) return { date: '', time: '' };
     const date = new Date(isoString);
+    if (isNaN(date.getTime())) return { date: '', time: '' };
 
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
     const day = date.getDate();
-
     const dateString = `${year}년 ${month}월 ${day}일`;
 
     const hours = date.getHours();
     const minutes = date.getMinutes();
-
     const timeString = `${hours}시 ${minutes.toString().padStart(2, '0')}분`;
 
     return { date: dateString, time: timeString };
@@ -65,7 +65,9 @@ const TicketOption: React.FC<TicketOptionProps> = ({ data, isDays }) => {
           </div>
           <div className="h-[280px] flex flex-shrink-0 rounded-bl-xl border-r border-gray-15 bg-gray-5 justify-center">
             <OptionBox
-              option={formatDateTimeSplit(data?.date_time).date}
+              option={
+                data?.date_time ? formatDateTimeSplit(data.date_time).date : ''
+              }
               isDays={isDays}
             />
           </div>
@@ -80,7 +82,9 @@ const TicketOption: React.FC<TicketOptionProps> = ({ data, isDays }) => {
           </div>
           <div className="h-[280px] flex flex-shrink-0 rounded-bl-[12px] border-r border-gray-15 bg-gray-5 justify-center">
             <OptionBox
-              option={formatDateTimeSplit(data?.date_time).time}
+              option={
+                data?.date_time ? formatDateTimeSplit(data.date_time).time : ''
+              }
               isDays={isDays}
             />
           </div>

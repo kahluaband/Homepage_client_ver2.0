@@ -22,8 +22,8 @@ const WidePlaylistItem = ({ show }: { show: Show }) => {
         {/* 이미지 */}
         {/* <Link href={show.link}> */}
         <Image
-          // src={show.posterUrl}
-          src="/image/ticket/Poster_202503.avif"
+          src={show.posterUrl}
+          // src="/image/ticket/Poster_202503.avif"
           alt={show.title}
           layout="fill"
           objectFit="cover"

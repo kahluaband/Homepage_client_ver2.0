@@ -42,7 +42,6 @@ const Page = () => {
       const response = await axiosInstance.get(`/performances/${ticketId}`);
       if (response.data.isSuccess) {
         setTicketInfo(response.data.result.ticketInfoResponse);
-        console.log(ticketInfo);
 
         setIsDays(response.data.result.status === 'OPEN');
         setIsDays(false); // 임시
@@ -148,6 +147,7 @@ const Page = () => {
     });
   };
   const formatDateTime = (isoString: string): string => {
+    if (!isoString) return '';
     const date = new Date(isoString);
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -216,7 +216,7 @@ const Page = () => {
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
             <p className="text-gray-40 w-7 pad:w-8">일시</p>
             <p className="text-gray-90 ">
-              {formatDateTime(ticketInfo?.date_time)}
+              {formatDateTime(ticketInfo?.date_time) || ''}
             </p>
           </div>
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal">

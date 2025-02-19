@@ -54,8 +54,8 @@ const DesktopTicketList = ({
           )}
           <div className="relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
             <Image
-              // src={show.posterUrl}
-              src="/image/ticket/Poster_202503.avif"
+              src={show.posterUrl}
+              // src="/image/ticket/Poster_202503.avif"
               alt={show.title}
               layout="fill"
               objectFit="cover"
