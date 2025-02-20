@@ -9,7 +9,7 @@ const MainContainer = () => {
           PERFORMANCE
         </h1>
         <p className="font-pretendard text-xl pad:text-2xl font-semibold text-gray-0">
-          깔루의 공연을 즐겨보세요
+          깔루아의 공연을 즐겨보세요
         </p>
       </div>
       <TicektList />
