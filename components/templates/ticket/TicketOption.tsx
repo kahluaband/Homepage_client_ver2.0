@@ -127,8 +127,8 @@ const TicketOption: React.FC<TicketOptionProps> = ({ data, isDays }) => {
         <Link
           href={
             freshman === true
-              ? 'ticket/freshman_ticket/'
-              : 'ticket/general_ticket/'
+              ? '/ticket/freshman_ticket/'
+              : '/ticket/general_ticket/'
           }
           className={`mt-[24px] w-[280px] h-[60px] flex flex-shrink-0 text-center justify-center items-center ml-auto rounded-xl text-[18px] font-medium 
       ${isDays ? '' : 'cursor-default'}

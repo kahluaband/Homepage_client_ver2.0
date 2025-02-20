@@ -7,6 +7,7 @@ import Bar from '@/components/ui/Bar';
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
 import RecommendedList from '@/components/ticket/RecommendedList';
 import { axiosInstance } from '@/api/auth/axios';
+import defaultPoster from '@/public/image/ticket/DefaultPoster.svg';
 import dayjs from 'dayjs';
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
@@ -44,8 +45,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         const isDaysAvailable =
           now.isAfter(bookingStart) && now.isBefore(bookingEnd);
 
-        // setLoc(rawData?.address);
-        setLoc('서울 마포구 와우산로18길 20 지하 1층');
+        setLoc(rawData?.address);
         setTicketInfo({
           ...rawData,
           dateForMinute: dayjs(rawData.date_time).format('YYYY-MM-DD HH:mm'),
@@ -59,7 +59,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             ? `${rawData.general_price}원`
             : '5,000원',
         });
-        setIsDays(!isDaysAvailable);
+        setIsDays(isDaysAvailable);
       }
     } catch (error) {
       console.error('티켓 상세 정보 불러오는 중 오류 발생:', error);
@@ -203,7 +203,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
     <>
       <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         <Image
-          src="/image/ticket/Poster_202503.avif"
+          src={ticketInfo?.poster_image_url || defaultPoster}
           alt="포스터사진"
           width={833}
           height={376}
@@ -277,7 +277,15 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             </div>
           </div>
           <Link
-            href={isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url}`} // 영상 링크 추가 필요
+            href={
+              isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url ?? '#'}`
+            }
+            onClick={(e) => {
+              if (!isDays && !ticketInfo?.youtube_url) {
+                e.preventDefault();
+                alert('⚠️ 공연 영상이 존재하지 않습니다.');
+              }
+            }}
             className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium"
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}
@@ -291,7 +299,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             공연장 위치
           </p>
           <div className="flex flex-row gap-3 mt-1">
-            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-center w-[194px] pad:w-[294px] whitespace-nowrap truncate">
+            <p className="text-[16px] pad:text-[20px] font-medium leading-[30px] text-gray-90 text-left w-[194px] pad:w-[294px] whitespace-nowrap truncate">
               {loc}
             </p>
             <div
@@ -326,7 +334,15 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             공연장 위치 ↗
           </button>
           <Link
-            href={isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url}`} // 영상 링크 추가 필요
+            href={
+              isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url ?? '#'}`
+            }
+            onClick={(e) => {
+              if (!isDays && !ticketInfo?.youtube_url) {
+                e.preventDefault();
+                alert('⚠️ 공연 영상이 존재하지 않습니다.');
+              }
+            }}
             className="w-[376px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-primary-50 rounded-xl text-[18px] font-medium"
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}

@@ -7,14 +7,14 @@ interface Show {
   link: string;
   content: string;
   youtube_url: string;
-  status?: boolean;
+  status?: string;
 }
 
 const WidePlaylistItem = ({ show, id }: { show: Show; id: string }) => {
   return (
     <div className="flex flex-row overflow-hidden cursor-pointer gap-[14px] w-[344px] h-[184px] rounded-[10px] border-[0.5px] border-black">
       <div className="relative w-[128px] h-[184px] overflow-hidden rounded-[10px]">
-        {show.status && (
+        {show.status === 'OPEN' && (
           <div className="flex items-center justify-center rounded-[20px] z-30 text-center absolute top-[5px] left-[5px] w-[42px] h-[23px] bg-primary-40 text-gray-0 text-xs font-medium rounded-5">
             공연중
           </div>

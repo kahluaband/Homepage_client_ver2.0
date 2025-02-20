@@ -46,19 +46,18 @@ const DesktopTicketList = ({
   }
 
   return (
-    <div className="items-center mt-[21px] grid dt:grid-cols-6 pad:grid-cols-4 ph:grid-cols-1 gap-[17px]">
+    <div className="mt-[21px] grid dt:grid-cols-6 pad:grid-cols-4 ph:grid-cols-1 gap-[17px]">
       {shuffledTickets.slice(0, visibleCount).map((show) => (
-        <div key={show.ticketInfoId} className="relative block w-[184px]">
-          {show.isLive && (
+        <div key={show.ticketInfoId} className="relative w-[184px] block">
+          {show.status === 'OPEN' && (
             <div className="flex items-center justify-center rounded-[20px] z-30 text-center absolute top-[15px] left-[13px] w-[42px] h-[23px] bg-primary-40 text-gray-0 text-xs font-medium rounded-5">
               공연중
             </div>
           )}
-          <div className="relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
+          <div className="flex items-start relative w-[184px] h-[257px] rounded-lg overflow-hidden cursor-pointer">
             <Link href={`/ticket/${show.ticketInfoId}`}>
               <Image
                 src={show.posterUrl}
-                // src="/image/ticket/Poster_202503.avif"
                 alt={show.title}
                 layout="fill"
                 objectFit="cover"
