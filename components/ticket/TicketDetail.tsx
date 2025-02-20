@@ -286,7 +286,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
                 alert('⚠️ 공연 영상이 존재하지 않습니다.');
               }
             }}
-            className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 dt:text-gray-0 bg-gray-5 dt:bg-primary-50 rounded-xl text-[18px] font-medium"
+            className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 ph:text-gray-0 bg-gray-5 ph:bg-primary-50 rounded-xl text-[18px] font-medium"
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}
           </Link>
@@ -294,7 +294,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         <div className="z-20 bg-gray-0 h-[40px] w-[100vw] flex pad:hidden items-center" />
         <div className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto" />
         <div className="z-20 bg-gray-0 h-[24px] w-[100vw] flex pad:hidden items-center" />
-        <div className="hidden min-[833px]:flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] h-[282px] pad:mt-[78px] pad:h-full mx-auto">
+        <div className="hidden ph:flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] h-[282px] pad:mt-[78px] pad:h-full mx-auto">
           <p className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-primary-50 h-[27px]">
             공연장 위치
           </p>
