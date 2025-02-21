@@ -108,13 +108,14 @@ const TicektList = () => {
           key={performance.ticketInfoId}
           className="hidden max-[833px]:block w-full"
         >
-          <WidePlaylistItem show={performance} />
+          <WidePlaylistItem
+            show={performance}
+            id={String(performance.ticketInfoId)}
+          />
         </div>
       ))}
 
       <div ref={observerRef} className="w-full h-10" />
-
-      {isLoading && <p className="text-center text-gray-500">불러오는 중...</p>}
     </div>
   );
 };
