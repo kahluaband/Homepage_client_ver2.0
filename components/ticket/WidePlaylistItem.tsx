@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface Performance {
-  ticketInfoId: number;
+interface Show {
   title: string;
   posterUrl: string;
   link: string;

@@ -10,6 +10,8 @@ interface Performance {
   content: string;
   posterUrl: string;
   status: 'OPEN' | 'CLOSED';
+  youtube_url: string;
+  link: string;
 }
 
 const TicektList = () => {
