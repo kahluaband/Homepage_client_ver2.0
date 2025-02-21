@@ -36,7 +36,6 @@ const DesktopTicketList = ({
       (show) => show.ticketInfoId !== currentId
     );
     const randomizedTickets = shuffleArray(filteredTickets);
-    console.log(randomizedTickets);
 
     setShuffledTickets(randomizedTickets);
   }, [tickets, currentId]);

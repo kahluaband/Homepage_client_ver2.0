@@ -17,7 +17,6 @@ const MobileTicketList = ({
       (show) => show.ticketInfoId !== currentId
     );
     const randomizedTickets = shuffleArray(filteredTickets);
-
     setShuffledTickets(randomizedTickets);
   }, [tickets, currentId]);
 

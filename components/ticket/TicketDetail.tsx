@@ -33,6 +33,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
   const [longitude, setLongitude] = useState<number | null>(null);
   const [placeId, setPlaceId] = useState<string | null>(null);
   const [loc, setLoc] = useState('');
+  const [statusText, setStatusText] = useState<string>('예매 마감');
 
   const getTicketDetail = async (id: string) => {
     try {
@@ -42,8 +43,17 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         const bookingStart = dayjs(rawData.booking_start_date);
         const bookingEnd = dayjs(rawData.booking_end_date);
         const now = dayjs();
-        const isDaysAvailable =
-          now.isAfter(bookingStart) && now.isBefore(bookingEnd);
+        const daysBeforeStart = bookingStart.diff(now, 'day');
+
+        let isAvailable = false;
+        let status = '예매 마감';
+
+        if (now.isBefore(bookingStart)) {
+          status = `오픈 D-${daysBeforeStart}`;
+        } else if (now.isAfter(bookingStart) && now.isBefore(bookingEnd)) {
+          isAvailable = true;
+          status = '예매 가능';
+        }
 
         setLoc(rawData?.address);
         setTicketInfo({
@@ -59,7 +69,8 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
             ? `${rawData.general_price}원`
             : '5,000원',
         });
-        setIsDays(isDaysAvailable);
+        setIsDays(isAvailable);
+        setStatusText(status);
       }
     } catch (error) {
       console.error('티켓 상세 정보 불러오는 중 오류 발생:', error);
@@ -95,9 +106,8 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDays]);
 
-  /** ✅ 카카오 맵 스크립트 한 번만 로드 */
   useEffect(() => {
-    if (!loc) return; // 🔹 `loc` 값이 없으면 실행하지 않음
+    if (!loc) return;
 
     if (!window.kakao) {
       const script = document.createElement('script');
@@ -108,16 +118,15 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
       script.onload = () => {
         if (window.kakao && window.kakao.maps) {
           window.kakao.maps.load(() => {
-            loadKakaoMap(loc); // ✅ `loc` 값이 있을 때만 실행
+            loadKakaoMap(loc);
           });
         }
       };
     } else if (window.kakao && window.kakao.maps) {
       loadKakaoMap(loc);
     }
-  }, [loc]); // 🔹 `loc` 값이 변경될 때만 실행
+  }, [loc]);
 
-  /** ✅ 주소 → 좌표 변환 후 지도 생성 */
   const loadKakaoMap = async (address: string) => {
     if (window.kakao && window.kakao.maps) {
       const geocoder = new window.kakao.maps.services.Geocoder();
@@ -135,7 +144,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
     }
   };
 
-  /** ✅ 지도 & 마커 생성 */
+  /* 지도 & 마커 생성 */
   const createMap = (lat: number, lng: number) => {
     const container = document.getElementById('map');
     if (!container) return;
@@ -216,10 +225,10 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
         />
         <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           <div
-            className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 w-[84px] h-8 text-[16px]
+            className={`inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3  text-[16px] max-w-max
           ${isDays ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-50'}`}
           >
-            {isDays ? '예매 가능' : '예매 마감'}
+            {statusText}
           </div>
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row">
             <p className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 text-gray-90 font-semibold leading-9 text-[20px] pad:text-[24px] whitespace-nowrap">
@@ -270,7 +279,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
                     : '무료'}
                 </p>
 
-                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center w-[70px]">
+                <p className="text-gray-40 text-[14px] font-normal ml-2 flex justify-center">
                   1인 최대 {ticketInfo?.general_max_purchase}매
                 </p>
               </div>
@@ -281,12 +290,20 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
               isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url ?? '#'}`
             }
             onClick={(e) => {
-              if (!isDays && !ticketInfo?.youtube_url) {
+              if (
+                !isDays &&
+                !ticketInfo?.youtube_url &&
+                !dayjs().isBefore(dayjs(ticketInfo?.date_time))
+              ) {
                 e.preventDefault();
-                alert('⚠️ 공연 영상이 존재하지 않습니다.');
+                alert('공연 영상이 존재하지 않습니다.');
               }
             }}
-            className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center text-gray-60 ph:text-gray-0 bg-gray-5 ph:bg-primary-50 rounded-xl text-[18px] font-medium"
+            className={`max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center rounded-xl text-[18px] font-medium   ${
+              !isDays && dayjs().isBefore(dayjs(ticketInfo?.date_time))
+                ? 'bg-gray-5 text-gray-60 cursor-not-allowed'
+                : 'bg-gray-5 ph:bg-primary-50 text-gray-60 ph:text-gray-0'
+            }`}
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}
           </Link>
@@ -338,12 +355,20 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
               isDays ? '/ticket/search/' : `${ticketInfo?.youtube_url ?? '#'}`
             }
             onClick={(e) => {
-              if (!isDays && !ticketInfo?.youtube_url) {
+              if (
+                !isDays &&
+                !ticketInfo?.youtube_url &&
+                !dayjs().isBefore(dayjs(ticketInfo?.date_time))
+              ) {
                 e.preventDefault();
-                alert('⚠️ 공연 영상이 존재하지 않습니다.');
+                alert('공연 영상이 존재하지 않습니다.');
               }
             }}
-            className="w-[376px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center text-gray-0 bg-primary-50 rounded-xl text-[18px] font-medium"
+            className={`w-[376px] h-[60px] flex dt:hidden flex-shrink-0 text-center items-center justify-center rounded-xl text-[18px] font-medium ${
+              !isDays && dayjs().isBefore(dayjs(ticketInfo?.date_time))
+                ? 'bg-gray-5 text-gray-60 cursor-not-allowed'
+                : ' bg-primary-50 text-gray-0'
+            }`}
           >
             {isDays ? '예매 조회/취소' : '공연영상 보러가기'}
           </Link>

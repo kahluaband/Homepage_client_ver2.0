@@ -11,7 +11,9 @@ const RecommendedList = ({ id }: { id: number }) => {
 
   const getTicketLists = async () => {
     try {
-      const response = await axiosInstance.get('/performances');
+      const response = await axiosInstance.get('/performances', {
+        params: { limit: 100 },
+      });
       if (response.data.isSuccess) {
         setTicketList(response.data.result.performances);
       }
