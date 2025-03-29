@@ -23,10 +23,21 @@ interface TicketProps {
   members: TicketMemberProps[] | null;
 }
 
-const MobileTicketLists = ({ type }: { type: string }) => {
-  const [tickets, setTickets] = useState<TicketProps[]>([]);
+const MobileTicketLists = ({
+  ticketData,
+  ticketState,
+  handleChange,
+  handleSelectedState,
+}: {
+  ticketData: TicketProps[];
+  ticketState: Record<number, string>;
+  handleChange: (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    ticketId: number
+  ) => void;
+  handleSelectedState: (ticketId: number) => void;
+}) => {
   const [openCardIds, setOpenCardIds] = useState<number[]>([]);
-  const [ticketState, setTicketState] = useState<Record<number, string>>({});
   const router = useRouter();
 
   const formatPhoneNumber = (raw: string) => {
@@ -37,25 +48,6 @@ const MobileTicketLists = ({ type }: { type: string }) => {
       return `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6)}`;
     } else {
       return raw;
-    }
-  };
-
-  const fetchTickets = async () => {
-    try {
-      let response;
-      if (type === '신입생') {
-        response = await authInstance.get('/admin/tickets/freshman');
-      } else if (type === '일반') {
-        response = await authInstance.get('/admin/tickets/general');
-      } else {
-        response = await authInstance.get('/admin/tickets');
-      }
-      setTickets(response.data.result.tickets);
-    } catch (error: any) {
-      if (error.response?.status === 401) {
-        alert('로그인이 필요합니다.');
-        router.push('/login');
-      }
     }
   };
 
@@ -71,38 +63,9 @@ const MobileTicketLists = ({ type }: { type: string }) => {
     );
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    ticketId: number
-  ) => {
-    setTicketState((prev) => ({ ...prev, [ticketId]: e.target.value }));
-  };
-
-  const handleSelectedState = async (ticketId: number) => {
-    const status = ticketState[ticketId];
-    if (!status) return;
-
-    try {
-      if (status === '결제 완료') {
-        await authInstance.patch(`/admin/tickets/${ticketId}/ticket-complete`);
-      } else if (status === '예매 취소') {
-        await authInstance.patch(`/admin/tickets/${ticketId}/cancel-complete`);
-      }
-      alert('상태가 변경되었습니다.');
-      fetchTickets(); // 새로고침
-    } catch (error) {
-      alert('상태 변경 실패');
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTickets();
-  }, [type]);
-
   return (
     <div className="flex flex-col mt-4 w-full max-w-[500px]">
-      {tickets.map((ticket) => (
+      {ticketData.map((ticket) => (
         <div
           key={ticket.id}
           className="w-full flex flex-col px-4 py-5 gap-3 border-t-[1px] border-gray-5"
@@ -194,10 +157,9 @@ const MobileTicketLists = ({ type }: { type: string }) => {
                 <select
                   className="border-solid border-danger-10 border-[1px] rounded-xl px-2 py-4 cursor-pointer"
                   onChange={(e) => handleChange(e, ticket.id)}
+                  value={ticketState[ticket.id] || '결제 대기'}
                 >
-                  <option value="결제 대기" autoFocus>
-                    결제 대기
-                  </option>
+                  <option value="결제 대기">결제 대기</option>
                   <option value="결제 완료">결제 완료</option>
                   <option value="예매 취소">예매 취소</option>
                 </select>

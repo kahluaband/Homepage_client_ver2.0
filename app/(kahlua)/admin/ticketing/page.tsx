@@ -1,8 +1,7 @@
 'use client';
 import { authInstance } from '@/api/auth/axios';
 import { totalTicket } from '@/atoms';
-import MobileTicketLists from '@/components/admin/ticketing/MobileTicketLists';
-import TicketLists from '@/components/admin/ticketing/TicketLists';
+import TicketInfoSection from '@/components/admin/ticketing/TicketInfoSection';
 import { information } from '@/components/data/Information';
 import PublishIcon from '@mui/icons-material/Publish';
 import WestIcon from '@mui/icons-material/West';
@@ -85,42 +84,9 @@ const page = () => {
             </section>
           </div>
         </div>
-
-        {/* 데이터 섹션 */}
-        <section className="w-full h-full flex flex-col items-center">
-          {/* 💻 데스크탑 / 태블릿 UI */}
-          <div className="max-[833px]:hidden flex flex-col items-center justify-center dt:w-[1200px] pad:w-[786px] overflow-x-auto">
-            {/* 테이블 헤더 */}
-            <div className="w-full h-[51px] gap-3 bg-gray-90 rounded-t-3xl mt-8 font-pretendard flex justify-between items-center pl-5 pr-11">
-              <div className="min-w-[100px] text-center text-base pad:text-lg font-medium text-gray-0">
-                상태
-              </div>
-              <div className="min-w-[160px] text-center text-base pad:text-lg font-medium text-gray-0">
-                예매 번호
-              </div>
-              <div className="min-w-[100px] text-center text-base pad:text-lg font-medium text-gray-0">
-                이름
-              </div>
-              <div className="min-w-[140px] text-center text-base pad:text-lg font-medium text-gray-0">
-                전화번호
-              </div>
-              <div className="min-w-[100px] text-center text-base pad:text-lg font-medium text-gray-0">
-                매수
-              </div>
-            </div>
-
-            {/* 리스트 */}
-            <div className="w-full">
-              <TicketLists type={type} />
-            </div>
-          </div>
-
-          {/* 📱 모바일 UI */}
-          <div className="min-[834px]:hidden w-full flex items-center justify-center">
-            <MobileTicketLists type={type} />
-          </div>
-        </section>
       </div>
+
+      <TicketInfoSection type={type} />
 
       {/* admin 홈으로 Button */}
       <div className="flex h-auto mx-auto w-full px-4 pad:px-8 dt:px-[120px]">

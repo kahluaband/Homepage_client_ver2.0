@@ -49,71 +49,28 @@ interface TicketMemberProps {
   phone_num: string;
 }
 
-const TicketLists = ({ type }: { type: string }) => {
+const TicketLists = ({
+  type,
+  ticketData,
+  ticketState,
+  handleSelectedState,
+  handleChange,
+}: {
+  type: string;
+  ticketData: TicketProps[];
+  ticketState: Record<number, string>;
+  handleSelectedState: (ticketId: number) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLSelectElement>,
+    ticketId: number
+  ) => void;
+}) => {
   const router = useRouter();
-  const [allTicketList, setAllTicketList] = useState<TicketProps[]>([]);
-  const [generallTicketList, setGeneralTicketList] = useState<TicketProps[]>(
-    []
-  );
-  const [freshmanTicketList, setFreshmanTicketList] = useState<TicketProps[]>(
-    []
-  );
-  const ticketList =
-    type === '신입생'
-      ? freshmanTicketList
-      : type === '일반'
-        ? generallTicketList
-        : allTicketList;
 
   const [total, setTotal] = useRecoilState(totalTicket);
   const [members, setMembers] = useState<TicketMemberProps[][]>([]);
 
-  const [ticketState, setTicketState] = useState<Record<number, string>>({});
-
-  const getAllTicketList = async () => {
-    try {
-      const response = await authInstance.get('/admin/tickets');
-      setAllTicketList(response.data.result.tickets);
-      setTotal(response.data.result.total);
-
-      const newMembers = response.data.result.tickets.map(
-        (ticket: TicketProps) => ticket.members || []
-      );
-      setMembers(newMembers);
-    } catch (error: any) {
-      if (error.response.status === 401) {
-        alert('로그인이 필요합니다.');
-        router.push('/login');
-      }
-    }
-  };
-
-  const copyReservationId = (reservation_id: string) => {
-    navigator.clipboard.writeText(reservation_id).then(() => {
-      alert('예매번호가 복사되었습니다!');
-    });
-  };
-
-  const copyPhoneNum = (phone_num: string) => {
-    navigator.clipboard.writeText(phone_num).then(() => {
-      alert('전화번호가 복사되었습니다!');
-    });
-  };
-
-  const getGeneralTicketList = async () => {
-    try {
-      const response = await authInstance.get('/admin/tickets/general');
-      setGeneralTicketList(response.data.result.tickets);
-    } catch (error: any) {}
-  };
-
-  const getFreshmanTicketList = async () => {
-    try {
-      const response = await authInstance.get('/admin/tickets/freshman');
-      setFreshmanTicketList(response.data.result.tickets);
-    } catch (error: any) {}
-  };
-
+  // 티켓 상태 변경
   const handleTicketStatus = async (ticketId: number, status: string) => {
     if (status === '결제 완료') {
       try {
@@ -136,34 +93,21 @@ const TicketLists = ({ type }: { type: string }) => {
     }
   };
 
-  const handleSelectedState = async (ticketId: number) => {
-    const status = ticketState[ticketId];
-    if (status) {
-      await handleTicketStatus(ticketId, status);
-      window.location.reload();
-    }
+  const copyReservationId = (reservation_id: string) => {
+    navigator.clipboard.writeText(reservation_id).then(() => {
+      alert('예매번호가 복사되었습니다!');
+    });
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    ticketId: number
-  ) => {
-    setTicketState((prev) => ({ ...prev, [ticketId]: e.target.value }));
+  const copyPhoneNum = (phone_num: string) => {
+    navigator.clipboard.writeText(phone_num).then(() => {
+      alert('전화번호가 복사되었습니다!');
+    });
   };
-
-  useEffect(() => {
-    if (type === '신입생') {
-      getFreshmanTicketList();
-    } else if (type === '일반') {
-      getGeneralTicketList();
-    } else {
-      getAllTicketList();
-    }
-  }, [type]);
 
   return (
     <ThemeProvider theme={theme}>
-      {ticketList.map((ticket, index) => (
+      {ticketData.map((ticket, index) => (
         <Accordion key={ticket.id}>
           <div className="flex">
             <AccordionSummary
@@ -172,7 +116,7 @@ const TicketLists = ({ type }: { type: string }) => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <div className="w-full flex items-center justify-between  flex-wrap">
+              <div className="w-full flex items-center justify-between flex-wrap">
                 {ticket.status === 'FINISH_PAYMENT' ? (
                   <Typography
                     component="div"
@@ -259,8 +203,8 @@ const TicketLists = ({ type }: { type: string }) => {
           </div>
           <AccordionDetails>
             <Typography component="div">
-              {members[index] &&
-                members[index].map((member) => (
+              {ticket.members &&
+                ticket.members.map((member) => (
                   <div key={member.id} className="flex items-center pb-3 gap-4">
                     <div className="font-pretendard text-gray-20 text-base">
                       동반인
@@ -295,10 +239,9 @@ const TicketLists = ({ type }: { type: string }) => {
               <select
                 className="border-solid border-danger-10 border-[1px] rounded-xl px-2 py-4 cursor-pointer"
                 onChange={(e) => handleChange(e, ticket.id)}
+                value={ticketState[ticket.id] || '결제 대기'}
               >
-                <option value="결제 대기" autoFocus>
-                  결제 대기
-                </option>
+                <option value="결제 대기">결제 대기</option>
                 <option value="결제 완료">결제 완료</option>
                 <option value="예매 취소">예매 취소</option>
               </select>
