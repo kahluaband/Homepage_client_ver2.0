@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ReactElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { totalTicket } from '@/atoms';
 import { useRouter } from 'next/navigation';
@@ -165,91 +165,98 @@ const TicketLists = ({ type }: { type: string }) => {
     <ThemeProvider theme={theme}>
       {ticketList.map((ticket, index) => (
         <Accordion key={ticket.id}>
-          <AccordionSummary
-            className="w-[1200px] border-solid border-gray-10 border-b-2 p-0 pr-6"
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
-          >
-            {ticket.status === 'FINISH_PAYMENT' ? (
-              <Typography
-                component="div"
-                className="min-w-[100px] text-center text-base font-medium text-primary-50"
-              >
-                결제 완료
-              </Typography>
-            ) : ticket.status === 'WAIT' ? (
-              <Typography
-                component="div"
-                className="min-w-[100px] text-center text-base font-medium text-gray-30"
-              >
-                결제 대기
-              </Typography>
-            ) : ticket.status === 'CANCEL_REQUEST' ? (
-              <Typography
-                component="div"
-                className="min-w-[100px] text-center text-base font-medium text-danger-40"
-              >
-                취소 요청
-              </Typography>
-            ) : ticket.status === 'CANCEL_COMPLETE' ? (
-              <Typography
-                component="div"
-                className="min-w-[100px] text-center text-base font-medium text-gray-30"
-              >
-                예매 취소
-              </Typography>
-            ) : null}
-
-            <Typography
-              component="div"
-              className="min-w-[160px] text-center text-base font-medium text-gray-60"
+          <div className="flex">
+            <AccordionSummary
+              className="dt:w-[1200px] pad:w-[786px] max-pad:max-w-[500px] max-pad:px-4 border-solid border-gray-10 border-b-2 px-5 flex-1"
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
             >
-              {ticket.reservation_id}
-            </Typography>
-            <div
-              onClick={() => copyReservationId(ticket.reservation_id)}
-              className="flex items-center justify-start cursor-pointer"
-            >
-              <Image
-                src="/image/ticket/copy.svg"
-                width={20}
-                height={20}
-                alt="copy"
-                className="w-4 h-4 pad:w-5 pad:h-5"
-              />
-            </div>
-            <Typography
-              component="div"
-              className="min-w-[160px] text-center text-base font-medium text-gray-60"
-            >
-              {ticket.buyer}
-            </Typography>
-            <Typography
-              component="div"
-              className="min-w-[140px] text-center text-base font-medium text-gray-60"
-            >
-              {ticket.phone_num}
-            </Typography>
-            <div
-              onClick={() => copyPhoneNum(ticket.phone_num)}
-              className="flex items-center justify-start cursor-pointer"
-            >
-              <Image
-                src="/image/ticket/copy.svg"
-                width={20}
-                height={20}
-                alt="copy"
-                className="w-4 h-4 pad:w-5 pad:h-5"
-              />
-            </div>
-            <Typography
-              component="div"
-              className="min-w-[140px] text-center text-base font-medium text-gray-60"
-            >
-              {ticket.total_ticket}장
-            </Typography>
-          </AccordionSummary>
+              <div className="w-full flex items-center justify-between  flex-wrap">
+                {ticket.status === 'FINISH_PAYMENT' ? (
+                  <Typography
+                    component="div"
+                    className="min-w-[100px] text-center text-base font-medium text-primary-50"
+                  >
+                    결제 완료
+                  </Typography>
+                ) : ticket.status === 'WAIT' ? (
+                  <Typography
+                    component="div"
+                    className="min-w-[100px] text-center text-base font-medium text-gray-30"
+                  >
+                    결제 대기
+                  </Typography>
+                ) : ticket.status === 'CANCEL_REQUEST' ? (
+                  <Typography
+                    component="div"
+                    className="min-w-[100px] text-center text-base font-medium text-danger-40"
+                  >
+                    취소 요청
+                  </Typography>
+                ) : ticket.status === 'CANCEL_COMPLETE' ? (
+                  <Typography
+                    component="div"
+                    className="min-w-[100px] text-center text-base font-medium text-gray-30"
+                  >
+                    예매 취소
+                  </Typography>
+                ) : null}
+                <div className="flex">
+                  <Typography
+                    component="div"
+                    className="min-w-[160px] text-center text-base font-medium text-gray-60"
+                  >
+                    {ticket.reservation_id}
+                  </Typography>
+                  <div
+                    onClick={() => copyReservationId(ticket.reservation_id)}
+                    className="flex items-center justify-start cursor-pointer"
+                  >
+                    <Image
+                      src="/image/ticket/copy.svg"
+                      width={20}
+                      height={20}
+                      alt="copy"
+                      className="w-4 h-4 pad:w-5 pad:h-5"
+                    />
+                  </div>
+                </div>
+                <Typography
+                  component="div"
+                  className="min-w-[100px] text-center text-base font-medium text-gray-60"
+                >
+                  {ticket.buyer}
+                </Typography>
+                <div className="flex">
+                  <Typography
+                    component="div"
+                    className="min-w-[140px] text-center text-base font-medium text-gray-60"
+                  >
+                    {ticket.phone_num}
+                  </Typography>
+                  <div
+                    onClick={() => copyPhoneNum(ticket.phone_num)}
+                    className="flex items-center justify-start cursor-pointer"
+                  >
+                    <Image
+                      src="/image/ticket/copy.svg"
+                      width={20}
+                      height={20}
+                      alt="copy"
+                      className="w-4 h-4 pad:w-5 pad:h-5"
+                    />
+                  </div>
+                </div>
+                <Typography
+                  component="div"
+                  className="min-w-[100px] text-center text-base font-medium text-gray-60"
+                >
+                  {ticket.total_ticket}장
+                </Typography>
+              </div>
+            </AccordionSummary>
+          </div>
           <AccordionDetails>
             <Typography component="div">
               {members[index] &&
