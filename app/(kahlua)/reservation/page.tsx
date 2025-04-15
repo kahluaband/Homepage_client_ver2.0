@@ -125,6 +125,12 @@ const page = () => {
       ...prev,
       [key]: value,
     }));
+
+    // 날짜가 변경될 때 예약 목록 초기화
+    if (key === 'reservationDate') {
+      setReservationsForDate([]); // 예약 목록 초기화
+      fetchReservationsForDate(value);
+    }
   };
 
   // 날짜별 예약 내역 조회 (http 요청)
@@ -198,9 +204,6 @@ const page = () => {
       <CalendarUI
         onChange={(key, value) => {
           handleChange(key, value);
-          if (key === 'reservationDate') {
-            fetchReservationsForDate(value);
-          }
         }}
       />
       <TimeTable
