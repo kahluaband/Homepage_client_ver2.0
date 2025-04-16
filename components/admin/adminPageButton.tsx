@@ -10,7 +10,7 @@ interface urlProps {
 
 const AdminPageButton: React.FC<urlProps> = ({ name, url }) => {
   return (
-    <div>
+    <div className="w-full">
       <div
         className={`flex flex-row w-full py-[20px] pl-[40px] pr-[16px] text-gray-0 bg-gray-80 justify-center items-center h-[76px] ${
           name === '지원 현황' || name === '공연 예매 현황'
