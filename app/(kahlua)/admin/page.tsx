@@ -29,7 +29,7 @@ const page = () => {
       <Header />
 
       {/* PC 레이아웃 (≥1500px) */}
-      <div className="hidden min-[1500px]:grid grid-cols-2 gap-4 w-full pad:w-[786px] dt:w-[1200px] mt-6 pad:mt-10">
+      <div className="hidden min-[1500px]:grid grid-cols-2 gap-10 w-full pad:w-[786px] dt:w-[1200px] mt-6 pad:mt-10">
         <div className="flex flex-col gap-7">
           {LEFT_COLUMN_ITEMS.map(({ name, url }) => (
             <AdminPageButton key={name} name={name} url={url} />
