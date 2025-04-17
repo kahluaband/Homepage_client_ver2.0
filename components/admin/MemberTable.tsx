@@ -4,7 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { Portal } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const MemberTable = () => {
+const MemberTable = ({
+  isWaiting,
+  searchQuery,
+}: {
+  isWaiting: boolean;
+  searchQuery: string;
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
   const [members, setMembers] = useState([
@@ -75,6 +81,9 @@ const MemberTable = () => {
   ]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const filteredMembers = members
+    .filter((member) => (isWaiting ? member.status === '대기' : true))
+    .filter((member) => member.name.includes(searchQuery));
 
   const toggleDropdown = (
     index: number,
@@ -123,7 +132,7 @@ const MemberTable = () => {
   }, [openIndex]);
 
   return (
-    <div className="w-full h-[535px]">
+    <div className="w-full h-[595px]">
       <div className="w-full h-[74px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center pl-10 pr-[52px] shrink-0 gap-20 justify-center">
         <div className="min-w-[100px] text-center text-2xl max-pad:text-sm font-semibold text-gray-0">
           기수
@@ -146,7 +155,7 @@ const MemberTable = () => {
       </div>
       <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[519px]">
         <div className="overflow-y-auto h-full w-full pr-2 table-scrollbar">
-          {members.map((member, index) => (
+          {filteredMembers.map((member, index) => (
             <div
               key={index}
               className={`w-full px-10 py-4 flex items-center relative gap-20 justify-center
