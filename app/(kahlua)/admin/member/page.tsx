@@ -16,7 +16,7 @@ const MemberPage = () => {
   return (
     <div className="w-full h-auto min-h-[calc(100vh-390px)] flex flex-col mt-16 text-black font-pretendard items-center">
       <Header subtitle="깔루아 멤버 정보 관리" />
-      <div className="flex flex-col h-auto min-[1500px]:w-[1200px] min-[864px]:w-[777px] max-pad:w-[328px] mt-[134px]">
+      <div className="flex flex-col h-auto min-[1500px]:w-[1200px] min-[864px]:w-[786px] max-pad:w-[328px] mt-[134px] max-dt:mt-[107px]">
         <div className="flex gap-[75px]">
           <MemberStatusIcon
             icon={WaitingIcon}
@@ -31,22 +31,22 @@ const MemberPage = () => {
             count={completed_count}
           />
         </div>
-        <div className="flex self-end">
+        <div className="flex self-end max-dt:mt-10">
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />
         </div>
-        <div className="w-full mt-5">
+        <div className="w-full mt-5 max-dt:mt-[35px]">
           <MemberTable isWaiting={isWaiting} searchQuery={searchQuery} />
         </div>
         <span
           onClick={() => setIsWaiting((prev) => !prev)}
-          className="flex self-end mt-[10px] text-[20px] font-semibold cursor-pointer"
+          className="flex self-end mt-[10px] text-2xl max-dt:text-[20px] font-semibold cursor-pointer"
         >
           {isWaiting ? '전체 보기' : '승인 대기만 보기'}
         </span>
-        <button className="flex self-center mt-[186px] items-center justify-center w-[384px] h-[60px] p-[10px] font-semibold text-[22px] text-gray-0 bg-primary-50 rounded-xl">
+        <button className="flex self-center mt-[100px] items-center justify-center w-[384px] h-[60px] p-[10px] font-semibold text-[22px] text-gray-0 bg-primary-50 rounded-xl">
           적용하기
         </button>
       </div>

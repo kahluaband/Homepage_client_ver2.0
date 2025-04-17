@@ -24,7 +24,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   };
 
   return (
-    <div className="flex items-center w-[403px] h-[62px] border-[2px] border-black rounded-[30px] pl-[25px] ">
+    <div className="flex box-border items-center w-[403px] max-dt:w-[329px] h-[62px] border-[2px] border-black rounded-[30px] pl-[25px] max-dt:pl-[16px]">
       <input
         placeholder="이름 검색"
         value={searchQuery}
@@ -39,7 +39,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
         width={25}
         height={25}
         alt="검색"
-        className="h-[25px] w-auto cursor-pointer mx-[22px]"
+        className="h-[25px] w-auto cursor-pointer mx-[22px] max-dt:ml-[12px] max-dt:h-[23px]"
         onClick={handleSearch}
       />
     </div>

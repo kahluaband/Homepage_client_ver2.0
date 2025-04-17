@@ -14,7 +14,7 @@ const MemberStatusIcon = ({
   count,
 }: MemberStatusIconProps) => {
   return (
-    <div className="flex items-center gap-8">
+    <div className="flex items-center gap-8 max-dt:gap-[21px]">
       <Image
         src={icon}
         alt={alt}
