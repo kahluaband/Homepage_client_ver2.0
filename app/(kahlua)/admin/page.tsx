@@ -27,7 +27,7 @@ const page = () => {
   return (
     <div className="w-full h-auto min-h-[calc(100vh-390px)] flex flex-col mt-16 text-black font-pretendard items-center">
       {/* 헤더 영역 */}
-      <Header />
+      <Header subtitle="KAHLUA Admin Page" />
 
       {/* PC 레이아웃 (≥1500px) */}
       <div className="hidden min-[1500px]:grid grid-cols-2 gap-10 w-full pad:w-[786px] dt:w-[1200px] mt-6 pad:mt-10">

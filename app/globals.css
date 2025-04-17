@@ -84,3 +84,16 @@ body {
 .image-upload-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #aeb1c1; /* 호버 시 */
 }
+
+.table-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.table-scrollbar::-webkit-scrollbar-thumb {
+  background: #d9d9d9;
+  border-radius: 10px;
+}
+
+.table-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #c3c3c3;
+}
