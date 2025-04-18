@@ -97,3 +97,9 @@ body {
 .table-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #c3c3c3;
 }
+
+@media (max-width: 833px) {
+  .table-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+}

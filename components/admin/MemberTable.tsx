@@ -132,67 +132,72 @@ const MemberTable = ({
   }, [openIndex]);
 
   return (
-    <div className="w-full h-[595px]">
-      <div className="w-full h-[74px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center pl-8 pr-[52px]  max-dt:pl-0 max-dt:pr-[12px] shrink-0 gap-20 max-dt:gap-0 justify-center">
-        <div className="min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+    <div className="w-full h-[595px] max-pad:h-[372px]">
+      <div className="w-full h-[74px] max-pad:h-[54px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center pl-8 pr-[52px] max-dt:pl-0 max-pad:pl-2 max-dt:pr-[12px] max-pad:pr-1 shrink-0 gap-20 max-dt:gap-0 justify-center max-pad:justify-around">
+        <div className="min-w-[100px] max-pad:min-w-[40px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
           기수
         </div>
-        <div className="min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+        <div className="min-w-[100px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
           이름
         </div>
-        <div className="min-w-[160px] text-center text-2xl max-dt:text-[22px]  max-pad:text-sm font-semibold text-gray-0">
+        <div className="min-w-[160px] max-pad:min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
           세션
         </div>
-        <div className="min-w-[140px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px]  max-pad:text-sm font-semibold text-gray-0">
+        <div className="min-w-[140px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 max-pad:hidden">
           로그인 정보
         </div>
-        <div className="min-w-[100px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px]  max-pad:text-sm font-semibold text-gray-0">
+        <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
           승인 상태
         </div>
-        <div className="min-w-[130px] pr-[6px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+        <div className="min-w-[130px] max-pad:min-w-[70px] pr-[6px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
           멤버 등급
         </div>
       </div>
-      <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[519px]">
+      <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[519px] max-pad:h-[317px]">
         <div className="overflow-y-auto h-full w-full pr-2 table-scrollbar max-dt:pr-0">
           {filteredMembers.map((member, index) => (
             <div
               key={index}
-              className={`w-full px-10 max-dt:px-0 py-4 flex items-center relative gap-20 max-dt:gap-0 justify-center
+              className={`w-full px-10 max-dt:px-0 max-pad:pl-2 py-4 flex items-center relative gap-20 max-dt:gap-0 justify-center max-pad:justify-around
       border-gray-10 border-solid
       ${index === members.length - 1 ? 'border-b-0' : 'border-b-[2px]'}
     `}
             >
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] text-center">
+              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[40px] text-center">
                 {member.generation}
               </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] text-center">
+              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[60px] text-center">
                 {member.name}
               </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[160px] text-center">
+              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[160px] max-pad:min-w-[100px] text-center">
                 {member.session}
               </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[140px] max-dt:min-w-[120px] text-center">
+              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[140px] max-dt:min-w-[120px] max-pad:hidden text-center ">
                 {member.login}
               </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] text-center">
+              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center">
                 {member.status}
               </div>
               <div
-                onClick={(e) => toggleDropdown(index, e)}
-                className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[130px] flex items-center justify-center gap-[7px] relative"
+                onClick={(e) => {
+                  if (window.innerWidth > 833) toggleDropdown(index, e);
+                }}
+                onDoubleClick={(e) => {
+                  if (window.innerWidth <= 833) toggleDropdown(index, e);
+                }}
+                className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[130px] max-pad:min-w-[70px] flex items-center justify-center gap-[7px] relative"
               >
                 <span>{member.grade}</span>
                 <ExpandMoreIcon
                   className={`cursor-pointer ${
                     openIndex === index ? 'rotate-180' : ''
-                  }`}
+                  } max-pad:hidden`}
                 />
                 {openIndex === index && (
                   <Portal>
                     <div
                       ref={dropdownRef}
-                      className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 -ml-4 max-dt:-ml-0 w-[153px] h-[120px] max-dt:w-[120px] max-pad:w-20 max-pad:h-[70px] bg-gray-0 border-[3px] rounded-[10px] z-50"
+                      className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 -ml-4 max-dt:-ml-0 max-pad:-ml-1 w-[153px] h-[120px] max-dt:w-[120px] max-pad:w-20 max-pad:h-[70px] bg-gray-0 border-[3px] rounded-[10px] z-50"
                       style={{
                         top: dropdownPosition.top,
                         left: dropdownPosition.left,

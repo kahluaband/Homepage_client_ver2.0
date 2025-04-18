@@ -24,7 +24,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   };
 
   return (
-    <div className="flex box-border items-center w-[403px] max-dt:w-[329px] h-[62px] border-[2px] border-black rounded-[30px] pl-[25px] max-dt:pl-[16px]">
+    <div className="flex box-border items-center w-[403px] max-dt:w-[329px] max-pad:w-[138px] h-[62px] max-pad:h-[33px] border-2 max-pad:border-[1px] border-black rounded-[30px] pl-[25px] max-dt:pl-[24px] max-pad:pl-3">
       <input
         placeholder="이름 검색"
         value={searchQuery}
@@ -32,14 +32,14 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
         onKeyDown={handleKeyDown}
         onCompositionStart={() => setIsComposing(true)}
         onCompositionEnd={() => setIsComposing(false)}
-        className="outline-none flex-1 bg-transparent text-2xl font-semibold"
+        className="outline-none flex-grow min-w-0 flex-1 text-2xl max-pad:text-sm font-semibold"
       />
       <Image
         src={SearchIcon}
         width={25}
         height={25}
         alt="검색"
-        className="h-[25px] w-auto cursor-pointer mx-[22px] max-dt:ml-[12px] max-dt:h-[23px]"
+        className="cursor-pointer mx-[20px] max-dt:ml-[12px] max-pad:mx-2 max-dt:h-[23px] max-pad:w-3 max-pad:h-3"
         onClick={handleSearch}
       />
     </div>
