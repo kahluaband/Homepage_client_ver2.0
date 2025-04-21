@@ -8,7 +8,7 @@ import WaitingMobileIcon from '@/public/image/admin/WaitingMobileIcon.svg';
 import CompletedIcon from '@/public/image/admin/CompletedIcon.svg';
 import CompletedMobileIcon from '@/public/image/admin/CompletedMobileIcon.svg';
 import SearchBar from '@/components/admin/member/SearchBar';
-import MemberTable from '@/components/admin/MemberTable';
+import MemberTable from '@/components/admin/member/MemberTable';
 
 const MemberPage = () => {
   const [isWaiting, setIsWaiting] = useState(false);
@@ -24,7 +24,7 @@ const MemberPage = () => {
     try {
       const response = await authInstance.get('/admin/users', {
         params: {
-          approvalFilter: 'ALL',
+          approvalFilter: isWaiting ? 'PENDING' : 'ALL',
           page: currentPage,
           size: 8,
         },
@@ -83,8 +83,11 @@ const MemberPage = () => {
             />
           </div>
           <span
-            onClick={() => setIsWaiting((prev) => !prev)}
-            className="flex self-end mt-[10px] text-2xl max-dt:text-[20px] max-pad:text-sm font-semibold cursor-pointer"
+            onClick={() => {
+              setIsWaiting((prev) => !prev);
+              setCurrentPage(0);
+            }}
+            className="flex self-end mt-[-32px] max-pad:mt-[-20px] text-2xl max-dt:text-[20px] max-pad:text-sm font-semibold cursor-pointer"
           >
             {isWaiting ? '전체 보기' : '승인 대기만 보기'}
           </span>

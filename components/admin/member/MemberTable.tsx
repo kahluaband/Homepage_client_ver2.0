@@ -82,8 +82,8 @@ const MemberTable = ({
 
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-full h-[595px] max-pad:h-[372px]">
-        <div className="w-full h-[74px] max-pad:h-[54px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center px-8 max-dt:pl-0 max-pad:px-2 shrink-0 gap-20 max-dt:gap-0 justify-center max-pad:justify-around">
+      <div className="w-full h-[595px] max-pad:h-[378px]">
+        <div className="w-full h-[74px] max-pad:h-[42px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center px-4 max-dt:px-2 max-pad:px-2 shrink-0  max-dt:gap-0 justify-around">
           <div className="min-w-[100px] max-pad:min-w-[40px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
             기수
           </div>
@@ -99,16 +99,16 @@ const MemberTable = ({
           <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
             승인 상태
           </div>
-          <div className="min-w-[130px] max-pad:min-w-[70px] pr-[6px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
+          <div className="min-w-[200px] max-dt:min-w-[160px] max-pad:min-w-[90px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
             멤버 등급
           </div>
         </div>
-        <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[526px] max-pad:h-[317px]">
+        <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[526px] max-pad:h-[336px]">
           <div className="overflow-hidden h-full w-full">
             {filteredMembers.map((member, index) => (
               <div
                 key={index}
-                className={`w-full px-10 max-dt:px-0 max-pad:pl-2 py-4 flex items-center relative gap-20 max-dt:gap-0 justify-center max-pad:justify-around
+                className={`w-full px-4 max-dt:px-2 max-pad:px-2 py-4 max-pad:py-[10px] flex items-center relative max-dt:gap-0 justify-around
       border-gray-10 border-solid
       ${index === members.length - 1 ? 'border-b-0' : 'border-b-[2px]'}
     `}
@@ -135,7 +135,7 @@ const MemberTable = ({
                   onDoubleClick={(e) => {
                     if (window.innerWidth <= 833) toggleDropdown(index, e);
                   }}
-                  className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[130px] max-pad:min-w-[70px] flex items-center justify-center gap-[7px] relative"
+                  className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[200px] max-dt:min-w-[160px] max-pad:min-w-[90px] flex items-center justify-center gap-[7px] relative"
                 >
                   <span>{member.userType}</span>
                   <ExpandMoreIcon
@@ -147,7 +147,7 @@ const MemberTable = ({
                     <Portal>
                       <div
                         ref={dropdownRef}
-                        className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 -ml-4 max-dt:-ml-0 max-pad:-ml-1 w-[153px] h-[120px] max-dt:w-[120px] max-pad:w-20 max-pad:h-[70px] bg-gray-0 border-[3px] rounded-[10px] z-50"
+                        className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 w-[164px] h-[120px] max-dt:w-[136px] max-pad:w-[100px] max-pad:h-[73px] bg-gray-0 border-[3px] rounded-[10px] z-50 ml-3 max-dt:ml-2 max-pad:-ml-1"
                         style={{
                           top: dropdownPosition.top,
                           left: dropdownPosition.left,
@@ -159,8 +159,8 @@ const MemberTable = ({
                               key={userType}
                               className={`flex items-center justify-center w-full text-center cursor-pointer
       ${i === 0 ? 'hover:rounded-t-[6px]' : ''} 
-      ${i === arr.length - 1 ? 'h-[36px] border-b-0 hover:rounded-b-[6px]' : 'h-[39px] border-b-[3px]'}
-      hover:bg-primary-10 hover:text-gray-0`}
+      ${i === arr.length - 1 ? 'h-[36px] border-b-0 hover:rounded-b-[6px] hover:border-b-0' : 'h-[39px] border-b-[3px]'}
+      hover:bg-primary-10 hover:text-gray-0 hover:border-b-[3px] border-gray-90`}
                               onClick={() => handleSelectGrade(index, userType)}
                             >
                               {userType}
@@ -176,7 +176,7 @@ const MemberTable = ({
           </div>
         </div>
       </div>
-      <div className="flex justify-center self-center w-[150px] gap-4 mt-8 font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm">
+      <div className="flex justify-center items-center w-[150px] gap-4 mt-8 font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm">
         {totalPages > 0 ? (
           <>
             <button
