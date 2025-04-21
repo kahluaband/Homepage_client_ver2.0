@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useMemo } from 'react';
 import { authInstance } from '@/api/auth/axios';
 import Header from '@/components/admin/Header';
 import MemberStatusIcon from '@/components/admin/member/MemberStatusIcon';
@@ -15,18 +16,24 @@ const MemberPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const [members, setMembers] = useState<any[]>([]);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [waitingCount, setWaitingCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const fetchMembers = async () => {
+  const [isMounted, setIsMounted] = useState(false);
+
+  const pageSize = 8;
+
+  const fetchPageMembers = async () => {
     try {
       const response = await authInstance.get('/admin/users', {
         params: {
           approvalFilter: isWaiting ? 'PENDING' : 'ALL',
           page: currentPage,
-          size: 8,
+          size: pageSize,
         },
       });
       const { content, pageInfo, pendingCount, approvedCount } =
@@ -40,9 +47,69 @@ const MemberPage = () => {
     }
   };
 
+  const fetchAllMembers = async () => {
+    try {
+      const response = await authInstance.get('/admin/users', {
+        params: {
+          approvalFilter: isWaiting ? 'PENDING' : 'ALL',
+          page: 0,
+          size: 9999,
+        },
+      });
+      const { content } = response.data.result;
+      setAllMembers(content);
+    } catch (error) {
+      console.error('전체 멤버 데이터 불러오기 실패:', error);
+    }
+  };
+
   useEffect(() => {
-    fetchMembers();
+    if (!isSearching && searchQuery === '') {
+      fetchPageMembers();
+    }
   }, [currentPage, isWaiting]);
+
+  useEffect(() => {
+    if (searchQuery.length > 0) {
+      if (!isSearching) {
+        fetchAllMembers();
+        setIsSearching(true);
+        setCurrentPage(0);
+      }
+    } else {
+      if (isSearching) {
+        setIsSearching(false);
+        setCurrentPage(0);
+      }
+    }
+  }, [searchQuery]);
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value);
+    setCurrentPage(0);
+  };
+
+  const displayedMembers = useMemo(() => {
+    if (isSearching) {
+      const filtered = allMembers.filter((member) =>
+        member.name.includes(searchQuery)
+      );
+      const start = currentPage * pageSize;
+      const end = start + pageSize;
+      return filtered.slice(start, end);
+    } else {
+      return members;
+    }
+  }, [isSearching, searchQuery, allMembers, members, currentPage]);
+
+  useEffect(() => {
+    if (isSearching) {
+      const filtered = allMembers.filter((member) =>
+        member.name.includes(searchQuery)
+      );
+      setTotalPages(Math.ceil(filtered.length / pageSize));
+    }
+  }, [searchQuery, allMembers]);
 
   return (
     <div className="w-full h-auto min-h-[calc(100vh-390px)] flex flex-col mt-16 text-black font-pretendard items-center">
@@ -65,32 +132,39 @@ const MemberPage = () => {
               count={completedCount}
             />
           </div>
+
           <div className="flex self-end max-dt:mt-10 max-pad:mt-6">
             <SearchBar
               searchQuery={searchQuery}
-              setSearchQuery={setSearchQuery}
+              setSearchQuery={handleSearchChange}
             />
           </div>
+
           <div className="w-full mt-5 max-dt:mt-[35px] max-pad:mt-4">
             <MemberTable
               isWaiting={isWaiting}
               searchQuery={searchQuery}
-              members={members}
+              members={displayedMembers}
               setMembers={setMembers}
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
           </div>
+
           <span
             onClick={() => {
               setIsWaiting((prev) => !prev);
               setCurrentPage(0);
+              setSearchQuery('');
+              setIsSearching(false);
+              setAllMembers([]);
             }}
             className="flex self-end mt-[-32px] max-pad:mt-[-20px] text-2xl max-dt:text-[20px] max-pad:text-sm font-semibold cursor-pointer"
           >
             {isWaiting ? '전체 보기' : '승인 대기만 보기'}
           </span>
+
           <button className="flex self-center mt-[100px] items-center justify-center w-[384px] max-pad:w-[310px] h-[60px] p-[10px] font-semibold text-[22px] text-gray-0 bg-primary-50 rounded-xl">
             적용하기
           </button>
