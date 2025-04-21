@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { authInstance } from '@/api/auth/axios';
 import SearchBar from './SearchBar';
-import MemberTable from './MemberTable';
+import MemberTable from './MemberTable/MemberTable';
 
 interface TableSectionProps {
   isWaiting: boolean;
