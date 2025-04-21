@@ -1,5 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { authInstance } from '@/api/auth/axios';
 import Header from '@/components/admin/Header';
 import MemberStatusIcon from '@/components/admin/member/MemberStatusIcon';
 import WaitingIcon from '@/public/image/admin/WaitingIcon.svg';
@@ -12,8 +13,36 @@ import MemberTable from '@/components/admin/MemberTable';
 const MemberPage = () => {
   const [isWaiting, setIsWaiting] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const waiting_count = 5; // 예시
-  const completed_count = 12; // 예시
+
+  const [members, setMembers] = useState<any[]>([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [waitingCount, setWaitingCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+
+  const fetchMembers = async () => {
+    try {
+      const response = await authInstance.get('/admin/users', {
+        params: {
+          approvalFilter: 'ALL',
+          page: currentPage,
+          size: 8,
+        },
+      });
+      const { content, pageInfo, pendingCount, approvedCount } =
+        response.data.result;
+      setMembers(content);
+      setTotalPages(pageInfo.totalPages);
+      setWaitingCount(pendingCount);
+      setCompletedCount(approvedCount);
+    } catch (error) {
+      console.error('멤버 데이터 불러오기 실패:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, [currentPage, isWaiting]);
 
   return (
     <div className="w-full h-auto min-h-[calc(100vh-390px)] flex flex-col mt-16 text-black font-pretendard items-center">
@@ -26,14 +55,14 @@ const MemberPage = () => {
               mobileIcon={WaitingMobileIcon}
               alt="승인 대기"
               label="승인 대기"
-              count={waiting_count}
+              count={waitingCount}
             />
             <MemberStatusIcon
               icon={CompletedIcon}
               mobileIcon={CompletedMobileIcon}
               alt="승인 완료"
               label="승인 완료"
-              count={completed_count}
+              count={completedCount}
             />
           </div>
           <div className="flex self-end max-dt:mt-10 max-pad:mt-6">
@@ -43,7 +72,15 @@ const MemberPage = () => {
             />
           </div>
           <div className="w-full mt-5 max-dt:mt-[35px] max-pad:mt-4">
-            <MemberTable isWaiting={isWaiting} searchQuery={searchQuery} />
+            <MemberTable
+              isWaiting={isWaiting}
+              searchQuery={searchQuery}
+              members={members}
+              setMembers={setMembers}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
           </div>
           <span
             onClick={() => setIsWaiting((prev) => !prev)}

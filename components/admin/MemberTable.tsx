@@ -7,82 +7,28 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 const MemberTable = ({
   isWaiting,
   searchQuery,
+  members,
+  setMembers,
+  currentPage,
+  totalPages,
+  onPageChange,
 }: {
   isWaiting: boolean;
   searchQuery: string;
+  members: any[];
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (newPage: number) => void;
+  setMembers: React.Dispatch<React.SetStateAction<any[]>>;
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
-  const [members, setMembers] = useState([
-    {
-      generation: '21기',
-      name: '김동욱',
-      session: 'GUITAR',
-      login: 'GOOGLE',
-      status: '완료',
-      grade: 'ADMIN',
-    },
-    {
-      generation: '21기',
-      name: '오연서',
-      session: 'BASS',
-      login: 'KAKAO',
-      status: '완료',
-      grade: 'ADMIN',
-    },
-    {
-      generation: '21기',
-      name: '원채영',
-      session: 'GUITAR',
-      login: 'GOOGLE',
-      status: '완료',
-      grade: 'ADMIN',
-    },
-    {
-      generation: '21기',
-      name: '이연호',
-      session: 'BASS',
-      login: 'KAKAO',
-      status: '완료',
-      grade: 'ADMIN',
-    },
-    {
-      generation: '21기',
-      name: '박준서',
-      session: 'GUITAR',
-      login: 'GOOGLE',
-      status: '대기',
-      grade: 'KAHLUA',
-    },
-    {
-      generation: '21기',
-      name: '지민재',
-      session: 'VOCAL',
-      login: 'KAKAO',
-      status: '완료',
-      grade: 'KAHLUA',
-    },
-    {
-      generation: '20기',
-      name: '염지은',
-      session: 'SYNTHESIZER',
-      login: 'GOOGLE',
-      status: '완료',
-      grade: 'ADMIN',
-    },
-    {
-      generation: '20기',
-      name: '박서연',
-      session: 'GUITAR',
-      login: 'GOOGLE',
-      status: '완료',
-      grade: 'GENERAL',
-    },
-  ]);
-
   const dropdownRef = useRef<HTMLDivElement>(null);
+
   const filteredMembers = members
-    .filter((member) => (isWaiting ? member.status === '대기' : true))
+    .filter((member) =>
+      isWaiting ? member.approvalStatus === 'PENDING' : true
+    )
     .filter((member) => member.name.includes(searchQuery));
 
   const toggleDropdown = (
@@ -103,7 +49,10 @@ const MemberTable = ({
 
   const handleSelectGrade = (index: number, newGrade: string) => {
     const updatedMembers = [...members];
-    updatedMembers[index].grade = newGrade;
+    updatedMembers[index] = {
+      ...updatedMembers[index],
+      userType: newGrade,
+    };
     setMembers(updatedMembers);
     setOpenIndex(null);
   };
@@ -132,96 +81,125 @@ const MemberTable = ({
   }, [openIndex]);
 
   return (
-    <div className="w-full h-[595px] max-pad:h-[372px]">
-      <div className="w-full h-[74px] max-pad:h-[54px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center pl-8 pr-[52px] max-dt:pl-0 max-pad:pl-2 max-dt:pr-[12px] max-pad:pr-1 shrink-0 gap-20 max-dt:gap-0 justify-center max-pad:justify-around">
-        <div className="min-w-[100px] max-pad:min-w-[40px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
-          기수
+    <div className="w-full flex flex-col items-center">
+      <div className="w-full h-[595px] max-pad:h-[372px]">
+        <div className="w-full h-[74px] max-pad:h-[54px] bg-primary-20 rounded-t-[20px] border-b-0 border-2 border-[#808080] border-font-pretendard flex items-center px-8 max-dt:pl-0 max-pad:px-2 shrink-0 gap-20 max-dt:gap-0 justify-center max-pad:justify-around">
+          <div className="min-w-[100px] max-pad:min-w-[40px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+            기수
+          </div>
+          <div className="min-w-[100px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+            이름
+          </div>
+          <div className="min-w-[160px] max-pad:min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+            세션
+          </div>
+          <div className="min-w-[140px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 max-pad:hidden">
+            로그인 정보
+          </div>
+          <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
+            승인 상태
+          </div>
+          <div className="min-w-[130px] max-pad:min-w-[70px] pr-[6px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
+            멤버 등급
+          </div>
         </div>
-        <div className="min-w-[100px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
-          이름
-        </div>
-        <div className="min-w-[160px] max-pad:min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
-          세션
-        </div>
-        <div className="min-w-[140px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 max-pad:hidden">
-          로그인 정보
-        </div>
-        <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
-          승인 상태
-        </div>
-        <div className="min-w-[130px] max-pad:min-w-[70px] pr-[6px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
-          멤버 등급
-        </div>
-      </div>
-      <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[519px] max-pad:h-[317px]">
-        <div className="overflow-y-auto h-full w-full pr-2 table-scrollbar max-dt:pr-0">
-          {filteredMembers.map((member, index) => (
-            <div
-              key={index}
-              className={`w-full px-10 max-dt:px-0 max-pad:pl-2 py-4 flex items-center relative gap-20 max-dt:gap-0 justify-center max-pad:justify-around
+        <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[526px] max-pad:h-[317px]">
+          <div className="overflow-hidden h-full w-full">
+            {filteredMembers.map((member, index) => (
+              <div
+                key={index}
+                className={`w-full px-10 max-dt:px-0 max-pad:pl-2 py-4 flex items-center relative gap-20 max-dt:gap-0 justify-center max-pad:justify-around
       border-gray-10 border-solid
       ${index === members.length - 1 ? 'border-b-0' : 'border-b-[2px]'}
     `}
-            >
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[40px] text-center">
-                {member.generation}
-              </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[60px] text-center">
-                {member.name}
-              </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[160px] max-pad:min-w-[100px] text-center">
-                {member.session}
-              </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[140px] max-dt:min-w-[120px] max-pad:hidden text-center ">
-                {member.login}
-              </div>
-              <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center">
-                {member.status}
-              </div>
-              <div
-                onClick={(e) => {
-                  if (window.innerWidth > 833) toggleDropdown(index, e);
-                }}
-                onDoubleClick={(e) => {
-                  if (window.innerWidth <= 833) toggleDropdown(index, e);
-                }}
-                className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[130px] max-pad:min-w-[70px] flex items-center justify-center gap-[7px] relative"
               >
-                <span>{member.grade}</span>
-                <ExpandMoreIcon
-                  className={`cursor-pointer ${
-                    openIndex === index ? 'rotate-180' : ''
-                  } max-pad:hidden`}
-                />
-                {openIndex === index && (
-                  <Portal>
-                    <div
-                      ref={dropdownRef}
-                      className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 -ml-4 max-dt:-ml-0 max-pad:-ml-1 w-[153px] h-[120px] max-dt:w-[120px] max-pad:w-20 max-pad:h-[70px] bg-gray-0 border-[3px] rounded-[10px] z-50"
-                      style={{
-                        top: dropdownPosition.top,
-                        left: dropdownPosition.left,
-                      }}
-                    >
-                      {['GENERAL', 'KAHLUA', 'ADMIN'].map((grade, i, arr) => (
-                        <div
-                          key={grade}
-                          className={`flex items-center justify-center w-full text-center cursor-pointer
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[40px] text-center">
+                  {member.term}기
+                </div>
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[60px] text-center">
+                  {member.name}
+                </div>
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[160px] max-pad:min-w-[100px] text-center">
+                  {member.session}
+                </div>
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[140px] max-dt:min-w-[120px] max-pad:hidden text-center ">
+                  {member.loginType}
+                </div>
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center">
+                  {member.approvalStatus === 'APPROVED' ? '완료' : '대기'}
+                </div>
+                <div
+                  onClick={(e) => {
+                    if (window.innerWidth > 833) toggleDropdown(index, e);
+                  }}
+                  onDoubleClick={(e) => {
+                    if (window.innerWidth <= 833) toggleDropdown(index, e);
+                  }}
+                  className="cursor-pointer dropdown-trigger text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[130px] max-pad:min-w-[70px] flex items-center justify-center gap-[7px] relative"
+                >
+                  <span>{member.userType}</span>
+                  <ExpandMoreIcon
+                    className={`cursor-pointer ${
+                      openIndex === index ? 'rotate-180' : ''
+                    } max-pad:hidden`}
+                  />
+                  {openIndex === index && (
+                    <Portal>
+                      <div
+                        ref={dropdownRef}
+                        className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 -ml-4 max-dt:-ml-0 max-pad:-ml-1 w-[153px] h-[120px] max-dt:w-[120px] max-pad:w-20 max-pad:h-[70px] bg-gray-0 border-[3px] rounded-[10px] z-50"
+                        style={{
+                          top: dropdownPosition.top,
+                          left: dropdownPosition.left,
+                        }}
+                      >
+                        {['KAHLUA', 'ADMIN', 'UNACCEPTED'].map(
+                          (userType, i, arr) => (
+                            <div
+                              key={userType}
+                              className={`flex items-center justify-center w-full text-center cursor-pointer
       ${i === 0 ? 'hover:rounded-t-[6px]' : ''} 
       ${i === arr.length - 1 ? 'h-[36px] border-b-0 hover:rounded-b-[6px]' : 'h-[39px] border-b-[3px]'}
-      hover:bg-primary-10`}
-                          onClick={() => handleSelectGrade(index, grade)}
-                        >
-                          {grade}
-                        </div>
-                      ))}
-                    </div>
-                  </Portal>
-                )}
+      hover:bg-primary-10 hover:text-gray-0`}
+                              onClick={() => handleSelectGrade(index, userType)}
+                            >
+                              {userType}
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </Portal>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+      </div>
+      <div className="flex justify-center self-center w-[150px] gap-4 mt-8 font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm">
+        {totalPages > 0 ? (
+          <>
+            <button
+              onClick={() => onPageChange(currentPage - 1)}
+              className={`cursor-pointer ${currentPage === 0 ? 'invisible' : ''}`}
+            >
+              {'<'}
+            </button>
+
+            <div className="flex items-center">
+              {currentPage + 1} / {totalPages}
+            </div>
+
+            <button
+              onClick={() => onPageChange(currentPage + 1)}
+              className={`cursor-pointer ${currentPage + 1 >= totalPages ? 'invisible' : ''}`}
+            >
+              {'>'}
+            </button>
+          </>
+        ) : (
+          <div className="w-[150px] h-[32px]"></div>
+        )}
       </div>
     </div>
   );
