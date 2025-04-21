@@ -42,10 +42,31 @@ const MemberTable = ({
     const rect = event.currentTarget.getBoundingClientRect();
     setDropdownPosition({
       top: rect.bottom + window.scrollY,
-      left: rect.left + window.scrollX,
+      left: rect.left + rect.width / 2 + window.scrollX,
     });
     setOpenIndex(index);
+    setOpenIndex(index);
   };
+  useEffect(() => {
+    const handleResize = () => {
+      if (openIndex !== null && dropdownRef.current) {
+        const rect = document
+          .querySelectorAll('.dropdown-trigger')
+          [openIndex]?.getBoundingClientRect();
+        if (rect) {
+          setDropdownPosition({
+            top: rect.bottom + window.scrollY,
+            left: rect.left + rect.width / 2 + window.scrollX,
+          });
+        }
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [openIndex]);
 
   const handleSelectGrade = (index: number, newGrade: string) => {
     const updatedMembers = [...members];
@@ -90,16 +111,16 @@ const MemberTable = ({
           <div className="min-w-[100px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
             이름
           </div>
-          <div className="min-w-[160px] max-pad:min-w-[100px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
+          <div className="min-w-[160px] max-pad:min-w-[100px] max-[400px]:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0">
             세션
           </div>
           <div className="min-w-[140px] max-dt:min-w-[120px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 max-pad:hidden">
             로그인 정보
           </div>
-          <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
+          <div className="min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[58px] text-center text-2xl max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
             승인 상태
           </div>
-          <div className="min-w-[200px] max-dt:min-w-[160px] max-pad:min-w-[90px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
+          <div className="min-w-[200px] pr-3 max-pad:pr-0 max-dt:min-w-[160px] max-pad:min-w-[90px] text-center text-2xl  max-dt:text-[22px] max-pad:text-sm font-semibold text-gray-0 break-words leading-tight">
             멤버 등급
           </div>
         </div>
@@ -119,13 +140,17 @@ const MemberTable = ({
                 <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-pad:min-w-[60px] text-center">
                   {member.name}
                 </div>
-                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[160px] max-pad:min-w-[100px] text-center">
-                  {member.session}
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm w-[160px] max-pad:w-[100px] max-[400px]:w-[60px] text-center truncate text-ellipsis">
+                  {typeof window !== 'undefined' && window.innerWidth <= 400
+                    ? member.session === 'SYNTHESIZER'
+                      ? 'SYNTH'
+                      : member.session
+                    : member.session}
                 </div>
                 <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[140px] max-dt:min-w-[120px] max-pad:hidden text-center ">
                   {member.loginType}
                 </div>
-                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[60px] text-center">
+                <div className="text-2xl font-semibold max-dt:text-[20px] max-pad:text-sm min-w-[100px] max-dt:min-w-[120px] max-pad:min-w-[58px] text-center">
                   {member.approvalStatus === 'APPROVED' ? '완료' : '대기'}
                 </div>
                 <div
@@ -147,10 +172,11 @@ const MemberTable = ({
                     <Portal>
                       <div
                         ref={dropdownRef}
-                        className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 w-[164px] h-[120px] max-dt:w-[136px] max-pad:w-[100px] max-pad:h-[73px] bg-gray-0 border-[3px] rounded-[10px] z-50 ml-3 max-dt:ml-2 max-pad:-ml-1"
+                        className="font-semibold text-2xl max-dt:text-[20px] max-pad:text-sm flex flex-col items-center justify-around absolute top-full mt-2 w-[164px] h-[120px] max-dt:w-[136px] max-pad:w-[100px] max-pad:h-[73px] bg-gray-0 border-[3px] rounded-[10px] z-50"
                         style={{
                           top: dropdownPosition.top,
                           left: dropdownPosition.left,
+                          transform: 'translateX(-50%)',
                         }}
                       >
                         {['KAHLUA', 'ADMIN', 'UNACCEPTED'].map(
@@ -159,8 +185,8 @@ const MemberTable = ({
                               key={userType}
                               className={`flex items-center justify-center w-full text-center cursor-pointer
       ${i === 0 ? 'hover:rounded-t-[6px]' : ''} 
-      ${i === arr.length - 1 ? 'h-[36px] border-b-0 hover:rounded-b-[6px] hover:border-b-0' : 'h-[39px] border-b-[3px]'}
-      hover:bg-primary-10 hover:text-gray-0 hover:border-b-[3px] border-gray-90`}
+      ${i === arr.length - 1 ? 'h-[36px] border-b-0 hover:rounded-b-[6px] hover:border-b-0' : 'h-[39px] border-b-[3px] hover:border-b-[3px]'}
+      hover:bg-primary-10 hover:text-gray-0 border-gray-90`}
                               onClick={() => handleSelectGrade(index, userType)}
                             >
                               {userType}
