@@ -1,5 +1,5 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import DropdownMenu from '../DropdownMenu';
+import DropdownMenu from './DropdownMenu';
 
 interface MemberRowProps {
   member: any;
