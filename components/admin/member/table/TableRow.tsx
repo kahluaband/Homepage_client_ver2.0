@@ -5,12 +5,13 @@ interface TableRowProps {
   member: any;
   index: number;
   openIndex: number | null;
+  setOpenIndex: React.Dispatch<React.SetStateAction<number | null>>;
   dropdownPosition: { top: number; left: number };
   toggleDropdown: (
     index: number,
     event: React.MouseEvent<HTMLDivElement>
   ) => void;
-  handleSelectGrade: (index: number, userType: string) => void;
+  handleSelectGrade: (id: number, userType: string) => void;
   dropdownRef: React.MutableRefObject<HTMLDivElement | null>;
 }
 
@@ -21,6 +22,7 @@ const TableRow = ({
   dropdownPosition,
   toggleDropdown,
   handleSelectGrade,
+  setOpenIndex,
   dropdownRef,
 }: TableRowProps) => {
   return (
@@ -69,7 +71,10 @@ const TableRow = ({
           isOpen={true}
           position={dropdownPosition}
           options={['KAHLUA', 'ADMIN', 'UNACCEPTED']}
-          onSelect={(newGrade) => handleSelectGrade(index, newGrade)}
+          onSelect={(newGrade) => {
+            handleSelectGrade(member.id, newGrade);
+            setOpenIndex(null);
+          }}
         />
       )}
     </div>

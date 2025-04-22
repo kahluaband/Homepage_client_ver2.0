@@ -8,6 +8,7 @@ const Table = ({
   isWaiting,
   searchQuery,
   members,
+  handleSelectGrade,
   setMembers,
   currentPage,
   totalPages,
@@ -16,6 +17,7 @@ const Table = ({
   isWaiting: boolean;
   searchQuery: string;
   members: any[];
+  handleSelectGrade: (id: number, newGrade: string) => void;
   currentPage: number;
   totalPages: number;
   onPageChange: (newPage: number) => void;
@@ -46,16 +48,6 @@ const Table = ({
       left: rect.left + rect.width / 2 + window.scrollX,
     });
     setOpenIndex(index);
-  };
-
-  const handleSelectGrade = (index: number, newGrade: string) => {
-    const updatedMembers = [...members];
-    updatedMembers[index] = {
-      ...updatedMembers[index],
-      userType: newGrade,
-    };
-    setMembers(updatedMembers);
-    setOpenIndex(null);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -117,6 +109,7 @@ const Table = ({
                 member={member}
                 index={index}
                 openIndex={openIndex}
+                setOpenIndex={setOpenIndex}
                 dropdownRef={dropdownRef}
                 dropdownPosition={dropdownPosition}
                 toggleDropdown={toggleDropdown}

@@ -1,9 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { authInstance } from '@/api/auth/axios';
 import Header from '@/components/admin/Header';
 import StatusIcon from '@/components/admin/member/StatusIcon';
-import TableSection from '@/components/admin/member/table/TableSection';
+import TableSection, {
+  TableSectionRef,
+} from '@/components/admin/member/table/TableSection';
 import WaitingIcon from '@/public/image/admin/WaitingIcon.svg';
 import WaitingMobileIcon from '@/public/image/admin/WaitingMobileIcon.svg';
 import CompletedIcon from '@/public/image/admin/CompletedIcon.svg';
@@ -14,6 +17,30 @@ const MemberPage = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [waitingCount, setWaitingCount] = useState(0);
   const [completedCount, setCompletedCount] = useState(0);
+
+  const tableRef = useRef<TableSectionRef>(null);
+
+  const handleApplyChanges = async () => {
+    const changedMembers = tableRef.current?.getChangedMembers();
+    if (!changedMembers || changedMembers.length === 0) {
+      alert('변경된 내용이 없습니다.');
+      return;
+    }
+
+    try {
+      await Promise.all(
+        changedMembers.map((member) =>
+          authInstance.patch(
+            `/admin/users/${member.id}?userType=${member.userType}`
+          )
+        )
+      );
+      alert('변경사항이 성공적으로 적용되었습니다.');
+      tableRef.current?.refreshOriginMembers();
+    } catch (error) {
+      alert('업데이트 중 오류가 발생했습니다.');
+    }
+  };
 
   const handleToggleWaiting = () => {
     setIsWaiting((prev) => !prev);
@@ -44,6 +71,7 @@ const MemberPage = () => {
           </div>
 
           <TableSection
+            ref={tableRef}
             isWaiting={isWaiting}
             setWaitingCount={setWaitingCount}
             setCompletedCount={setCompletedCount}
@@ -58,7 +86,10 @@ const MemberPage = () => {
             {isWaiting ? '전체 보기' : '승인 대기만 보기'}
           </span>
 
-          <button className="flex self-center mt-[100px] items-center justify-center w-[384px] max-pad:w-[310px] h-[60px] p-[10px] font-semibold text-[22px] text-gray-0 bg-primary-50 rounded-xl">
+          <button
+            onClick={handleApplyChanges}
+            className="flex self-center mt-[100px] items-center justify-center w-[384px] max-pad:w-[310px] h-[60px] p-[10px] font-semibold text-[22px] text-gray-0 bg-primary-50 rounded-xl"
+          >
             적용하기
           </button>
         </div>
