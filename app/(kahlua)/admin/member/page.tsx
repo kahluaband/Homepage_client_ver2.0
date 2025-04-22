@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import Header from '@/components/admin/Header';
-import MemberStatusIcon from '@/components/admin/member/MemberStatusIcon';
-import TableSection from '@/components/admin/member/TableSection';
+import StatusIcon from '@/components/admin/member/StatusIcon';
+import TableSection from '@/components/admin/member/table/TableSection';
 import WaitingIcon from '@/public/image/admin/WaitingIcon.svg';
 import WaitingMobileIcon from '@/public/image/admin/WaitingMobileIcon.svg';
 import CompletedIcon from '@/public/image/admin/CompletedIcon.svg';
@@ -27,14 +27,14 @@ const MemberPage = () => {
       <div className="w-full max-pad:px-4">
         <div className="flex flex-col h-auto min-[1500px]:w-[1200px] min-[834px]:w-[786px] max-pad:max-w-[500px] mt-[134px] max-dt:mt-[107px] max-pad:mt-6 mx-auto">
           <div className="flex max-pad:flex-col gap-[75px] max-pad:gap-[10px]">
-            <MemberStatusIcon
+            <StatusIcon
               icon={WaitingIcon}
               mobileIcon={WaitingMobileIcon}
               alt="승인 대기"
               label="승인 대기"
               count={waitingCount}
             />
-            <MemberStatusIcon
+            <StatusIcon
               icon={CompletedIcon}
               mobileIcon={CompletedMobileIcon}
               alt="승인 완료"

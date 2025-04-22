@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { authInstance } from '@/api/auth/axios';
-import SearchBar from './SearchBar';
-import MemberTable from './MemberTable/MemberTable';
+import SearchBar from '../SearchBar';
+import Table from './Table';
 
 interface TableSectionProps {
   isWaiting: boolean;
@@ -122,7 +122,7 @@ const TableSection = ({
       </div>
 
       <div className="w-full mt-5 max-dt:mt-[35px] max-pad:mt-4">
-        <MemberTable
+        <Table
           isWaiting={isWaiting}
           searchQuery={searchQuery}
           members={displayedMembers}

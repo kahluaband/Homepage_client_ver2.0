@@ -1,4 +1,4 @@
-const MemberTableHeader = () => {
+const TableHeader = () => {
   const headers = [
     '기수',
     '이름',
@@ -31,4 +31,4 @@ const MemberTableHeader = () => {
   );
 };
 
-export default MemberTableHeader;
+export default TableHeader;

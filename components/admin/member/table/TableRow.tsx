@@ -1,7 +1,7 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import DropdownMenu from './DropdownMenu';
 
-interface MemberRowProps {
+interface TableRowProps {
   member: any;
   index: number;
   openIndex: number | null;
@@ -14,7 +14,7 @@ interface MemberRowProps {
   dropdownRef: React.MutableRefObject<HTMLDivElement | null>;
 }
 
-const MemberRow = ({
+const TableRow = ({
   member,
   index,
   openIndex,
@@ -22,7 +22,7 @@ const MemberRow = ({
   toggleDropdown,
   handleSelectGrade,
   dropdownRef,
-}: MemberRowProps) => {
+}: TableRowProps) => {
   return (
     <div
       className={`w-full px-4 max-dt:px-2 max-pad:px-2 py-4 max-pad:py-[10px] flex items-center justify-around
@@ -76,4 +76,4 @@ const MemberRow = ({
   );
 };
 
-export default MemberRow;
+export default TableRow;

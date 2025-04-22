@@ -1,7 +1,7 @@
 'use client';
 
 import Header from '@/components/admin/Header';
-import MemberTable from '@/components/admin/member/MemberTable/MemberTable';
+import MemberTable from '@/components/admin/member/table/Table';
 
 const MessagePage = () => {
   return (

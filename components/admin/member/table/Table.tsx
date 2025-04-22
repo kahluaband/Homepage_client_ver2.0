@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import MemberTableHeader from './MemberTableHeader';
-import MemberRow from './MemberRow';
+import TableHeader from './TableHeader';
+import TableRow from './TableRow';
 
-const MemberTable = ({
+const Table = ({
   isWaiting,
   searchQuery,
   members,
@@ -108,11 +108,11 @@ const MemberTable = ({
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-full h-[595px] max-pad:h-[378px]">
-        <MemberTableHeader />
+        <TableHeader />
         <div className="rounded-b-[20px] border-t-0 border-2 border-[#808080] overflow-hidden relative h-[526px] max-pad:h-[336px]">
           <div className="overflow-hidden h-full w-full">
             {filteredMembers.map((member, index) => (
-              <MemberRow
+              <TableRow
                 key={index}
                 member={member}
                 index={index}
@@ -154,4 +154,4 @@ const MemberTable = ({
   );
 };
 
-export default MemberTable;
+export default Table;
