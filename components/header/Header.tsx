@@ -18,9 +18,9 @@ import { authInstance } from '@/api/auth/axios';
 import { isLoggedInState } from '@/atoms/authAtom';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 
-import DesktopNavBar from './header/DesktopNavBar';
-import KahluaDropdown from './header/KahluaDropdown';
-import MobileDrawer from './header/MobileDrawer';
+import DesktopNavBar from './DesktopNavBar';
+import KahluaDropdown from './KahluaDropdown';
+import MobileDrawer from './MobileDrawer';
 
 // MUI 테마 커스텀
 const theme = createTheme({
