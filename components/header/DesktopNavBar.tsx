@@ -1,17 +1,15 @@
 import Link from 'next/link';
 import { Url } from './HeaderUrls';
+import { useRouter } from 'next/navigation';
 
 interface DesktopNavBarProps {
   pathname: string;
-  handleTicketClick: () => void;
   handleLinkClick: (name: string) => void;
 }
 
-const DesktopNavBar = ({
-  pathname,
-  handleTicketClick,
-  handleLinkClick,
-}: DesktopNavBarProps) => {
+const DesktopNavBar = ({ pathname, handleLinkClick }: DesktopNavBarProps) => {
+  const router = useRouter();
+
   return (
     <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
       {Url.map((url) => (
@@ -22,7 +20,10 @@ const DesktopNavBar = ({
           }`}
         >
           {url.name === 'TICKET' ? (
-            <div className="cursor-pointer" onClick={handleTicketClick}>
+            <div
+              className="cursor-pointer"
+              onClick={() => router.push('/ticket')}
+            >
               {url.name}
             </div>
           ) : (
