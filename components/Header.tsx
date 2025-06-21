@@ -1,13 +1,19 @@
 'use client';
 
-import Link from 'next/link';
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+
 import logo_black from '@/public/image/KAHLUA-black.svg';
 import logo_white from '@/public/image/KAHLUA.svg';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import table_menu from '@/public/image/tabler_menu-2.svg';
 import table_menu_white from '@/public/image/tabler_menu-2-white.svg';
+import kahlua_logo from '@/public/image/KAHLUA-black.svg';
+import youtube_logo from '@/public/image/youtube-icon.svg';
+import kakaotalk_logo from '@/public/image/kakaotalk-icon.svg';
+import instagram_logo from '@/public/image/instagram-icon.svg';
+
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -15,15 +21,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { createTheme, ThemeProvider } from '@mui/material';
-import kahlua_logo from '@/public/image/KAHLUA-black.svg';
-import youtube_logo from '@/public/image/youtube-icon.svg';
-import kakaotalk_logo from '@/public/image/kakaotalk-icon.svg';
-import instagram_logo from '@/public/image/instagram-icon.svg';
-import { useRouter } from 'next/navigation';
+
 import { authInstance } from '@/api/auth/axios';
 import Cookie from 'js-cookie';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { isLoggedInState } from '@/atoms/authAtom';
+import { useAuthCheck } from '@/hooks/useAuthCheck';
+import DesktopNavBar from './header/DesktopNavBar';
 
 // MUI 테마 커스텀
 const theme = createTheme({
@@ -89,6 +93,8 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState); // Recoil 상태 업데이트 함수
   const [isTicketAvailable, setIsTicketAvailable] = useState(true); // 티켓 예약 가능 여부 상태 (기간이 아니면 false로 설정)
 
+  useAuthCheck();
+
   // 티켓 클릭 시 처리
   const handleTicketClick = () => {
     if (!isTicketAvailable) {
@@ -98,14 +104,6 @@ const Header = () => {
       router.push('/ticket');
     }
   };
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // cookie에서 토큰 확인
-      const accessToken = Cookie.get('access_token');
-      const refreshToken = Cookie.get('refresh_token');
-      setIsLoggedIn(!!(accessToken && refreshToken));
-    }
-  }, [Cookie, setIsLoggedIn]);
 
   const handleLogout = async () => {
     try {
@@ -124,9 +122,11 @@ const Header = () => {
       router.push('/');
     } catch (error) {}
   };
+
   const [width, setWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 0
   );
+
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
@@ -383,30 +383,11 @@ const Header = () => {
           {/* KAHLUA와 추가 요소를 감싸는 공통 div */}
 
           <div className="hidden min-[1500px]:flex flex-row gap-[64px] absolute right-72">
-            <ul className="hidden min-[1500px]:flex flex-row gap-[64px]">
-              {Url.map((url) => (
-                <li
-                  key={url.name}
-                  className={`font-medium text-center text-[18px] leading-6 ${
-                    pathname === '/recruit' || pathname === '/contributors'
-                      ? 'text-gray-0'
-                      : ''
-                  }`}
-                >
-                  {url.name === 'TICKET' ? (
-                    <div className="cursor-pointer" onClick={handleTicketClick}>
-                      {url.name}
-                    </div>
-                  ) : (
-                    <Link href={url.url} passHref>
-                      <div onClick={() => handleLinkClick(url.name)}>
-                        {url.name}
-                      </div>
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ul>
+            <DesktopNavBar
+              pathname={pathname}
+              handleTicketClick={handleTicketClick}
+              handleLinkClick={handleLinkClick}
+            />
             <span
               className={`font-medium text-center text-[18px] leading-6 ${
                 pathname === '/recruit' || pathname === '/contributors'

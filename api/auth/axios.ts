@@ -51,7 +51,7 @@ authInstance.interceptors.response.use(
       const refreshToken = Cookie.get('refresh_token');
 
       try {
-        const { data } = await axios.get(
+        const response = await axios.get(
           `${process.env.NEXT_PUBLIC_BASE_URL}/auth/recreate`,
           {
             headers: {
@@ -60,8 +60,8 @@ authInstance.interceptors.response.use(
           }
         );
 
-        const { access_token: newAccessToken, refresh_token: newRefreshToken } =
-          data;
+        const { accessToken: newAccessToken, refreshToken: newRefreshToken } =
+          response.data;
 
         Cookie.set('access_token', newAccessToken, {
           path: '/',
