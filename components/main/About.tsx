@@ -46,6 +46,13 @@ export default function About() {
 }
 
 const AboutSmallBox = () => {
+  const firstYear = 2002; // 1기 연도
+
+  const getYearsOfTradition = () => {
+    const currentYear = new Date().getFullYear();
+    return currentYear - firstYear + 1;
+  };
+
   return (
     <div className="w-full h-full pad:w-[384px] pad:h-[300px] rounded-[32px] pad:rounded-[48px] bg-primary-50 z-0 text-gray-0 py-[24px] px-[32px] pad:py-[32px] pad:px-[40px]">
       <p className="text-[24px] font-semibold pad:text-[32px] pad:font-bold">
@@ -53,16 +60,15 @@ const AboutSmallBox = () => {
         <br />깔 깔 깔 깔루아!
       </p>
       <p className="text-[16px] pad:text-[20px] font-medium text-primary-10 mt-[16px] pad:mt-[24px]">
-        KAHLUA는 2003년부터 지금까지
+        KAHLUA는 {firstYear}년부터 지금까지
         <br />
-        23년의 전통을 이어오고 있는
+        {getYearsOfTradition()}년의 전통을 이어오고 있는
         <br />
         홍익대학교 컴퓨터공학과
         <br />
         밴드학회입니다.
       </p>
 
-      {/* right bottome 흰상자 */}
       <div className="absolute -right-[16px] -bottom-[16px] pad:-right-[20px] pad:-bottom-[20px] rounded-tl-[32px] pad:rounded-tl-[48px] bg-gray-0 z-20 w-[88px] h-[88px] pad:w-[122px] pad:h-[122px]" />
       <TopRightRoundBorder className="absolute rotate-90 -right-[16px] bottom-[56px] pad:-right-[20px] pad:bottom-[82px]" />
       <TopRightRoundBorder className="absolute rotate-90 right-[56px] -bottom-[16px] pad:right-[82px] pad:-bottom-[20px]" />
