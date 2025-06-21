@@ -1,7 +1,9 @@
-import TopRightRoundBorder from '@/components/ui/RoundBorder';
 import Image from 'next/image';
-import music from '@/public/image/main/mainMusic.svg';
 import Link from 'next/link';
+
+import TopRightRoundBorder from '@/components/ui/RoundBorder';
+
+import music from '@/public/image/main/mainMusic.svg';
 import arrow from '@/public/image/arrow_right.svg';
 
 export default function About() {
@@ -21,7 +23,7 @@ export default function About() {
         <div className="absolute -right-[20px] -top-[20px] bg-gray-0 rounded-bl-[48px] w-[224px] h-[134px] z-20 hidden pad:block" />
         <TopRightRoundBorder className="absolute -right-[20px] top-[94px] hidden pad:block" />
 
-        {/* pad: right top 파란상자 ph: bottome left 파란상자 */}
+        {/* pad: right top 파란상자 ph: bottom left 파란상자 */}
         <div className="w-[144px] h-[56px] pad:w-[180px] pad:h-[90px] absolute bottom-0 max-pad:left-0 pad:top-0 pad:right-0 bg-primary-50 rounded-[48px] z-30">
           <div className="absolute w-[179px] h-[120px] pad:w-[195px] pad:h-[128px] bottom-0 left-[6px] pad:left-[16px]">
             <Image src={music} fill alt="music" />
