@@ -29,11 +29,13 @@ const MyPostsList = () => {
   // 페이지네이션 관련 state
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0); // 전체 페이지 수
+  const [isLoading, setIsLoading] = useState(true);
 
   const PAGE_SIZE = 5; // 한 페이지에 보여줄 게시글 수
 
   const getPosts = async (page: number) => {
     try {
+      setIsLoading(true);
       const response = await authInstance.get('my-page/post/list', {
         params: {
           page: page,
@@ -53,6 +55,8 @@ const MyPostsList = () => {
     } catch (error) {
       console.error(error);
       alert('게시글을 불러오는 중 문제가 발생했습니다.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -98,76 +102,92 @@ const MyPostsList = () => {
   }, [currentPage]);
 
   return (
-    <div className="border-t-[1px] border-t-black">
-      <ul>
-        {posts.map((post, index, arr) => {
-          const isLastItem = index === arr.length - 1; // 현재 페이지에서 마지막 항목인지 확인
-
-          return (
-            <li
-              key={post.id}
-              className={`flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative cursor-pointer ${
-                isLastItem
-                  ? 'border-b-[1px] border-b-black'
-                  : 'border-b-[1px] border-b-gray-10'
-              } justify-between`}
-              onClick={() => handlePostClick(post.id)}
-            >
-              <p className="text-[20px] leading-6 w-full truncate">
-                {post.title}
-              </p>
-
-              <div className="flex gap-10 text-gray-40">
-                <div className="flex gap-6">
-                  <div className="flex gap-[10px]">
-                    <Image src={likeIcon} alt="like" width={14} height={14} />
-                    <p>{post.likes}</p>
-                  </div>
-                  <div className="flex gap-[10px]">
-                    <Image src={chatIcon} alt="chat" width={18} height={18} />
-                    <p>{post.commentsCount}</p>
-                  </div>
-                </div>
-                <p>{formatDate(post.created_at)}</p>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* 페이지네이션 */}
-      <section className="flex justify-center gap-3 mt-10 items-center ">
-        {/* 이전 페이지 */}
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 0}
-          className="flex items-center w-[30px] h-[30px] rotate-180"
-        >
-          {currentPage > 0 ? (
-            <ChevronRightIcon sx={{ color: '#000000' }} />
-          ) : (
-            <ChevronRightIcon sx={{ color: '#9296AB' }} />
-          )}
-        </button>
-
-        {/* 현재 페이지 */}
-        <div className="w-[30px] h-[30px] cursor-pointer rounded-full flex justify-center items-center border-[1px] border-black">
-          <span className="font-[500] text-[20px]">{currentPage + 1}</span>
+    <div className="border-t-[1px] border-t-black ">
+      {isLoading ? null : posts.length === 0 ? (
+        <div className="py-12 text-center text-gray-500 text-base border-b border-black">
+          작성한 게시글이 없습니다.
         </div>
+      ) : (
+        <>
+          <ul>
+            {posts.map((post, index, arr) => {
+              const isLastItem = index === arr.length - 1;
 
-        {/* 다음 페이지 */}
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages - 1}
-          className="flex items-center w-[30px] h-[30px]"
-        >
-          {currentPage + 1 < totalPages ? (
-            <ChevronRightIcon sx={{ color: '#000000' }} />
-          ) : (
-            <ChevronRightIcon sx={{ color: '#9296AB' }} />
-          )}
-        </button>
-      </section>
+              return (
+                <li
+                  key={post.id}
+                  className={`flex flex-col pad:flex-row py-6 items-start gap-4 self-stretch relative cursor-pointer ${
+                    isLastItem
+                      ? 'border-b-[1px] border-b-black'
+                      : 'border-b-[1px] border-b-gray-10'
+                  } justify-between`}
+                  onClick={() => handlePostClick(post.id)}
+                >
+                  <p className="text-[20px] leading-6 w-full truncate">
+                    {post.title}
+                  </p>
+
+                  <div className="flex gap-10 text-gray-40">
+                    <div className="flex gap-6">
+                      <div className="flex gap-[10px]">
+                        <Image
+                          src={likeIcon}
+                          alt="like"
+                          width={14}
+                          height={14}
+                        />
+                        <p>{post.likes}</p>
+                      </div>
+                      <div className="flex gap-[10px]">
+                        <Image
+                          src={chatIcon}
+                          alt="chat"
+                          width={18}
+                          height={18}
+                        />
+                        <p>{post.commentsCount}</p>
+                      </div>
+                    </div>
+                    <p>{formatDate(post.created_at)}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* 페이지네이션 */}
+          <section className="flex justify-center gap-3 mt-10 items-center">
+            {/* 이전 페이지 */}
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 0}
+              className="flex items-center w-[30px] h-[30px] rotate-180"
+            >
+              <ChevronRightIcon
+                sx={{ color: currentPage > 0 ? '#000000' : '#9296AB' }}
+              />
+            </button>
+
+            {/* 현재 페이지 */}
+            <div className="w-[30px] h-[30px] cursor-pointer rounded-full flex justify-center items-center border-[1px] border-black">
+              <span className="font-[500] text-[20px]">{currentPage + 1}</span>
+            </div>
+
+            {/* 다음 페이지 */}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages - 1}
+              className="flex items-center w-[30px] h-[30px]"
+            >
+              <ChevronRightIcon
+                sx={{
+                  color: currentPage + 1 < totalPages ? '#000000' : '#9296AB',
+                }}
+              />
+            </button>
+          </section>
+        </>
+      )}
     </div>
   );
 };
