@@ -6,7 +6,7 @@ import likeIcon from '@/public/image/mypage/grayHeart.svg';
 import chatIcon from '@/public/image/mypage/grayChat.svg';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-import { fetchMyPosts, fetchCommentCount } from '@/api/mypage/post';
+import { fetchMyPosts, fetchCommentCount } from '@/api/kahlua/post';
 import { MyPost } from '@/types/post';
 
 // 내가 쓴 글 리스트

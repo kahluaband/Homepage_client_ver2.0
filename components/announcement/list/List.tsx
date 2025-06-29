@@ -10,8 +10,8 @@ import {
 import Pagination from '@/components/announcement/list/Pagination';
 import { DetailList } from '@/components/announcement/list/DetailList';
 
-import { authInstance } from '@/api/auth/axios';
 import { useDebounce } from '@/hooks/useDebounce';
+import { fetchPostComments, fetchPostList } from '@/api/kahlua/post';
 
 const List = () => {
   const [toggle, setToggle] = useState(toggleList[0].toggle);
@@ -25,48 +25,35 @@ const List = () => {
   >([]);
 
   const debouncedSearch = useDebounce(searchQuery, 500);
+
   const fetchListData = async () => {
     const postType = toggle === toggleList[0].toggle ? 'NOTICE' : 'KAHLUA_TIME';
 
     try {
-      const response = await authInstance.get('/post/list', {
-        params: {
-          post_type: postType,
-          page: currentPage - 1, // 0부터 시작
-          size: itemsPerPage,
-          search_word: debouncedSearch,
-        },
+      const { content, totalPages } = await fetchPostList({
+        postType,
+        page: currentPage - 1,
+        size: itemsPerPage,
+        searchWord: debouncedSearch,
       });
 
-      const { content, totalPages } = response.data.result;
-
-      // 댓글 개수 추가
       const updatedContent = await Promise.all(
         content.map(async (post: AnnouncementProps | CommunityProps) => {
           try {
-            const commentResponse = await authInstance.get(
-              `/comment/${post.id}/list`
-            );
-            const comments = commentResponse.data.result.comments || []; // 댓글 배열
-
-            return {
-              ...post,
-              comments,
-            };
-          } catch (error) {
-            console.error(`댓글 개수 로드 실패 (postId: ${post.id}):`, error);
-            return { ...post, comments: [] }; // 기본값
+            const comments = await fetchPostComments(post.id);
+            return { ...post, comments };
+          } catch {
+            return { ...post, comments: [] };
           }
         })
       );
 
       setFilteredData(updatedContent);
       setTotalPages(totalPages);
-    } catch (error) {
-      console.error('게시글 리스트 로드 실패:', error);
+    } catch (err) {
+      console.error('게시글 리스트 로드 실패:', err);
     }
   };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
