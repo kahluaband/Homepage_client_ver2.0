@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import ButtonModal from '@/components/ui/ButtonModal';
-import { cancelReservation, getReservationList } from '@/api/mypage/mypage';
+import {
+  cancelReservation,
+  getReservationList,
+} from '@/api/mypage/reservation';
 import { ReservationResponse } from '@/types/reservation';
 
 // 동방 예약 내역 리스트

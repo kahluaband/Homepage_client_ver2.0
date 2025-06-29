@@ -2,29 +2,17 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { authInstance } from '@/api/auth/axios';
 import likeIcon from '@/public/image/mypage/grayHeart.svg';
 import chatIcon from '@/public/image/mypage/grayChat.svg';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
-interface myPostProps {
-  id: number;
-  title: string;
-  content: string;
-  writer: string;
-  likes: number;
-  commentsCount: number;
-  imageUrls: string;
-  created_at: string;
-  updated_at: string;
-  deletedAt: string | null;
-  liked: boolean;
-}
+import { fetchMyPosts, fetchCommentCount } from '@/api/mypage/post';
+import { MyPost } from '@/types/post';
 
 // 내가 쓴 글 리스트
 const MyPostsList = () => {
   const router = useRouter();
-  const [posts, setPosts] = useState<myPostProps[]>([]);
+  const [posts, setPosts] = useState<MyPost[]>([]);
 
   // 페이지네이션 관련 state
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,42 +24,24 @@ const MyPostsList = () => {
   const getPosts = async (page: number) => {
     try {
       setIsLoading(true);
-      const response = await authInstance.get('my-page/post/list', {
-        params: {
-          page: page,
-          size: PAGE_SIZE,
-        },
-      });
+      const result = await fetchMyPosts(page, PAGE_SIZE);
+      if (!result) return;
+
+      const { posts, totalPages } = result;
 
       const postsWithCommentCount = await Promise.all(
-        response.data.result.content.map(async (post: myPostProps) => {
-          const commentsCount = await getCommentCount(post.id);
+        posts.map(async (post) => {
+          const commentsCount = await fetchCommentCount(post.id);
           return { ...post, commentsCount };
         })
       );
 
       setPosts(postsWithCommentCount);
-      setTotalPages(response.data.result.totalPages);
+      setTotalPages(totalPages);
     } catch (error) {
       console.error(error);
-      alert('게시글을 불러오는 중 문제가 발생했습니다.');
     } finally {
       setIsLoading(false);
-    }
-  };
-
-  // 댓글 카운트를 가져오는 함수
-  const getCommentCount = async (postId: number) => {
-    try {
-      const response = await authInstance.get(`comment/${postId}/list`);
-      // deletedAt이 null인 댓글만 카운트
-      const activeComments = response.data.result.comments.filter(
-        (comment: any) => comment.deletedAt === null
-      );
-      return activeComments.length;
-    } catch (error) {
-      console.error('댓글을 불러오는 중 문제가 발생했습니다.', error);
-      return 0; // 에러가 발생하면 댓글 수는 0으로 처리
     }
   };
 
