@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 import { authInstance } from '@/api/auth/axios';
 import likeIcon from '@/public/image/mypage/grayHeart.svg';
 import chatIcon from '@/public/image/mypage/grayChat.svg';
-import Image from 'next/image';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useRouter } from 'next/navigation';
 
 interface myPostProps {
   id: number;

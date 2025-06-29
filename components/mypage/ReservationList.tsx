@@ -1,29 +1,17 @@
 import { useState, useEffect } from 'react';
-import { authInstance } from '@/api/auth/axios';
 import ButtonModal from '@/components/ui/ButtonModal';
-
-interface ReservationProps {
-  reservationId: number;
-  email: string;
-  type: string;
-  clubroomUsername: string;
-  reservationDate: string;
-  startTime: string;
-  endTime: string;
-  status: string;
-}
+import { cancelReservation, getReservationList } from '@/api/mypage/mypage';
+import { ReservationResponse } from '@/types/reservation';
 
 // 동방 예약 내역 리스트
 const ReservationList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reservations, setReservations] = useState<ReservationProps[]>([]);
+  const [reservations, setReservations] = useState<ReservationResponse[]>([]);
 
-  const getReservationList = async () => {
-    try {
-      const response = await authInstance.get('/my-page/reservation');
-      setReservations(response.data.result.reservationResponseList);
-    } catch (error) {
-      console.error(error);
+  const fetchReservations = async () => {
+    const data = await getReservationList();
+    if (data) {
+      setReservations(data);
     }
   };
 
@@ -43,28 +31,29 @@ const ReservationList = () => {
   };
 
   // 예약 취소 함수
-  const deleteReservation = async (id: number) => {
-    try {
-      await authInstance.delete(`/my-page/reservation/${id}`);
-      setReservations(
-        reservations.filter((reservation) => reservation.reservationId !== id)
+  const handleDeleteReservation = async (id: number) => {
+    const success = await cancelReservation(id);
+    if (success) {
+      setReservations((prev) =>
+        prev.filter((reservation) => reservation.reservationId !== id)
       );
-    } catch (error) {
-      console.error('예약 취소 실패:', error);
-    } finally {
-      handleCloseModal();
     }
+    handleCloseModal();
   };
 
   useEffect(() => {
-    getReservationList();
+    fetchReservations();
   }, []);
 
   return (
     <div className="border-t-[1px] border-t-black border-b-[1px] border-b-black">
-      <ul>
-        {reservations.map((reservation) => {
-          return (
+      {reservations.length === 0 ? (
+        <div className="py-8 text-center text-gray-500 text-base">
+          예약 내역이 없습니다.
+        </div>
+      ) : (
+        <ul>
+          {reservations.map((reservation) => (
             <li
               key={reservation.reservationId}
               className="flex flex-col pad:flex-row py-6 pad:items-center ph:items-start gap-4 self-stretch relative border-y-[1px] border-y-solid border-y-gray-10"
@@ -93,18 +82,17 @@ const ReservationList = () => {
                 예약 취소하기
               </p>
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      )}
 
       {/* 취소 모달 */}
       <ButtonModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         handleSubmit={() => {
-          // 에러 처리
           if (selectedReservation?.reservationId) {
-            deleteReservation(selectedReservation.reservationId);
+            handleDeleteReservation(selectedReservation.reservationId);
           } else {
             console.error('선택된 예약이 없습니다.');
           }
