@@ -1,10 +1,12 @@
-import { authInstance, axiosInstance } from '@/api/auth/axios';
+import { authInstance } from '@/api/auth/axios';
+import { fetchLatestPerformance } from '@/api/performance/performance';
 import LocationModal from '@/components/popups/ticket/LocaltionModal';
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
 import TicketOption from '@/components/templates/ticket/TicketOption';
 import RecommendedList from '@/components/ticket/RecommendedList';
 import Bar from '@/components/ui/Bar';
 import defaultPoster from '@/public/image/ticket/DefaultPoster.svg';
+import { PerformanceResponse } from '@/types/performace';
 import SettingsIcon from '@mui/icons-material/Settings';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -18,11 +20,7 @@ declare global {
   }
 }
 
-interface TicketDetailProps {
-  id: string;
-}
-
-const TicketDetail = ({ id }: TicketDetailProps) => {
+const TicketDetail = () => {
   const [isDays, setIsDays] = useState(false);
   const [ticketInfo, setTicketInfo] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,17 +34,23 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
   const [statusText, setStatusText] = useState<string>('예매 마감');
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [id, setId] = useState<number | null>(null);
 
-  const getTicketDetail = async (id: string) => {
+  const [performance, setPerformance] = useState<PerformanceResponse | null>(
+    null
+  );
+
+  const getTicketDetail = async () => {
     try {
       setIsLoading(true);
-      const response = await axiosInstance.get(`/performances/${id}`);
-      if (response.data.isSuccess) {
-        const rawData = response.data.result.performanceResponse;
+      const response = await fetchLatestPerformance();
+      if (response) {
+        const rawData = response;
         const bookingStart = dayjs(rawData.booking_start_date);
         const bookingEnd = dayjs(rawData.booking_end_date);
         const now = dayjs();
         const daysBeforeStart = Math.ceil(bookingStart.diff(now, 'hours') / 24);
+        setId(rawData.id);
 
         let isAvailable = false;
         let status = '예매 마감';
@@ -102,10 +106,8 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
   }, []);
 
   useEffect(() => {
-    if (id) {
-      getTicketDetail(id);
-    }
-  }, [id]);
+    getTicketDetail();
+  }, []);
 
   useEffect(() => {
     if (loc) {
@@ -268,7 +270,7 @@ const TicketDetail = ({ id }: TicketDetailProps) => {
                   alt="share"
                   width={24}
                   height={24}
-                  className="cursor-pointer h-5 w-5 pad:h-6 pad:w-6"
+                  className="cursor-poFer h-5 w-5 pad:h-6 pad:w-6"
                 />
               </div>
               {isAdmin && (
