@@ -1,4 +1,4 @@
-import { authInstance } from '@/api/auth/axios';
+import { authInstance, axiosInstance } from '@/api/auth/axios';
 import { fetchLatestPerformance } from '@/api/performance/performance';
 import LocationModal from '@/components/popups/ticket/LocaltionModal';
 import DropdownMenu from '@/components/templates/ticket/DropdownMenu';
@@ -6,7 +6,6 @@ import TicketOption from '@/components/templates/ticket/TicketOption';
 import RecommendedList from '@/components/ticket/RecommendedList';
 import Bar from '@/components/ui/Bar';
 import defaultPoster from '@/public/image/ticket/DefaultPoster.svg';
-import { PerformanceResponse } from '@/types/performace';
 import SettingsIcon from '@mui/icons-material/Settings';
 import dayjs from 'dayjs';
 import Image from 'next/image';
@@ -20,7 +19,11 @@ declare global {
   }
 }
 
-const TicketDetail = () => {
+interface TicketDetailProps {
+  id?: string;
+}
+
+const TicketDetail = ({ id: prodId }: TicketDetailProps) => {
   const [isDays, setIsDays] = useState(false);
   const [ticketInfo, setTicketInfo] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,23 +37,36 @@ const TicketDetail = () => {
   const [statusText, setStatusText] = useState<string>('예매 마감');
   const [isLoading, setIsLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [id, setId] = useState<number | null>(null);
+  const [performanceId, setPerformanceId] = useState<number | null>(null);
 
-  const [performance, setPerformance] = useState<PerformanceResponse | null>(
-    null
-  );
+  const effectiveId = prodId ?? performanceId;
+
+  const fetchTickets = async (prodId: number) => {
+    try {
+      console.log('Fetching tickets for prodId:', prodId);
+      const response = await axiosInstance.get(`/performances/${prodId}`);
+      if (response.data.isSuccess) {
+        return response.data.result.performanceResponse;
+      }
+    } catch (error) {
+      console.error('Error fetching performances:', error);
+    }
+  };
 
   const getTicketDetail = async () => {
     try {
       setIsLoading(true);
-      const response = await fetchLatestPerformance();
+
+      const response = prodId
+        ? await fetchTickets(Number(prodId))
+        : await fetchLatestPerformance();
       if (response) {
         const rawData = response;
         const bookingStart = dayjs(rawData.booking_start_date);
         const bookingEnd = dayjs(rawData.booking_end_date);
         const now = dayjs();
         const daysBeforeStart = Math.ceil(bookingStart.diff(now, 'hours') / 24);
-        setId(rawData.id);
+        setPerformanceId(rawData.id);
 
         let isAvailable = false;
         let status = '예매 마감';
@@ -107,7 +123,7 @@ const TicketDetail = () => {
 
   useEffect(() => {
     getTicketDetail();
-  }, []);
+  }, [prodId]);
 
   useEffect(() => {
     if (loc) {
@@ -274,7 +290,7 @@ const TicketDetail = () => {
                 />
               </div>
               {isAdmin && (
-                <Link href={`/admin/performance/${id}`}>
+                <Link href={`/admin/performance/${effectiveId}`}>
                   <SettingsIcon
                     className="cursor-pointer text-gray-60"
                     sx={{ fontSize: '28px' }}

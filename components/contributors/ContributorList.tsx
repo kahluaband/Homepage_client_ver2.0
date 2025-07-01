@@ -1,10 +1,11 @@
-import JY from '@/public/image/contributors/JY.avif';
-import GR from '@/public/image/contributors/GR.avif';
-import SW from '@/public/image/contributors/SW.avif';
-import GY from '@/public/image/contributors/GY.avif';
-import SY from '@/public/image/contributors/SY.avif';
-import JE from '@/public/image/contributors/JE.avif';
+import DW from '@/public/image/contributors/DW.avif';
 import GH from '@/public/image/contributors/GH.avif';
+import GR from '@/public/image/contributors/GR.avif';
+import GY from '@/public/image/contributors/GY.avif';
+import JE from '@/public/image/contributors/JE.avif';
+import JY from '@/public/image/contributors/JY.avif';
+import SW from '@/public/image/contributors/SW.avif';
+import SY from '@/public/image/contributors/SY.avif';
 
 export const ContributorList = [
   {
@@ -67,5 +68,14 @@ export const ContributorList = [
     school: '홍익대학교 컴퓨터공학과 19학번',
     githubUrl: 'https://github.com/woogieon8on',
     githubName: '@woogieon8on',
+  },
+  {
+    image: DW,
+    name: '김동욱',
+    role: '프론트엔드',
+    year: '21',
+    school: '홍익대학교 컴퓨터공학과 22학번',
+    githubUrl: 'https://github.com/boogiewooki02',
+    githubName: '@boogiewooki02',
   },
 ];
