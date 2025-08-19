@@ -5,6 +5,7 @@ import GY from '@/public/image/contributors/GY.avif';
 import SY from '@/public/image/contributors/SY.avif';
 import JE from '@/public/image/contributors/JE.avif';
 import GH from '@/public/image/contributors/GH.avif';
+import DY from '@/public/image/contributors/DY.png';
 import CY from '@/public/image/contributors/CY.jpeg';
 import YH from '@/public/image/contributors/YH.jpeg';
 import YS from '@/public/image/contributors/YS.png';
@@ -72,6 +73,15 @@ export const ContributorList = [
     githubName: '@woogieon8on',
   },
   {
+    image: DY,
+    name: '김동욱',
+    role: '프론트엔드',
+    year: '21',
+    school: '홍익대학교 컴퓨터공학과 22학번',
+    githubUrl: 'https://github.com/boogiewooki02',
+    githubName: '@boogiewooki02',
+  },
+  {
     image: CY,
     name: '원채영',
     role: '프론트엔드',
@@ -81,15 +91,6 @@ export const ContributorList = [
     githubName: '@chaeyoungwon',
   },
   {
-    image: YH,
-    name: '이연호',
-    role: '백엔드',
-    year: '21',
-    school: '홍익대학교 컴퓨터공학과 22학번',
-    githubUrl: 'https://github.com/dldusgh318',
-    githubName: '@dldusgh318',
-  },
-  {
     image: YS,
     name: '오연서',
     role: '백엔드 · 디자인',
@@ -97,5 +98,14 @@ export const ContributorList = [
     school: '홍익대학교 컴퓨터공학과 22학번',
     githubUrl: 'https://github.com/oyslucy',
     githubName: '@oyslucy',
+  },
+  {
+    image: YH,
+    name: '이연호',
+    role: '백엔드',
+    year: '21',
+    school: '홍익대학교 컴퓨터공학과 22학번',
+    githubUrl: 'https://github.com/dldusgh318',
+    githubName: '@dldusgh318',
   },
 ];
