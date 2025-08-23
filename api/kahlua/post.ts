@@ -36,8 +36,8 @@ export const fetchPostList = async ({
     postType: p.postType,
     commentsCount: p.commentsCount,
     imageUrls: p.imageUrls,
-    createdAt: p.created_at ?? p.createdAt,
-    updatedAt: p.updated_at ?? p.updatedAt,
+    createdAt: p.created_at,
+    updatedAt: p.updated_at,
     liked: p.liked,
   }));
 
@@ -62,7 +62,7 @@ export const fetchMyPosts = async (
   size: number
 ): Promise<{ posts: MyPost[]; totalPages: number } | null> => {
   try {
-    const response = await authInstance.get('my-page/post/list', {
+    const response = await authInstance.get('/my-page/post/list', {
       params: { page, size },
     });
     return {
