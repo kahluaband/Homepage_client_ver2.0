@@ -1,5 +1,5 @@
 import { authInstance } from '@/api/auth/axios';
-import { Comment } from '../notice/dto';
+import { Comment } from '../components/notice/dto';
 
 export const createCommentOrReply = async (
   postId: number,
