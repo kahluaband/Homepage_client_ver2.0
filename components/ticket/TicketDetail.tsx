@@ -6,12 +6,12 @@ import TicketOption from '@/components/templates/ticket/TicketOption';
 import RecommendedList from '@/components/ticket/RecommendedList';
 import Bar from '@/components/ui/Bar';
 import defaultPoster from '@/public/image/ticket/DefaultPoster.svg';
+import { formatDateTime } from '@/utils/dateUtils';
 import SettingsIcon from '@mui/icons-material/Settings';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { formatDateTime } from '@/utils/dateUtils';
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
 declare global {
@@ -23,6 +23,14 @@ declare global {
 interface TicketDetailProps {
   id?: string;
 }
+
+const Skeleton = ({
+  className = '',
+  rounded = 'rounded-md',
+}: {
+  className?: string;
+  rounded?: string;
+}) => <div className={`animate-pulse ${rounded} bg-gray-30 ${className}`} />;
 
 const TicketDetail = ({ id: prodId }: TicketDetailProps) => {
   const [isDays, setIsDays] = useState(false);
@@ -238,73 +246,81 @@ const TicketDetail = ({ id: prodId }: TicketDetailProps) => {
   }, []);
 
   if (isLoading || !ticketInfo) {
-    // 스켈레톤 UI (반응형)
     return (
-      <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto animate-pulse">
+      <div className="flex flex-col pad:flex-row pad:mt-8 pad:h-[328px] w-full pad:w-full dt:h-[376px] dt:justify-center mx-auto">
         {/* === 포스터(좌측) 영역 === */}
-        <div
-          className={`z-[-1] sticky top-0 w-full h-[300px] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] mb:rounded-xl mx-auto pad:mx-0 bg-gray-10`}
+        <Skeleton
+          rounded="mb:rounded-xl"
+          className="z-[-1] sticky top-0 w-full h-[300px] mb:w-[300px] pad:w-[246px] pad:h-[328px] dt:w-[282px] dt:h-[376px] mx-auto pad:mx-0"
         />
+
         {/* === 상세 정보(우측) 영역 === */}
         <div className="z-10 bg-gray-0 flex flex-col w-full h-[355px] mb:w-[350px] pad:w-full dt:w-[338px] px-4 pt-6 pad:pt-0 pad:mt-2 pad:ml-8 mx-auto dt:mr-0 pad:px-0">
           {/* 상태 뱃지 */}
-          <div className="inline-flex rounded-[32px] gap-2.5 items-center justify-center py-1 px-3 text-[16px] max-w-max bg-gray-10 text-gray-30 w-[80px] h-[32px]" />
+          <Skeleton className="inline-flex h-8 w-[88px] rounded-full" />
+
           {/* 제목 & 아이콘 영역 */}
           <div className="mt-5 pad:mt-4 gap-1 pad:gap-4 flex flex-row items-center">
-            <div className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9 bg-gray-10 rounded-md" />
+            <Skeleton className="min-w-[190px] pad:w-[217px] pad:max-w-[217px] h-9" />
             <div className="flex flex-row gap-2 items-center">
-              <div className="h-5 w-5 pad:h-6 pad:w-6 bg-gray-10 rounded-full" />
-              <div className="h-7 w-7 bg-gray-10 rounded-full" />
+              <Skeleton
+                rounded="rounded-full"
+                className="h-5 w-5 pad:h-6 pad:w-6"
+              />
+              <Skeleton rounded="rounded-full" className="h-7 w-7" />
             </div>
           </div>
+
           {/* 장소 */}
-          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
-            <div
-              className="text-gray-40 w-7 pad:w-8 bg-gray-10 rounded"
-              style={{ height: 24 }}
-            />
-            <div className="bg-gray-10 rounded w-32 h-6" />
+          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7 items-center">
+            <Skeleton className="w-7 pad:w-8 h-6 rounded" />
+            <Skeleton className="w-40 h-6 rounded" />
           </div>
+
           {/* 일시 */}
-          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7">
-            <div
-              className="text-gray-40 w-7 pad:w-8 bg-gray-10 rounded"
-              style={{ height: 24 }}
-            />
-            <div className="bg-gray-10 rounded w-32 h-6" />
+          <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal gap-6 h-7 items-center">
+            <Skeleton className="w-7 pad:w-8 h-6 rounded" />
+            <Skeleton className="w-56 h-6 rounded" />
           </div>
+
           {/* 가격 */}
           <div className="flex flex-row mt-4 pad:mt-6 text-[16px] pad:text-[18px] leading-9 font-normal">
-            <div className="text-gray-40 w-7 pad:w-8 h-7 bg-gray-10 rounded" />
+            <Skeleton className="w-7 pad:w-8 h-7 rounded" />
             <div className="ml-6 flex flex-col w-full">
-              <div className="flex flex-row items-start h-7 mb-9 pad:mb-12">
-                <div className="bg-gray-10 rounded w-[60px] pad:w-[67px] h-6" />
-                <div className="bg-gray-10 rounded w-[58px] pad:w-[66px] h-6 ml-10" />
-                <div className="bg-gray-10 rounded w-24 h-6 ml-2" />
+              {/* 일반 티켓 라인 */}
+              <div className="flex flex-row items-start h-7 mb-9 pad:mb-12 gap-4">
+                <Skeleton className="w-[72px] pad:w-[84px] h-6 rounded" />
+                <Skeleton className="w-[72px] pad:w-[84px] h-6 rounded" />
+                <Skeleton className="w-28 h-6 rounded" />
               </div>
             </div>
           </div>
+
           {/* 버튼(예매/영상) */}
-          <div className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] flex pad:hidden dt:flex flex-shrink-0 text-center items-center justify-center rounded-xl bg-gray-10" />
+          <Skeleton className="max-pad:mx-auto mt-[21px] w-full dt:w-[316px] h-[52px] dt:h-[60px] rounded-xl" />
         </div>
+
         {/* === 모바일/패드 구분선 === */}
         <div className="z-20 bg-gray-0 h-[40px] w-[100vw] flex pad:hidden items-center" />
-        <div className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 bg-gray-5 mx-auto" />
+        <Skeleton className="flex z-10 flex-shrink-0 pad:hidden w-full mb:w-[328px] pad:w-full h-2 mx-auto" />
         <div className="z-20 bg-gray-0 h-[24px] w-[100vw] flex pad:hidden items-center" />
+
         {/* === 데스크탑 지도/주소 영역 === */}
         <div className="hidden ph:flex z-10 bg-gray-0 pad:hidden dt:flex flex-col w-[100%] px-4 mb:px-0 mb:w-[328px] pad:ml-[164px] h-[282px] pad:mt-[78px] pad:h-full mx-auto">
           {/* 지도 타이틀 */}
-          <div className="text-[16px] pad:text-[18px] font-medium left-9 text-primary-60 pad:text-primary-50 h-[27px] bg-gray-10 rounded w-24 mb-2" />
+          <Skeleton className="h-[27px] w-24 mb-2 rounded" />
+
           {/* 주소 & 복사버튼 */}
-          <div className="flex flex-row gap-3 mt-1">
-            <div className="bg-gray-10 rounded w-[194px] pad:w-[294px] h-6" />
-            <div className="flex flex-row cursor-pointer items-center gap-1">
-              <div className="bg-gray-10 rounded w-5 h-5" />
-              <div className="bg-gray-10 rounded w-10 h-5" />
+          <div className="flex flex-row gap-3 mt-1 items-center">
+            <Skeleton className="w-[194px] pad:w-[294px] h-6 rounded" />
+            <div className="flex flex-row items-center gap-1">
+              <Skeleton className="w-5 h-5 rounded" />
+              <Skeleton className="w-12 h-5 rounded" />
             </div>
           </div>
+
           {/* 지도 스켈레톤 */}
-          <div className="top-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[376px] mb:h-[192px] pad:h-[225px] rounded-xl flex-shrink-0 z-0 bg-gray-10 mt-2" />
+          <Skeleton className="top-[11px] w-full h-[calc(100vw*192/328)] max-h-[192px] pad:max-h-[225px] mb:w-[328px] pad:w-[376px] mb:h-[192px] pad:h-[225px] rounded-xl mt-2" />
           <div className="min-h-[164px]" />
         </div>
       </div>
