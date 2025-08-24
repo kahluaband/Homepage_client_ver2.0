@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { TicketInfo, TicketButton } from './TicketInfo';
-import { formatDate, formatDateTime } from '@/components/util/formatDate';
+import { formatDate, formatDateTime } from '@/utils/dateUtils';
 import { PerformanceResponse } from '@/types/performace';
 
 interface TicketIntroProps {
@@ -15,7 +15,7 @@ export const TicketIntroPad = ({
   performance,
 }: TicketIntroProps) => {
   const day = formatDate(performance.booking_end_date);
-  const time = formatDateTime(performance.date_time);
+  const time = formatDateTime(performance.performance_start_time);
 
   return (
     <div
@@ -52,7 +52,7 @@ export const TicketIntroPhone = ({
   performance,
 }: TicketIntroProps) => {
   const day = formatDate(performance.booking_end_date);
-  const time = formatDateTime(performance.date_time);
+  const time = formatDateTime(performance.performance_start_time);
 
   return (
     <div

@@ -12,7 +12,7 @@ import {
   handleDeleteCommentOrReply,
   handleDeleteCancel,
   handleDeleteConfirm,
-} from '@/components/util/noticeUtils';
+} from '@/utils/noticeUtils';
 import { authInstance } from '@/api/auth/axios';
 import { Comment as CommentType } from '@/components/notice/dto';
 
@@ -76,7 +76,7 @@ const Page = () => {
 
   useEffect(() => {
     const fetchPostData = () =>
-      authInstance.get(`/post/notice/${id}/detail`).then((response) => {
+      authInstance.get(`/post/${id}/detail`).then((response) => {
         const data = response.data.result;
         const imageUrls = Array.isArray(data.imageUrls)
           ? data.imageUrls.map((img: { id: number; url: string }) => img.url)
