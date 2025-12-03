@@ -7,7 +7,7 @@ import { useSetRecoilState } from 'recoil';
 import { axiosInstance } from '@/api/auth/axios';
 import { isLoggedInState } from '@/atoms/authAtom';
 
-const page = () => {
+const CallbackPage = () => {
   const router = useRouter();
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
@@ -56,4 +56,4 @@ const page = () => {
   return <div className="h-screen">Redirecting...</div>;
 };
 
-export default page;
+export default CallbackPage;

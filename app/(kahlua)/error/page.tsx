@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import ErrorModal from '@/components/login/ErrorModal';
 
-const page = () => {
+const ErrorPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   return (
@@ -14,4 +14,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ErrorPage;

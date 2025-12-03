@@ -33,11 +33,7 @@ const RecommendedList = ({
       </span>
 
       <div className="min-[834px]:hidden">
-        <MobileTicketList
-          tickets={ticketList}
-          currentId={id}
-          isLoading={isLoading}
-        />
+        <MobileTicketList tickets={ticketList} currentId={id} />
       </div>
       <div className="max-[833px]:hidden">
         <DesktopTicketList

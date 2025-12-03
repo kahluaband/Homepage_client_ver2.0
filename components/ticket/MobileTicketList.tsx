@@ -7,11 +7,9 @@ import WidePlaylistItem from './WidePlaylistItem';
 const MobileTicketList = ({
   tickets,
   currentId,
-  isLoading,
 }: {
   tickets: any[];
   currentId: number;
-  isLoading: boolean;
 }) => {
   const [shuffledTickets, setShuffledTickets] = useState<any[] | null>(null);
 

@@ -36,7 +36,7 @@ const FAQ = () => {
             },
           }}
           expanded={expanded === 'panel1'}
-          onChange={(e) => {
+          onChange={() => {
             handleChange('panel1');
           }}
           className={`w-[328px] pad:w-[792px] ${expanded === 'panel1' ? 'bg-primary-50' : 'bg-gray-0'}`}
@@ -88,7 +88,7 @@ const FAQ = () => {
             },
           }}
           expanded={expanded === 'panel2'}
-          onChange={(e) => {
+          onChange={() => {
             handleChange('panel2');
           }}
           className={`w-[328px] pad:w-[792px]  ${expanded === 'panel2' ? 'bg-primary-50' : 'bg-gray-0'}`}
@@ -132,7 +132,7 @@ const FAQ = () => {
             },
           }}
           expanded={expanded === 'panel3'}
-          onChange={(e) => {
+          onChange={() => {
             handleChange('panel3');
           }}
           className={`w-[328px] pad:w-[792px] ${expanded === 'panel3' ? 'bg-primary-50' : 'bg-gray-0'}`}

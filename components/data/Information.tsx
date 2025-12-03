@@ -73,7 +73,6 @@ const { eventDate, lastReserveDate } = createEventDates(
 );
 
 const getInformation = (): Information => {
-  const nowKoreanTime = dayjs().tz('Asia/Seoul').toDate();
   const isDays = true;
 
   return {

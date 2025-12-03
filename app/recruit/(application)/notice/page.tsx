@@ -13,7 +13,7 @@ import {
 } from '@/components/data/RecruitingInfo';
 import { Checkbox } from '@/components/ui/checkbox';
 
-const page = () => {
+const NoticePage = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -59,7 +59,7 @@ const page = () => {
         </ul>
       </div>
       <button
-        onClick={(e) => handleNextStep()}
+        onClick={() => handleNextStep()}
         disabled={!isChecked}
         className={`flex justify-center items-center text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] ph:mb-[100px] pad:mb-[140px] dt:mb-[180px] ${isChecked ? 'bg-primary-50 text-gray-0' : 'bg-gray-10 text-gray-40 cursor-not-allowed'}`}
       >
@@ -153,4 +153,4 @@ const Warning = () => {
   );
 };
 
-export default page;
+export default NoticePage;

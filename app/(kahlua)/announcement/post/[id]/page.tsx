@@ -49,7 +49,7 @@ const Page = () => {
   const [validCommentCount, setValidCommentCount] = useState<number>(0);
   const [commentText, setCommentText] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
-  const [replyText, setReplyText] = useState('');
+  const [, setReplyText] = useState('');
   const [user, setUser] = useState<string>('');
 
   const fetchComments = async () => {
