@@ -77,7 +77,6 @@ const TicketInfoSection = ({ type }: { type: string }) => {
         const response = await authInstance.patch(
           `/admin/tickets/${ticketId}/ticket-complete`
         );
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -86,7 +85,6 @@ const TicketInfoSection = ({ type }: { type: string }) => {
         const response = await authInstance.patch(
           `/admin/tickets/${ticketId}/cancel-complete`
         );
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }

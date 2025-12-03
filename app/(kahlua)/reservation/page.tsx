@@ -48,14 +48,11 @@ const page = () => {
 
     // 3. 연결 성공 시 구독
     client.onConnect = (frame) => {
-      console.log('Connected to WebSocket: ', frame);
-
       if (reservation.reservationDate) {
         client.subscribe(
           `/topic/public/${reservation.reservationDate}`,
           (message) => {
             const reservationData = JSON.parse(message.body);
-            console.log('새로운 예약 메시지:', reservationData);
 
             // 시간 형식 확인 및 수정
             if (!reservationData.startTime.includes(':00')) {
@@ -105,7 +102,6 @@ const page = () => {
     return () => {
       if (client.active) {
         client.deactivate();
-        console.log('Disconnected from WebSocket');
       }
     };
   }, [reservation.reservationDate]); // reservationDate가 변경될 때마다 연결
@@ -131,9 +127,7 @@ const page = () => {
         const reservationData =
           response.data.result.reservationResponseList || [];
         setReservationsForDate(reservationData);
-      } else {
-        console.log(response.data.message);
-      }
+      } 
     } catch (error) {
       console.log('Error fetching reservations:', error);
     }
@@ -164,8 +158,6 @@ const page = () => {
 
   // 예약 확정 (5. 발행2)
   const handleReservationSubmit = async (reservation: ReservationRequest) => {
-    console.log('예약 정보:', reservation);
-
     if (stompClient && stompClient.connected) {
       const destination = `/app/reserve.complete/${reservation.reservationDate}`;
       const body = JSON.stringify({
@@ -178,11 +170,6 @@ const page = () => {
       stompClient.publish({
         destination: destination,
         body: body,
-      });
-
-      console.log('Reservation completion request sent via STOMP:', {
-        destination,
-        body,
       });
     } else {
       console.error('STOMP Client is not connected.');

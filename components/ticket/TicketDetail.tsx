@@ -52,7 +52,6 @@ const TicketDetail = ({ id: prodId }: TicketDetailProps) => {
 
   const fetchTickets = async (prodId: number) => {
     try {
-      console.log('Fetching tickets for prodId:', prodId);
       const response = await axiosInstance.get(`/performances/${prodId}`);
       if (response.data.isSuccess) {
         return response.data.result.performanceResponse;

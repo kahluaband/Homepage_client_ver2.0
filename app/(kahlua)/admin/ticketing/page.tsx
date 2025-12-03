@@ -19,15 +19,13 @@ const page = () => {
       const response = await authInstance.get('/admin/tickets/download', {
         responseType: 'blob',
       });
-      console.log(response.data);
 
       const blob = response.data;
-
       const fileObjectUrl = window.URL.createObjectURL(blob);
+      
       const link = document.createElement('a');
       link.href = fileObjectUrl;
       link.style.display = 'none';
-
       link.download = 'ticket_list.xlsx';
 
       document.body.appendChild(link);

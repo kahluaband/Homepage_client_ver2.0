@@ -28,7 +28,6 @@ const TicketStatistics = () => {
       const labels = ['일반 예매', '신입생 예매'];
       const counts = [result.graph.general_count, result.graph.freshman_count];
       const baseColors = ['#1A2F9E', '#BCC6FB'];
-      console.log(counts);
 
       // 데이터와 라벨을 하나의 배열로 묶고 정렬
       const sortedData = labels

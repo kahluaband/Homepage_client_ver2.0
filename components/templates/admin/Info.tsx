@@ -14,7 +14,6 @@ interface AdminInfoProps {
 const InfoList: React.FC<AdminInfoProps> = ({ data, fieldList, onChange }) => {
   const handleChange = useCallback(
     (newValue: any, field: InputFieldType) => {
-      console.log('InfoList onChange:', field.label, newValue);
       onChange(newValue, field.label);
     },
     [onChange]

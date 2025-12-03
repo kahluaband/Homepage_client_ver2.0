@@ -61,8 +61,6 @@ const LocationModal: React.FC<LocationModalProps> = ({
             setLatitude(lat);
             setLongitude(lng);
 
-            console.log(`📌 변환된 좌표: ${lat}, ${lng}`);
-
             const container = mapContainerRef.current;
             if (!container) return;
 

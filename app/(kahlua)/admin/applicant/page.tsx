@@ -31,7 +31,6 @@ interface ApplicantProps {
 }
 
 const page = () => {
-  const router = useRouter();
   const sessionArr = ['ALL', '보컬', '기타', '드럼', '베이스', '신디'];
   const [session, setSession] = useState('ALL');
   const [applicantList, setApplicantList] = useState<ApplicantProps[]>([]);
@@ -44,7 +43,6 @@ const page = () => {
       const response = await authInstance.get('/admin/apply/download', {
         responseType: 'blob',
       });
-      console.log(response.data);
 
       const blob = response.data;
 
@@ -52,7 +50,6 @@ const page = () => {
       const link = document.createElement('a');
       link.href = fileObjectUrl;
       link.style.display = 'none';
-
       link.download = 'applicant_list.xlsx';
 
       document.body.appendChild(link);

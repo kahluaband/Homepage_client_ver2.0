@@ -133,7 +133,6 @@ const page = () => {
             'Content-Type': 'application/json',
           },
         });
-        console.log(response.data);
 
         if (response.status === 200) {
           window.location.href = `/recruit/complete`;
