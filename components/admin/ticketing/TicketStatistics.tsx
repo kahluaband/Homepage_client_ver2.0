@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { authInstance } from '@/api/auth/axios';
+
 import PieChart from '../applicant/PieChart';
+
+import { authInstance } from '@/api/auth/axios';
 
 const TicketStatistics = () => {
   const [chartData, setChartData] = useState<any>(null);
@@ -15,7 +17,7 @@ const TicketStatistics = () => {
   const fetchData = async () => {
     try {
       const response = await authInstance.get('/admin/tickets/statistics');
-      const result = response.data.result;
+      const { result } = response.data;
 
       setTicketStatus({
         total: result.ticket_status_count.total_ticket_count,
@@ -96,7 +98,7 @@ const TicketStatistics = () => {
         {statusItems.map((item, index) => (
           <div
             key={index}
-            className={`flex w-[calc(50%-12px)] max-pad:w-full  flex-col items-center justify-center gap-2 h-[120px] rounded-3xl text-black bg-gray-0`}
+            className="flex w-[calc(50%-12px)] max-pad:w-full  flex-col items-center justify-center gap-2 h-[120px] rounded-3xl text-black bg-gray-0"
           >
             <span className="text-[24px] font-semibold">{item.label}</span>
             <span

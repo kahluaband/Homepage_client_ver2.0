@@ -1,6 +1,7 @@
-import chat from '@/public/image/notice/chat.svg';
-import LikeButton from '@/components/notice/LikeButton';
 import Image from 'next/image';
+
+import LikeButton from '@/components/notice/LikeButton';
+import chat from '@/public/image/notice/chat.svg';
 
 interface InfoSectionProps {
   commentCount: number;

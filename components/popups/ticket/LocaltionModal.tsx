@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import React from 'react';
 import Image from 'next/image';
+import React, { useEffect, useRef } from 'react';
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -24,8 +23,8 @@ const LocationModal = ({
   mapLink,
 }: LocationModalProps) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const [latitude, setLatitude] = useState<number | null>(null);
-  const [longitude, setLongitude] = useState<number | null>(null);
+  const latitudeRef = useRef<number | null>(null);
+  const longitudeRef = useRef<number | null>(null);
 
   const handleOverlayClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -58,8 +57,8 @@ const LocationModal = ({
             const lat = parseFloat(result[0].y);
             const lng = parseFloat(result[0].x);
 
-            setLatitude(lat);
-            setLongitude(lng);
+            latitudeRef.current = lat;
+            longitudeRef.current = lng;
 
             const container = mapContainerRef.current;
             if (!container) return;
@@ -73,7 +72,7 @@ const LocationModal = ({
 
             const marker = new window.kakao.maps.Marker({
               position: new window.kakao.maps.LatLng(lat, lng),
-              map: map,
+              map,
               draggable: true,
             });
 

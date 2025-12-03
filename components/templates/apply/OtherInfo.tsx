@@ -10,7 +10,7 @@ interface OtherInfoProps {
 }
 
 const OtherInfo = ({ onInfoChange, OtherInfo }: OtherInfoProps) => {
-  const { schedule, afterparty } = OtherInfo;
+  const { schedule } = OtherInfo;
 
   const handleScheduleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInfoChange({ ...OtherInfo, schedule: event.target.value });
@@ -19,7 +19,7 @@ const OtherInfo = ({ onInfoChange, OtherInfo }: OtherInfoProps) => {
   const handleAfterpartyChange = (selected: string) => {
     onInfoChange({
       ...OtherInfo,
-      afterparty: selected === '참석' ? true : false,
+      afterparty: selected === '참석',
     });
   };
 

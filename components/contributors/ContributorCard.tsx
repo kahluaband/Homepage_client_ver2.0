@@ -1,11 +1,12 @@
 import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
+
 import blurCard from '@/public/image/contributors/blurCard.svg';
 import blurCard2 from '@/public/image/contributors/blurCard2.svg';
 import blurCard3 from '@/public/image/contributors/blurCard3.svg';
-import schoolIcon from '@/public/image/contributors/school.svg';
-import githubIcon from '@/public/image/contributors/github.svg';
 import emailIcon from '@/public/image/contributors/email.svg';
-import Link from 'next/link';
+import githubIcon from '@/public/image/contributors/github.svg';
+import schoolIcon from '@/public/image/contributors/school.svg';
 
 interface ContributorCardProps {
   image: StaticImageData;

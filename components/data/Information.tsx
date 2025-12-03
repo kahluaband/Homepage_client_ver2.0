@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -86,10 +86,10 @@ const getInformation = (): Information => {
     day: formatDay(eventDate),
     time: formatTime(eventDate),
     subDate: formatSubDate(eventDate),
-    eventDate: eventDate,
-    lastReserveDate: lastReserveDate,
+    eventDate,
+    lastReserveDate,
     isFreshmanFree: false,
-    isDays: isDays,
+    isDays,
     tickets: {
       freshman: {
         name: '신입생 티켓',

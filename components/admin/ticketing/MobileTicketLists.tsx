@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Typography } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface TicketMemberProps {
   id: number;
@@ -42,11 +41,11 @@ const MobileTicketLists = ({
     const numbersOnly = raw.replace(/\D/g, '');
     if (numbersOnly.length === 11) {
       return `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 7)}-${numbersOnly.slice(7)}`;
-    } else if (numbersOnly.length === 10) {
-      return `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6)}`;
-    } else {
-      return raw;
     }
+    if (numbersOnly.length === 10) {
+      return `${numbersOnly.slice(0, 3)}-${numbersOnly.slice(3, 6)}-${numbersOnly.slice(6)}`;
+    }
+    return raw;
   };
 
   const copyToClipboard = (text: string) => {

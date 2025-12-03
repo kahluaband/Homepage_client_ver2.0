@@ -1,9 +1,10 @@
 'use client';
-import * as React from 'react';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import * as React from 'react';
 
 const FAQ = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -22,7 +23,7 @@ const FAQ = () => {
       </div>
       <div className="pt-16 flex flex-col items-start">
         <Accordion
-          square={true}
+          square
           disableGutters
           sx={{
             borderRadius: '16px',
@@ -74,7 +75,7 @@ const FAQ = () => {
         </Accordion>
 
         <Accordion
-          square={true}
+          square
           disableGutters
           sx={{
             borderRadius: '16px',
@@ -118,7 +119,7 @@ const FAQ = () => {
         </Accordion>
 
         <Accordion
-          square={true}
+          square
           disableGutters
           sx={{
             borderRadius: '16px',

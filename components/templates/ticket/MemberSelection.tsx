@@ -18,7 +18,7 @@ const MemberSelection = ({
   ticket,
   member,
   setMember,
-}:MemberSelectionProps) => {
+}: MemberSelectionProps) => {
   const handleIncrement = () => {
     setMember((prevMember) => {
       const newMember = prevMember < max ? prevMember + 1 : prevMember;

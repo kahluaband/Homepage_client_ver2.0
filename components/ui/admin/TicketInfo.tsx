@@ -1,11 +1,14 @@
-import InfoList from '@/components/templates/admin/Info';
+import { ReactNode } from 'react';
+
 import { InputFieldType } from './type';
+
+import InfoList from '@/components/templates/admin/Info';
 
 interface TicketInfoProps {
   data: any;
   fieldList: InputFieldType[];
   onChange: (newValue: number, title: string) => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const TicketInfoList = ({

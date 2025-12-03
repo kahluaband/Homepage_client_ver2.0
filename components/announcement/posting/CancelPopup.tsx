@@ -1,5 +1,6 @@
-import ButtonModal from '@/components/ui/ButtonModal';
 import React, { useEffect } from 'react';
+
+import ButtonModal from '@/components/ui/ButtonModal';
 
 interface CancelPopupProps {
   isOpen: boolean;

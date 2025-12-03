@@ -39,8 +39,7 @@ interface ApplicantInfoProps {
 }
 
 const ApplicantInfo = ({ onInfoChange, PersonalInfo }: ApplicantInfoProps) => {
-  const { name, birth_date, phone_num, major, address, gender, email } =
-    PersonalInfo;
+  const { name, birth_date, phone_num, major, address, email } = PersonalInfo;
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onInfoChange({ ...PersonalInfo, name: event.target.value });

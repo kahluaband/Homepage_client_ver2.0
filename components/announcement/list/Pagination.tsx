@@ -1,5 +1,5 @@
-import React from 'react';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import React from 'react';
 
 interface PaginationProps {
   currentPage: number;

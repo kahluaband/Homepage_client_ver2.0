@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import FullHeart from '@/public/image/notice/FullHeart.svg';
-import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
+import { useEffect, useState } from 'react';
+
 import { authInstance } from '@/api/auth/axios';
+import EmptyHeart from '@/public/image/notice/EmptyHeart.svg';
+import FullHeart from '@/public/image/notice/FullHeart.svg';
 
 interface LikeButtonProps {
   postId: number;

@@ -1,18 +1,20 @@
 'use client';
+
+import * as StompJs from '@stomp/stompjs';
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import SockJS from 'sockjs-client';
+
 import { authInstance } from '@/api/auth/axios';
 import Banner from '@/components/reservation/Banner';
 import CalendarUI from '@/components/reservation/CalendarUI';
 import ReservationForm from '@/components/reservation/ReservationForm';
 import RoomNotice from '@/components/reservation/RoomNotice';
 import TimeTable from '@/components/reservation/TimeTable';
-import * as StompJs from '@stomp/stompjs';
 import { ReservationRequest, ReservationResponse } from '@/types/reservation';
-import Cookie from 'js-cookie';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import SockJS from 'sockjs-client';
 
-const page = () => {
+const ReservationPage = () => {
   // 예약 폼 표시 여부
   const [isFormVisible, setIsFormVisible] = useState(true);
 
@@ -47,7 +49,7 @@ const page = () => {
     });
 
     // 3. 연결 성공 시 구독
-    client.onConnect = (frame) => {
+    client.onConnect = () => {
       if (reservation.reservationDate) {
         client.subscribe(
           `/topic/public/${reservation.reservationDate}`,
@@ -127,7 +129,7 @@ const page = () => {
         const reservationData =
           response.data.result.reservationResponseList || [];
         setReservationsForDate(reservationData);
-      } 
+      }
     } catch (error) {
       console.log('Error fetching reservations:', error);
     }
@@ -146,8 +148,8 @@ const page = () => {
       });
 
       stompClient.publish({
-        destination: destination,
-        body: body,
+        destination,
+        body,
       });
     } else {
       console.error('STOMP Client is not connected.');
@@ -168,8 +170,8 @@ const page = () => {
       });
 
       stompClient.publish({
-        destination: destination,
-        body: body,
+        destination,
+        body,
       });
     } else {
       console.error('STOMP Client is not connected.');
@@ -218,4 +220,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ReservationPage;

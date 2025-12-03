@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
 const FreshmanTickets = () => {
@@ -37,7 +36,7 @@ const FreshmanTickets = () => {
         </p>
       </div>
       <button
-        onClick={(e) => handleToMain()}
+        onClick={() => handleToMain()}
         className="text-center h-[60px] w-[328px] pad:w-[384px] text-[18px] rounded-[12px] mt-[40px] max-pad:bottom-8 max-pad:absolute pad:mb-[140px] dt:mb-[180px] bg-gray-5 text-gray-60"
       >
         메인으로 돌아가기

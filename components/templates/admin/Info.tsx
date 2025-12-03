@@ -1,8 +1,9 @@
+import { useCallback } from 'react';
+
 import Date from '@/components/ui/admin/Date';
 import DateTime from '@/components/ui/admin/DateTime';
 import Text from '@/components/ui/admin/TextBox';
 import { InputFieldType } from '@/components/ui/admin/type';
-import { useCallback } from 'react';
 
 interface AdminInfoProps {
   data: Record<string, any>;

@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
-import WidePlaylistItem from './WidePlaylistItem';
+
 import { shuffleArray } from '../../utils/shuffleArrayUtils';
+
+import WidePlaylistItem from './WidePlaylistItem';
 
 const MobileTicketList = ({
   tickets,
   currentId,
+  isLoading,
 }: {
   tickets: any[];
   currentId: number;
+  isLoading: boolean;
 }) => {
   const [shuffledTickets, setShuffledTickets] = useState<any[] | null>(null);
 

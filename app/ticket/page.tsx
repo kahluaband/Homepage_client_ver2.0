@@ -1,7 +1,9 @@
 'use client';
+
+import { useState } from 'react';
+
 import TicketDetail from '@/components/ticket/TicketDetail';
 import { PerformanceResponse } from '@/types/performace';
-import { useState } from 'react';
 
 const Page = () => {
   const [firstTicketId, setFirstTicketId] = useState<string | null>(null);

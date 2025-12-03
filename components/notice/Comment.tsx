@@ -1,9 +1,11 @@
+import Send from '@mui/icons-material/Send';
 import Image from 'next/image';
 import { useState } from 'react';
-import defaultImg from '@/public/image/mypage/defaultProfile.svg';
-import Send from '@mui/icons-material/Send';
+
 import { Comment as CommentType } from './dto';
+
 import DeletePopup from '@/components/notice/DeleteCommentPopup';
+import defaultImg from '@/public/image/mypage/defaultProfile.svg';
 
 interface CommentProps {
   comment: CommentType;

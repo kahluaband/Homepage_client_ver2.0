@@ -2,8 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { axiosInstance } from '@/api/auth/axios';
 import { useSetRecoilState } from 'recoil';
+
+import { axiosInstance } from '@/api/auth/axios';
 import { isLoggedInState } from '@/atoms/authAtom';
 
 const page = () => {

@@ -1,5 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { useEffect, useReducer, useState } from 'react';
+
+import { axiosInstance } from '@/api/auth/axios';
+import { information } from '@/components/data/Information';
 import FinalStep from '@/components/templates/ticket/FinalStep';
 import FreshmanInfo from '@/components/templates/ticket/FreshmanInfo';
 import MemberSelection from '@/components/templates/ticket/MemberSelection';
@@ -8,12 +13,8 @@ import PartySelection, {
   reducer,
 } from '@/components/templates/ticket/PartySelection';
 import TicketSelection from '@/components/templates/ticket/TicketSelection';
-import Bar from '@/components/ui/Bar';
-import { useState, useReducer, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Warning from '@/components/templates/ticket/Warning';
-import { axiosInstance } from '@/api/auth/axios';
-import { information } from '@/components/data/Information';
+import Bar from '@/components/ui/Bar';
 
 const initialState: State = {
   participation1: false,
@@ -111,7 +112,7 @@ const FreshmanTicket = () => {
         });
 
         if (response.status === 200) {
-          const reservationId = response.data.reservationId;
+          const { reservationId } = response.data;
           router.push(`/ticket/complete?reservationId=${reservationId}`);
         } else if (response.data.code === 'ALREADY EXIST STUDENT_ID') {
           setIsAlreadyReserved(true);
@@ -141,7 +142,7 @@ const FreshmanTicket = () => {
             description="신입생은 최대 1인 1매 구매 가능합니다."
             min={1}
             max={1}
-            ticket={'freshman'}
+            ticket="freshman"
             member={member}
             setMember={setMember}
           />

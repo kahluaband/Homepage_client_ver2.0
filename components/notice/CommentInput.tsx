@@ -1,5 +1,5 @@
-import React from 'react';
 import Send from '@mui/icons-material/Send';
+import React from 'react';
 
 interface CommentInputProps {
   commentText: string;

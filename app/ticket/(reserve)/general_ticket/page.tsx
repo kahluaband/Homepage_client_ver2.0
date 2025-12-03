@@ -1,4 +1,10 @@
 'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+
+import { axiosInstance } from '@/api/auth/axios';
+import { information } from '@/components/data/Information';
 import FinalStep from '@/components/templates/ticket/FinalStep';
 import GeneralInfo from '@/components/templates/ticket/GeneralInfo';
 import MemberSelection from '@/components/templates/ticket/MemberSelection';
@@ -6,17 +12,13 @@ import PaymentSelection from '@/components/templates/ticket/PaymentSelection';
 import TicketSelection from '@/components/templates/ticket/TicketSelection';
 import Warning from '@/components/templates/ticket/Warning';
 import Bar from '@/components/ui/Bar';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { axiosInstance } from '@/api/auth/axios';
-import { information } from '@/components/data/Information';
 
 const GeneralTicket = () => {
   const router = useRouter();
   const [member, setMember] = useState<number>(1);
   const [showLastCheckModal, setShowLastCheckModal] = useState(false);
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const [isAlreadyReserved, setIsAlreadyReserved] = useState(false);
+  const [isAlreadyReserved] = useState(false);
   const [dynamicTotalHeightClass, setDynamicTotalHeightClass] =
     useState('h-[1446px]');
   const [dynamicHeightClass, setDynamicHeightClass] = useState('h-[1046px]');
@@ -94,11 +96,11 @@ const GeneralTicket = () => {
     if (isDataComplete) {
       try {
         const formData = {
-          buyer: buyer,
+          buyer,
           phone_num,
           type: 'GENERAL',
-          members: members,
-          email: email,
+          members,
+          email,
         };
         const response = await axiosInstance.post(`/tickets`, formData, {
           headers: {
@@ -106,7 +108,7 @@ const GeneralTicket = () => {
           },
         });
         if (response.status === 200) {
-          const reservationId = response.data.reservationId;
+          const { reservationId } = response.data;
           router.push(`/ticket/complete?reservationId=${reservationId}`);
         } else {
         }
@@ -137,7 +139,7 @@ const GeneralTicket = () => {
             description="일반 예매는 최대 1인 4매 구매 가능합니다."
             min={1}
             max={4}
-            ticket={'general'}
+            ticket="general"
             member={member}
             setMember={setMember}
           />

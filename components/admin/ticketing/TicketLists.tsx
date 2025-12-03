@@ -1,14 +1,9 @@
-import { authInstance } from '@/api/auth/axios';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { totalTicket } from '@/atoms';
-import { useRouter } from 'next/navigation';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 
 const theme = createTheme({
@@ -50,7 +45,6 @@ interface TicketMemberProps {
 }
 
 const TicketLists = ({
-  type,
   ticketData,
   ticketState,
   handleSelectedState,
@@ -65,7 +59,6 @@ const TicketLists = ({
     ticketId: number
   ) => void;
 }) => {
-
   const copyReservationId = (reservation_id: string) => {
     navigator.clipboard.writeText(reservation_id).then(() => {
       alert('예매번호가 복사되었습니다!');
@@ -80,7 +73,7 @@ const TicketLists = ({
 
   return (
     <ThemeProvider theme={theme}>
-      {ticketData.map((ticket, index) => (
+      {ticketData.map((ticket) => (
         <Accordion key={ticket.id}>
           <div className="flex">
             <AccordionSummary

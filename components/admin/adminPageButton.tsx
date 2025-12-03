@@ -1,8 +1,9 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import ApplicantStatistics from './applicant/ApplicantStatistics';
-import TicketStatistics from './ticketing/TicketStatistics';
-import MessageStatistics from './message/MessageStatistics';
 import Link from 'next/link';
+
+import ApplicantStatistics from './applicant/ApplicantStatistics';
+import MessageStatistics from './message/MessageStatistics';
+import TicketStatistics from './ticketing/TicketStatistics';
 
 interface AdminPageButtonProps {
   name: string;

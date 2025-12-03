@@ -1,16 +1,17 @@
 'use client';
 
-import * as React from 'react';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Divider } from '@mui/material';
+import * as React from 'react';
 import { useState } from 'react';
+
 import {
+  DynamicRecruitingInfo,
   formatDay,
   formatMonth,
   formatYear,
   getOnlyNum,
-  DynamicRecruitingInfo,
 } from '@/components/data/RecruitingInfo';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const page = () => {
   const [isChecked, setIsChecked] = useState(false);

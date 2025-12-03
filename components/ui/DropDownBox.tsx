@@ -1,7 +1,9 @@
-import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
-import TicketDetails from './TicketDetails';
 import clsx from 'clsx';
+import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+
+import TicketDetails from './TicketDetails';
+
 import { formatDateTimeMinute } from '@/utils/dateUtils';
 
 interface Option {

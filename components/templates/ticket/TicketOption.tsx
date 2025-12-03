@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
 import OptionBox from '@/components/ui/OptionBox';
 import Ticket from '@/components/ui/Ticket';
-import dayjs from 'dayjs';
 
 interface TicketOptionProps {
   data: any;
@@ -37,10 +38,10 @@ const TicketOption = ({ data, isDays }: TicketOptionProps) => {
     setActive(isDays);
   }, [isDays]);
 
-  const handleFreshmanClick = () => {
-    setFreshman(true);
-    setGeneral(false);
-  };
+  // const handleFreshmanClick = () => {
+  //   setFreshman(true);
+  //   setGeneral(false);
+  // };
 
   const handleGeneralClick = () => {
     setFreshman(false);

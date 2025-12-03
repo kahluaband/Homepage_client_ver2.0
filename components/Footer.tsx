@@ -1,13 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter, usePathname } from 'next/navigation';
-
 import clsx from 'clsx';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
-import logo from '@/public/image/KAHLUA.svg';
-import youtube_icon from '@/public/image/youtube-icon.svg';
 import instagram_icon from '@/public/image/instagram-icon.svg';
+import logo from '@/public/image/KAHLUA.svg';
 import kakaotalk_icon from '@/public/image/kakaotalk-icon.svg';
+import youtube_icon from '@/public/image/youtube-icon.svg';
 
 export interface SocialIconProps {
   href: string;

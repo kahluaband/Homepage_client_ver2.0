@@ -1,12 +1,12 @@
-import React from 'react';
 import Image from 'next/image';
+import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 interface TicketDetailsProps {
   ticketType: string;
-  onClick: (event: React.MouseEvent) => void;
+  onClick: (event: MouseEvent) => void;
   member: number;
   maxTicket: number;
-  setMember: React.Dispatch<React.SetStateAction<number>>;
+  setMember: Dispatch<SetStateAction<number>>;
 }
 
 const TicketDetails = ({
