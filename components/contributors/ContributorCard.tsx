@@ -19,7 +19,7 @@ interface ContributorCardProps {
   index: number;
 }
 
-const PadDtCard: React.FC<ContributorCardProps> = ({
+const PadDtCard = ({
   image,
   name,
   role,
@@ -28,7 +28,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
   githubUrl,
   githubName,
   emailName,
-}) => {
+}: ContributorCardProps) => {
   return (
     <div className="relative ph:hidden pad:block w-[384px] h-[210px] mx-auto">
       <div className="relative w-full h-full">
@@ -93,7 +93,7 @@ const PadDtCard: React.FC<ContributorCardProps> = ({
   );
 };
 
-const PhCard: React.FC<ContributorCardProps> = ({
+const PhCard = ({
   image,
   name,
   role,
@@ -103,7 +103,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
   githubName,
   emailName,
   index,
-}) => {
+}: ContributorCardProps) => {
   const isEven = index % 2 === 1;
   return (
     <div className="relative pad:hidden ph:block w-[328px] h-[172px] mx-auto">
@@ -177,7 +177,7 @@ const PhCard: React.FC<ContributorCardProps> = ({
   );
 };
 
-const ContributorCard: React.FC<ContributorCardProps> = (props) => {
+const ContributorCard = (props: ContributorCardProps) => {
   return (
     <>
       <PadDtCard {...props} />

@@ -11,7 +11,7 @@ interface AdminInfoProps {
 }
 
 // title, inputBox 형식의 information list
-const InfoList: React.FC<AdminInfoProps> = ({ data, fieldList, onChange }) => {
+const InfoList = ({ data, fieldList, onChange }: AdminInfoProps) => {
   const handleChange = useCallback(
     (newValue: any, field: InputFieldType) => {
       onChange(newValue, field.label);

@@ -18,13 +18,13 @@ interface SelectBoxProps {
   children: string;
 }
 
-const LoginSelectBox: React.FC<SelectBoxProps> = ({
+const LoginSelectBox = ({
   data,
   setData,
   id,
   itemList,
   children,
-}) => (
+}: SelectBoxProps) => (
   <div className="flex flex-row w-[200px] h-[48px] px-[20px] py-[10px] justify-center items-center gap-[24px] rounded-[12px] bg-black">
     <p className="text-primary-50">{children}</p>
     <Select

@@ -9,7 +9,7 @@ interface OtherInfoProps {
   };
 }
 
-const OtherInfo: React.FC<OtherInfoProps> = ({ onInfoChange, OtherInfo }) => {
+const OtherInfo = ({ onInfoChange, OtherInfo }: OtherInfoProps) => {
   const { schedule, afterparty } = OtherInfo;
 
   const handleScheduleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

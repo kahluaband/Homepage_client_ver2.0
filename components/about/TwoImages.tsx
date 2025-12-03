@@ -14,7 +14,7 @@ interface TwoImagesProps {
   }[];
 }
 
-const TwoImages: React.FC<TwoImagesProps> = ({ className = '', images }) => {
+const TwoImages = ({ className = '', images }: TwoImagesProps) => {
   return (
     <div className={`${className}`}>
       {images.map((image, index) => (

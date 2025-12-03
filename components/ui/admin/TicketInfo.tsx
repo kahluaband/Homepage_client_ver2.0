@@ -8,12 +8,12 @@ interface TicketInfoProps {
   children: React.ReactNode;
 }
 
-const TicketInfoList: React.FC<TicketInfoProps> = ({
+const TicketInfoList = ({
   data,
   fieldList,
   onChange,
   children,
-}) => {
+}: TicketInfoProps) => {
   return (
     <div className="flex flex-row w-full h-auto gap-[8px]">
       <p className="flex w-[120px] pad:w-[160px] h-[48px] items-center">

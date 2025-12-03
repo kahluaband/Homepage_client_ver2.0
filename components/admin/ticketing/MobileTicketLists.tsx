@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { authInstance } from '@/api/auth/axios';
+import { useState } from 'react';
 import { Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
@@ -38,7 +37,6 @@ const MobileTicketLists = ({
   handleSelectedState: (ticketId: number) => void;
 }) => {
   const [openCardIds, setOpenCardIds] = useState<number[]>([]);
-  const router = useRouter();
 
   const formatPhoneNumber = (raw: string) => {
     const numbersOnly = raw.replace(/\D/g, '');

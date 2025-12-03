@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-interface multipleOptionProps {
+interface MultipleOptionProps {
   option1: string;
   option2: string;
   option3: string;
@@ -12,7 +12,7 @@ interface multipleOptionProps {
   className: string;
 }
 
-const MultipleOptionBox: React.FC<multipleOptionProps> = ({
+const MultipleOptionBox = ({
   option1,
   option2,
   option3,
@@ -20,7 +20,7 @@ const MultipleOptionBox: React.FC<multipleOptionProps> = ({
   option5,
   selection,
   className,
-}) => {
+}: MultipleOptionProps) => {
   const [selected, setSelected] = React.useState<string[]>(['', '']);
 
   const handleSelection = (option: string) => {

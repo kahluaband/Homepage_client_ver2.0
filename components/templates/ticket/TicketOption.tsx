@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import OptionBox from '@/components/ui/OptionBox';
@@ -10,7 +11,7 @@ interface TicketOptionProps {
   isDays: boolean;
 }
 
-const TicketOption: React.FC<TicketOptionProps> = ({ data, isDays }) => {
+const TicketOption = ({ data, isDays }: TicketOptionProps) => {
   const [active, setActive] = useState(isDays);
   const [freshman, setFreshman] = useState(false);
   const [general, setGeneral] = useState(true);

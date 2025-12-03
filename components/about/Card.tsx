@@ -15,7 +15,7 @@ interface CardProps {
   altText: string;
 }
 
-const Card: React.FC<CardProps> = ({
+const Card = ({
   bgColor,
   title1,
   title2,
@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({
   descriptions,
   imageSrc,
   altText,
-}) => {
+}: CardProps) => {
   return (
     <div className="pad:w-96 ph:w-[304px] pad:h-[470px] ph:h-[364px] pad:mx-0 ph:ml-4 rounded-3xl">
       <div className="flex">

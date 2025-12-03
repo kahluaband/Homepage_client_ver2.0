@@ -7,11 +7,11 @@ interface DeletePostPopupProps {
   isOpen: boolean;
 }
 
-const CancelPopup: React.FC<DeletePostPopupProps> = ({
+const DeletePostPopup = ({
   onClose,
   onConfirm,
   isOpen,
-}) => {
+}: DeletePostPopupProps) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -35,4 +35,4 @@ const CancelPopup: React.FC<DeletePostPopupProps> = ({
   );
 };
 
-export default CancelPopup;
+export default DeletePostPopup;

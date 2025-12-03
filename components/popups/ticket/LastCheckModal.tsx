@@ -5,15 +5,15 @@ interface LastCheckProps {
   isOpen: boolean;
   onClose: () => void;
   onReservationComplete: () => void;
-  isSubmitting: boolean;
+  isSubmitting?: boolean;
 }
 
-const LastCheck: React.FC<LastCheckProps> = ({
+const LastCheck = ({
   isOpen,
   onClose,
   onReservationComplete,
   isSubmitting,
-}) => {
+}: LastCheckProps) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (

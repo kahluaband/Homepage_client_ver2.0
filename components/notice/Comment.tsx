@@ -14,13 +14,13 @@ interface CommentProps {
   replying: boolean;
 }
 
-const Comment: React.FC<CommentProps> = ({
+const Comment = ({
   comment,
   onAddReply,
   onDeleteComment,
   onDeleteReply,
   currentUser,
-}) => {
+}: CommentProps) => {
   const [replyText, setReplyText] = useState('');
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [replyingId, setReplyingId] = useState<string | null>(null);

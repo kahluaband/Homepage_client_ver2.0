@@ -1,5 +1,3 @@
-// InfoSection.tsx
-import React, { useState } from 'react';
 import chat from '@/public/image/notice/chat.svg';
 import LikeButton from '@/components/notice/LikeButton';
 import Image from 'next/image';
@@ -11,13 +9,13 @@ interface InfoSectionProps {
   postId: number;
   liked: boolean;
 }
-const InfoSection: React.FC<InfoSectionProps> = ({
+const InfoSection = ({
   commentCount,
   replyCount,
   likes,
   liked,
   postId,
-}) => {
+}: InfoSectionProps) => {
   const totalChatCount = commentCount + replyCount;
   return (
     <div className="flex flex-col my-10">

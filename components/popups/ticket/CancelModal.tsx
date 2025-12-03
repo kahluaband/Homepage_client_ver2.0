@@ -12,14 +12,14 @@ interface CancelModalProps {
   onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CancelModal: React.FC<CancelModalProps> = ({
+const CancelModal = ({
   isOpen,
   onClose,
   onConfirm,
   isFreshman,
   inputValue,
   onInputChange,
-}) => {
+}: CancelModalProps) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (

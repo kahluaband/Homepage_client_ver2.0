@@ -8,7 +8,7 @@ interface TopButtonsProps {
   onPublish: () => void;
 }
 
-const TopButtons: React.FC<TopButtonsProps> = ({ isPostActive, onPublish }) => {
+const TopButtons = ({ isPostActive, onPublish }: TopButtonsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
 

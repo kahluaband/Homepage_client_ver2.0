@@ -18,13 +18,13 @@ interface DropDownBoxProps {
   data: any; // API에서 받은 데이터
 }
 
-const DropDownBox: React.FC<DropDownBoxProps> = ({
+const DropDownBox = ({
   type,
   onSelect,
   member,
   setMember,
   data,
-}) => {
+}: DropDownBoxProps) => {
   const defaultText = type === 'date' ? '회차 선택' : '좌석 선택';
   const [selectedValue, setSelectedValue] = useState<string>(defaultText);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);

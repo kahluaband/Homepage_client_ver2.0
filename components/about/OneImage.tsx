@@ -10,12 +10,7 @@ interface OneImageProps {
   height: string;
 }
 
-const OneImage: React.FC<OneImageProps> = ({
-  imageSrc,
-  altText,
-  width,
-  height,
-}) => {
+const OneImage = ({ imageSrc, altText, width, height }: OneImageProps) => {
   const [loading, setLoading] = useState(true);
 
   return (

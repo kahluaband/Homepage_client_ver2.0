@@ -1,10 +1,11 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import NotFoundModal from '@/components/popups/ticket/NotFoundModal';
 import { axiosInstance } from '@/api/auth/axios';
 
-const Search: React.FC = () => {
+const Search = () => {
   const [reservationId, setReservationId] = useState('');
   const [dynamicHeightClass, setDynamicHeightClass] = useState('');
   const [showNotFoundModal, setShowNotFoundModal] = useState(false);

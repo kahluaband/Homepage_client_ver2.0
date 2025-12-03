@@ -38,10 +38,7 @@ interface ApplicantInfoProps {
   };
 }
 
-const ApplicantInfo: React.FC<ApplicantInfoProps> = ({
-  onInfoChange,
-  PersonalInfo,
-}) => {
+const ApplicantInfo = ({ onInfoChange, PersonalInfo }: ApplicantInfoProps) => {
   const { name, birth_date, phone_num, major, address, gender, email } =
     PersonalInfo;
 

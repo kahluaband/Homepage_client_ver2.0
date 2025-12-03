@@ -6,10 +6,7 @@ interface DetailsErrorModalProps {
   onClose: () => void;
 }
 
-const DetailsErrorModal: React.FC<DetailsErrorModalProps> = ({
-  isOpen,
-  onClose,
-}) => {
+const DetailsErrorModal = ({ isOpen, onClose }: DetailsErrorModalProps) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (

@@ -5,8 +5,8 @@ import Image from 'next/image';
 interface LocationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  address: string; // ✅ 부모에서 전달받은 주소
-  mapLink: string; // ✅ 부모에서 전달받은 카카오맵 링크
+  address: string;
+  mapLink: string;
 }
 
 declare global {
@@ -17,12 +17,12 @@ declare global {
 
 const apikey = process.env.NEXT_PUBLIC_KAKAOMAP_KEY;
 
-const LocationModal: React.FC<LocationModalProps> = ({
+const LocationModal = ({
   isOpen,
   onClose,
   address,
   mapLink,
-}) => {
+}: LocationModalProps) => {
   const mapContainerRef = useRef<HTMLDivElement>(null);
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);

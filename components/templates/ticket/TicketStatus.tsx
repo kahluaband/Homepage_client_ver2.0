@@ -16,14 +16,14 @@ const stateMap: Record<string, string> = {
   CANCEL_COMPLETE: '취소 완료',
 };
 
-const TicketStatus: React.FC<TicketStatusProps> = ({
+const TicketStatus = ({
   reservation_id,
   buyer,
   phone_num,
   student_id,
   state,
   type,
-}) => {
+}: TicketStatusProps) => {
   const statusText = stateMap[state];
   const copyReservationId = () => {
     navigator.clipboard.writeText(reservation_id).then(() => {

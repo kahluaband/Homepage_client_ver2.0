@@ -3,19 +3,19 @@
 import * as React from 'react';
 import Image from 'next/image';
 
-interface twoOptionProps {
+interface TwoOptionProps {
   option1: string;
   option2: string;
   seletion: (selected: string) => void;
   className: string;
 }
 
-const TwoOptionBox: React.FC<twoOptionProps> = ({
+const TwoOptionBox = ({
   option1,
   option2,
   seletion,
   className,
-}) => {
+}: TwoOptionProps) => {
   const [selected, setSelected] = React.useState<string>(option1);
 
   React.useEffect(() => {

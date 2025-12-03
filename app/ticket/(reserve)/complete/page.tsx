@@ -7,7 +7,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { axiosInstance } from '@/api/auth/axios';
 import { information } from '@/components/data/Information';
 
-const Complete: React.FC = () => {
+const Complete = () => {
   const params = useSearchParams();
   const reservationId = params.get('reservationId');
 
@@ -97,7 +97,7 @@ const Complete: React.FC = () => {
   );
 };
 
-const CompleteWrapper: React.FC = () => (
+const CompleteWrapper = () => (
   <Suspense fallback={<div>Loading...</div>}>
     <Complete />
   </Suspense>

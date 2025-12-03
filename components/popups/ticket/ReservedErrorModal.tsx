@@ -7,11 +7,11 @@ interface ReservedErrorModalProps {
   onAlreadyReserved: () => void;
 }
 
-const ReservedErrorModal: React.FC<ReservedErrorModalProps> = ({
+const ReservedErrorModal = ({
   isOpen,
   onClose,
   onAlreadyReserved,
-}) => {
+}:ReservedErrorModalProps) => {
   if (!isOpen) return null;
 
   const handleOverlayClick = (

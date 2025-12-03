@@ -4,7 +4,7 @@ import DetailsErrorModal from '@/components/popups/ticket/DetailsErrorModal';
 import LastCheckModal from '@/components/popups/ticket/LastCheckModal';
 import ReservedErrorModal from '@/components/popups/ticket/ReservedErrorModal';
 
-interface Props {
+interface FinishStepProps {
   price: number;
   amount: number;
   handleSubmit: () => Promise<void>;
@@ -16,7 +16,7 @@ interface Props {
   showLastCheckModal: boolean;
 }
 
-const FinalStep: React.FC<Props> = ({
+const FinalStep = ({
   price,
   amount,
   handleSubmit,
@@ -26,7 +26,7 @@ const FinalStep: React.FC<Props> = ({
   isAlreadyReserved,
   showLastCheckModal,
   setShowLastCheckModal,
-}) => {
+}: FinishStepProps) => {
   const [showDetailsErrorModal, setShowDetailsErrorModal] = useState(false);
   const [showReservedErrorModal, setShowReservedErrorModal] = useState(false);
   const priceValue = price || 0;

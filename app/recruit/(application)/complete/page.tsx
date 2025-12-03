@@ -1,8 +1,9 @@
 'use client';
+
 import * as React from 'react';
 import CheckOutlinedIcon from '@mui/icons-material/CheckOutlined';
 
-const Freshman_tickets: React.FC = () => {
+const FreshmanTickets = () => {
   const handleToMain = () => {
     window.location.href = `/`;
   };
@@ -45,4 +46,4 @@ const Freshman_tickets: React.FC = () => {
   );
 };
 
-export default Freshman_tickets;
+export default FreshmanTickets;

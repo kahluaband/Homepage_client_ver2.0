@@ -7,11 +7,7 @@ interface ImageUploadProps {
   isEditMode: boolean;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({
-  image,
-  setImage,
-  isEditMode,
-}) => {
+const ImageUpload = ({ image, setImage, isEditMode }: ImageUploadProps) => {
   const [images, setImages] = useState<string[]>(image);
   const [hasScrollbar, setHasScrollbar] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);

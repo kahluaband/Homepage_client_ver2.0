@@ -49,7 +49,7 @@ const page = () => {
       )}
       <div
         className="flex top-0 items-center justify-center h-auto pad:h-screen w-full bg-performance bg-center text-gray-0"
-        style={{ marginTop: '-64px', paddingTop: '64px' }} // 헤더 높이만큼 마진 조정
+        style={{ marginTop: '-64px', paddingTop: '64px' }} 
       >
         <div className="flex flex-col items-center justify-center text-center max-pad:py-[120px] max-pad:px-[16px] w-full pad:w-[786px] dt:w-[1200px]">
           <div className="flex relative h-[40px] w-[234px] pad:h-[64px] pad:w-[376px] dt:h-[88px] dt:w-[516px]">

@@ -4,12 +4,12 @@ import TicketStatistics from './ticketing/TicketStatistics';
 import MessageStatistics from './message/MessageStatistics';
 import Link from 'next/link';
 
-interface urlProps {
+interface AdminPageButtonProps {
   name: string;
   url: string;
 }
 
-const AdminPageButton: React.FC<urlProps> = ({ name, url }) => {
+const AdminPageButton = ({ name, url }: AdminPageButtonProps) => {
   return (
     <div className="w-full">
       <Link href={url}>

@@ -7,11 +7,7 @@ interface CancelPopupProps {
   onConfirm: () => void;
 }
 
-const CancelPopup: React.FC<CancelPopupProps> = ({
-  isOpen,
-  onClose,
-  onConfirm,
-}) => {
+const CancelPopup = ({ isOpen, onClose, onConfirm }: CancelPopupProps) => {
   // 모달 열릴 때 스크롤 막기
   useEffect(() => {
     document.body.style.overflow = 'hidden';

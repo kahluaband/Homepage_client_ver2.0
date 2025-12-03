@@ -9,7 +9,7 @@ interface PieChartProps {
   chartData: any;
 }
 
-const PieChart: React.FC<PieChartProps> = ({ chartData }) => {
+const PieChart = ({ chartData }: PieChartProps) => {
   const [legendPosition, setLegendPosition] = useState<'right' | 'bottom'>(
     'right'
   );

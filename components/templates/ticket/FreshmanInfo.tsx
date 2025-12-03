@@ -25,10 +25,10 @@ interface FreshmanInfoProps {
   };
 }
 
-const FreshmanInfo: React.FC<FreshmanInfoProps> = ({
+const FreshmanInfo = ({
   onInfoChange,
   userInfo,
-}) => {
+}:FreshmanInfoProps) => {
   const [phoneValue, setPhoneValue] = useState(userInfo.phone_num || '');
   const [nameValue, setNameValue] = useState(userInfo.name || '');
   const [departmentValue, setDepartmentValue] = useState(

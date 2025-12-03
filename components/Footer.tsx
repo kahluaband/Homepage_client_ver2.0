@@ -18,14 +18,14 @@ export interface SocialIconProps {
   className?: string;
 }
 
-const SocialIcon: React.FC<SocialIconProps> = ({
+const SocialIcon = ({
   href,
   src,
   alt,
   width,
   height,
   className,
-}) => (
+}: SocialIconProps) => (
   <li className="rounded-full bg-gray-80 w-12 h-12 flex justify-center items-center">
     <Link href={href} target="_blank" passHref>
       <Image

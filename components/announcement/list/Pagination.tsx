@@ -11,7 +11,7 @@ interface PaginationProps {
   onNextGroup: () => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({
+const Pagination = ({
   currentPage,
   totalPages,
   pageGroup,
@@ -19,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   onPrevGroup,
   onNextGroup,
-}) => {
+}: PaginationProps) => {
   const startPage = pageGroup * pagesPerGroup + 1;
   const endPage = Math.min(startPage + pagesPerGroup - 1, totalPages);
 

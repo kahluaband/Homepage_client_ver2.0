@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import { axiosInstance } from '@/api/auth/axios';
 import { information } from '@/components/data/Information';
 
-const General_ticket: React.FC = () => {
+const GeneralTicket = () => {
   const router = useRouter();
   const [member, setMember] = useState<number>(1);
   const [showLastCheckModal, setShowLastCheckModal] = useState(false);
@@ -172,4 +172,4 @@ const General_ticket: React.FC = () => {
   );
 };
 
-export default General_ticket;
+export default GeneralTicket;

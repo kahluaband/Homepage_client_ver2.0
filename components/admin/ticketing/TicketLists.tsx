@@ -65,31 +65,6 @@ const TicketLists = ({
     ticketId: number
   ) => void;
 }) => {
-  const router = useRouter();
-
-  const [total, setTotal] = useRecoilState(totalTicket);
-  const [members, setMembers] = useState<TicketMemberProps[][]>([]);
-
-  // 티켓 상태 변경
-  const handleTicketStatus = async (ticketId: number, status: string) => {
-    if (status === '결제 완료') {
-      try {
-        const response = await authInstance.patch(
-          `/admin/tickets/${ticketId}/ticket-complete`
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    } else if (status === '예매 취소') {
-      try {
-        const response = await authInstance.patch(
-          `/admin/tickets/${ticketId}/cancel-complete`
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
 
   const copyReservationId = (reservation_id: string) => {
     navigator.clipboard.writeText(reservation_id).then(() => {

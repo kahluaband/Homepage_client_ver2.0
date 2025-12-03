@@ -1,4 +1,5 @@
 'use client';
+
 import FinalStep from '@/components/templates/ticket/FinalStep';
 import FreshmanInfo from '@/components/templates/ticket/FreshmanInfo';
 import MemberSelection from '@/components/templates/ticket/MemberSelection';
@@ -28,7 +29,7 @@ const handleMeeting = (state: State): string => {
   return 'NOT_ATTEND';
 };
 
-const Freshman_ticket: React.FC = () => {
+const FreshmanTicket = () => {
   const router = useRouter();
   const [member, setMember] = useState<number>(1);
   const [isFormComplete, setIsFormComplete] = useState(false);
@@ -175,4 +176,4 @@ const Freshman_ticket: React.FC = () => {
   );
 };
 
-export default Freshman_ticket;
+export default FreshmanTicket;

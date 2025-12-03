@@ -21,13 +21,13 @@ interface GeneralInfoProps {
   };
 }
 
-const GeneralInfo: React.FC<GeneralInfoProps> = ({
+const GeneralInfo = ({
   member,
   setMember,
   onInfoComplete,
   onInfoChange,
   userInfo,
-}) => {
+}: GeneralInfoProps) => {
   const [buyer, setBuyer] = useState(userInfo.buyer || '');
   const [phone, setPhone] = useState(userInfo.phone_num || '');
   const [emailValue, setEmailValue] = useState(userInfo.email || '');
