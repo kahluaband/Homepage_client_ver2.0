@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 
+import Modal from '@/components/ui/Modal';
 import { ReservationRequest } from '@/types/reservation';
 
 import 'react-calendar/dist/Calendar.css';
-import Modal from '../ui/Modal';
+
 import './CalendarUI.css';
 
 type ValuePiece = Date | null;
