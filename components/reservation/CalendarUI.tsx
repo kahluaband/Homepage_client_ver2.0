@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
 import Calendar from 'react-calendar';
 
+import Modal from '@/components/ui/Modal';
 import { ReservationRequest } from '@/types/reservation';
 
-import 'react-calendar/dist/Calendar.css'; // 기본 스타일
-import Modal from '../ui/Modal';
+import 'react-calendar/dist/Calendar.css';
+
 import './CalendarUI.css';
 
-// react-calnedar에서 요구하는 타입 형식 (변경 x)
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
@@ -45,8 +45,7 @@ const CalendarUI = ({ onChange }: CalendarProps) => {
       const mm = String(newValue.getMonth() + 1).padStart(2, '0');
       const dd = String(newValue.getDate()).padStart(2, '0');
 
-      const dateString = `${yyyy}-${mm}-${dd}`;
-      onChange('reservationDate', dateString);
+      onChange('reservationDate', `${yyyy}-${mm}-${dd}`);
     }
   };
 
@@ -57,8 +56,7 @@ const CalendarUI = ({ onChange }: CalendarProps) => {
       const mm = String(tempDate.getMonth() + 1).padStart(2, '0');
       const dd = String(tempDate.getDate()).padStart(2, '0');
 
-      const dateString = `${yyyy}-${mm}-${dd}`;
-      onChange('reservationDate', dateString);
+      onChange('reservationDate', `${yyyy}-${mm}-${dd}`);
     }
 
     setIsModalOpen(false);
